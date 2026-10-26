@@ -25,7 +25,7 @@ pnpm build
 pnpm start
 ```
 
-`pnpm test` chạy Vitest trong Node cho cube core: snapshot, validation cấu trúc và serialization. Từ Task 4.1 không còn passWithNoTests; thiếu toàn bộ test sẽ làm lệnh thất bại.
+`pnpm test` chạy Vitest trong Node cho cube core: snapshot, validation cấu trúc, state serialization và parser/serializer notation. Từ Task 4.1 không còn passWithNoTests; thiếu toàn bộ test sẽ làm lệnh thất bại.
 
 ## Cấu trúc
 
@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **4.2 — Parser và serializer notation** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **4.3 — Move engine** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -63,3 +63,5 @@ UI primitives: [Hướng dẫn sử dụng](docs/ui-primitives.md). Trang `/ui-p
 Các route và điều hướng: [Khung trang MVP](docs/routes.md).
 
 Cube core: [Quy ước và API](docs/cube-state.md).
+
+Notation: [Cú pháp và API thuật toán](docs/cube-notation.md).
