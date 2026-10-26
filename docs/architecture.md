@@ -17,7 +17,7 @@ Renderer 3D, solver, backend, authentication và persistence sẽ được đán
 
 ## Kiểm tra
 
-Vitest chạy trong Node. Từ Task 4.1 đã có test state model và bỏ passWithNoTests. Test move engine/solver sẽ được bổ sung ở task tương ứng; test state hiện tại không chứng minh khối có thể giải được. Xem [quy ước cube](./cube-state.md).
+Vitest chạy trong Node. Từ Task 4.1 đã có test state model và bỏ passWithNoTests. Đã có test move engine/notation từ Task 4.2–4.3; solver vẫn chưa triển khai. Test core không thay thế physical validation của state nhập tay. Xem [quy ước cube](./cube-state.md).
 
 ## Git
 
