@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const upcoming = [
   {
     number: "01",
@@ -43,15 +45,15 @@ export default function HomePage() {
           Chúng mình đang chuẩn bị những công cụ đầu tiên cho khối 3×3. Hẹn gặp
           bạn sớm!
         </p>
-        <a
-          href="#progress"
+        <Link
+          href="/practice"
           className="touch-control mt-8 rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-primary-hover"
         >
-          Khám phá những gì sắp tới{" "}
+          Khám phá khu vực luyện tập{" "}
           <span aria-hidden="true" className="ml-2">
-            ↓
+            →
           </span>
-        </a>
+        </Link>
       </section>
       <section
         id="progress"
@@ -86,6 +88,26 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+      </section>
+      <section
+        aria-labelledby="explore-title"
+        className="mb-16 rounded-panel border border-border bg-surface p-6 sm:p-8"
+      >
+        <h2 id="explore-title" className="text-heading">
+          Khám phá trước khi bắt đầu.
+        </h2>
+        <p className="text-body mt-3 text-muted">
+          Một vài kiến thức nhập môn và câu trả lời cho những thắc mắc đầu tiên
+          của bạn.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/learn" className="ui-button ui-button--secondary">
+            Học cơ bản
+          </Link>
+          <Link href="/help" className="ui-button ui-button--ghost">
+            Trợ giúp
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -1,6 +1,6 @@
 # ShanBik
 
-Website học, mô phỏng và luyện tập Rubik. Hiện hoàn thành nền tảng Task 0 và trang chủ “Đang xây dựng”.
+Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives và khung trang Home/Luyện tập/Học cơ bản/Trợ giúp; chưa triển khai logic Rubik.
 
 ## Môi trường
 
@@ -54,8 +54,10 @@ Vitest hiện cho phép chưa có test case (`passWithNoTests`). CI xanh ở gia
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **3.3 — Khung trang MVP** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **4.1 — State model 3×3** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
 UI primitives: [Hướng dẫn sử dụng](docs/ui-primitives.md). Trang `/ui-preview` chỉ mở khi `pnpm dev`; production trả 404.
+
+Các route và điều hướng: [Khung trang MVP](docs/routes.md).
