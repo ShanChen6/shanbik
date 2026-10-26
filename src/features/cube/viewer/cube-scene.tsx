@@ -1,28 +1,28 @@
 "use client";
 
 import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   BoxGeometry,
+  PerspectiveCamera,
   MeshBasicMaterial,
   MeshStandardMaterial,
   Shape,
   ShapeGeometry,
 } from "three";
-import type { CubeFace, CubeState } from "../core/types";
+import type { CubeState } from "../core/types";
 import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
+import { STICKER_ROTATIONS } from "./sticker-orientation";
 import { ViewerFallback } from "./viewer-fallback";
+import { CAMERA_FOV, VIEWER_DPR } from "./camera";
 
-const ROTATIONS: Record<CubeFace, [number, number, number]> = {
-  U: [-Math.PI / 2, 0, 0],
-  R: [0, Math.PI / 2, 0],
-  F: [0, 0, 0],
-  D: [Math.PI / 2, 0, 0],
-  L: [0, -Math.PI / 2, 0],
-  B: [0, Math.PI, 0],
-};
+import {
+  attachCameraGestures,
+  createCameraController,
+  type CameraCommands,
+} from "./camera-controller";
 
 function stickerShape() {
   const shape = new Shape();
@@ -91,7 +91,7 @@ function CubeModel({ state }: { state: CubeState }) {
                 sticker.normal[1] * 0.476,
                 sticker.normal[2] * 0.476,
               ]}
-              rotation={ROTATIONS[sticker.face]}
+              rotation={[...STICKER_ROTATIONS[sticker.face]]}
               geometry={resources.sticker}
               material={resources.colors[sticker.color]}
             />
@@ -100,6 +100,42 @@ function CubeModel({ state }: { state: CubeState }) {
       ))}
     </group>
   );
+}
+
+function CameraControls({
+  gestures,
+  onReady,
+}: {
+  gestures: boolean;
+  onReady: (controller: CameraCommands | null) => void;
+}) {
+  const camera = useThree((store) => store.camera);
+  const canvas = useThree((store) => store.gl.domElement);
+  const width = useThree((store) => store.size.width);
+  const height = useThree((store) => store.size.height);
+  const invalidate = useThree((store) => store.invalidate);
+  const controller = useRef<ReturnType<typeof createCameraController> | null>(
+    null,
+  );
+  useEffect(() => {
+    if (!(camera instanceof PerspectiveCamera)) return;
+    const instance = createCameraController(camera, invalidate);
+    controller.current = instance;
+    onReady(instance);
+    return () => {
+      onReady(null);
+      controller.current = null;
+      instance.dispose();
+    };
+  }, [camera, invalidate, onReady]);
+  useEffect(() => {
+    controller.current?.resize(width, height);
+  }, [camera, width, height]);
+  useEffect(() => {
+    if (!gestures || !controller.current) return;
+    return attachCameraGestures(canvas, controller.current);
+  }, [canvas, camera, gestures]);
+  return null;
 }
 
 function ContextLifecycle({ onLost }: { onLost: () => void }) {
@@ -119,16 +155,20 @@ function ContextLifecycle({ onLost }: { onLost: () => void }) {
 export function CubeScene({
   state,
   onContextLost,
+  gestures,
+  onCameraReady,
 }: {
   state: CubeState;
   onContextLost: () => void;
+  gestures: boolean;
+  onCameraReady: (controller: CameraCommands | null) => void;
 }) {
   return (
     <Canvas
       role="img"
-      aria-label="Mô hình khối Rubik 3×3 tĩnh"
-      camera={{ position: [5, 4, 6], fov: 40, near: 0.1, far: 100 }}
-      dpr={[1, 1.5]}
+      aria-label="Mô hình khối Rubik 3×3"
+      camera={{ position: [5, 4, 6], fov: CAMERA_FOV, near: 0.1, far: 100 }}
+      dpr={VIEWER_DPR}
       frameloop="demand"
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
       fallback={<ViewerFallback />}
@@ -138,6 +178,7 @@ export function CubeScene({
       <directionalLight position={[5, 6, 7]} intensity={2} />
       <directionalLight position={[-4, 2, -3]} intensity={0.5} />
       <CubeModel state={state} />
+      <CameraControls gestures={gestures} onReady={onCameraReady} />
       <ContextLifecycle onLost={onContextLost} />
     </Canvas>
   );

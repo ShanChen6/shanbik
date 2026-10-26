@@ -1,13 +1,23 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Component, useEffect, useId, useState } from "react";
+import {
+  Component,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
+import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/ui/states";
 import { createSolvedCubeState } from "../core/state";
 import { CUBE_COLORS } from "../core/constants";
 import type { CubeState } from "../core/types";
 import { COLOR_LABELS, STICKER_COLORS } from "./palette";
 import { ViewerFallback } from "./viewer-fallback";
+
+import type { CameraAction, CameraCommands } from "./camera-controller";
 
 const SOLVED = createSolvedCubeState();
 const Scene = dynamic(
@@ -41,9 +51,17 @@ function supportsWebGL2() {
 
 export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
   const captionId = useId();
+  const [gestures, setGestures] = useState(false);
+  const [cameraReady, setCameraReady] = useState(false);
+  const camera = useRef<CameraCommands | null>(null);
+  const handleCameraReady = useCallback((controller: CameraCommands | null) => {
+    camera.current = controller;
+    setCameraReady(controller !== null);
+  }, []);
   const [capability, setCapability] = useState<
     "loading" | "ready" | "unavailable"
   >("loading");
+  const handleContextLost = useCallback(() => setCapability("unavailable"), []);
   useEffect(() => {
     // Probe only in the browser after paint; dispose the temporary probe context.
     const frame = requestAnimationFrame(() =>
@@ -52,7 +70,13 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
     return () => cancelAnimationFrame(frame);
   }, []);
   return (
-    <figure aria-describedby={captionId}>
+    <figure
+      className="cube-viewer"
+      aria-describedby={captionId}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") setGestures(false);
+      }}
+    >
       <div className="cube-viewport overflow-hidden rounded-panel border border-border bg-surface-subtle">
         {capability === "loading" ? (
           <LoadingState label="Đang chuẩn bị mô hình 3D…" />
@@ -62,15 +86,47 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
           <SceneBoundary>
             <Scene
               state={state}
-              onContextLost={() => setCapability("unavailable")}
+              gestures={gestures}
+              onCameraReady={handleCameraReady}
+              onContextLost={handleContextLost}
             />
           </SceneBoundary>
         )}
       </div>
-      <figcaption id={captionId} className="mt-4 text-sm text-muted">
-        Góc nhìn mặc định: mặt trước, trên và phải. Mô hình đang ở chế độ xem
-        tĩnh; điều khiển xoay sẽ được bổ sung sau.
-      </figcaption>
+      <div
+        role="group"
+        aria-label="Điều khiển góc nhìn"
+        className="mt-4 flex flex-wrap gap-2"
+      >
+        {(
+          [
+            ["left", "Xoay trái"],
+            ["right", "Xoay phải"],
+            ["up", "Xoay lên"],
+            ["down", "Xoay xuống"],
+            ["in", "Phóng to"],
+            ["out", "Thu nhỏ"],
+            ["reset", "Đặt lại góc nhìn"],
+          ] as const
+        ).map(([action, label]: readonly [CameraAction, string]) => (
+          <Button
+            key={action}
+            variant="secondary"
+            disabled={!cameraReady || capability !== "ready"}
+            onClick={() => camera.current?.act(action)}
+          >
+            {label}
+          </Button>
+        ))}
+        <Button
+          variant="secondary"
+          aria-pressed={gestures}
+          disabled={!cameraReady || capability !== "ready"}
+          onClick={() => setGestures((current) => !current)}
+        >
+          {gestures ? "Tắt kéo và zoom" : "Bật kéo và zoom"}
+        </Button>
+      </div>
       <ul
         aria-label="Màu các mặt Rubik"
         className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm"
@@ -86,6 +142,13 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
           </li>
         ))}
       </ul>
+      <figcaption id={captionId} className="mt-4 text-sm text-muted">
+        Dùng các nút để đổi góc nhìn, phóng to hoặc thu nhỏ. Bật kéo và zoom để
+        kéo bằng chuột/một ngón tay, lăn bánh xe/trackpad hoặc chụm hai ngón tay
+        ngay trong khung. Tắt chế độ này để cuộn trang qua khung như bình
+        thường. Đặt lại góc nhìn để trở về mặt trước, trên và phải; màu khối
+        không đổi. Escape tắt kéo và zoom khi focus ở trong viewer.
+      </figcaption>
     </figure>
   );
 }

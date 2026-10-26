@@ -11,7 +11,12 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xem mô hình 3×3 tĩnh, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Điều khiển mô phỏng, xáo trộn và giải khối đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Xoay từng mặt, xáo trộn và giải khối đang được phát triển.",
+  },
+  {
+    question: "Làm sao xoay và zoom mô hình 3D?",
+    answer:
+      "Dùng các nút Xoay, Phóng to, Thu nhỏ và Đặt lại góc nhìn bằng chuột hoặc Tab rồi Enter/Space. Muốn dùng gesture, chọn Bật kéo và zoom: kéo bằng chuột/một ngón tay, dùng bánh xe/trackpad hoặc chụm hai ngón tay trong khung. Tắt chế độ này để cuộn trang qua khung. Thao tác ngoài khung vẫn cuộn trang bình thường.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",
