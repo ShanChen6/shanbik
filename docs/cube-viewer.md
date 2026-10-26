@@ -115,4 +115,4 @@ Các số đo trên kiểm chứng vòng đời trong trình duyệt đại di�
 
 Chạy /practice, thử tất cả native buttons bằng Tab/Enter/Space; orbit/zoom rồi reset. Bật gesture, kéo chuột trái, wheel/trackpad, kéo một ngón và pinch; thử kéo ra ngoài canvas rồi nhả/cancel. Tắt bằng toggle hoặc Escape khi focus trong figure. So sánh cuộn trang qua canvas khi tắt và ngoài canvas khi bật. Đổi viewport sau khi orbit/zoom để kiểm giữ hướng và zoom tương đối. Lặp /ui-preview Hiện/Ẩn mô hình thử trong lúc đang kéo để kiểm cleanup; fixture vẫn chỉ có ở development.
 
-Bước tiếp theo: **7.1 — Move → layer mapping**. Physical mobile/Safari/Firefox, trackpad thật và frame-time khi animation còn cần kiểm tra trên môi trường tương ứng.
+Task 7.1 đã bổ sung [move → layer mapping](./cube-move-layer.md), có kiểm chứng endpoint Three.js với core cho đủ 18 biến thể. Bước tiếp theo: **7.2 — Animation một move**. Physical mobile/Safari/Firefox, trackpad thật và frame-time khi animation còn cần kiểm tra trên môi trường tương ứng.

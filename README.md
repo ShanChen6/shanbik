@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **7.1 — Move → layer mapping** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **7.2 — Animation một move** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -69,3 +69,5 @@ Notation: [Cú pháp và API thuật toán](docs/cube-notation.md).
 Move engine: [API và fixture đối chiếu](docs/cube-moves.md).
 
 Viewer 3D và camera: [Thiết kế, kiểm tra và giới hạn](docs/cube-viewer.md).
+
+Move → layer: [Quy ước trục, góc xoay và kiểm chứng renderer](docs/cube-move-layer.md).

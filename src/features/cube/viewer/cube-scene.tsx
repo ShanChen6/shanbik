@@ -10,10 +10,11 @@ import {
   Shape,
   ShapeGeometry,
 } from "three";
-import type { CubeFace, CubeState } from "../core/types";
+import type { CubeState } from "../core/types";
 import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
+import { STICKER_ROTATIONS } from "./sticker-orientation";
 import { ViewerFallback } from "./viewer-fallback";
 import { CAMERA_FOV, VIEWER_DPR } from "./camera";
 
@@ -22,15 +23,6 @@ import {
   createCameraController,
   type CameraCommands,
 } from "./camera-controller";
-
-const ROTATIONS: Record<CubeFace, [number, number, number]> = {
-  U: [-Math.PI / 2, 0, 0],
-  R: [0, Math.PI / 2, 0],
-  F: [0, 0, 0],
-  D: [Math.PI / 2, 0, 0],
-  L: [0, -Math.PI / 2, 0],
-  B: [0, Math.PI, 0],
-};
 
 function stickerShape() {
   const shape = new Shape();
@@ -99,7 +91,7 @@ function CubeModel({ state }: { state: CubeState }) {
                 sticker.normal[1] * 0.476,
                 sticker.normal[2] * 0.476,
               ]}
-              rotation={ROTATIONS[sticker.face]}
+              rotation={[...STICKER_ROTATIONS[sticker.face]]}
               geometry={resources.sticker}
               material={resources.colors[sticker.color]}
             />
