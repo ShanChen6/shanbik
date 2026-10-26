@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể khám phá các trang giới thiệu, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Mô phỏng, xáo trộn và giải khối đang được phát triển.",
+      "Bạn có thể xem mô hình 3×3 tĩnh, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Điều khiển mô phỏng, xáo trộn và giải khối đang được phát triển.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
-import { EmptyState } from "@/components/ui/states";
+import { CubeViewport } from "@/features/cube/viewer/cube-viewport";
 
 export const metadata: Metadata = {
   title: "Luyện tập 3×3 — ShanBik",
-  description: "Không gian luyện tập Rubik 3×3 của ShanBik đang được chuẩn bị.",
+  description:
+    "Xem mô hình Rubik 3×3 tĩnh và tìm hiểu các công cụ luyện tập sắp có trên ShanBik.",
 };
 
 export default function PracticePage() {
@@ -25,12 +26,10 @@ export default function PracticePage() {
             Khối 3×3 của bạn
           </h2>
           <p className="mt-3 mb-6 text-muted">
-            Trình mô phỏng tương tác đang được phát triển.
+            Quan sát mô hình 3×3 ở góc nhìn ban đầu. Điều khiển tương tác đang
+            được chuẩn bị.
           </p>
-          <EmptyState
-            title="Khu vực mô phỏng sắp ra mắt"
-            description="Bạn sẽ có thể xoay khối, xem từng nước đi và bắt đầu lại khi muốn."
-          />
+          <CubeViewport />
         </div>
         <aside
           aria-labelledby="upcoming-title"
