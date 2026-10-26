@@ -36,7 +36,7 @@ Trong mảng mặt, index = row × 3 + column, row/column từ 0 đến 2; hàng
 
 Vị trí trên lưới đơn vị: `normal + (column - 1) × right + (row - 1) × down`. Đây là quy ước định vị, không phải kích thước geometry hoặc renderer đã xây dựng.
 
-Move mặt cơ bản sau này là 90° theo chiều kim đồng hồ khi nhìn trực diện mặt từ ngoài; tương ứng góc -90° quanh normal hướng ra trong hệ tay phải. Prime đảo chiều, double 180°. Parser notation được bổ sung ở Task 4.2; Task 4.3 mới thực thi moves. Chưa có move engine.
+Move mặt cơ bản sau này là 90° theo chiều kim đồng hồ khi nhìn trực diện mặt từ ngoài; tương ứng góc -90° quanh normal hướng ra trong hệ tay phải. Prime đảo chiều, double 180°. Parser notation ở Task 4.2 và [move engine](./cube-moves.md) ở Task 4.3 dùng các quy ước này; chưa có renderer.
 
 ## Serialization state
 
@@ -88,7 +88,7 @@ Factory nhận DTO JSON thông thường; chưa thiết kế để xử lý obje
 - Issues chỉ rõ path, phân biệt shape, face keys, length, color, center, counts và encoding.
 - **Chưa kiểm tra inventory/orientation/parity của cubie.** valid ở đây không có nghĩa khối có thể giải được. Không gửi state vào solver chỉ dựa trên kết quả này; Task 9.1b phải bổ sung kiểm tra vật lý.
 
-Test có fixture hoán đổi hai sticker ngoài tâm để xác minh serialization/cấu trúc, không dùng fixture đó làm bằng chứng physical reachability. Chưa test apply/inverse move vì chưa có implementation.
+Test có fixture hoán đổi hai sticker ngoài tâm để xác minh serialization/cấu trúc, không dùng fixture đó làm bằng chứng physical reachability. Test apply/inverse nằm trong bộ test move engine Task 4.3.
 
 ## Kiểm tra
 

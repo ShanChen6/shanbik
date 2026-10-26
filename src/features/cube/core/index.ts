@@ -4,3 +4,4 @@ export * from "./validation";
 export * from "./state";
 export * from "./serialization";
 export * from "./notation";
+export * from "./moves";

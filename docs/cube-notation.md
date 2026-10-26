@@ -1,6 +1,6 @@
 # Notation thuật toán 3×3 — Task 4.2
 
-Mã tại `src/features/cube/core/notation.ts`, export qua core index. TypeScript thuần, không React, DOM, renderer hoặc solver. Parser chỉ đọc chuỗi và tạo descriptor; chưa áp dụng nước đi lên cube.
+Mã tại `src/features/cube/core/notation.ts`, export qua core index. TypeScript thuần, không React, DOM, renderer hoặc solver. Parser chỉ đọc chuỗi và tạo descriptor; [move engine](./cube-moves.md) riêng ở Task 4.3 mới áp dụng lên cube.
 
 ## Cú pháp được hỗ trợ
 
@@ -37,7 +37,7 @@ import { tryParseAlgorithm, normalizeAlgorithm } from "@/features/cube/core";
 
 const result = tryParseAlgorithm("  R U’\nF2  ");
 if (result.valid) {
-  // result.moves dành cho engine ở Task 4.3; parser chưa xoay cube.
+  // result.moves dành cho engine; parser không tự xoay cube.
 } else {
   // Hiển thị result.issues, giữ nguyên input để người dùng sửa.
 }
@@ -60,4 +60,4 @@ Serializer lỗi có moveIndex 0-based, hoặc null nếu input không phải ar
 
 Unit test Node kiểm tra từng mặt/prime/double, thứ tự, whitespace/prime aliases, empty input, round-trip, snapshot bất biến, invalid token/non-string, offset gốc/emoji và invalid AST/sparse arrays.
 
-Task 4.1 state serialization URFDLB 54 ký tự vẫn độc lập với serializer thuật toán có khoảng trắng ở đây. Chưa có apply move, inverse algorithm hoặc animation; các phần đó tiếp tục ở Task 4.3/7.x.
+Task 4.1 state serialization URFDLB 54 ký tự vẫn độc lập với serializer thuật toán có khoảng trắng ở đây. Apply/inverse được bổ sung riêng ở Task 4.3; animation còn thuộc Task 7.x.

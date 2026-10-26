@@ -1,0 +1,390 @@
+{
+  "oracle": {
+    "package": "cubejs",
+    "version": "1.3.2",
+    "source": "https://github.com/ldez/cubejs",
+    "method": "new Cube().move(initial).move(algorithm).asString()",
+    "seed": "0x53424b",
+    "solverInitialized": false
+  },
+  "cases": [
+    {
+      "name": "solved: U",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "U",
+      "expectedState": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB"
+    },
+    {
+      "name": "mixed: U",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "U",
+      "expectedState": "LFFFUDLRRUBRLRFDBDBUBRFBFLBDURRDULDRDRUDLDFBLUUBLBFFLU"
+    },
+    {
+      "name": "solved: U'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "U'",
+      "expectedState": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB"
+    },
+    {
+      "name": "mixed: U'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "U'",
+      "expectedState": "RRLDUFFFLDRULRFDBDUUBRFBFLBDURRDULDRUBRDLDFBLBUBLBFFLU"
+    },
+    {
+      "name": "solved: U2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "U2",
+      "expectedState": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB"
+    },
+    {
+      "name": "mixed: U2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "U2",
+      "expectedState": "LFLRUFRDFUUBLRFDBDUBRRFBFLBDURRDULDRBUBDLDFBLDRULBFFLU"
+    },
+    {
+      "name": "solved: R",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R",
+      "expectedState": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB"
+    },
+    {
+      "name": "mixed: R",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "R",
+      "expectedState": "FDUFUBLFBDLBBRUDFBDRRRFUFLRDUFRDLLDUUUBDLDFBLLBRRBFRLU"
+    },
+    {
+      "name": "solved: R'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R'",
+      "expectedState": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB"
+    },
+    {
+      "name": "mixed: R'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "R'",
+      "expectedState": "FDFFULLFUBFDURBBLDDRRRFRFLLDUURDBLDBUUBDLDFBLRBRUBFRLU"
+    },
+    {
+      "name": "solved: R2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R2",
+      "expectedState": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB"
+    },
+    {
+      "name": "mixed: R2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "R2",
+      "expectedState": "FDRFUULFRDBDFRLBUBDRFRFLFLUDURRDRLDLUUBDLDFBLBBRBBFULU"
+    },
+    {
+      "name": "solved: F",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "F",
+      "expectedState": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB"
+    },
+    {
+      "name": "mixed: F",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "F",
+      "expectedState": "FDRFURLDBLUBFRFLBDFRDLFRBBUDLBRDULDRUUDDLUFBRUBRLBFFLU"
+    },
+    {
+      "name": "solved: F'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "F'",
+      "expectedState": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB"
+    },
+    {
+      "name": "mixed: F'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "F'",
+      "expectedState": "FDRFURBLDRUBURFDBDUBBRFLDRFBDLRDULDRUULDLFFBLUBRLBFFLU"
+    },
+    {
+      "name": "solved: F2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "F2",
+      "expectedState": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB"
+    },
+    {
+      "name": "mixed: F2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "F2",
+      "expectedState": "FDRFURRUDLUBDRFBBDBLFBFRURDLFLRDULDRUUDDLLFBBUBRLBFFLU"
+    },
+    {
+      "name": "solved: D",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "D",
+      "expectedState": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR"
+    },
+    {
+      "name": "mixed: D",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "D",
+      "expectedState": "FDRFURLFLBUBLRFFLBDRURFBFBLLRDDDURURUUBDLDFLUUBRLBFDBD"
+    },
+    {
+      "name": "solved: D'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "D'",
+      "expectedState": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL"
+    },
+    {
+      "name": "mixed: D'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "D'",
+      "expectedState": "FDRFURLFLBUBLRFFLUDRURFBDBDRURUDDDRLUUBDLDFLBUBRLBFFBL"
+    },
+    {
+      "name": "solved: D2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "D2",
+      "expectedState": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF"
+    },
+    {
+      "name": "mixed: D2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "D2",
+      "expectedState": "FDRFURLFLBUBLRFFBLDRURFBFLURDLUDRRUDUUBDLDDBDUBRLBFFLB"
+    },
+    {
+      "name": "solved: L",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "L",
+      "expectedState": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD"
+    },
+    {
+      "name": "mixed: L",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "L",
+      "expectedState": "UDRFURRFLBUBLRFDBDFRUFFBLLBDURRDUFDRFDUBLULDBUBLLBRFLD"
+    },
+    {
+      "name": "solved: L'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "L'",
+      "expectedState": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU"
+    },
+    {
+      "name": "mixed: L'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "L'",
+      "expectedState": "DDRRURFFLBUBLRFDBDDRURFBLLBUURFDURDRBDLULBUDFUBLLBFFLF"
+    },
+    {
+      "name": "solved: L2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "L2",
+      "expectedState": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF"
+    },
+    {
+      "name": "mixed: L2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "L2",
+      "expectedState": "DDRRURLFLBUBLRFDBDURUFFBRLBFURFDULDRLBFDLDBUUUBFLBRFLD"
+    },
+    {
+      "name": "solved: B",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "B",
+      "expectedState": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB"
+    },
+    {
+      "name": "mixed: B",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "B",
+      "expectedState": "BFDFURLFLBURLRDDBLDRURFBFLBDURRDUUDFRUBDLDFBLFLULBBUFR"
+    },
+    {
+      "name": "solved: B'",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "B'",
+      "expectedState": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB"
+    },
+    {
+      "name": "mixed: B'",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "B'",
+      "expectedState": "FDUFURLFLBUFLRDDBRDRURFBFLBDURRDUDFBLUBDLDRBLRFUBBLULF"
+    },
+    {
+      "name": "solved: B2",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "B2",
+      "expectedState": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB"
+    },
+    {
+      "name": "mixed: B2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "B2",
+      "expectedState": "RDLFURLFLBUFLRDDBUDRURFBFLBDURRDURDFDUBFLDBBLULFFBLRBU"
+    },
+    {
+      "name": "composite 1",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R U R' U'",
+      "expectedState": "UULUUFUUFRRUBRRURRFFDFFUFFFDDRDDDDDDBLLLLLLLLBRRBBBBBB"
+    },
+    {
+      "name": "composite 2",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "F R U R' U' F'",
+      "expectedState": "RRUFURLBBLFFLRFDBDBDDRFBFLBDURRDULDRUUUDLDFBLRUBLBFFLU"
+    },
+    {
+      "name": "composite 3",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R2 L2 U2 D2 F2 B2",
+      "expectedState": "UDUDUDUDURLRLRLRLRFBFBFBFBFDUDUDUDUDLRLRLRLRLBFBFBFBFB"
+    },
+    {
+      "name": "composite 4",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "U F R2 B' D2 L'",
+      "expectedState": "FDDLUUBDRDBLFRFUBRRRFDFLFUBURLLDRULDDUURLBLDRBFLUBFBBF"
+    },
+    {
+      "name": "composite 5",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R U2 R' U' R U' R'",
+      "expectedState": "RUFUUUUULBBURRRRRRBFUFFFFFFDDDDDDDDDFRRLLLLLLLLUBBBBBB"
+    },
+    {
+      "name": "composite 6",
+      "initialAlgorithm": "R U2 F' L2 D B R2 U F2 D' L B2",
+      "initialState": "FDRFURLFLBUBLRFDBDDRURFBFLBDURRDULDRUUBDLDFBLUBRLBFFLU",
+      "algorithm": "R L U D F B R' L' U' D' F' B'",
+      "expectedState": "FRRUUULBLBFBLRFDRDDDURFBFDBDLRBDBLLRURBDLDFULUFRLBFFUU"
+    },
+    {
+      "name": "deterministic sequence 1",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "F2 U B' R B2 U' D2 U' L2 B2 L2 B D' U L' D2 L R' L2 F' L B2 D' B F2 U2 R2 D B U' B2 L U B2 L F R' L B2 F'",
+      "expectedState": "BDLUUUFLDFFBFRLRBRDDRRFDRRUBDFBDRFFBULLRLUUUDDBLBBFULL"
+    },
+    {
+      "name": "deterministic sequence 2",
+      "initialAlgorithm": "U R D2 L B D2 R2 L' R' L2 R' D' F B' F U B' L2 F2 R' U B' F B",
+      "initialState": "URFUUUDLFUFDURBUDDBBRRFLLLLBDFFDFRBFBRLRLFDLURBRDBDLUB",
+      "algorithm": "R' L B2 D' F2 B2 L U D' L2 R F B L2 F2 D' U B' D L R2 B R L R' F B2 F2 R2 F L' F U D2 U' F U D L B'",
+      "expectedState": "FUDBUFFFBDURBRBDRRLRRDFUUDFLFLLDUBLBURUDLBDFBFLRLBRUDL"
+    },
+    {
+      "name": "deterministic sequence 3",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "L R' B2 F2 D' B L' F2 D L2 D2 B2 L R' U2 D' B2 D U' B D' F' D L' B L U' F' L2 D2 R2 U L' F D' L D L' D2 U",
+      "expectedState": "BFRRUFBBFDRFLRUFUUDDLFFDULULULRDRUBRLDRFLDFBBDLDBBUBLR"
+    },
+    {
+      "name": "deterministic sequence 4",
+      "initialAlgorithm": "D' R' D2 U2 F B F' U2 B L' R U2 L' U F2 U L' U' L2 F2 D2 R' U2 R'",
+      "initialState": "UFLBUDRFDFRBRRLFDBBRRBFUFFLUUDBDBRDLFRDLLUBLRDLLDBUUFU",
+      "algorithm": "U' L' R' B2 D' R F' U2 D' R' U L U' B' L2 F' B' L' B L2 D2 F2 R' B' D2 F U2 L' R2 U' L2 U' F2 B' R2 L' R2 F2 B U'",
+      "expectedState": "RDRRUFFLFUUDLRBBLUDBRDFFUDDLLLBDUUURDFLFLRLUBBBFRBDBRF"
+    },
+    {
+      "name": "deterministic sequence 5",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "F2 U' B' L' F' L2 B' R' D L' D' L2 B' U D B F D' U B2 U2 L' F2 L2 R D U2 L2 D F B U F' B F2 L' F' R' U2 L",
+      "expectedState": "LUFBUBDRLBRRDRUBRDFDUUFBRRDUFLDDUDLFULRLLLBFBUFFBBFLDR"
+    },
+    {
+      "name": "deterministic sequence 6",
+      "initialAlgorithm": "B' L' D2 L R B' U' L R B2 U R' D' L' B2 F2 R L2 U D B2 R2 B2 R",
+      "initialState": "BUBBURLRRDULLRDDLDFBFBFFUDBRRRFDDLULRUDRLLFDFUFUBBFBLU",
+      "algorithm": "L' D2 U' B' U2 B U' L R' U B' L F R2 F D R2 L' U2 D2 L2 U' D2 F L' R L' F' D F B2 D' U' F2 L' R2 U' L B L",
+      "expectedState": "UUFBUFRLDBRRRRUFDUBBLRFUDDULFLLDRFDRLUDDLBDFFULBFBBBLR"
+    },
+    {
+      "name": "deterministic sequence 7",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "R2 U2 D2 B2 L2 R2 D' U F2 D R B U' R' D' L2 R2 B2 R' L' R' B' F' B2 U' F' U2 D' U' L' B2 L2 U2 D U' L2 R L2 U D",
+      "expectedState": "ULLFURDFBUDFFRLFRDLDLRFLRBRBRUBDUFDLBUFBLFDDDUBRUBUBLR"
+    },
+    {
+      "name": "deterministic sequence 8",
+      "initialAlgorithm": "F2 L' U2 R U2 R' D2 F B2 R L' D' R2 D' U' D2 U B2 L2 D2 U' D2 B2 D",
+      "initialState": "BUUFULUBDLDBRRRDUFRRFBFFLDRDBFUDRUUUDDFLLLRBBLFRDBFLLB",
+      "algorithm": "F2 B2 F2 L D R' L' B' L2 F B F L' U B2 R2 U' B' L B' D' B R B D U2 R B U B2 U F' U' R2 U2 L2 D' U' L' D'",
+      "expectedState": "DLBFUDLRLBBRBRBDRUDDUUFLFBRUUFLDUBDLLDBRLFUURDFFRBFFLR"
+    },
+    {
+      "name": "deterministic sequence 9",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "B' R B' U2 B D2 L2 U L2 R U B' F' R L2 B2 D2 U' F' L' R2 U F' B F2 B' D' L2 U D U' L B' F' B U L' B' U F'",
+      "expectedState": "FRDBULLRUBUBRRFLDFDURDFDLBFBLUBDLDURRRBLLBFUURFDDBFUFL"
+    },
+    {
+      "name": "deterministic sequence 10",
+      "initialAlgorithm": "D' L2 D B2 D' U2 R L2 B D F' B' D' L D2 L' U' F2 U' R' D' R2 L' D2",
+      "initialState": "DBLRUDBULURBDRBUFBUFFUFBFBFDRRDDLRDURULRLLFFLDUBLBFRLD",
+      "algorithm": "F2 R B L2 D' R F L' B U2 D2 L F' L R' U2 R L2 F2 D2 B R D' B R D' U' L R2 U2 L' R' B D2 F D' F2 R2 U B",
+      "expectedState": "LBDUULRDFLFFFRURDLBBURFRRDBFFUDDRDUUDBDLLURLULRBFBBBLF"
+    },
+    {
+      "name": "deterministic sequence 11",
+      "initialAlgorithm": "",
+      "initialState": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+      "algorithm": "L D' L2 B R' F R F B' L U' R' D2 F' U F D' R' U L' D' R F' L' D2 B' R' U B L R2 D F' B' D2 F2 D' F' U R",
+      "expectedState": "BDUDUFDBLFLLLRRLLFRRDFFDRRBUUDBDUUBDURBFLUFUBFBLFBDRLR"
+    },
+    {
+      "name": "deterministic sequence 12",
+      "initialAlgorithm": "D2 L2 D U B2 U2 F' R2 B' F' B R F L2 U' F' U' B' U' D' L R2 F U2",
+      "initialState": "RLLBURDLULDBBRFURFLFBUFLBFLDRFFDUUURDDFBLLRDRDDFUBRUBB",
+      "algorithm": "D' F' U' D' L R2 U2 D2 F B' U' D' B2 U B2 R2 B F D U' R2 D' R2 B2 L R' U' F' D2 R U' B F2 U' R L' D2 R D2 F",
+      "expectedState": "LLULUBFDRFDLBRLBDBDLUBFRDRRBFDUDRFUUBFLFLUDRLFBUUBDRFR"
+    }
+  ]
+}
