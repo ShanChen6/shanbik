@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Component, useEffect, useId, useState } from "react";
+import { Component, useCallback, useEffect, useId, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/ui/states";
 import { createSolvedCubeState } from "../core/state";
 import { CUBE_COLORS } from "../core/constants";
@@ -41,9 +42,11 @@ function supportsWebGL2() {
 
 export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
   const captionId = useId();
+  const [resetVersion, setResetVersion] = useState(0);
   const [capability, setCapability] = useState<
     "loading" | "ready" | "unavailable"
   >("loading");
+  const handleContextLost = useCallback(() => setCapability("unavailable"), []);
   useEffect(() => {
     // Probe only in the browser after paint; dispose the temporary probe context.
     const frame = requestAnimationFrame(() =>
@@ -52,7 +55,7 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
     return () => cancelAnimationFrame(frame);
   }, []);
   return (
-    <figure aria-describedby={captionId}>
+    <figure className="cube-viewer" aria-describedby={captionId}>
       <div className="cube-viewport overflow-hidden rounded-panel border border-border bg-surface-subtle">
         {capability === "loading" ? (
           <LoadingState label="Đang chuẩn bị mô hình 3D…" />
@@ -62,10 +65,20 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
           <SceneBoundary>
             <Scene
               state={state}
-              onContextLost={() => setCapability("unavailable")}
+              resetVersion={resetVersion}
+              onContextLost={handleContextLost}
             />
           </SceneBoundary>
         )}
+      </div>
+      <div className="mt-4">
+        <Button
+          variant="secondary"
+          disabled={capability !== "ready"}
+          onClick={() => setResetVersion((version) => version + 1)}
+        >
+          Đặt lại góc nhìn
+        </Button>
       </div>
       <figcaption id={captionId} className="mt-4 text-sm text-muted">
         Góc nhìn mặc định: mặt trước, trên và phải. Mô hình đang ở chế độ xem

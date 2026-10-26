@@ -207,9 +207,17 @@
   .cube-viewport {
     position: relative;
     width: 100%;
+    min-width: 0;
     height: clamp(17rem, 55vw, 28rem);
+    /* Fit the parent, including a narrow panel in a wide page. */
+    height: clamp(17rem, 55cqi, 28rem);
+    touch-action: pan-y;
   }
   .cube-viewport > [role="status"] {
     height: 100%;
+  }
+  .cube-viewer {
+    min-width: 0;
+    container-type: inline-size;
   }
 }
