@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ViewerPreview } from "./viewer-preview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -128,6 +129,7 @@ export function UIPreview() {
           onRetry={() => notify({ title: "Đã thử lại" })}
         />
       </section>
+      <ViewerPreview />
     </div>
   );
 }
