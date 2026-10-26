@@ -22,3 +22,7 @@ Vitest cấu hình Node, cho phép chưa có test trong Task 0. Các test hành 
 ## Git
 
 Tạo nhánh công việc từ develop, PR vào develop, kiểm thử tích hợp trước khi PR develop vào main. Xem CONTRIBUTING.md.
+
+## ADR
+
+Xem [danh mục ADR](./adr/README.md) cho nền tảng web, cube core, renderer, solver/Worker, kiểm thử và persistence. Trạng thái “cần thử nghiệm” không đồng nghĩa đã chọn thư viện hoặc triển khai.
