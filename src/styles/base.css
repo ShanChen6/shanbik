@@ -1,0 +1,91 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-padding-top: 1rem;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: var(--lh-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a,
+  button,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  select,
+  input,
+  textarea {
+    font: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  a,
+  button,
+  select {
+    transition:
+      color var(--motion-fast),
+      background-color var(--motion-fast);
+  }
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 4px;
+  }
+  ::selection {
+    color: var(--primary-foreground);
+    background: var(--primary);
+  }
+  img,
+  svg {
+    max-width: 100%;
+  }
+}
+@layer components {
+  .skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 50;
+    padding: 0.75rem 1rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    transform: translateY(-200%);
+    border-radius: 0.5rem;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+  .touch-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--control-min);
+    min-width: var(--control-min);
+  }
+  .brand-rule {
+    height: 0.25rem;
+    background-image: var(--brand-gradient);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
