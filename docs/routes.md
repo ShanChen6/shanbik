@@ -21,6 +21,6 @@ Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton g
 - Theme không bị reset khi chuyển trang; không hydration mismatch/pageerror.
 - Kiểm tra 360px/tablet/desktop/landscape/không gian layout thu hẹp, cả light/dark, không tràn ngang.
 - Các link nội bộ/anchor có đích thật; nội dung không quảng bá công cụ chưa hoạt động như tính năng đã có.
-- Format/lint/typecheck/build và CI; Vitest chưa có unit case nghiệp vụ.
+- Format/lint/typecheck/build và CI; Vitest Node kiểm tra core từ Task 4.1; không thay thế kiểm tra chuyển route trên browser.
 
 Bước tiếp theo: Task 4.1 — mô hình trạng thái 3×3 độc lập với renderer.

@@ -60,6 +60,6 @@ Checklist:
 5. Tabs dùng Arrow/Home/End, bỏ qua disabled; panel khớp tab.
 6. Toast xuất hiện, đóng được, F8 focus vùng thông báo; hết thời gian tự đóng nếu không có tương tác.
 7. Kiểm tra 360px/tablet/desktop, light/dark, reduced motion, không tràn ngang.
-8. Production `/ui-preview` trả 404. Format/lint/typecheck/build đạt; Vitest hiện chưa có unit test case nghiệp vụ, không coi 0 case là test UI.
+8. Production `/ui-preview` trả 404. Format/lint/typecheck/build đạt; Vitest Node từ Task 4.1 kiểm tra cube state; các test đó không thay thế kiểm tra hành vi UI trên browser.
 
 Việc test trình duyệt dùng fixture này có thể thực hiện bằng Playwright từ môi trường kiểm tra; chưa cài thêm Playwright vào dependencies của repo. Bộ E2E đầy đủ vẫn thuộc Task 10.2.
