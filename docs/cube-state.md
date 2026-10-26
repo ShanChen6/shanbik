@@ -36,7 +36,7 @@ Trong mảng mặt, index = row × 3 + column, row/column từ 0 đến 2; hàng
 
 Vị trí trên lưới đơn vị: `normal + (column - 1) × right + (row - 1) × down`. Đây là quy ước định vị, không phải kích thước geometry hoặc renderer đã xây dựng.
 
-Move mặt cơ bản sau này là 90° theo chiều kim đồng hồ khi nhìn trực diện mặt từ ngoài; tương ứng góc -90° quanh normal hướng ra trong hệ tay phải. Prime đảo chiều, double 180°. Task 4.2 mới parse notation và Task 4.3 mới thực thi moves; không có move engine trong Task 4.1.
+Move mặt cơ bản sau này là 90° theo chiều kim đồng hồ khi nhìn trực diện mặt từ ngoài; tương ứng góc -90° quanh normal hướng ra trong hệ tay phải. Prime đảo chiều, double 180°. Parser notation được bổ sung ở Task 4.2; Task 4.3 mới thực thi moves. Chưa có move engine.
 
 ## Serialization state
 
@@ -93,3 +93,5 @@ Test có fixture hoán đổi hai sticker ngoài tâm để xác minh serializat
 ## Kiểm tra
 
 `pnpm test` chạy Vitest Node, không cần DOM/canvas. Test bảo vệ snapshot khỏi mutation, deep clone, reset không sửa state cũ, malformed input/sparse arrays, số lượng/tâm và round-trip. Vitest không còn cho phép thiếu toàn bộ test. CI tiếp tục chạy format/lint/typecheck/test/build.
+
+Xem [notation](./cube-notation.md) cho parser/serializer thuật toán, riêng với serialization state ở trên.
