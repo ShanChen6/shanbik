@@ -1,4 +1,4 @@
-# CubeViewport 3D tĩnh — Task 5.1
+# CubeViewport 3D — Task 5.1–5.2
 
 ## Lựa chọn và phạm vi
 
@@ -31,7 +31,7 @@ Core không import renderer. Viewer không gọi solver hoặc tự áp dụng m
 - Body rộng 0.94, để khe phân cách; sticker phẳng bo góc ở ngoài body, tổng 54 sticker.
 - Dùng chung 2 geometry (box/shape), 1 material thân và 6 material màu cho mỗi model; resource owner dispose khi model bị gỡ.
 - Material sticker không tone-map để màu không đổi theo theme; ánh sáng chiếu vào thân khối. Mặt solved: trắng trên, xanh lá trước, đỏ phải theo core.
-- Camera cố định [5,4,6], nhìn gốc tọa độ; ánh sáng ambient/directional, không shadow/HDR/asset mạng.
+- Camera theo hướng [5,4,6], nhìn gốc tọa độ, khoảng cách tự căn theo khung; ánh sáng ambient/directional, không shadow/HDR/asset mạng.
 - Legend có chữ cho cả sáu màu, canvas có nhãn và caption mô tả trạng thái xem tĩnh. Không dùng ảnh 3D để thay thế luồng học bằng văn bản.
 
 ## SSR, tải động và fallback
@@ -40,7 +40,7 @@ Next dynamic ssr=false được đặt trong Client Component. HTML server có p
 
 Error boundary bao quanh scene để xử lý lỗi khởi tạo/render; Canvas cũng có fallback. Listener webglcontextlost chuyển sang thông báo thay thế và dọn listener khi scene rời cây. Người dùng vẫn mở được Trợ giúp/Học cơ bản khi 3D không dùng được. Không tự chuyển phép tính puzzle hoặc solver lên main thread làm fallback.
 
-Canvas frameloop=demand, DPR từ 1 đến 1.5, không tự quay hay animation. Khung có chiều cao CSS clamp; theme chỉ đổi nền trang, không đổi màu sticker. Responsive/camera controls và benchmark thiết bị đại diện tiếp tục ở Task 5.2/6.1.
+Canvas frameloop=demand, DPR từ 1 đến 1.5, không tự quay hay animation. Khung có chiều cao CSS clamp; theme chỉ đổi nền trang, không đổi màu sticker. Task 5.2 bổ sung responsive camera và reset; orbit/zoom/touch controls tiếp tục ở Task 6.1.
 
 ## Vòng đời và kiểm tra
 
@@ -63,4 +63,30 @@ R3F quản lý renderer/root; model quản lý geometry/material dùng chung v�
 
 Fixture development cũng đã chạy ba chu kỳ unmount/remount thật: mỗi lượt tạo 8 và xóa 8 GPU buffers, live=0 sau removal; giá trị input ở phần UI khác vẫn giữ nguyên, không có pageerror. Kết quả CI được ghi trong PR. Chưa đo FPS trên điện thoại thật, Safari/Firefox, screen reader thực tế hoặc Core Web Vitals. Không cam kết đạt mục tiêu hiệu năng toàn sản phẩm từ thử nghiệm software browser này.
 
-Bước tiếp theo: **5.2 — Responsive và lifecycle viewer**; điều khiển camera ở 6.1, animation layer ở 7.x.
+## Responsive và reset — Task 5.2
+
+Khung dùng container query theo chiều rộng figure (fallback `vw`), chiều cao clamp 17–28 rem, min-width=0 để không đẩy tràn grid. Có `touch-action: pan-y` cho cuộn dọc trang; chưa có gesture điều khiển camera.
+
+`camera.ts` tính khoảng cách từ bounding sphere bao khối 3×3, thêm 12% khoảng trống và lấy góc hẹp hơn giữa horizontal/vertical FOV. `ResponsiveCamera` đọc kích thước thật từ R3F (ResizeObserver của Canvas), căn lại khi khung đổi kích thước hoặc nhận resetVersion; bỏ qua kích thước zero khi route ẩn. Không thêm listener resize riêng. Camera giữ hướng trước/trên/phải; state và mesh không đổi khi reset. Nút “Đặt lại góc nhìn” là native button, dùng được bằng Enter/Space; disabled khi loading hoặc context đã mất.
+
+DPR range 1–1.5 do R3F quản lý; demand rendering chỉ vẽ khi cần. Callback context loss ổn định, tránh tháo/gắn listener mỗi lần reset. Cleanup geometry/material vẫn thuộc model, renderer/root và event manager thuộc R3F; không gọi dispose renderer thủ công từ React effect vì route Activity có thể tái sử dụng root.
+
+### Cách kiểm tra lại
+
+1. Chạy các lệnh trong README; `camera.test.ts` chiếu tám góc khối qua PerspectiveCamera để xác nhận nằm trong frustum có khoảng trống, kiểm tra khung hẹp và hidden/invalid sizes.
+2. `pnpm build && pnpm start`: mở /practice ở 320×568, 360×800, 768×1024, 1440×1000, 667×375. Trong DevTools đặt figure width=220px ngay trên desktop; khối vẫn đủ các góc và không tràn ngang. Đổi portrait/landscape, light/dark; kiểm canvas backing dimensions / CSS dimensions không vượt 1.5.
+3. Dùng Tab → Enter/Space trên reset; vẫn một canvas và giữ nguyên state được truyền vào. Đi /learn rồi trở lại /practice ba lần; canvas ẩn có thể còn trong Activity nhưng số lượng/tài nguyên không tích lũy.
+4. `pnpm dev`: /ui-preview → Hiện/Ẩn mô hình thử năm lần. Đo createBuffer/deleteBuffer, canvas event listeners, window resize listeners và resolution media-query listeners trước/sau. Không dùng số canvas ẩn để kết luận leak; removal thật phải về zero.
+5. Dùng WEBGL_lose_context hoặc tắt WebGL để kiểm fallback; reset bị disabled khi mất context. Chờ cleanup rồi kiểm listener và pageerror.
+
+### Bằng chứng Task 5.2
+
+- 215 unit tests đạt, gồm 11 test camera mới; format/lint/typecheck/build được kiểm tra trong PR.
+- Chromium 153, software WebGL, emulation DPR=3: năm viewport ở trên và parent=220px render đủ khối, không tràn ngang; backing DPR không vượt 1.5. Đã xem ảnh mobile 320px và parent hẹp.
+- Reset bằng Enter tạo frame mới nhưng không tạo buffer/listener mới; không draw thêm trong khoảng idle đo 250ms.
+- Năm lần removal thật: mỗi lần tạo/xóa 8 GPU buffers; sau chu kỳ cuối tổng 40/40, live=0. Canvas=0, viewer listeners=0, window resize và resolution listeners về baseline=0. Input không liên quan trong fixture giữ nguyên. Không có pageerror.
+- Ba lần hide/show route production: live buffers về 0 khi ẩn, canvas không tích lũy; 13 listener của renderer/event manager và một resolution listener được giữ ở root ẩn, số lượng không tăng. Khi scene bị gỡ do mất context, các listener này về 0. Đây là hành vi giữ root của Activity, không gọi là full unmount.
+
+Các số đo trên kiểm chứng vòng đời trong trình duyệt đại diện, chưa phải heap audit toàn bộ browser hoặc benchmark điện thoại thật. Safari/Firefox, touch trên thiết bị thật, frame time khi orbit/animation và Core Web Vitals còn cần đo khi có tính năng tương ứng.
+
+Bước tiếp theo: **6.1 — Camera controls**; animation layer ở 7.x.

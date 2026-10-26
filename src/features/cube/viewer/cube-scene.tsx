@@ -14,6 +14,7 @@ import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
 import { ViewerFallback } from "./viewer-fallback";
+import { CAMERA_FOV, getCameraPosition, VIEWER_DPR } from "./camera";
 
 const ROTATIONS: Record<CubeFace, [number, number, number]> = {
   U: [-Math.PI / 2, 0, 0],
@@ -102,6 +103,23 @@ function CubeModel({ state }: { state: CubeState }) {
   );
 }
 
+function ResponsiveCamera({ resetVersion }: { resetVersion: number }) {
+  const camera = useThree((store) => store.camera);
+  const width = useThree((store) => store.size.width);
+  const height = useThree((store) => store.size.height);
+  const invalidate = useThree((store) => store.invalidate);
+  useEffect(() => {
+    const position = getCameraPosition(width, height);
+    if (!position) return;
+    camera.position.set(...position);
+    camera.up.set(0, 1, 0);
+    camera.lookAt(0, 0, 0);
+    camera.updateMatrixWorld();
+    invalidate();
+  }, [camera, width, height, resetVersion, invalidate]);
+  return null;
+}
+
 function ContextLifecycle({ onLost }: { onLost: () => void }) {
   const gl = useThree((store) => store.gl);
   useEffect(() => {
@@ -119,16 +137,18 @@ function ContextLifecycle({ onLost }: { onLost: () => void }) {
 export function CubeScene({
   state,
   onContextLost,
+  resetVersion,
 }: {
   state: CubeState;
   onContextLost: () => void;
+  resetVersion: number;
 }) {
   return (
     <Canvas
       role="img"
       aria-label="Mô hình khối Rubik 3×3 tĩnh"
-      camera={{ position: [5, 4, 6], fov: 40, near: 0.1, far: 100 }}
-      dpr={[1, 1.5]}
+      camera={{ position: [5, 4, 6], fov: CAMERA_FOV, near: 0.1, far: 100 }}
+      dpr={VIEWER_DPR}
       frameloop="demand"
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
       fallback={<ViewerFallback />}
@@ -138,6 +158,7 @@ export function CubeScene({
       <directionalLight position={[5, 6, 7]} intensity={2} />
       <directionalLight position={[-4, 2, -3]} intensity={0.5} />
       <CubeModel state={state} />
+      <ResponsiveCamera resetVersion={resetVersion} />
       <ContextLifecycle onLost={onContextLost} />
     </Canvas>
   );

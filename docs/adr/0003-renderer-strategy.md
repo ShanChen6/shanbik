@@ -1,8 +1,8 @@
 # ADR 0003 — Chiến lược renderer 3D
 
 - Ngày: 26/10/2026.
-- Trạng thái: **Chọn Three.js + R3F cho prototype tĩnh trong PR Task 5.1; benchmark mobile chờ Task 5.2**.
-- Phạm vi: Task 2.3 ghi hướng đề xuất; Task 5.1 thử nghiệm và triển khai viewer tĩnh.
+- Trạng thái: **Chọn Three.js + R3F cho prototype 3×3; Task 5.1–5.2 đã kiểm chứng static/responsive/lifecycle trong Chromium. Benchmark thiết bị thật còn mở**.
+- Phạm vi: Task 2.3 ghi hướng đề xuất; Task 5.1 triển khai viewer tĩnh, Task 5.2 bổ sung responsive/lifecycle.
 
 ## Bối cảnh
 
@@ -26,7 +26,7 @@ Three.js trực tiếp: kiểm soát vòng đời tốt nhưng nhiều mã tích
 
 ## Kiểm chứng và điều kiện xem xét lại
 
-Tại Task 5.1 kiểm tra license, versions tương thích, bundle, solved scene, WebGL failure và remount. Task 5.2/6.1 đo mobile/touch. Ghi kết quả rồi cập nhật ADR thành quyết định được chọn; nếu không đạt, thử ứng viên khác trước khi xây animation sâu.
+Tại Task 5.1 kiểm tra license, versions tương thích, bundle, solved scene, WebGL failure và remount. Task 5.2 đã kiểm viewport/DPR emulation và listener/GPU cleanup. Task 6.1 tiếp tục đo camera/touch; cần thêm benchmark thiết bị thật. Ghi kết quả rồi cập nhật ADR thành quyết định được chọn; nếu không đạt, thử ứng viên khác trước khi xây animation sâu.
 
 ## Nguồn trong repository
 
@@ -37,4 +37,4 @@ Tại Task 5.1 kiểm tra license, versions tương thích, bundle, solved scene
 
 ## Bằng chứng triển khai Task 5.1
 
-Xem [CubeViewport](../cube-viewer.md) cho API, số đo, kiểm tra và giới hạn. Dùng adapter view-model thuần để trình bày state; không thêm nguồn state puzzle vào scene. Fixture lifecycle chỉ mở trong development. Task 5.2/6.1 tiếp tục đánh giá trước khi mở rộng animation.
+Xem [CubeViewport](../cube-viewer.md) cho API, số đo, kiểm tra và giới hạn. Dùng adapter view-model thuần để trình bày state; không thêm nguồn state puzzle vào scene. Fixture lifecycle chỉ mở trong development. Task 5.2 đã thêm camera fit/reset và kiểm cleanup qua 5 chu kỳ removal thật; xem cùng tài liệu cho số đo và các giới hạn. Task 6.1 tiếp tục đánh giá trước khi mở rộng animation.
