@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ToastProvider } from "@/components/ui/toast";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -16,16 +17,18 @@ export default function RootLayout({
     <html lang="vi" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <div className="flex min-h-dvh flex-col">
-            <a href="#main-content" className="skip-link">
-              Bỏ qua điều hướng
-            </a>
-            <SiteHeader />
-            <main id="main-content" tabIndex={-1} className="min-w-0 flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
+          <ToastProvider>
+            <div className="flex min-h-dvh flex-col">
+              <a href="#main-content" className="skip-link">
+                Bỏ qua điều hướng
+              </a>
+              <SiteHeader />
+              <main id="main-content" tabIndex={-1} className="min-w-0 flex-1">
+                {children}
+              </main>
+              <SiteFooter />
+            </div>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
