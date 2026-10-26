@@ -1,9 +1,10 @@
 "use client";
 
 import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   BoxGeometry,
+  PerspectiveCamera,
   MeshBasicMaterial,
   MeshStandardMaterial,
   Shape,
@@ -14,7 +15,13 @@ import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
 import { ViewerFallback } from "./viewer-fallback";
-import { CAMERA_FOV, getCameraPosition, VIEWER_DPR } from "./camera";
+import { CAMERA_FOV, VIEWER_DPR } from "./camera";
+
+import {
+  attachCameraGestures,
+  createCameraController,
+  type CameraCommands,
+} from "./camera-controller";
 
 const ROTATIONS: Record<CubeFace, [number, number, number]> = {
   U: [-Math.PI / 2, 0, 0],
@@ -103,20 +110,39 @@ function CubeModel({ state }: { state: CubeState }) {
   );
 }
 
-function ResponsiveCamera({ resetVersion }: { resetVersion: number }) {
+function CameraControls({
+  gestures,
+  onReady,
+}: {
+  gestures: boolean;
+  onReady: (controller: CameraCommands | null) => void;
+}) {
   const camera = useThree((store) => store.camera);
+  const canvas = useThree((store) => store.gl.domElement);
   const width = useThree((store) => store.size.width);
   const height = useThree((store) => store.size.height);
   const invalidate = useThree((store) => store.invalidate);
+  const controller = useRef<ReturnType<typeof createCameraController> | null>(
+    null,
+  );
   useEffect(() => {
-    const position = getCameraPosition(width, height);
-    if (!position) return;
-    camera.position.set(...position);
-    camera.up.set(0, 1, 0);
-    camera.lookAt(0, 0, 0);
-    camera.updateMatrixWorld();
-    invalidate();
-  }, [camera, width, height, resetVersion, invalidate]);
+    if (!(camera instanceof PerspectiveCamera)) return;
+    const instance = createCameraController(camera, invalidate);
+    controller.current = instance;
+    onReady(instance);
+    return () => {
+      onReady(null);
+      controller.current = null;
+      instance.dispose();
+    };
+  }, [camera, invalidate, onReady]);
+  useEffect(() => {
+    controller.current?.resize(width, height);
+  }, [camera, width, height]);
+  useEffect(() => {
+    if (!gestures || !controller.current) return;
+    return attachCameraGestures(canvas, controller.current);
+  }, [canvas, camera, gestures]);
   return null;
 }
 
@@ -137,16 +163,18 @@ function ContextLifecycle({ onLost }: { onLost: () => void }) {
 export function CubeScene({
   state,
   onContextLost,
-  resetVersion,
+  gestures,
+  onCameraReady,
 }: {
   state: CubeState;
   onContextLost: () => void;
-  resetVersion: number;
+  gestures: boolean;
+  onCameraReady: (controller: CameraCommands | null) => void;
 }) {
   return (
     <Canvas
       role="img"
-      aria-label="Mô hình khối Rubik 3×3 tĩnh"
+      aria-label="Mô hình khối Rubik 3×3"
       camera={{ position: [5, 4, 6], fov: CAMERA_FOV, near: 0.1, far: 100 }}
       dpr={VIEWER_DPR}
       frameloop="demand"
@@ -158,7 +186,7 @@ export function CubeScene({
       <directionalLight position={[5, 6, 7]} intensity={2} />
       <directionalLight position={[-4, 2, -3]} intensity={0.5} />
       <CubeModel state={state} />
-      <ResponsiveCamera resetVersion={resetVersion} />
+      <CameraControls gestures={gestures} onReady={onCameraReady} />
       <ContextLifecycle onLost={onContextLost} />
     </Canvas>
   );

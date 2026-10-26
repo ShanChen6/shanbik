@@ -6,7 +6,7 @@ import { CubeViewport } from "@/features/cube/viewer/cube-viewport";
 export const metadata: Metadata = {
   title: "Luyện tập 3×3 — ShanBik",
   description:
-    "Xem mô hình Rubik 3×3 tĩnh và tìm hiểu các công cụ luyện tập sắp có trên ShanBik.",
+    "Xem mô hình Rubik 3×3 và tìm hiểu các công cụ luyện tập sắp có trên ShanBik.",
 };
 
 export default function PracticePage() {
@@ -26,8 +26,7 @@ export default function PracticePage() {
             Khối 3×3 của bạn
           </h2>
           <p className="mt-3 mb-6 text-muted">
-            Quan sát mô hình 3×3 ở góc nhìn ban đầu. Điều khiển tương tác đang
-            được chuẩn bị.
+            Quan sát khối 3×3 từ nhiều góc bằng nút hoặc thao tác kéo và zoom.
           </p>
           <CubeViewport />
         </div>
