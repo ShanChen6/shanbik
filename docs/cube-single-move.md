@@ -4,7 +4,7 @@
 
 Trang /practice có dropdown đủ 18 biến thể U/R/F/D/L/B, prime và double, nút **Xoay một nước**, **Hủy nước đang xoay**, **Đặt lại khối** và trạng thái hoàn tất. Controls nằm ngay dưới canvas, trước nhóm camera. Selector và nút xoay bị khóa trong lúc chạy hoặc khi scene chưa sẵn sàng/WebGL không khả dụng. Camera vẫn dùng độc lập. Đặt lại góc nhìn chỉ đổi camera; Đặt lại khối trở về solved.
 
-Mỗi lần chạy một move, chưa có queue hoặc player chuỗi thuật toán; các phần này tiếp tục ở 7.3/8.x. Không thêm dependency hoặc đổi lockfile.
+Task 7.2 thiết lập transaction một move; Task 7.3 đã mở rộng cùng state owner thành [move queue](./cube-move-queue.md). UI hiện dùng selector và nút Thêm vào hàng đợi; player chuỗi đầy đủ tiếp tục ở 8.x. Không thêm dependency hoặc đổi lockfile.
 
 ## Nguồn state duy nhất
 
@@ -59,4 +59,4 @@ Các kiểm tra này dùng software WebGL và browser emulation, không phải b
 4. DevTools Rendering → Emulate prefers-reduced-motion: kiểm start tức thời và thay đổi preference giữa move. So sánh endpoint với animation thường.
 5. /ui-preview khi pnpm dev: Hiện/Ẩn mô hình thử giữa animation để kiểm removal thật; production vẫn trả 404 cho fixture.
 
-Tiếp theo: **7.3 — Move queue**. Liên quan: [viewer/camera](./cube-viewer.md), [move engine](./cube-moves.md).
+Task 7.3 đã thêm [FIFO và pause/resume](./cube-move-queue.md) trên cùng state owner. Tiếp theo: **8.1 — Scramble 3×3**. Liên quan: [viewer/camera](./cube-viewer.md), [move engine](./cube-moves.md).
