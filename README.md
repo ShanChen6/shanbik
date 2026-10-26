@@ -1,6 +1,6 @@
 # ShanBik
 
-Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; chưa có animation xoay mặt.
+Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; có animation từng nước xoay và hủy/reset an toàn; chưa có queue hoặc player thuật toán.
 
 ## Môi trường
 
@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **7.2 — Animation một move** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **7.3 — Move queue** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -71,3 +71,5 @@ Move engine: [API và fixture đối chiếu](docs/cube-moves.md).
 Viewer 3D và camera: [Thiết kế, kiểm tra và giới hạn](docs/cube-viewer.md).
 
 Move → layer: [Quy ước trục, góc xoay và kiểm chứng renderer](docs/cube-move-layer.md).
+
+Animation một move: [State, lifecycle và kiểm chứng](docs/cube-single-move.md).

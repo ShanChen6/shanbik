@@ -43,7 +43,7 @@ Pivot đặt tại gốc cube, trong cùng hệ tọa độ local của model. C
 
 `sticker-orientation.ts` chứa Euler XYZ dùng chung cho CubeScene và test hình học: plane local quay mặt +z, sau Euler sẽ trùng outward normal của từng mặt. Scene dùng chính các giá trị đã kiểm chứng; không đổi màu, ánh sáng hoặc camera.
 
-Task 7.2 sẽ quản lý thời gian nội suy, commit core đúng một lần, tháo pivot và snap/reset transform về slot; cần xử lý cancel/reset và reduced motion. Task 7.1 chỉ cung cấp mapping và bằng chứng endpoint, chưa thêm nút xoay mặt hoặc animation trên /practice.
+Task 7.2 đã tích hợp [animation một move](./cube-single-move.md): nội suy, commit core một lần, tháo pivot/snap slot và cancel/reset/reduced motion. Mapping Task 7.1 vẫn là adapter thuần.
 
 ## Kiểm chứng
 

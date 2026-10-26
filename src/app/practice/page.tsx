@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
-import { CubeViewport } from "@/features/cube/viewer/cube-viewport";
+import { PracticeCube } from "@/features/cube/viewer/practice-cube";
 
 export const metadata: Metadata = {
   title: "Luyện tập 3×3 — ShanBik",
@@ -28,7 +28,7 @@ export default function PracticePage() {
           <p className="mt-3 mb-6 text-muted">
             Quan sát khối 3×3 từ nhiều góc bằng nút hoặc thao tác kéo và zoom.
           </p>
-          <CubeViewport />
+          <PracticeCube />
         </div>
         <aside
           aria-labelledby="upcoming-title"

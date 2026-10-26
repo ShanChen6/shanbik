@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CubeViewport } from "@/features/cube/viewer/cube-viewport";
+import { PracticeCube } from "@/features/cube/viewer/practice-cube";
 
 /** Development fixture: real removal, unlike a route retained by Next Activity. */
 export function ViewerPreview() {
@@ -18,7 +18,7 @@ export function ViewerPreview() {
       <Button onClick={() => setVisible((current) => !current)}>
         {visible ? "Ẩn mô hình thử" : "Hiện mô hình thử"}
       </Button>
-      {visible && <CubeViewport />}
+      {visible && <PracticeCube />}
     </section>
   );
 }
