@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể xoay từng mặt, hủy nước đang chạy hoặc đặt lại khối. Xáo trộn, player chuỗi và giải khối đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Xáo trộn, nhập thuật toán và giải khối đang được phát triển.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
