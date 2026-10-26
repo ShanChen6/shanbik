@@ -1,4 +1,4 @@
-# CubeViewport 3D — Task 5.1–6.1
+# CubeViewport 3D — Task 5.1–7.2
 
 ## Lựa chọn và phạm vi
 
@@ -40,7 +40,7 @@ Next dynamic ssr=false được đặt trong Client Component. HTML server có p
 
 Error boundary bao quanh scene để xử lý lỗi khởi tạo/render; Canvas cũng có fallback. Listener webglcontextlost chuyển sang thông báo thay thế và dọn listener khi scene rời cây. Người dùng vẫn mở được Trợ giúp/Học cơ bản khi 3D không dùng được. Không tự chuyển phép tính puzzle hoặc solver lên main thread làm fallback.
 
-Canvas frameloop=demand, DPR từ 1 đến 1.5, không tự quay hay animation. Khung có chiều cao CSS clamp; theme chỉ đổi nền trang, không đổi màu sticker. Task 5.2 bổ sung responsive camera và reset; orbit/zoom/touch controls được bổ sung ở Task 6.1.
+Canvas frameloop=demand, DPR từ 1 đến 1.5, không tự quay; Task 7.2 chỉ chạy frame trong lúc animation một move. Khung có chiều cao CSS clamp; theme chỉ đổi nền trang, không đổi màu sticker. Task 5.2 bổ sung responsive camera và reset; orbit/zoom/touch controls được bổ sung ở Task 6.1.
 
 ## Vòng đời và kiểm tra
 
@@ -115,4 +115,4 @@ Các số đo trên kiểm chứng vòng đời trong trình duyệt đại di�
 
 Chạy /practice, thử tất cả native buttons bằng Tab/Enter/Space; orbit/zoom rồi reset. Bật gesture, kéo chuột trái, wheel/trackpad, kéo một ngón và pinch; thử kéo ra ngoài canvas rồi nhả/cancel. Tắt bằng toggle hoặc Escape khi focus trong figure. So sánh cuộn trang qua canvas khi tắt và ngoài canvas khi bật. Đổi viewport sau khi orbit/zoom để kiểm giữ hướng và zoom tương đối. Lặp /ui-preview Hiện/Ẩn mô hình thử trong lúc đang kéo để kiểm cleanup; fixture vẫn chỉ có ở development.
 
-Task 7.1 đã bổ sung [move → layer mapping](./cube-move-layer.md), có kiểm chứng endpoint Three.js với core cho đủ 18 biến thể. Bước tiếp theo: **7.2 — Animation một move**. Physical mobile/Safari/Firefox, trackpad thật và frame-time khi animation còn cần kiểm tra trên môi trường tương ứng.
+Task 7.1 đã bổ sung [move → layer mapping](./cube-move-layer.md), có kiểm chứng endpoint Three.js với core cho đủ 18 biến thể. Task 7.2 đã nối [animation một move](./cube-single-move.md), commit-once và hủy/reset/reduced motion. Bước tiếp theo: **7.3 — Move queue**. Physical mobile/Safari/Firefox, trackpad thật và frame-time khi animation còn cần kiểm tra trên môi trường tương ứng.

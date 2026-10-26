@@ -1,9 +1,10 @@
 "use client";
 
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import {
   BoxGeometry,
+  Group,
   PerspectiveCamera,
   MeshBasicMaterial,
   MeshStandardMaterial,
@@ -16,6 +17,9 @@ import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
 import { STICKER_ROTATIONS } from "./sticker-orientation";
 import { ViewerFallback } from "./viewer-fallback";
+import { getMoveLayer, selectLayerCubies } from "./move-layer";
+import { sampleMoveAngle, type MoveAnimation } from "./single-move";
+import type { ReactNode } from "react";
 import { CAMERA_FOV, VIEWER_DPR } from "./camera";
 
 import {
@@ -40,7 +44,45 @@ function stickerShape() {
   return shape;
 }
 
-function CubeModel({ state }: { state: CubeState }) {
+type AnimationProps = {
+  animation?: MoveAnimation | null;
+  onMoveComplete?: (id: number) => void;
+};
+
+function AnimatedLayer({
+  animation,
+  onMoveComplete,
+  children,
+}: AnimationProps & { animation: MoveAnimation; children: ReactNode }) {
+  const pivot = useRef<Group>(null);
+  const elapsed = useRef<number | null>(null);
+  const finished = useRef(false);
+  const invalidate = useThree((store) => store.invalidate);
+  const turn = getMoveLayer(animation.move);
+  useFrame((_, delta) => {
+    if (!pivot.current || finished.current) return;
+    // Ignore the first delta after demand-mode idle; start at progress zero.
+    elapsed.current =
+      elapsed.current === null ? 0 : elapsed.current + delta * 1000;
+    const frame = sampleMoveAngle(turn.angle, elapsed.current);
+    pivot.current.rotation[turn.axis] = frame.angle;
+    if (frame.done) {
+      finished.current = true;
+      onMoveComplete?.(animation.id);
+    } else invalidate();
+  });
+  return (
+    <group ref={pivot} name="active-layer" dispose={null}>
+      {children}
+    </group>
+  );
+}
+
+function CubeModel({
+  state,
+  animation,
+  onMoveComplete,
+}: { state: CubeState } & AnimationProps) {
   const cubies = useMemo(() => buildCubeViewModel(state), [state]);
   const resources = useMemo(
     () => ({
@@ -73,31 +115,48 @@ function CubeModel({ state }: { state: CubeState }) {
     },
     [resources],
   );
+  const selected = animation
+    ? new Set(
+        selectLayerCubies(cubies, getMoveLayer(animation.move)).map(
+          (cubie) => cubie.id,
+        ),
+      )
+    : new Set<string>();
+  const renderCubie = (cubie: (typeof cubies)[number]) => (
+    <group
+      key={cubie.id}
+      name={`cubie:${cubie.id}`}
+      position={[...cubie.position]}
+    >
+      <mesh geometry={resources.body} material={resources.plastic} />
+      {cubie.stickers.map((sticker) => (
+        <mesh
+          key={sticker.face}
+          name={`sticker:${sticker.face}:${sticker.index}`}
+          position={[
+            sticker.normal[0] * 0.476,
+            sticker.normal[1] * 0.476,
+            sticker.normal[2] * 0.476,
+          ]}
+          rotation={[...STICKER_ROTATIONS[sticker.face]]}
+          geometry={resources.sticker}
+          material={resources.colors[sticker.color]}
+        />
+      ))}
+    </group>
+  );
   return (
     <group name="cube-model" dispose={null}>
-      {cubies.map((cubie) => (
-        <group
-          key={cubie.id}
-          name={`cubie:${cubie.id}`}
-          position={[...cubie.position]}
+      {cubies.filter((cubie) => !selected.has(cubie.id)).map(renderCubie)}
+      {animation && (
+        <AnimatedLayer
+          key={animation.id}
+          animation={animation}
+          onMoveComplete={onMoveComplete}
         >
-          <mesh geometry={resources.body} material={resources.plastic} />
-          {cubie.stickers.map((sticker) => (
-            <mesh
-              key={sticker.face}
-              name={`sticker:${sticker.face}:${sticker.index}`}
-              position={[
-                sticker.normal[0] * 0.476,
-                sticker.normal[1] * 0.476,
-                sticker.normal[2] * 0.476,
-              ]}
-              rotation={[...STICKER_ROTATIONS[sticker.face]]}
-              geometry={resources.sticker}
-              material={resources.colors[sticker.color]}
-            />
-          ))}
-        </group>
-      ))}
+          {cubies.filter((cubie) => selected.has(cubie.id)).map(renderCubie)}
+        </AnimatedLayer>
+      )}
     </group>
   );
 }
@@ -157,12 +216,14 @@ export function CubeScene({
   onContextLost,
   gestures,
   onCameraReady,
+  animation,
+  onMoveComplete,
 }: {
   state: CubeState;
   onContextLost: () => void;
   gestures: boolean;
   onCameraReady: (controller: CameraCommands | null) => void;
-}) {
+} & AnimationProps) {
   return (
     <Canvas
       role="img"
@@ -177,7 +238,11 @@ export function CubeScene({
       <ambientLight intensity={1} />
       <directionalLight position={[5, 6, 7]} intensity={2} />
       <directionalLight position={[-4, 2, -3]} intensity={0.5} />
-      <CubeModel state={state} />
+      <CubeModel
+        state={state}
+        animation={animation}
+        onMoveComplete={onMoveComplete}
+      />
       <CameraControls gestures={gestures} onReady={onCameraReady} />
       <ContextLifecycle onLost={onContextLost} />
     </Canvas>
