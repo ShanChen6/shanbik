@@ -54,4 +54,4 @@ Vitest hiện cho phép chưa có test case (`passWithNoTests`). CI xanh ở gia
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **2.3 — ADR nền tảng** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **3.1 — Tokens và layout** trong docs/roadmap/ROADMAP.md.
