@@ -41,7 +41,7 @@ export default function PracticePage() {
             Luyện tập theo từng bước
           </h2>
           <ul className="mt-4 list-disc space-y-3 pl-5 text-muted">
-            <li>Tạo chuỗi xáo trộn cho khối 3×3.</li>
+            <li>Nhập và phát chuỗi thuật toán của bạn.</li>
             <li>Nhập màu các mặt bằng tay.</li>
             <li>Phát lời giải từng nước đi.</li>
           </ul>

@@ -56,4 +56,4 @@ Browser emulation/software WebGL không thay thế kiểm tra điện thoại th
 5. Đổi reduced motion lúc đang chạy và lúc paused; kiểm pending được giữ đến resume nếu đang pause.
 6. Rời route hoặc /ui-preview Hiện/Ẩn mô hình thử giữa queue, kiểm tài nguyên và pending không tiếp tục chạy ngầm.
 
-Bước tiếp theo: **8.1 — Scramble 3×3**. Liên quan: [animation một move](./cube-single-move.md), [mapping](./cube-move-layer.md), [viewer/camera](./cube-viewer.md).
+Task 8.1 đã nối [scramble luyện tập](./cube-scramble.md) vào queue. Bước tiếp theo: **8.2 — Player controls**. Liên quan: [animation một move](./cube-single-move.md), [mapping](./cube-move-layer.md), [viewer/camera](./cube-viewer.md).

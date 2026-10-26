@@ -3,8 +3,9 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
 import { FACE_ORDER } from "../core/constants";
-import { serializeAlgorithm } from "../core/notation";
+import { serializeAlgorithm, type CubeAlgorithm } from "../core/notation";
 import { isCubeSolved } from "../core/state";
+import { ScramblePanel } from "../scramble/scramble-panel";
 import { CubeViewport } from "./cube-viewport";
 import { createMoveQueuePlayer, MAX_QUEUE_MOVES } from "./move-queue";
 
@@ -51,90 +52,103 @@ export function PracticeCube() {
         : `Hàng đợi đã đạt ${MAX_QUEUE_MOVES} nước. Hãy chờ hoặc hủy hàng đợi.`,
     );
   };
+  const enqueueScramble = (batch: CubeAlgorithm) => {
+    const current = player.getSnapshot();
+    if (!ready || current.active || current.pending.length || current.paused)
+      return false;
+    player.setReducedMotion(reducedMotion);
+    return player.enqueue(batch);
+  };
   const controls = (
-    <section aria-label="Xoay từng mặt" className="mt-4 space-y-3">
-      <div className="flex flex-wrap items-end gap-2">
-        <label className="flex min-w-24 flex-col gap-1 text-sm font-semibold">
-          Nước xoay
-          <select
-            className="ui-input"
-            value={moveIndex}
-            disabled={!ready}
-            onChange={(event) => setMoveIndex(Number(event.target.value))}
+    <>
+      <ScramblePanel
+        canApply={ready && !outstanding && !snapshot.paused}
+        enqueue={enqueueScramble}
+      />
+      <section aria-label="Xoay từng mặt" className="mt-4 space-y-3">
+        <div className="flex flex-wrap items-end gap-2">
+          <label className="flex min-w-24 flex-col gap-1 text-sm font-semibold">
+            Nước xoay
+            <select
+              className="ui-input"
+              value={moveIndex}
+              disabled={!ready}
+              onChange={(event) => setMoveIndex(Number(event.target.value))}
+            >
+              {moves.map((move, index) => (
+                <option key={index} value={index}>
+                  {serializeAlgorithm([move])}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Button disabled={!ready} onClick={addMove}>
+            Thêm vào hàng đợi
+          </Button>
+          <Button
+            variant="secondary"
+            disabled={!outstanding && !snapshot.paused}
+            onClick={() => {
+              player.cancel();
+              setQueueError("");
+            }}
           >
-            {moves.map((move, index) => (
-              <option key={index} value={index}>
-                {serializeAlgorithm([move])}
-              </option>
-            ))}
-          </select>
-        </label>
-        <Button disabled={!ready} onClick={addMove}>
-          Thêm vào hàng đợi
-        </Button>
-        <Button
-          variant="secondary"
-          disabled={!outstanding && !snapshot.paused}
-          onClick={() => {
-            player.cancel();
-            setQueueError("");
-          }}
-        >
-          Hủy hàng đợi
-        </Button>
-        <Button
-          variant="secondary"
-          disabled={!ready || (!outstanding && !snapshot.paused)}
-          onClick={() => (snapshot.paused ? player.resume() : player.pause())}
-        >
-          {snapshot.paused ? "Tiếp tục hàng đợi" : "Dừng sau nước này"}
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            player.reset();
-            setQueueError("");
-          }}
-        >
-          Đặt lại khối
-        </Button>
-      </div>
-      <p role="status" className="text-sm text-muted">
-        {snapshot.active
-          ? `Đang xoay ${serializeAlgorithm([snapshot.active.move])}. `
-          : snapshot.paused
-            ? "Hàng đợi đang dừng. "
-            : "Sẵn sàng. "}
-        Đã hoàn tất {snapshot.completed} nước. Còn chờ {snapshot.pending.length}{" "}
-        nước.
-        {snapshot.paused && snapshot.active
-          ? " Sẽ dừng khi nước hiện tại hoàn tất."
-          : ""}
-        {!snapshot.active &&
-          (isCubeSolved(snapshot.state)
-            ? " Khối đang ở trạng thái solved."
-            : " Khối đã thay đổi.")}
-      </p>
-      {queueError && outstanding >= MAX_QUEUE_MOVES && (
-        <p role="alert" className="text-sm text-danger">
-          {queueError}
+            Hủy hàng đợi
+          </Button>
+          <Button
+            variant="secondary"
+            disabled={!ready || (!outstanding && !snapshot.paused)}
+            onClick={() => (snapshot.paused ? player.resume() : player.pause())}
+          >
+            {snapshot.paused ? "Tiếp tục hàng đợi" : "Dừng sau nước này"}
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              player.reset();
+              setQueueError("");
+            }}
+          >
+            Đặt lại khối
+          </Button>
+        </div>
+        <p role="status" className="text-sm text-muted">
+          {snapshot.active
+            ? `Đang xoay ${serializeAlgorithm([snapshot.active.move])}. `
+            : snapshot.paused
+              ? "Hàng đợi đang dừng. "
+              : "Sẵn sàng. "}
+          Đã hoàn tất {snapshot.completed} nước. Còn chờ{" "}
+          {snapshot.pending.length} nước.
+          {snapshot.paused && snapshot.active
+            ? " Sẽ dừng khi nước hiện tại hoàn tất."
+            : ""}
+          {!snapshot.active &&
+            (isCubeSolved(snapshot.state)
+              ? " Khối đang ở trạng thái solved."
+              : " Khối đã thay đổi.")}
         </p>
-      )}
-      {snapshot.pending.length > 0 && (
-        <p
-          aria-label="Các nước đang chờ"
-          className="break-words text-sm text-muted"
-        >
-          {serializeAlgorithm(snapshot.pending.slice(0, 24))}
-          {snapshot.pending.length > 24 ? " …" : ""}
+        {queueError && outstanding >= MAX_QUEUE_MOVES && (
+          <p role="alert" className="text-sm text-danger">
+            {queueError}
+          </p>
+        )}
+        {snapshot.pending.length > 0 && (
+          <p
+            aria-label="Các nước đang chờ"
+            className="break-words text-sm text-muted"
+          >
+            {serializeAlgorithm(snapshot.pending.slice(0, 24))}
+            {snapshot.pending.length > 24 ? " …" : ""}
+          </p>
+        )}
+        <p className="text-sm text-muted">
+          Dấu &apos; xoay ngược, số 2 xoay nửa vòng. Dừng sau nước này giữ phần
+          chờ để tiếp tục. Hủy bỏ nước chưa commit và toàn bộ phần chờ; đặt lại
+          khối trở về solved.
         </p>
-      )}
-      <p className="text-sm text-muted">
-        Dấu &apos; xoay ngược, số 2 xoay nửa vòng. Dừng sau nước này giữ phần
-        chờ để tiếp tục. Hủy bỏ nước chưa commit và toàn bộ phần chờ; đặt lại
-        khối trở về solved.
-      </p>
-    </section>
+      </section>
+    </>
   );
   return (
     <CubeViewport
