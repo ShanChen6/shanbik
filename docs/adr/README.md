@@ -24,3 +24,7 @@ Task 2.3 chuyển định hướng kiến trúc thành quyết định có bối
 ## Các quyết định còn mở
 
 Renderer ở Task 5.1, representation cube ở 4.1, solver ở 9.2, local persistence ở 15–16 và backend/auth ở 23.x. Phần auth tối thiểu phải có trước admin 22.1. Không cài dependency hoặc thay code ứng dụng trong Task 2.3.
+
+## Bổ sung từ triển khai
+
+- [0007 — Facelet state](./0007-facelet-state.md): representation và invariant Task 4.1.

@@ -25,7 +25,7 @@ pnpm build
 pnpm start
 ```
 
-`pnpm test` chạy Vitest; Task 0 chưa có logic nghiệp vụ nên chưa có test case. Các task cube tiếp theo bổ sung test có ý nghĩa.
+`pnpm test` chạy Vitest trong Node cho cube core: snapshot, validation cấu trúc và serialization. Từ Task 4.1 không còn passWithNoTests; thiếu toàn bộ test sẽ làm lệnh thất bại.
 
 ## Cấu trúc
 
@@ -48,16 +48,18 @@ Workflow `.github/workflows/ci.yml` chạy trên PR vào `develop`/`main` và pu
 
 Node lấy từ `.nvmrc`, pnpm lấy từ `packageManager`. Workflow chỉ cần `contents: read`, không cần secret hay dịch vụ ngoài. PR vào `main` phải đến từ `develop` của chính repo này.
 
-Vitest hiện cho phép chưa có test case (`passWithNoTests`). CI xanh ở giai đoạn scaffold không chứng minh tính đúng của cube/solver. Khi có nghiệp vụ cần test thật; xem backlog Task 4.x/9.x.
+Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI xanh hiện kiểm chứng những hành vi đã có test, chưa chứng minh move engine, renderer hoặc solver chưa được triển khai; xem backlog Task 4.x/9.x.
 
 Để CI thực sự chặn merge, chủ repo cần đặt **Quality checks** là required status check trong Branch protection/Rulesets cho `develop` và `main`. Workflow không tự bật bảo vệ nhánh và không tự merge/deploy. Khi chọn check trong GitHub, dùng tên xuất hiện sau lần chạy đầu.
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **4.1 — State model 3×3** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **4.2 — Parser và serializer notation** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
 UI primitives: [Hướng dẫn sử dụng](docs/ui-primitives.md). Trang `/ui-preview` chỉ mở khi `pnpm dev`; production trả 404.
 
 Các route và điều hướng: [Khung trang MVP](docs/routes.md).
+
+Cube core: [Quy ước và API](docs/cube-state.md).
