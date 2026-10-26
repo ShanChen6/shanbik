@@ -1,0 +1,83 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { navigationItems } from "@/config/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { ThemeSelect } from "./theme-select";
+
+function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
+  const pathname = usePathname();
+  return (
+    <ul className={mobile ? "grid gap-2" : "flex flex-wrap items-center gap-1"}>
+      {navigationItems.map((item) => {
+        const current =
+          item.href === "/"
+            ? pathname === "/"
+            : pathname === item.href || pathname.startsWith(`${item.href}/`);
+        const link = (
+          <Link
+            href={item.href}
+            aria-current={current ? "page" : undefined}
+            className={`touch-control rounded-lg px-3 py-2 text-sm font-semibold ${mobile ? "w-full justify-start" : ""} ${current ? "bg-surface-subtle text-primary underline decoration-2 underline-offset-4" : "text-muted hover:bg-surface-subtle hover:text-foreground"}`}
+          >
+            {item.label}
+          </Link>
+        );
+        return (
+          <li key={item.href}>
+            {mobile ? <DialogClose asChild>{link}</DialogClose> : link}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export function DesktopNavigation() {
+  return (
+    <nav aria-label="Điều hướng chính" className="hidden lg:block">
+      <NavigationLinks />
+    </nav>
+  );
+}
+
+export function MobileNavigation() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+  return (
+    <div className="lg:hidden">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button variant="secondary">Menu</Button>
+        </DialogTrigger>
+        <DialogContent
+          variant="sheet"
+          title="Điều hướng"
+          description="Khám phá ShanBik và chọn giao diện bạn yêu thích."
+        >
+          <nav aria-label="Điều hướng di động">
+            <NavigationLinks mobile />
+          </nav>
+          <div className="mt-6 border-t border-border pt-6">
+            <ThemeSelect />
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

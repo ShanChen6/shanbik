@@ -36,7 +36,7 @@ Tham khảo cấu trúc CSS và theme của [Shanverse](https://github.com/ShanC
 
 ## Layout
 
-Header và footer dùng ảnh logo được cung cấp, chữ teal trên light và chữ trắng trên dark; không recolor ảnh. Bốn biến thể từ ảnh được cung cấp lưu ở public/brand dưới dạng WebP trong suốt, resize để giảm dung lượng, không recolor. icon.png/favicon.ico là biến thể resize từ biểu tượng khối. Link logo có accessible name, ảnh trang trí alt rỗng. Mobile wrap điều hướng xuống hàng riêng; desktop cùng hàng. Chỉ link đến anchor có thật trên trang hiện tại. Footer, skip link và main focus target dùng chung trong root layout. Component primitives và route nghiệp vụ thuộc Task 3.2/3.3.
+Header và footer dùng ảnh logo được cung cấp, chữ teal trên light và chữ trắng trên dark; không recolor ảnh. Bốn biến thể từ ảnh được cung cấp lưu ở public/brand dưới dạng WebP trong suốt, resize để giảm dung lượng, không recolor. icon.png/favicon.ico là biến thể resize từ biểu tượng khối. Link logo có accessible name, ảnh trang trí alt rỗng. Từ Task 3.3, màn hình dưới 64rem mở điều hướng và chọn theme trong sheet; desktop hiển thị navigation cùng hàng. Link chuyển đến các route có thật và đánh dấu trang hiện tại. Footer, skip link và main focus target dùng chung trong root layout. UI primitives được bổ sung ở Task 3.2. Khung route Task 3.3 được mô tả trong [routes.md](./routes.md); chưa có logic nghiệp vụ cube.
 
 ## Kiểm tra
 
