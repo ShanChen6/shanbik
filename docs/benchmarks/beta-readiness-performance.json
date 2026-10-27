@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-27",
+  "candidate": "feature/task-10-3-beta-readiness",
+  "sampleType": "Local functional baseline, not field CWV or physical mobile benchmark",
+  "samples": [
+    {
+      "browserName": "chromium",
+      "browserVersion": "141.0.7390.37",
+      "project": "chromium-mobile",
+      "scope": "Unthrottled cold browser context, local production server; software WebGL; not field CWV or mobile hardware",
+      "domContentLoadedMs": 218.7000000011176,
+      "loadMs": 294.7000000011176,
+      "sampledAtMs": 1308,
+      "firstContentfulPaintMs": 244,
+      "scriptDecodedBytes": 1544917,
+      "scripts": [
+        {
+          "path": "/_next/static/chunks/154rsktmlav2i.js",
+          "decodedBodyBytes": 5583
+        },
+        {
+          "path": "/_next/static/chunks/1__95morveur2.js",
+          "decodedBodyBytes": 29640
+        },
+        {
+          "path": "/_next/static/chunks/387sopbj_foj4.js",
+          "decodedBodyBytes": 229610
+        },
+        {
+          "path": "/_next/static/chunks/2n242uvz1zl91.js",
+          "decodedBodyBytes": 14091
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "decodedBodyBytes": 10030
+        },
+        {
+          "path": "/_next/static/chunks/1ppoeqnvpw6yr.js",
+          "decodedBodyBytes": 168769
+        },
+        {
+          "path": "/_next/static/chunks/15izwl9kml_wv.js",
+          "decodedBodyBytes": 28909
+        },
+        {
+          "path": "/_next/static/chunks/115ggad-lxm2_.js",
+          "decodedBodyBytes": 9509
+        },
+        {
+          "path": "/_next/static/chunks/2y_vlof1v3wlk.js",
+          "decodedBodyBytes": 61390
+        },
+        {
+          "path": "/_next/static/chunks/2mqq8waaql2sb.js",
+          "decodedBodyBytes": 44306
+        },
+        {
+          "path": "/_next/static/chunks/1qno-79caama_.js",
+          "decodedBodyBytes": 943080
+        }
+      ],
+      "solverRequestsBeforeSolve": []
+    },
+    {
+      "browserName": "chromium",
+      "browserVersion": "141.0.7390.37",
+      "project": "chromium-desktop",
+      "scope": "Unthrottled cold browser context, local production server; software WebGL; not field CWV or mobile hardware",
+      "domContentLoadedMs": 158.7999999988824,
+      "loadMs": 258.19999999925494,
+      "sampledAtMs": 1248.5,
+      "firstContentfulPaintMs": 184,
+      "scriptDecodedBytes": 1544917,
+      "scripts": [
+        {
+          "path": "/_next/static/chunks/154rsktmlav2i.js",
+          "decodedBodyBytes": 5583
+        },
+        {
+          "path": "/_next/static/chunks/1__95morveur2.js",
+          "decodedBodyBytes": 29640
+        },
+        {
+          "path": "/_next/static/chunks/387sopbj_foj4.js",
+          "decodedBodyBytes": 229610
+        },
+        {
+          "path": "/_next/static/chunks/1ppoeqnvpw6yr.js",
+          "decodedBodyBytes": 168769
+        },
+        {
+          "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+          "decodedBodyBytes": 10030
+        },
+        {
+          "path": "/_next/static/chunks/2n242uvz1zl91.js",
+          "decodedBodyBytes": 14091
+        },
+        {
+          "path": "/_next/static/chunks/2y_vlof1v3wlk.js",
+          "decodedBodyBytes": 61390
+        },
+        {
+          "path": "/_next/static/chunks/15izwl9kml_wv.js",
+          "decodedBodyBytes": 28909
+        },
+        {
+          "path": "/_next/static/chunks/115ggad-lxm2_.js",
+          "decodedBodyBytes": 9509
+        },
+        {
+          "path": "/_next/static/chunks/2mqq8waaql2sb.js",
+          "decodedBodyBytes": 44306
+        },
+        {
+          "path": "/_next/static/chunks/1qno-79caama_.js",
+          "decodedBodyBytes": 943080
+        }
+      ],
+      "solverRequestsBeforeSolve": []
+    }
+  ]
+}

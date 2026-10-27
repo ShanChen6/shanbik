@@ -132,6 +132,7 @@ export function FaceInputPanel({
         nước đang chạy hoặc chờ; có thể lấy ở một bước đang dừng của player.
       </p>
       <div
+        role="group"
         aria-label="Số lượng từng màu"
         className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3"
       >

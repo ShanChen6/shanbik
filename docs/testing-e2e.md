@@ -32,7 +32,7 @@ Hai project Chromium: desktop 1280×900 với animation thường và mobile vie
 
 Mọi ca kiểm tra `pageerror`; dùng role/label và auto-wait theo trạng thái, không chờ số giây cố định. Full flow tạo scramble thật bằng Web Crypto, không mock solver. Lời giải phải qua verification của core trước khi player báo solved. Một worker test chạy tuần tự để tránh nhiều search Worker tranh tài nguyên CI. Không retry tự động để che flake; timeout dài cho cold initialization có giới hạn và chuỗi animation.
 
-Đây là Chromium desktop với software WebGL và mobile viewport giả lập. Không thay cho thiết bị di động thật, Safari/Firefox, visual regression hay kiểm toán accessibility/hiệu năng ở task 10.3. Ca không WebGL hiện kiểm tra already-solved; không khẳng định đã E2E search một khối chưa solved trong chế độ fallback.
+Đây là Chromium desktop với software WebGL và mobile viewport giả lập. Không thay cho thiết bị di động thật, Safari/Firefox, visual regression hay kiểm toán accessibility/hiệu năng ở task 10.3. Task 10.3 mở rộng ca không WebGL để giải một khối chưa solved thật và đọc notation; thao tác nạp player vẫn bị khóa.
 
 ## CI và debug
 
@@ -46,3 +46,5 @@ pnpm exec playwright show-trace test-results/path-from-failed-test/trace.zip
 ```
 
 Sửa lỗi theo report rồi chạy lại ca liên quan và toàn bộ suite trước khi PR vào `develop`. Không thêm credentials hoặc dữ liệu tài khoản vào test/trace. CI không merge hoặc deploy.
+
+Task 10.3 thêm `beta.spec.ts`: 10 ca beta (tổng 22) gồm route/theme/responsive, axe, keyboard dialog, context loss và lazy-solver/performance sample. CI lưu JSON trong artifact `beta-audit-evidence` cả khi pass, giữ 7 ngày. Xem [báo cáo beta](./reports/beta-readiness-2026-10-27.md).

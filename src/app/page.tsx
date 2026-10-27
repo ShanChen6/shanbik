@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const upcoming = [
+const experiences = [
   {
     number: "01",
     title: "Khám phá khối 3×3",
@@ -28,7 +28,7 @@ export default function HomePage() {
       >
         <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
           <span aria-hidden="true" className="size-2 rounded-full bg-current" />
-          Đang xây dựng
+          MVP 3×3 — bản thử nghiệm
         </p>
         <p className="mb-3 text-sm font-semibold tracking-widest text-primary uppercase">
           Chào mừng đến với ShanBik
@@ -42,8 +42,8 @@ export default function HomePage() {
           Không gian học, mô phỏng và luyện tập Rubik dành cho bạn.
         </p>
         <p className="text-body mt-4 max-w-xl text-muted">
-          Chúng mình đang chuẩn bị những công cụ đầu tiên cho khối 3×3. Hẹn gặp
-          bạn sớm!
+          Tạo scramble, nhập màu và xem lời giải từng bước cho khối 3×3. Dữ liệu
+          giữ trong phiên; bản thử nghiệm chưa có tài khoản hoặc quét camera.
         </p>
         <Link
           href="/practice"
@@ -64,12 +64,10 @@ export default function HomePage() {
           <h2 id="progress-title" className="text-heading">
             Bắt đầu từ sự tò mò.
           </h2>
-          <p className="text-sm text-muted">
-            Các trải nghiệm đang được chuẩn bị
-          </p>
+          <p className="text-sm text-muted">Các công cụ luyện tập hiện có</p>
         </div>
         <ul className="grid gap-4 md:grid-cols-3">
-          {upcoming.map((item) => (
+          {experiences.map((item) => (
             <li
               key={item.number}
               className="panel-shadow overflow-hidden rounded-panel border border-border bg-surface"

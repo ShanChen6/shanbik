@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **10.3 — Beta readiness** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **11.1 — Schema và dữ liệu puzzle** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -93,3 +93,5 @@ Giải bản nhập 3×3 bằng cubing.js trong Worker, có kiểm chứng/cance
 Luồng luyện tập, lấy màu mô hình và reset phiên: [Task 10.1](docs/cube-practice-flow.md).
 
 Hướng dẫn người dùng: `/help#quick-start`. Bộ Playwright production và lệnh chạy/CI: [Task 10.2](docs/testing-e2e.md).
+
+Beta 3×3: [báo cáo và giới hạn kiểm chứng](docs/reports/beta-readiness-2026-10-27.md), [checklist phát hành/rollback](docs/beta-release-checklist.md). Chưa tự phát hành hoặc mở rộng phạm vi trình duyệt.

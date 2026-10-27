@@ -16,7 +16,6 @@ import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
 import { STICKER_COLORS } from "./palette";
 import { STICKER_ROTATIONS } from "./sticker-orientation";
-import { ViewerFallback } from "./viewer-fallback";
 import { getMoveLayer, selectLayerCubies } from "./move-layer";
 import { sampleMoveAngle, type MoveAnimation } from "./single-move";
 import type { ReactNode } from "react";
@@ -226,14 +225,24 @@ export function CubeScene({
 } & AnimationProps) {
   return (
     <Canvas
-      role="img"
+      role="group"
       aria-label="Mô hình khối Rubik 3×3"
       camera={{ position: [5, 4, 6], fov: CAMERA_FOV, near: 0.1, far: 100 }}
       dpr={VIEWER_DPR}
       frameloop="demand"
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
-      fallback={<ViewerFallback />}
-      onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
+      fallback={
+        <span>
+          Mô hình 3D không khả dụng. Nhập màu và tìm lời giải ở phần bên dưới.
+        </span>
+      }
+      onCreated={({ camera, gl }) => {
+        camera.lookAt(0, 0, 0);
+        gl.domElement.setAttribute("role", "img");
+        gl.domElement.setAttribute("aria-label", "Mô hình khối Rubik 3×3");
+        // Keyboard users operate the native camera controls beside the canvas.
+        gl.domElement.tabIndex = -1;
+      }}
     >
       <ambientLight intensity={1} />
       <directionalLight position={[5, 6, 7]} intensity={2} />
