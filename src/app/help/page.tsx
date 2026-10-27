@@ -10,6 +10,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Dùng timer với khối thật thế nào?",
+    answer:
+      "Mở Timer trong menu hoặc Bấm giờ với khối thật ở trang Luyện tập. Chuẩn bị khối theo scramble 25 nước, chọn quan sát 15 giây nếu muốn. Chạm giữ vùng timer hoặc focus vùng đó, giữ Space 0,3 giây đến khi sẵn sàng rồi thả. Khi đang chạy, nhấn Space/chạm vùng timer để dừng và lưu; có thể dùng các nút Bắt đầu/Dừng nếu không muốn giữ. Space chỉ tác động khi vùng timer có focus. Quan sát quá 15 giây chỉ nhắc, chưa tự áp dụng +2/DNF. Hủy hoặc rời trang trước khi dừng không lưu lượt; đổi tab vẫn tính thời gian đã trôi qua. Kết quả và lượt gần nhất giữ qua reload nếu trình duyệt cho phép lưu. Nếu báo lỗi lưu, giữ trang và chọn Thử lưu lại. Chưa có lịch sử đầy đủ hoặc thống kê; scramble hiện là random-move luyện tập, không phải scramble thi đấu chính thức.",
+  },
+  {
     question: "Tìm và lưu công thức ở đâu?",
     answer:
       "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Trong minh họa, dùng Nước tiếp/lùi, thanh Chọn vị trí hoặc nút từng nước để xem khối sau nước đó. Tab và phím mũi tên/Home/End dùng được trên thanh vị trí. Chọn tốc độ, chiều đảo và số lượt lặp; đổi chiều/lượt sẽ về đầu và dừng. Lặp nối tiếp trên khối hiện tại. Ghi chú, tùy chọn và dấu hoàn thành do bạn chọn được lưu riêng từng công thức, không tự đánh dấu khi phát xong. Xóa dữ liệu luyện tập công thức này không xóa yêu thích. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
