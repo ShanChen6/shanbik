@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Công cụ giải khối đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Công cụ giải khối đang được phát triển.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -27,6 +27,11 @@ const questions = [
     question: "Nhập thuật toán và lịch sử hoạt động thế nào?",
     answer:
       "Nhập 1–256 move U/R/F/D/L/B, thêm dấu prime hoặc 2, ngăn cách bằng khoảng trắng hay xuống dòng. Nhấn Phát thuật toán để chạy. Input sai được giữ lại và không đổi khối; nút Chọn vị trí lỗi giúp sửa đúng chỗ. Chuỗi mới thay phần chưa hoàn tất của chuỗi cũ từ trạng thái đã hoàn tất gần nhất. Lịch sử giữ tối đa 20 lần phát được chấp nhận trong phiên; chọn một mục chỉ điền lại nội dung, tải lại trang sẽ xóa lịch sử.",
+  },
+  {
+    question: "Tôi nhập màu khối thật như thế nào?",
+    answer:
+      "Ở Nhập màu sáu mặt, giữ tâm trắng U trên và xanh lá F trước. Mỗi lưới nhìn từ ngoài mặt đó, đặt mặt kề ghi ở cạnh trên lên trên rồi đọc trái sang phải, trên xuống dưới; không phản chiếu mặt B. Chọn màu tô rồi nhấn ô, chọn Xóa ô để bỏ màu. Tâm cố định. Kiểm tra màu đã nhập báo ô thiếu và số màu, giữ nguyên nội dung để sửa. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải. Bản nhập không đổi mô hình và không lưu qua reload; chưa có kiểm tra khả thi hoặc gửi giải.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",

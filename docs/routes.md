@@ -26,3 +26,5 @@ Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton g
 Bước tiếp theo: Task 4.1 — mô hình trạng thái 3×3 độc lập với renderer.
 
 /practice hỗ trợ [input thuật toán và lịch sử trong phiên](./cube-algorithm-input.md).
+
+/practice có [lưới nhập màu sáu mặt](./cube-face-input.md), hoạt động khi WebGL không khả dụng. Chưa kiểm tra khả thi hoặc gửi giải.
