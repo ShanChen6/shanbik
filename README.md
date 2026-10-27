@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **9.2 — Solver spike và benchmark** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **9.3 — Worker solver** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -85,3 +85,5 @@ Input thuật toán và lịch sử: [Task 8.3](docs/cube-algorithm-input.md).
 Nhập màu sáu mặt và hướng giữ khối: [Task 9.1a](docs/cube-face-input.md).
 
 Validation tính khả thi: [Task 9.1b](docs/cube-feasibility.md).
+
+Solver đã hoàn tất spike/benchmark, chưa có trong sản phẩm: [quyết định 9.2](docs/decisions/solver-3x3.md), [harness tái lập](tools/solver-spike/README.md).

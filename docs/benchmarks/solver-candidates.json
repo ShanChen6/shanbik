@@ -1,0 +1,39 @@
+{
+  "cubejs": {
+    "version": "1.3.2",
+    "license": "MIT",
+    "dist.unpackedSize": 100293,
+    "dist.integrity": "sha512-NuHpWIR/mpjrP3YpU6OaXAbo34idWlzo86GnAqGDG96OHDKyavTAelMyruZ77SgPhQ8l9IcP6/rzXoNcAy9OaQ==",
+    "dependencies": {
+      "npm": "^6.0.0"
+    },
+    "resolvedNpmDependency": "6.14.18",
+    "sourceFilesSha256": {
+      "lib/cube.js": "450a53a9acf5033fde7ca23be8fd08ac37d30f04c58aac63f053a1c05a7f5802",
+      "lib/solve.js": "faa0ccffca78f80a5fe7a197a9676af02d79d8ddece9cf3506154fea616fc445",
+      "index.js": "fdc16361b11721a77167f34f845d9f7b36f21f29520228f1f67cdd237acaa222",
+      "LICENSE": "c067e8c9a595d13f5644f94388f2ad32c725bcb4a5b1851fe769b9bccd46a1fd"
+    }
+  },
+  "min2phase": {
+    "version": "0.0.1",
+    "license": "GPL-3.0-or-later",
+    "dependencies": {
+      "alg": "^0.9.17",
+      "kpuzzle": "^0.9.17"
+    },
+    "dist.unpackedSize": 343645,
+    "dist.integrity": "sha512-5mwjDbnZRGvxmmEno8vmltmhCSIt4je2kLHCiq79nTnTb7Ar0j0RuYFpfKnnzk4zoyt2Jh5IQG5f35HXnPJtEQ=="
+  },
+  "cubing": {
+    "version": "0.66.1",
+    "license": "MPL-2.0 OR GPL-3.0-or-later",
+    "engines": {
+      "bun": ">=1.3.0",
+      "node": ">=22.3.0"
+    },
+    "dist.unpackedSize": 2147445,
+    "dist.integrity": "sha512-a1DShbjpyTVwoSwg7wyBjEhdvQrhh0/qtJWCzPtNtGDJ7JX18K1gwXlxA+mOVIrNbp5drnnqcmw7+ygnM5Fi6A=="
+  },
+  "checkedOn": "2026-10-27"
+}

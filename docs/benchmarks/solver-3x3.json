@@ -1,0 +1,1909 @@
+{
+  "schema": 1,
+  "measuredAt": "2026-10-27T03:22:50.939Z",
+  "candidate": "cubejs@1.3.2",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "osRelease": "6.18.55",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "logicalCpus": 9,
+    "totalRamBytes": 10451435520
+  },
+  "bundle": {
+    "worker": {
+      "rawBytes": 18934,
+      "gzipBytes": 7034,
+      "brotliBytes": 6232,
+      "inputs": [
+        "node_modules/cubejs/lib/cube.js",
+        "node_modules/cubejs/lib/solve.js",
+        "node_modules/cubejs/index.js"
+      ]
+    },
+    "host": {
+      "rawBytes": 12269,
+      "gzipBytes": 4920,
+      "brotliBytes": 4450,
+      "inputs": []
+    }
+  },
+  "profiles": [
+    {
+      "name": "desktop-jit",
+      "description": "Headless Chromium on the recorded host, JIT enabled",
+      "browser": "141.0.7390.37",
+      "browserInfo": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "hardwareConcurrency": 9
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "fixtureCount": 40,
+      "cold": [
+        {
+          "id": 1,
+          "type": "ready",
+          "initMs": 2504.2000000001863,
+          "coldMs": 2693
+        },
+        {
+          "id": 2,
+          "type": "ready",
+          "initMs": 2177.3000000002794,
+          "coldMs": 2200.399999999907
+        },
+        {
+          "id": 3,
+          "type": "ready",
+          "initMs": 2187.1999999997206,
+          "coldMs": 2202.399999999907
+        }
+      ],
+      "summary": {
+        "coldMs": {
+          "n": 3,
+          "min": 2200.399999999907,
+          "p50": 2202.399999999907,
+          "p95": 2693,
+          "max": 2693
+        },
+        "initMs": {
+          "n": 3,
+          "min": 2177.3000000002794,
+          "p50": 2187.1999999997206,
+          "p95": 2504.2000000001863,
+          "max": 2504.2000000001863
+        },
+        "warmSolveMs": {
+          "n": 117,
+          "min": 0.8000000002793968,
+          "p50": 18.40000000037253,
+          "p95": 222.89999999990687,
+          "max": 1216.0999999996275
+        },
+        "warmRoundTripMs": {
+          "n": 117,
+          "min": 1.1000000000931323,
+          "p50": 18.799999999813735,
+          "p95": 223.3000000002794,
+          "max": 1221.6000000000931
+        },
+        "heartbeatIntervalMs": {
+          "n": 1005,
+          "min": 1.2999999998137355,
+          "p50": 20,
+          "p95": 21.399999999906868,
+          "max": 358.8000000002794
+        }
+      },
+      "memory": {
+        "scope": "CDP worker JS heap snapshots while idle, not peak/process RSS",
+        "workerAfterInit": {
+          "supported": true,
+          "usedSize": 27831540,
+          "totalSize": 53215232,
+          "embedderHeapUsedSize": 510592,
+          "backingStorageSize": 18966
+        },
+        "workerAfterWarm": {
+          "supported": true,
+          "usedSize": 31948268,
+          "totalSize": 54263808,
+          "embedderHeapUsedSize": 639304,
+          "backingStorageSize": 18966
+        },
+        "mainBefore": {
+          "usedSize": 2229704,
+          "totalSize": 5541888,
+          "embedderHeapUsedSize": 1248272,
+          "backingStorageSize": 24852
+        },
+        "mainAfterInit": {
+          "usedSize": 2289772,
+          "totalSize": 5541888,
+          "embedderHeapUsedSize": 1248272,
+          "backingStorageSize": 24862
+        }
+      },
+      "gate": {
+        "before": 0,
+        "after": 0,
+        "rejected": [
+          {
+            "name": "edge-flip",
+            "status": "invalid"
+          },
+          {
+            "name": "corner-twist",
+            "status": "invalid"
+          },
+          {
+            "name": "parity",
+            "status": "invalid"
+          },
+          {
+            "name": "duplicate-edge",
+            "status": "invalid"
+          },
+          {
+            "name": "mirrored-corner",
+            "status": "invalid"
+          },
+          {
+            "name": "missing",
+            "status": "invalid"
+          }
+        ],
+        "solved": {
+          "status": "already-solved",
+          "solution": "",
+          "moves": 0
+        }
+      },
+      "cancellation": [
+        {
+          "phase": "init",
+          "cancelled": true,
+          "elapsedMs": 38.5,
+          "remainingWorkerTargets": 0,
+          "cleanupMs": 2058.5334810000004
+        },
+        {
+          "phase": "solve",
+          "cancelled": true,
+          "elapsedMs": 2,
+          "remainingWorkerTargets": 0,
+          "cleanupMs": 112.02654199999961
+        }
+      ],
+      "timeout": {
+        "timedOut": true,
+        "elapsedMs": 2.3999999999068677
+      },
+      "retryVerified": true,
+      "wrongResultRejected": true,
+      "serializationRoundTrips": true,
+      "samples": [
+        {
+          "round": 0,
+          "name": "single-U-1",
+          "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U'",
+          "moves": 15,
+          "solveMs": 11.400000000372529,
+          "roundTripMs": 12.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-U--1",
+          "serialization": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U",
+          "moves": 15,
+          "solveMs": 16.100000000093132,
+          "roundTripMs": 17.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-U-2",
+          "serialization": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U2",
+          "moves": 15,
+          "solveMs": 20.899999999906868,
+          "roundTripMs": 21.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R-1",
+          "serialization": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB",
+          "solution": "R U2 D2 R2 L2 U2 D2 L2",
+          "moves": 8,
+          "solveMs": 4.600000000093132,
+          "roundTripMs": 5.800000000279397,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R--1",
+          "serialization": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB",
+          "solution": "R U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 6.7000000001862645,
+          "roundTripMs": 8.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R-2",
+          "serialization": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB",
+          "solution": "R L U2 R L F2 R2 U2 L2 B2 R2 D2 B2",
+          "moves": 13,
+          "solveMs": 37.200000000186265,
+          "roundTripMs": 37.60000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F-1",
+          "serialization": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+          "solution": "F U2 D2 F2 B2 U2 D2 B2",
+          "moves": 8,
+          "solveMs": 1.2999999998137355,
+          "roundTripMs": 2,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F--1",
+          "serialization": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB",
+          "solution": "F U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 4.5,
+          "roundTripMs": 5.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F-2",
+          "serialization": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 B2 R2 B2 L2",
+          "moves": 15,
+          "solveMs": 28.799999999813735,
+          "roundTripMs": 29.40000000037253,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D-1",
+          "serialization": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D'",
+          "moves": 15,
+          "solveMs": 19.700000000186265,
+          "roundTripMs": 20.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D--1",
+          "serialization": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D",
+          "moves": 15,
+          "solveMs": 17.300000000279397,
+          "roundTripMs": 17.699999999720603,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D-2",
+          "serialization": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF",
+          "solution": "R L U2 R L U2 R2 F2 U2 R2 F2 L2 D2 R2 B2",
+          "moves": 15,
+          "solveMs": 17.699999999720603,
+          "roundTripMs": 18.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L-1",
+          "serialization": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD",
+          "solution": "L U2 D2 R2 L2 U2 D2 R2",
+          "moves": 8,
+          "solveMs": 0.8000000002793968,
+          "roundTripMs": 1.2999999998137355,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L--1",
+          "serialization": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU",
+          "solution": "L U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3.400000000372529,
+          "roundTripMs": 3.599999999627471,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L-2",
+          "serialization": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2",
+          "moves": 13,
+          "solveMs": 12.5,
+          "roundTripMs": 13.199999999720603,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B-1",
+          "serialization": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB",
+          "solution": "B U2 D2 F2 B2 U2 D2 F2",
+          "moves": 8,
+          "solveMs": 1.8000000002793968,
+          "roundTripMs": 2.3999999999068677,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B--1",
+          "serialization": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB",
+          "solution": "B U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3.8999999999068677,
+          "roundTripMs": 4.300000000279397,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B-2",
+          "serialization": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 F2 L2 B2 R2",
+          "moves": 15,
+          "solveMs": 17,
+          "roundTripMs": 17.299999999813735,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-0",
+          "serialization": "BRRLULBBURDBURLDDBDDFFFRFLRLUFFDRDULLFRULRFDUUBDBBBUFL",
+          "solution": "D F2 B D L2 F R F' D' B' D' F2 D2 B2 U F2 L2 U' B2 U L2",
+          "moves": 21,
+          "solveMs": 14.200000000186265,
+          "roundTripMs": 14.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-1",
+          "serialization": "DDLBULRRFDUUFRFFRDUFLRFLLLRUDUBDUBDLFRBBLDRLFBBRUBUBFD",
+          "solution": "D R' L' D' B2 L F U R2 U' D L2 U' R2 U B2 L2 B2 L2 U B2",
+          "moves": 21,
+          "solveMs": 36.10000000009313,
+          "roundTripMs": 36.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-2",
+          "serialization": "DDDDUDFUURRFURUDBLLLFRFBBFRDRFDDLBFUBLULLBUFRLBLRBFBUR",
+          "solution": "U2 F' B' U2 L' D' R2 L F D2 L2 B2 U F2 B2 L2 D R2 D2 L2",
+          "moves": 20,
+          "solveMs": 3,
+          "roundTripMs": 3.6000000000931323,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-3",
+          "serialization": "RDRLUBRDDBLBURFFRLDRLDFFLURBBURDBLUFBDFULBDFUUFDLBLURF",
+          "solution": "U' D F2 R' F U' D2 B' D' L U' R2 F2 U2 B2 L2 D R2 D2 L2 B2 R2",
+          "moves": 22,
+          "solveMs": 24.5,
+          "roundTripMs": 25.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-4",
+          "serialization": "LBDBUUBFDBBRFRLRLUDRLRFLFDBDLURDBFFFBRRFLDUULFDUUBDRUL",
+          "solution": "R2 L' F L B' U2 F D R L F2 L2 U R2 L2 F2 U' F2 B2 R2 F2",
+          "moves": 21,
+          "solveMs": 11.799999999813735,
+          "roundTripMs": 12,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-5",
+          "serialization": "UBDBUDBUUBBRRRLRFFLBRFFDDLDLFBLDRBUURLDDLULDFFRFUBFLRU",
+          "solution": "R F U' L D L U' F' L F2 R' U2 D2 B2 D2 R2 B2 R2 B2 U B2 U'",
+          "moves": 22,
+          "solveMs": 167.39999999990687,
+          "roundTripMs": 171.29999999981374,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-6",
+          "serialization": "URFLUFBFFLDLRRFLDDLLULFUBBURRBUDBBBRRBDFLDRLUDDFUBRFUD",
+          "solution": "U' R U2 B2 U2 F' L' B U' L U2 R2 B2 U' B2 D2 F2 L2 D L2 D L2",
+          "moves": 22,
+          "solveMs": 31.299999999813735,
+          "roundTripMs": 31.800000000279397,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-7",
+          "serialization": "BUBDUBUURDLLDRRDLBFRFDFLLDBFFRUDFRRDRBLULRUBDULUFBFLBF",
+          "solution": "U2 L F D2 L U' B2 U F B2 U2 B2 L2 U' L2 U' L2 B2 U F2 L2 U",
+          "moves": 22,
+          "solveMs": 119,
+          "roundTripMs": 119.40000000037253,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-8",
+          "serialization": "DRUBUUUULURRDRULDBRBFRFBFFURUBRDFDLDLLFFLDBBDBFFLBLLDR",
+          "solution": "D F' R2 L2 B' R2 L' U B D2 L2 U' D'",
+          "moves": 13,
+          "solveMs": 2.5,
+          "roundTripMs": 2.8000000002793968,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-9",
+          "serialization": "UDLLUUFLBURBFRRDRRUULDFUFLFRBLFDDUUDBDRRLFLLDDBRBBFBBF",
+          "solution": "R' D R U2 D F2 B' R B U D' F2 B2 L2 U R2 F2 D' B2 R2 F2",
+          "moves": 21,
+          "solveMs": 27,
+          "roundTripMs": 28.699999999720603,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-10",
+          "serialization": "RULDURDBDRFBBRBUDRLUBLFRUDBFFLRDBUUUDLFLLFRDLDFFLBUFRB",
+          "solution": "U' F' R' U B' R2 D F B D2 L F2 L2 F2 D' L2 U B2 D2 L2 F2 U'",
+          "moves": 22,
+          "solveMs": 243,
+          "roundTripMs": 243.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-11",
+          "serialization": "ULRDUUBBDBRBBRBLBFDDLLFLRUUFFBDDUDRLFRRFLDRFUUULRBLDFF",
+          "solution": "F B' L B2 D' L' F2 U F2 R U2 D B2 U' F2 D R2 F2 U' F2 B2 U",
+          "moves": 22,
+          "solveMs": 77.29999999981374,
+          "roundTripMs": 78.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-0",
+          "serialization": "FUUUULBBFLURDRLDRDDRULFBDRLFFBDDDUUFURRDLBBLRBFRFBFLBL",
+          "solution": "D L F R' L B D' F B R' B2 D' F2 L2 U2 L2 D R2 D' F2 U F2",
+          "moves": 22,
+          "solveMs": 25.5,
+          "roundTripMs": 26,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-1",
+          "serialization": "FBLBUFLFBDDFDRLDUFBURDFBURLRFBLDBULDDRURLRRUFULLDBURFB",
+          "solution": "B' R L U2 B D' L F D2 R L2 B2 D' R2 B2 L2 U R2 L2 B2 D' F2",
+          "moves": 22,
+          "solveMs": 58.799999999813735,
+          "roundTripMs": 59.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-2",
+          "serialization": "RURFUFBUFRRBRRDFBDURDLFDLBUDLLDDRFLFBDLBLURLBUFDBBULFU",
+          "solution": "D F' B2 D R2 U2 B' R' F U L2 U' R2 F2 B2 D2 R2 D B2 D F2",
+          "moves": 21,
+          "solveMs": 52.10000000009313,
+          "roundTripMs": 52.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-3",
+          "serialization": "BBDRULURLBULDRDFLRBUURFFDDLFLDUDBLFUDFRRLDFFRBURBBBFLU",
+          "solution": "F R D L' B' D' L2 D' F2 U R' F2 L2 F2 U' L2 B2 D F2 D' B2 D",
+          "moves": 22,
+          "solveMs": 172.60000000009313,
+          "roundTripMs": 173,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-4",
+          "serialization": "UUBUUUBLURBDLRRFDDUDFRFFDLDLBRDDRFFBBFLRLFUBFLLRUBBRDL",
+          "solution": "U2 L' U' R L D2 F D' F2 R' U F2 U' B2 D' R2 F2 D2 F2 U' R2 U2",
+          "moves": 22,
+          "solveMs": 5.399999999906868,
+          "roundTripMs": 5.899999999906868,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-5",
+          "serialization": "LFRLURDUURUBBRLBRDBFFRFURLRDFDBDFUDFUULBLDBDFUDFBBRLLL",
+          "solution": "D2 L2 D' F' B' R' D2 F' D L U2 D' B2 U F2 L2 F2 B2 U F2 D2 B2",
+          "moves": 22,
+          "solveMs": 26.5,
+          "roundTripMs": 26.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-6",
+          "serialization": "RBDDUFDLUFULRRFUBLRDLBFUFDRDFBLDUUFUDRBLLRFULBDFLBBBRR",
+          "solution": "U2 R L F D2 R2 D' R' B L U R2 B2 D F2 U F2 U' F2 U' R2 B2",
+          "moves": 22,
+          "solveMs": 7.399999999906868,
+          "roundTripMs": 7.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-7",
+          "serialization": "DBLUUFRLULDDURUUBLUDBBFRDBFBLRDDUDFFFLBRLDBRLFRRFBFULR",
+          "solution": "U L' U B U L' F' R' U R' F' B2 R2 U F2 B2 U F2 D B2 D2 R2",
+          "moves": 22,
+          "solveMs": 222.89999999990687,
+          "roundTripMs": 223.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "superflip",
+          "serialization": "UBULURUFURURFRBRDRFUFLFRFDFDFDLDRDBDLULBLFLDLBUBRBLBDB",
+          "solution": "R L F U D' R2 F2 R F B' U B2 R2 D2 B2 U B2 U' F2 B2 U B2",
+          "moves": 22,
+          "solveMs": 59.60000000009313,
+          "roundTripMs": 60,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-U-1",
+          "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U'",
+          "moves": 15,
+          "solveMs": 14.199999999720603,
+          "roundTripMs": 14.800000000279397,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-U--1",
+          "serialization": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U",
+          "moves": 15,
+          "solveMs": 15.5,
+          "roundTripMs": 15.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-U-2",
+          "serialization": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U2",
+          "moves": 15,
+          "solveMs": 21.799999999813735,
+          "roundTripMs": 22.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-R-1",
+          "serialization": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB",
+          "solution": "R U2 D2 R2 L2 U2 D2 L2",
+          "moves": 8,
+          "solveMs": 0.8999999999068677,
+          "roundTripMs": 1.1000000000931323,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-R--1",
+          "serialization": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB",
+          "solution": "R U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 4.699999999720603,
+          "roundTripMs": 5,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-R-2",
+          "serialization": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB",
+          "solution": "R L U2 R L F2 R2 U2 L2 B2 R2 D2 B2",
+          "moves": 13,
+          "solveMs": 14.200000000186265,
+          "roundTripMs": 14.5,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-F-1",
+          "serialization": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+          "solution": "F U2 D2 F2 B2 U2 D2 B2",
+          "moves": 8,
+          "solveMs": 1.5,
+          "roundTripMs": 1.7000000001862645,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-F--1",
+          "serialization": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB",
+          "solution": "F U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3.3999999999068677,
+          "roundTripMs": 3.7000000001862645,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-F-2",
+          "serialization": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 B2 R2 B2 L2",
+          "moves": 15,
+          "solveMs": 20.899999999906868,
+          "roundTripMs": 21.40000000037253,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-D-1",
+          "serialization": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D'",
+          "moves": 15,
+          "solveMs": 16.200000000186265,
+          "roundTripMs": 16.5,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-D--1",
+          "serialization": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D",
+          "moves": 15,
+          "solveMs": 15.200000000186265,
+          "roundTripMs": 15.600000000093132,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-D-2",
+          "serialization": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF",
+          "solution": "R L U2 R L U2 R2 F2 U2 R2 F2 L2 D2 R2 B2",
+          "moves": 15,
+          "solveMs": 18.40000000037253,
+          "roundTripMs": 18.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-L-1",
+          "serialization": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD",
+          "solution": "L U2 D2 R2 L2 U2 D2 R2",
+          "moves": 8,
+          "solveMs": 1.5,
+          "roundTripMs": 1.7000000001862645,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-L--1",
+          "serialization": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU",
+          "solution": "L U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 4.300000000279397,
+          "roundTripMs": 4.699999999720603,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-L-2",
+          "serialization": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2",
+          "moves": 13,
+          "solveMs": 12.399999999906868,
+          "roundTripMs": 12.700000000186265,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-B-1",
+          "serialization": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB",
+          "solution": "B U2 D2 F2 B2 U2 D2 F2",
+          "moves": 8,
+          "solveMs": 0.8000000002793968,
+          "roundTripMs": 1.2999999998137355,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-B--1",
+          "serialization": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB",
+          "solution": "B U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3,
+          "roundTripMs": 3.2000000001862645,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "single-B-2",
+          "serialization": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 F2 L2 B2 R2",
+          "moves": 15,
+          "solveMs": 19.600000000093132,
+          "roundTripMs": 20,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-0",
+          "serialization": "BRRLULBBURDBURLDDBDDFFFRFLRLUFFDRDULLFRULRFDUUBDBBBUFL",
+          "solution": "D F2 B D L2 F R F' D' B' D' F2 D2 B2 U F2 L2 U' B2 U L2",
+          "moves": 21,
+          "solveMs": 14.099999999627471,
+          "roundTripMs": 14.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-1",
+          "serialization": "DDLBULRRFDUUFRFFRDUFLRFLLLRUDUBDUBDLFRBBLDRLFBBRUBUBFD",
+          "solution": "D R' L' D' B2 L F U R2 U' D L2 U' R2 U B2 L2 B2 L2 U B2",
+          "moves": 21,
+          "solveMs": 37.3000000002794,
+          "roundTripMs": 37.60000000009313,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-2",
+          "serialization": "DDDDUDFUURRFURUDBLLLFRFBBFRDRFDDLBFUBLULLBUFRLBLRBFBUR",
+          "solution": "U2 F' B' U2 L' D' R2 L F D2 L2 B2 U F2 B2 L2 D R2 D2 L2",
+          "moves": 20,
+          "solveMs": 2.8999999999068677,
+          "roundTripMs": 3.2000000001862645,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-3",
+          "serialization": "RDRLUBRDDBLBURFFRLDRLDFFLURBBURDBLUFBDFULBDFUUFDLBLURF",
+          "solution": "U' D F2 R' F U' D2 B' D' L U' R2 F2 U2 B2 L2 D R2 D2 L2 B2 R2",
+          "moves": 22,
+          "solveMs": 20.90000000037253,
+          "roundTripMs": 21.699999999720603,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-4",
+          "serialization": "LBDBUUBFDBBRFRLRLUDRLRFLFDBDLURDBFFFBRRFLDUULFDUUBDRUL",
+          "solution": "R2 L' F L B' U2 F D R L F2 L2 U R2 L2 F2 U' F2 B2 R2 F2",
+          "moves": 21,
+          "solveMs": 12.5,
+          "roundTripMs": 12.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-5",
+          "serialization": "UBDBUDBUUBBRRRLRFFLBRFFDDLDLFBLDRBUURLDDLULDFFRFUBFLRU",
+          "solution": "R F U' L D L U' F' L F2 R' U2 D2 B2 D2 R2 B2 R2 B2 U B2 U'",
+          "moves": 22,
+          "solveMs": 178.70000000018626,
+          "roundTripMs": 179.1999999997206,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-6",
+          "serialization": "URFLUFBFFLDLRRFLDDLLULFUBBURRBUDBBBRRBDFLDRLUDDFUBRFUD",
+          "solution": "U' R U2 B2 U2 F' L' B U' L U2 R2 B2 U' B2 D2 F2 L2 D L2 D L2",
+          "moves": 22,
+          "solveMs": 28.799999999813735,
+          "roundTripMs": 29.800000000279397,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-7",
+          "serialization": "BUBDUBUURDLLDRRDLBFRFDFLLDBFFRUDFRRDRBLULRUBDULUFBFLBF",
+          "solution": "U2 L F D2 L U' B2 U F B2 U2 B2 L2 U' L2 U' L2 B2 U F2 L2 U",
+          "moves": 22,
+          "solveMs": 111.60000000009313,
+          "roundTripMs": 115.79999999981374,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-8",
+          "serialization": "DRUBUUUULURRDRULDBRBFRFBFFURUBRDFDLDLLFFLDBBDBFFLBLLDR",
+          "solution": "D F' R2 L2 B' R2 L' U B D2 L2 U' D'",
+          "moves": 13,
+          "solveMs": 3,
+          "roundTripMs": 3.5,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-9",
+          "serialization": "UDLLUUFLBURBFRRDRRUULDFUFLFRBLFDDUUDBDRRLFLLDDBRBBFBBF",
+          "solution": "R' D R U2 D F2 B' R B U D' F2 B2 L2 U R2 F2 D' B2 R2 F2",
+          "moves": 21,
+          "solveMs": 27.5,
+          "roundTripMs": 29.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-10",
+          "serialization": "RULDURDBDRFBBRBUDRLUBLFRUDBFFLRDBUUUDLFLLFRDLDFFLBUFRB",
+          "solution": "U' F' R' U B' R2 D F B D2 L F2 L2 F2 D' L2 U B2 D2 L2 F2 U'",
+          "moves": 22,
+          "solveMs": 267.10000000009313,
+          "roundTripMs": 267.6999999997206,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-25-11",
+          "serialization": "ULRDUUBBDBRBBRBLBFDDLLFLRUUFFBDDUDRLFRRFLDRFUUULRBLDFF",
+          "solution": "F B' L B2 D' L' F2 U F2 R U2 D B2 U' F2 D R2 F2 U' F2 B2 U",
+          "moves": 22,
+          "solveMs": 69.39999999990687,
+          "roundTripMs": 69.8000000002794,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-0",
+          "serialization": "FUUUULBBFLURDRLDRDDRULFBDRLFFBDDDUUFURRDLBBLRBFRFBFLBL",
+          "solution": "D L F R' L B D' F B R' B2 D' F2 L2 U2 L2 D R2 D' F2 U F2",
+          "moves": 22,
+          "solveMs": 24.200000000186265,
+          "roundTripMs": 24.699999999720603,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-1",
+          "serialization": "FBLBUFLFBDDFDRLDUFBURDFBURLRFBLDBULDDRURLRRUFULLDBURFB",
+          "solution": "B' R L U2 B D' L F D2 R L2 B2 D' R2 B2 L2 U R2 L2 B2 D' F2",
+          "moves": 22,
+          "solveMs": 77.3000000002794,
+          "roundTripMs": 77.60000000009313,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-2",
+          "serialization": "RURFUFBUFRRBRRDFBDURDLFDLBUDLLDDRFLFBDLBLURLBUFDBBULFU",
+          "solution": "D F' B2 D R2 U2 B' R' F U L2 U' R2 F2 B2 D2 R2 D B2 D F2",
+          "moves": 21,
+          "solveMs": 54,
+          "roundTripMs": 54.39999999990687,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-3",
+          "serialization": "BBDRULURLBULDRDFLRBUURFFDDLFLDUDBLFUDFRRLDFFRBURBBBFLU",
+          "solution": "F R D L' B' D' L2 D' F2 U R' F2 L2 F2 U' L2 B2 D F2 D' B2 D",
+          "moves": 22,
+          "solveMs": 170.39999999990687,
+          "roundTripMs": 171.29999999981374,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-4",
+          "serialization": "UUBUUUBLURBDLRRFDDUDFRFFDLDLBRDDRFFBBFLRLFUBFLLRUBBRDL",
+          "solution": "U2 L' U' R L D2 F D' F2 R' U F2 U' B2 D' R2 F2 D2 F2 U' R2 U2",
+          "moves": 22,
+          "solveMs": 11.700000000186265,
+          "roundTripMs": 12.199999999720603,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-5",
+          "serialization": "LFRLURDUURUBBRLBRDBFFRFURLRDFDBDFUDFUULBLDBDFUDFBBRLLL",
+          "solution": "D2 L2 D' F' B' R' D2 F' D L U2 D' B2 U F2 L2 F2 B2 U F2 D2 B2",
+          "moves": 22,
+          "solveMs": 25.100000000093132,
+          "roundTripMs": 25.300000000279397,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-6",
+          "serialization": "RBDDUFDLUFULRRFUBLRDLBFUFDRDFBLDUUFUDRBLLRFULBDFLBBBRR",
+          "solution": "U2 R L F D2 R2 D' R' B L U R2 B2 D F2 U F2 U' F2 U' R2 B2",
+          "moves": 22,
+          "solveMs": 8.299999999813735,
+          "roundTripMs": 8.5,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "seed-40-7",
+          "serialization": "DBLUUFRLULDDURUUBLUDBBFRDBFBLRDDUDFFFLBRLDBRLFRRFBFULR",
+          "solution": "U L' U B U L' F' R' U R' F' B2 R2 U F2 B2 U F2 D B2 D2 R2",
+          "moves": 22,
+          "solveMs": 211.60000000009313,
+          "roundTripMs": 212.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 1,
+          "name": "superflip",
+          "serialization": "UBULURUFURURFRBRDRFUFLFRFDFDFDLDRDBDLULBLFLDLBUBRBLBDB",
+          "solution": "R L F U D' R2 F2 R F B' U B2 R2 D2 B2 U B2 U' F2 B2 U B2",
+          "moves": 22,
+          "solveMs": 41,
+          "roundTripMs": 41.39999999990687,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-U-1",
+          "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U'",
+          "moves": 15,
+          "solveMs": 13.699999999720603,
+          "roundTripMs": 13.899999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-U--1",
+          "serialization": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U",
+          "moves": 15,
+          "solveMs": 15.299999999813735,
+          "roundTripMs": 15.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-U-2",
+          "serialization": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U2",
+          "moves": 15,
+          "solveMs": 21,
+          "roundTripMs": 21.5,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-R-1",
+          "serialization": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB",
+          "solution": "R U2 D2 R2 L2 U2 D2 L2",
+          "moves": 8,
+          "solveMs": 1.2000000001862645,
+          "roundTripMs": 1.6999999997206032,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-R--1",
+          "serialization": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB",
+          "solution": "R U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 4.100000000093132,
+          "roundTripMs": 4.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-R-2",
+          "serialization": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB",
+          "solution": "R L U2 R L F2 R2 U2 L2 B2 R2 D2 B2",
+          "moves": 13,
+          "solveMs": 14.599999999627471,
+          "roundTripMs": 15,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-F-1",
+          "serialization": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+          "solution": "F U2 D2 F2 B2 U2 D2 B2",
+          "moves": 8,
+          "solveMs": 0.8999999999068677,
+          "roundTripMs": 1.2000000001862645,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-F--1",
+          "serialization": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB",
+          "solution": "F U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3.7999999998137355,
+          "roundTripMs": 4.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-F-2",
+          "serialization": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 B2 R2 B2 L2",
+          "moves": 15,
+          "solveMs": 25.100000000093132,
+          "roundTripMs": 27.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-D-1",
+          "serialization": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D'",
+          "moves": 15,
+          "solveMs": 17.600000000093132,
+          "roundTripMs": 18,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-D--1",
+          "serialization": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D",
+          "moves": 15,
+          "solveMs": 15.299999999813735,
+          "roundTripMs": 15.700000000186265,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-D-2",
+          "serialization": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF",
+          "solution": "R L U2 R L U2 R2 F2 U2 R2 F2 L2 D2 R2 B2",
+          "moves": 15,
+          "solveMs": 20.300000000279397,
+          "roundTripMs": 25.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-L-1",
+          "serialization": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD",
+          "solution": "L U2 D2 R2 L2 U2 D2 R2",
+          "moves": 8,
+          "solveMs": 2.1000000000931323,
+          "roundTripMs": 2.2999999998137355,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-L--1",
+          "serialization": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU",
+          "solution": "L U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 4.100000000093132,
+          "roundTripMs": 4.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-L-2",
+          "serialization": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2",
+          "moves": 13,
+          "solveMs": 35.6999999997206,
+          "roundTripMs": 36,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-B-1",
+          "serialization": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB",
+          "solution": "B U2 D2 F2 B2 U2 D2 F2",
+          "moves": 8,
+          "solveMs": 1.6999999997206032,
+          "roundTripMs": 2,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-B--1",
+          "serialization": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB",
+          "solution": "B U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 3.8000000002793968,
+          "roundTripMs": 4.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "single-B-2",
+          "serialization": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 F2 L2 B2 R2",
+          "moves": 15,
+          "solveMs": 22.600000000093132,
+          "roundTripMs": 23,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-0",
+          "serialization": "BRRLULBBURDBURLDDBDDFFFRFLRLUFFDRDULLFRULRFDUUBDBBBUFL",
+          "solution": "D F2 B D L2 F R F' D' B' D' F2 D2 B2 U F2 L2 U' B2 U L2",
+          "moves": 21,
+          "solveMs": 14,
+          "roundTripMs": 14.200000000186265,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-1",
+          "serialization": "DDLBULRRFDUUFRFFRDUFLRFLLLRUDUBDUBDLFRBBLDRLFBBRUBUBFD",
+          "solution": "D R' L' D' B2 L F U R2 U' D L2 U' R2 U B2 L2 B2 L2 U B2",
+          "moves": 21,
+          "solveMs": 38.1999999997206,
+          "roundTripMs": 38.5,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-2",
+          "serialization": "DDDDUDFUURRFURUDBLLLFRFBBFRDRFDDLBFUBLULLBUFRLBLRBFBUR",
+          "solution": "U2 F' B' U2 L' D' R2 L F D2 L2 B2 U F2 B2 L2 D R2 D2 L2",
+          "moves": 20,
+          "solveMs": 3.6000000000931323,
+          "roundTripMs": 6,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-3",
+          "serialization": "RDRLUBRDDBLBURFFRLDRLDFFLURBBURDBLUFBDFULBDFUUFDLBLURF",
+          "solution": "U' D F2 R' F U' D2 B' D' L U' R2 F2 U2 B2 L2 D R2 D2 L2 B2 R2",
+          "moves": 22,
+          "solveMs": 19.700000000186265,
+          "roundTripMs": 20.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-4",
+          "serialization": "LBDBUUBFDBBRFRLRLUDRLRFLFDBDLURDBFFFBRRFLDUULFDUUBDRUL",
+          "solution": "R2 L' F L B' U2 F D R L F2 L2 U R2 L2 F2 U' F2 B2 R2 F2",
+          "moves": 21,
+          "solveMs": 11.699999999720603,
+          "roundTripMs": 12.600000000093132,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-5",
+          "serialization": "UBDBUDBUUBBRRRLRFFLBRFFDDLDLFBLDRBUURLDDLULDFFRFUBFLRU",
+          "solution": "R F U' L D L U' F' L F2 R' U2 D2 B2 D2 R2 B2 R2 B2 U B2 U'",
+          "moves": 22,
+          "solveMs": 184.39999999990687,
+          "roundTripMs": 185.60000000009313,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-6",
+          "serialization": "URFLUFBFFLDLRRFLDDLLULFUBBURRBUDBBBRRBDFLDRLUDDFUBRFUD",
+          "solution": "U' R U2 B2 U2 F' L' B U' L U2 R2 B2 U' B2 D2 F2 L2 D L2 D L2",
+          "moves": 22,
+          "solveMs": 32,
+          "roundTripMs": 32.299999999813735,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-7",
+          "serialization": "BUBDUBUURDLLDRRDLBFRFDFLLDBFFRUDFRRDRBLULRUBDULUFBFLBF",
+          "solution": "U2 L F D2 L U' B2 U F B2 U2 B2 L2 U' L2 U' L2 B2 U F2 L2 U",
+          "moves": 22,
+          "solveMs": 105.3000000002794,
+          "roundTripMs": 108.70000000018626,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-8",
+          "serialization": "DRUBUUUULURRDRULDBRBFRFBFFURUBRDFDLDLLFFLDBBDBFFLBLLDR",
+          "solution": "D F' R2 L2 B' R2 L' U B D2 L2 U' D'",
+          "moves": 13,
+          "solveMs": 1.8000000002793968,
+          "roundTripMs": 3.2999999998137355,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-9",
+          "serialization": "UDLLUUFLBURBFRRDRRUULDFUFLFRBLFDDUUDBDRRLFLLDDBRBBFBBF",
+          "solution": "R' D R U2 D F2 B' R B U D' F2 B2 L2 U R2 F2 D' B2 R2 F2",
+          "moves": 21,
+          "solveMs": 26.5,
+          "roundTripMs": 27,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-10",
+          "serialization": "RULDURDBDRFBBRBUDRLUBLFRUDBFFLRDBUUUDLFLLFRDLDFFLBUFRB",
+          "solution": "U' F' R' U B' R2 D F B D2 L F2 L2 F2 D' L2 U B2 D2 L2 F2 U'",
+          "moves": 22,
+          "solveMs": 268.5,
+          "roundTripMs": 269.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-25-11",
+          "serialization": "ULRDUUBBDBRBBRBLBFDDLLFLRUUFFBDDUDRLFRRFLDRFUUULRBLDFF",
+          "solution": "F B' L B2 D' L' F2 U F2 R U2 D B2 U' F2 D R2 F2 U' F2 B2 U",
+          "moves": 22,
+          "solveMs": 82.3000000002794,
+          "roundTripMs": 83.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-0",
+          "serialization": "FUUUULBBFLURDRLDRDDRULFBDRLFFBDDDUUFURRDLBBLRBFRFBFLBL",
+          "solution": "D L F R' L B D' F B R' B2 D' F2 L2 U2 L2 D R2 D' F2 U F2",
+          "moves": 22,
+          "solveMs": 27.5,
+          "roundTripMs": 27.899999999906868,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-1",
+          "serialization": "FBLBUFLFBDDFDRLDUFBURDFBURLRFBLDBULDDRURLRRUFULLDBURFB",
+          "solution": "B' R L U2 B D' L F D2 R L2 B2 D' R2 B2 L2 U R2 L2 B2 D' F2",
+          "moves": 22,
+          "solveMs": 60.1999999997206,
+          "roundTripMs": 60.6999999997206,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-2",
+          "serialization": "RURFUFBUFRRBRRDFBDURDLFDLBUDLLDDRFLFBDLBLURLBUFDBBULFU",
+          "solution": "D F' B2 D R2 U2 B' R' F U L2 U' R2 F2 B2 D2 R2 D B2 D F2",
+          "moves": 21,
+          "solveMs": 37.5,
+          "roundTripMs": 38,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-3",
+          "serialization": "BBDRULURLBULDRDFLRBUURFFDDLFLDUDBLFUDFRRLDFFRBURBBBFLU",
+          "solution": "F R D L' B' D' L2 D' F2 U R' F2 L2 F2 U' L2 B2 D F2 D' B2 D",
+          "moves": 22,
+          "solveMs": 1216.0999999996275,
+          "roundTripMs": 1221.6000000000931,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-4",
+          "serialization": "UUBUUUBLURBDLRRFDDUDFRFFDLDLBRDDRFFBBFLRLFUBFLLRUBBRDL",
+          "solution": "U2 L' U' R L D2 F D' F2 R' U F2 U' B2 D' R2 F2 D2 F2 U' R2 U2",
+          "moves": 22,
+          "solveMs": 28.200000000186265,
+          "roundTripMs": 29.799999999813735,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-5",
+          "serialization": "LFRLURDUURUBBRLBRDBFFRFURLRDFDBDFUDFUULBLDBDFUDFBBRLLL",
+          "solution": "D2 L2 D' F' B' R' D2 F' D L U2 D' B2 U F2 L2 F2 B2 U F2 D2 B2",
+          "moves": 22,
+          "solveMs": 30,
+          "roundTripMs": 30.299999999813735,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-6",
+          "serialization": "RBDDUFDLUFULRRFUBLRDLBFUFDRDFBLDUUFUDRBLLRFULBDFLBBBRR",
+          "solution": "U2 R L F D2 R2 D' R' B L U R2 B2 D F2 U F2 U' F2 U' R2 B2",
+          "moves": 22,
+          "solveMs": 9.199999999720603,
+          "roundTripMs": 10.200000000186265,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "seed-40-7",
+          "serialization": "DBLUUFRLULDDURUUBLUDBBFRDBFBLRDDUDFFFLBRLDBRLFRRFBFULR",
+          "solution": "U L' U B U L' F' R' U R' F' B2 R2 U F2 B2 U F2 D B2 D2 R2",
+          "moves": 22,
+          "solveMs": 251.70000000018626,
+          "roundTripMs": 252,
+          "verified": true
+        },
+        {
+          "round": 2,
+          "name": "superflip",
+          "serialization": "UBULURUFURURFRBRDRFUFLFRFDFDFDLDRDBDLULBLFLDLBUBRBLBDB",
+          "solution": "R L F U D' R2 F2 R F B' U B2 R2 D2 B2 U B2 U' F2 B2 U B2",
+          "moves": 22,
+          "solveMs": 104,
+          "roundTripMs": 105.89999999990687,
+          "verified": true
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "name": "constrained-jitless",
+      "description": "Same host with V8 --jitless; constrained-engine proxy, NOT a physical phone or CPU-throttle calibration",
+      "browser": "141.0.7390.37",
+      "browserInfo": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "hardwareConcurrency": 9
+      },
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixtureCount": 40,
+      "cold": [
+        {
+          "id": 1,
+          "type": "ready",
+          "initMs": 39543,
+          "coldMs": 39555.700000000186
+        },
+        {
+          "id": 2,
+          "type": "ready",
+          "initMs": 38988.60000000009,
+          "coldMs": 39006.40000000037
+        }
+      ],
+      "summary": {
+        "coldMs": {
+          "n": 2,
+          "min": 39006.40000000037,
+          "p50": 39006.40000000037,
+          "p95": 39555.700000000186,
+          "max": 39555.700000000186
+        },
+        "initMs": {
+          "n": 2,
+          "min": 38988.60000000009,
+          "p50": 38988.60000000009,
+          "p95": 39543,
+          "max": 39543
+        },
+        "warmSolveMs": {
+          "n": 39,
+          "min": 2.1000000000931323,
+          "p50": 63.39999999990687,
+          "p95": 696.7000000001863,
+          "max": 841.1000000000931
+        },
+        "warmRoundTripMs": {
+          "n": 39,
+          "min": 2.3999999999068677,
+          "p50": 64.60000000009313,
+          "p95": 697.5,
+          "max": 841.7000000001863
+        },
+        "heartbeatIntervalMs": {
+          "n": 8083,
+          "min": 2.7000000001862645,
+          "p50": 20,
+          "p95": 20.5,
+          "max": 341.29999999981374
+        }
+      },
+      "memory": {
+        "scope": "CDP worker JS heap snapshots while idle, not peak/process RSS",
+        "workerAfterInit": {
+          "supported": true,
+          "usedSize": 18306548,
+          "totalSize": 52428800,
+          "embedderHeapUsedSize": 510592,
+          "backingStorageSize": 18966
+        },
+        "workerAfterWarm": {
+          "supported": true,
+          "usedSize": 18523048,
+          "totalSize": 52690944,
+          "embedderHeapUsedSize": 639304,
+          "backingStorageSize": 18966
+        },
+        "mainBefore": {
+          "usedSize": 2101996,
+          "totalSize": 4493312,
+          "embedderHeapUsedSize": 1248272,
+          "backingStorageSize": 24852
+        },
+        "mainAfterInit": {
+          "usedSize": 1352588,
+          "totalSize": 2134016,
+          "embedderHeapUsedSize": 628040,
+          "backingStorageSize": 24749
+        }
+      },
+      "gate": {
+        "before": 0,
+        "after": 0,
+        "rejected": [
+          {
+            "name": "edge-flip",
+            "status": "invalid"
+          },
+          {
+            "name": "corner-twist",
+            "status": "invalid"
+          },
+          {
+            "name": "parity",
+            "status": "invalid"
+          },
+          {
+            "name": "duplicate-edge",
+            "status": "invalid"
+          },
+          {
+            "name": "mirrored-corner",
+            "status": "invalid"
+          },
+          {
+            "name": "missing",
+            "status": "invalid"
+          }
+        ],
+        "solved": {
+          "status": "already-solved",
+          "solution": "",
+          "moves": 0
+        }
+      },
+      "cancellation": [
+        {
+          "phase": "init",
+          "cancelled": true,
+          "elapsedMs": 12.100000000093132,
+          "remainingWorkerTargets": 0,
+          "cleanupMs": 2051.5733489999984
+        },
+        {
+          "phase": "solve",
+          "cancelled": true,
+          "elapsedMs": 0.6000000000931323,
+          "remainingWorkerTargets": 0,
+          "cleanupMs": 205.0833510000084
+        }
+      ],
+      "timeout": {
+        "timedOut": true,
+        "elapsedMs": 1.5
+      },
+      "retryVerified": true,
+      "wrongResultRejected": true,
+      "serializationRoundTrips": true,
+      "samples": [
+        {
+          "round": 0,
+          "name": "single-U-1",
+          "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U'",
+          "moves": 15,
+          "solveMs": 68.79999999981374,
+          "roundTripMs": 69.89999999990687,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-U--1",
+          "serialization": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U",
+          "moves": 15,
+          "solveMs": 55.200000000186265,
+          "roundTripMs": 56.39999999990687,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-U-2",
+          "serialization": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 U2",
+          "moves": 15,
+          "solveMs": 62.3000000002794,
+          "roundTripMs": 62.90000000037253,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R-1",
+          "serialization": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB",
+          "solution": "R U2 D2 R2 L2 U2 D2 L2",
+          "moves": 8,
+          "solveMs": 2.8999999999068677,
+          "roundTripMs": 3.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R--1",
+          "serialization": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB",
+          "solution": "R U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 12.300000000279397,
+          "roundTripMs": 12.899999999906868,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-R-2",
+          "serialization": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB",
+          "solution": "R L U2 R L F2 R2 U2 L2 B2 R2 D2 B2",
+          "moves": 13,
+          "solveMs": 62.799999999813735,
+          "roundTripMs": 64.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F-1",
+          "serialization": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+          "solution": "F U2 D2 F2 B2 U2 D2 B2",
+          "moves": 8,
+          "solveMs": 2.7000000001862645,
+          "roundTripMs": 3.099999999627471,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F--1",
+          "serialization": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB",
+          "solution": "F U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 11.799999999813735,
+          "roundTripMs": 12.600000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-F-2",
+          "serialization": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 B2 R2 B2 L2",
+          "moves": 15,
+          "solveMs": 64.39999999990687,
+          "roundTripMs": 64.89999999990687,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D-1",
+          "serialization": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D'",
+          "moves": 15,
+          "solveMs": 63.39999999990687,
+          "roundTripMs": 64.60000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D--1",
+          "serialization": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2 L2 D",
+          "moves": 15,
+          "solveMs": 89.10000000009313,
+          "roundTripMs": 89.8000000002794,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-D-2",
+          "serialization": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF",
+          "solution": "R L U2 R L U2 R2 F2 U2 R2 F2 L2 D2 R2 B2",
+          "moves": 15,
+          "solveMs": 55.799999999813735,
+          "roundTripMs": 58.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L-1",
+          "serialization": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD",
+          "solution": "L U2 D2 R2 L2 U2 D2 R2",
+          "moves": 8,
+          "solveMs": 2.1000000000931323,
+          "roundTripMs": 2.3999999999068677,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L--1",
+          "serialization": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU",
+          "solution": "L U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 11,
+          "roundTripMs": 11.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-L-2",
+          "serialization": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF",
+          "solution": "R L U2 R L F2 R2 U2 R2 F2 R2 U2 F2",
+          "moves": 13,
+          "solveMs": 58.60000000009313,
+          "roundTripMs": 59.700000000186265,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B-1",
+          "serialization": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB",
+          "solution": "B U2 D2 F2 B2 U2 D2 F2",
+          "moves": 8,
+          "solveMs": 2.2000000001862645,
+          "roundTripMs": 3,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B--1",
+          "serialization": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB",
+          "solution": "B U2 R2 L2 U2 D2 R2 L2 D2",
+          "moves": 9,
+          "solveMs": 10.800000000279397,
+          "roundTripMs": 11.899999999906868,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "single-B-2",
+          "serialization": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB",
+          "solution": "R L U2 R L F2 U2 R2 F2 R2 U2 F2 L2 B2 R2",
+          "moves": 15,
+          "solveMs": 71.79999999981374,
+          "roundTripMs": 72.3000000002794,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-0",
+          "serialization": "BRRLULBBURDBURLDDBDDFFFRFLRLUFFDRDULLFRULRFDUUBDBBBUFL",
+          "solution": "D F2 B D L2 F R F' D' B' D' F2 D2 B2 U F2 L2 U' B2 U L2",
+          "moves": 21,
+          "solveMs": 53.60000000009313,
+          "roundTripMs": 59.89999999990687,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-1",
+          "serialization": "DDLBULRRFDUUFRFFRDUFLRFLLLRUDUBDUBDLFRBBLDRLFBBRUBUBFD",
+          "solution": "D R' L' D' B2 L F U R2 U' D L2 U' R2 U B2 L2 B2 L2 U B2",
+          "moves": 21,
+          "solveMs": 123.10000000009313,
+          "roundTripMs": 124.70000000018626,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-2",
+          "serialization": "DDDDUDFUURRFURUDBLLLFRFBBFRDRFDDLBFUBLULLBUFRLBLRBFBUR",
+          "solution": "U2 F' B' U2 L' D' R2 L F D2 L2 B2 U F2 B2 L2 D R2 D2 L2",
+          "moves": 20,
+          "solveMs": 12.100000000093132,
+          "roundTripMs": 13.100000000093132,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-3",
+          "serialization": "RDRLUBRDDBLBURFFRLDRLDFFLURBBURDBLUFBDFULBDFUUFDLBLURF",
+          "solution": "U' D F2 R' F U' D2 B' D' L U' R2 F2 U2 B2 L2 D R2 D2 L2 B2 R2",
+          "moves": 22,
+          "solveMs": 66.60000000009313,
+          "roundTripMs": 67.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-4",
+          "serialization": "LBDBUUBFDBBRFRLRLUDRLRFLFDBDLURDBFFFBRRFLDUULFDUUBDRUL",
+          "solution": "R2 L' F L B' U2 F D R L F2 L2 U R2 L2 F2 U' F2 B2 R2 F2",
+          "moves": 21,
+          "solveMs": 33.200000000186265,
+          "roundTripMs": 33.700000000186265,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-5",
+          "serialization": "UBDBUDBUUBBRRRLRFFLBRFFDDLDLFBLDRBUURLDDLULDFFRFUBFLRU",
+          "solution": "R F U' L D L U' F' L F2 R' U2 D2 B2 D2 R2 B2 R2 B2 U B2 U'",
+          "moves": 22,
+          "solveMs": 550.9000000003725,
+          "roundTripMs": 551.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-6",
+          "serialization": "URFLUFBFFLDLRRFLDDLLULFUBBURRBUDBBBRRBDFLDRLUDDFUBRFUD",
+          "solution": "U' R U2 B2 U2 F' L' B U' L U2 R2 B2 U' B2 D2 F2 L2 D L2 D L2",
+          "moves": 22,
+          "solveMs": 103.89999999990687,
+          "roundTripMs": 104.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-7",
+          "serialization": "BUBDUBUURDLLDRRDLBFRFDFLLDBFFRUDFRRDRBLULRUBDULUFBFLBF",
+          "solution": "U2 L F D2 L U' B2 U F B2 U2 B2 L2 U' L2 U' L2 B2 U F2 L2 U",
+          "moves": 22,
+          "solveMs": 274.1999999997206,
+          "roundTripMs": 275,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-8",
+          "serialization": "DRUBUUUULURRDRULDBRBFRFBFFURUBRDFDLDLLFFLDBBDBFFLBLLDR",
+          "solution": "D F' R2 L2 B' R2 L' U B D2 L2 U' D'",
+          "moves": 13,
+          "solveMs": 6.899999999906868,
+          "roundTripMs": 7.399999999906868,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-9",
+          "serialization": "UDLLUUFLBURBFRRDRRUULDFUFLFRBLFDDUUDBDRRLFLLDDBRBBFBBF",
+          "solution": "R' D R U2 D F2 B' R B U D' F2 B2 L2 U R2 F2 D' B2 R2 F2",
+          "moves": 21,
+          "solveMs": 72.89999999990687,
+          "roundTripMs": 74.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-10",
+          "serialization": "RULDURDBDRFBBRBUDRLUBLFRUDBFFLRDBUUUDLFLLFRDLDFFLBUFRB",
+          "solution": "U' F' R' U B' R2 D F B D2 L F2 L2 F2 D' L2 U B2 D2 L2 F2 U'",
+          "moves": 22,
+          "solveMs": 841.1000000000931,
+          "roundTripMs": 841.7000000001863,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-25-11",
+          "serialization": "ULRDUUBBDBRBBRBLBFDDLLFLRUUFFBDDUDRLFRRFLDRFUUULRBLDFF",
+          "solution": "F B' L B2 D' L' F2 U F2 R U2 D B2 U' F2 D R2 F2 U' F2 B2 U",
+          "moves": 22,
+          "solveMs": 224.60000000009313,
+          "roundTripMs": 225.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-0",
+          "serialization": "FUUUULBBFLURDRLDRDDRULFBDRLFFBDDDUUFURRDLBBLRBFRFBFLBL",
+          "solution": "D L F R' L B D' F B R' B2 D' F2 L2 U2 L2 D R2 D' F2 U F2",
+          "moves": 22,
+          "solveMs": 94.1999999997206,
+          "roundTripMs": 96,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-1",
+          "serialization": "FBLBUFLFBDDFDRLDUFBURDFBURLRFBLDBULDDRURLRRUFULLDBURFB",
+          "solution": "B' R L U2 B D' L F D2 R L2 B2 D' R2 B2 L2 U R2 L2 B2 D' F2",
+          "moves": 22,
+          "solveMs": 170.8000000002794,
+          "roundTripMs": 171.39999999990687,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-2",
+          "serialization": "RURFUFBUFRRBRRDFBDURDLFDLBUDLLDDRFLFBDLBLURLBUFDBBULFU",
+          "solution": "D F' B2 D R2 U2 B' R' F U L2 U' R2 F2 B2 D2 R2 D B2 D F2",
+          "moves": 21,
+          "solveMs": 142.5,
+          "roundTripMs": 143.20000000018626,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-3",
+          "serialization": "BBDRULURLBULDRDFLRBUURFFDDLFLDUDBLFUDFRRLDFFRBURBBBFLU",
+          "solution": "F R D L' B' D' L2 D' F2 U R' F2 L2 F2 U' L2 B2 D F2 D' B2 D",
+          "moves": 22,
+          "solveMs": 607.2999999998137,
+          "roundTripMs": 610.1000000000931,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-4",
+          "serialization": "UUBUUUBLURBDLRRFDDUDFRFFDLDLBRDDRFFBBFLRLFUBFLLRUBBRDL",
+          "solution": "U2 L' U' R L D2 F D' F2 R' U F2 U' B2 D' R2 F2 D2 F2 U' R2 U2",
+          "moves": 22,
+          "solveMs": 21.600000000093132,
+          "roundTripMs": 22,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-5",
+          "serialization": "LFRLURDUURUBBRLBRDBFFRFURLRDFDBDFUDFUULBLDBDFUDFBBRLLL",
+          "solution": "D2 L2 D' F' B' R' D2 F' D L U2 D' B2 U F2 L2 F2 B2 U F2 D2 B2",
+          "moves": 22,
+          "solveMs": 64.60000000009313,
+          "roundTripMs": 65.10000000009313,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-6",
+          "serialization": "RBDDUFDLUFULRRFUBLRDLBFUFDRDFBLDUUFUDRBLLRFULBDFLBBBRR",
+          "solution": "U2 R L F D2 R2 D' R' B L U R2 B2 D F2 U F2 U' F2 U' R2 B2",
+          "moves": 22,
+          "solveMs": 27.5,
+          "roundTripMs": 27.800000000279397,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "seed-40-7",
+          "serialization": "DBLUUFRLULDDURUUBLUDBBFRDBFBLRDDUDFFFLBRLDBRLFRRFBFULR",
+          "solution": "U L' U B U L' F' R' U R' F' B2 R2 U F2 B2 U F2 D B2 D2 R2",
+          "moves": 22,
+          "solveMs": 696.7000000001863,
+          "roundTripMs": 697.5,
+          "verified": true
+        },
+        {
+          "round": 0,
+          "name": "superflip",
+          "serialization": "UBULURUFURURFRBRDRFUFLFRFDFDFDLDRDBDLULBLFLDLBUBRBLBDB",
+          "solution": "R L F U D' R2 F2 R F B' U B2 R2 D2 B2 U B2 U' F2 B2 U B2",
+          "moves": 22,
+          "solveMs": 155.89999999990687,
+          "roundTripMs": 156.5,
+          "verified": true
+        }
+      ],
+      "pageErrors": []
+    }
+  ]
+}
