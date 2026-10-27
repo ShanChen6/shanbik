@@ -10,6 +10,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Tôi mở bài học U và U′ ở đâu?",
+    answer:
+      "Vào Học cơ bản rồi chọn Bắt đầu bài U và U′. Bài gồm ba bước quan sát, U và U′, có hướng dẫn và sơ đồ màu trước/sau. Dùng Bước trước, Bước tiếp hoặc Chọn bước học; URL giữ bước đang xem để mở lại hoặc chia sẻ. Bản này chưa phát 3D trong bài hoặc lưu tiến độ hoàn thành. Bài đọc dùng được khi không có WebGL.",
+  },
+  {
     question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
     answer:
       "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. Hiện chỉ 3×3 có công cụ luyện tập, solver và nhập ảnh trên ShanBik; các loại khác đang là nội dung tham khảo. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",

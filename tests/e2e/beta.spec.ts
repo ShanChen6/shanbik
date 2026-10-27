@@ -35,6 +35,7 @@ for (const theme of ["light", "dark"]) {
       "/practice",
       "/puzzles",
       "/puzzles/3x3",
+      "/learn/lessons/lam-quen-u-va-u-prime",
     ]) {
       const response = await page.goto(route);
       expect(response?.status()).toBe(200);
@@ -55,6 +56,10 @@ for (const theme of ["light", "dark"]) {
             name: "Tính năng trên ShanBik",
             exact: true,
           }),
+        ).toBeVisible();
+      if (route.startsWith("/learn/lessons/"))
+        await expect(
+          page.getByRole("region", { name: "Bài học từng bước", exact: true }),
         ).toBeVisible();
       await expect(page.getByRole("main")).toHaveCount(1);
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);

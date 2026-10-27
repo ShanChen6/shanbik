@@ -66,16 +66,17 @@ describe("lesson schema and verified sample", () => {
     source.objectives = source.objectives.slice(0, 1);
     expect(parseLesson(source).steps).toHaveLength(2);
   });
-  it("does not publish a route or advertise step lessons just because schema exists", () => {
+  it("publishes the validated sample and binds only its puzzle to step lessons", () => {
     expect(LESSONS).toHaveLength(1);
     expect(getLesson("lam-quen-u-va-u-prime")).toBe(LESSONS[0]);
     expect(getLesson("missing")).toBeUndefined();
-    expect(getPublishedLessons()).toEqual([]);
+    expect(getPublishedLessons()).toEqual(LESSONS);
     expect(
       PUZZLES.every(
         (p) =>
-          p.capabilities.lessons.status === "unavailable" &&
-          !p.relatedLessons.length,
+          p.capabilities.lessons.status ===
+            (p.slug === "3x3" ? "available" : "unavailable") &&
+          p.relatedLessons.length === (p.slug === "3x3" ? 1 : 0),
       ),
     ).toBe(true);
   });
@@ -222,6 +223,7 @@ describe("lesson catalog prerequisite integrity", () => {
       second.prerequisiteIds = [first.id];
     }
     if (kind === "published-needs-draft") {
+      first.status = "draft";
       second.status = "published";
       second.prerequisiteIds = [first.id];
     }

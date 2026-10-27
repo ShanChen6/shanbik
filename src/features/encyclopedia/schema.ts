@@ -1,3 +1,4 @@
+import { PUBLISHED_LESSON_LINKS } from "../learn/lessons/publication";
 export const SHAPES = {
   cube: "Lập phương",
   tetrahedron: "Tứ diện",
@@ -70,7 +71,14 @@ function resources(value: unknown, path: string, externalOnly = false) {
       } catch {
         fail(path);
       }
-    } else if (!["/learn", "/help#quick-start"].includes(href)) fail(path);
+    } else if (
+      ![
+        "/learn",
+        "/help#quick-start",
+        ...PUBLISHED_LESSON_LINKS.map((lesson) => lesson.href),
+      ].includes(href)
+    )
+      fail(path);
   }
 }
 /** Validate authoring data at import/build time; the resulting catalog is deeply immutable. */
@@ -120,13 +128,32 @@ export function parseCatalog(input: unknown): readonly Puzzle[] {
         fail(`${path}.capabilities.${key}`);
       text(cap.note, `${path}.capabilities.${key}.note`);
       // A library's support is not an implemented ShanBik capability.
-      if (cap.status === "available" && (slug !== "3x3" || key === "lessons"))
+      if (cap.status === "available" && slug !== "3x3")
         fail(`${path}.capabilities.${key}.binding`);
     }
     resources(value.relatedReading, `${path}.relatedReading`);
     resources(value.relatedLessons, `${path}.relatedLessons`);
-    if ((value.relatedLessons as unknown[]).length)
-      fail(`${path}.relatedLessons: no step lessons published yet`);
+    const expectedLessons = PUBLISHED_LESSON_LINKS.filter(
+      (lesson) => lesson.puzzleId === slug,
+    );
+    const actualLessons = value.relatedLessons as {
+      title: string;
+      href: string;
+    }[];
+    if (
+      actualLessons.length !== expectedLessons.length ||
+      actualLessons.some(
+        (link) =>
+          !expectedLessons.some(
+            (lesson) =>
+              lesson.href === link.href && lesson.title === link.title,
+          ),
+      )
+    )
+      fail(`${path}.relatedLessons`);
+    const lessonCapability = value.capabilities.lessons as { status: string };
+    if ((lessonCapability.status === "available") !== !!expectedLessons.length)
+      fail(`${path}.capabilities.lessons`);
   }
   const clone = structuredClone(input) as Puzzle[];
   const freeze = (value: unknown): unknown => {

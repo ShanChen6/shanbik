@@ -188,16 +188,25 @@ test("catalog: all detail routes have metadata and capabilities; unknown puzzle 
       exact: true,
     });
     await expect(caps.getByText("Đã có", { exact: true })).toHaveCount(
-      slug === "3x3" ? 5 : 0,
+      slug === "3x3" ? 6 : 0,
     );
     await expect(
       page
         .getByRole("main")
         .getByRole("link", { name: "Luyện tập 3×3", exact: true }),
     ).toHaveCount(slug === "3x3" ? 1 : 0);
-    await expect(
-      page.getByRole("region", { name: "Bài học liên quan", exact: true }),
-    ).toContainText("Chưa có bài học giải từng bước");
+    const lessons = page.getByRole("region", {
+      name: "Bài học liên quan",
+      exact: true,
+    });
+    if (slug === "3x3")
+      await expect(
+        lessons.getByRole("link", {
+          name: "Làm quen với U và U′",
+          exact: true,
+        }),
+      ).toBeVisible();
+    else await expect(lessons).toContainText("Chưa có bài học giải từng bước");
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

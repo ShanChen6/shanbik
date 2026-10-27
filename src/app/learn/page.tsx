@@ -1,3 +1,4 @@
+import { getPublishedLessons } from "@/features/learn/lessons/catalog";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
@@ -5,7 +6,7 @@ import { PageIntro } from "@/components/layout/page-intro";
 export const metadata: Metadata = {
   title: "Học Rubik cơ bản — ShanBik",
   description:
-    "Làm quen với khối 3×3, ký hiệu các mặt và cách học từng bước trên ShanBik.",
+    "Làm quen với khối 3×3 và học ký hiệu U/U′ từng bước qua hướng dẫn cùng sơ đồ màu trước/sau.",
 };
 const topics = [
   {
@@ -29,6 +30,16 @@ export default function LearnPage() {
         title="Bắt đầu bằng việc hiểu khối."
         description="Một vài ý nhỏ để làm quen trước khi khám phá những bài học chi tiết."
       />
+      {getPublishedLessons()[0] && (
+        <div className="mb-6">
+          <Link
+            href={`/learn/lessons/${getPublishedLessons()[0].slug}`}
+            className="ui-button ui-button--primary"
+          >
+            Bắt đầu bài U và U′
+          </Link>
+        </div>
+      )}
       <section aria-labelledby="learn-title">
         <h2 id="learn-title" className="text-heading mb-6">
           Ba điểm bắt đầu
@@ -56,13 +67,33 @@ export default function LearnPage() {
         className="mt-10 rounded-panel border border-border bg-surface-subtle p-6 sm:p-8"
       >
         <h2 id="lessons-title" className="text-heading">
-          Bài học chi tiết đang được chuẩn bị
+          Bài học từng bước
         </h2>
         <p className="text-body mt-3 max-w-2xl text-muted">
-          Hướng dẫn giải và minh họa công thức sẽ được bổ sung sau. Những nội
-          dung trên là phần giới thiệu, chưa phải một khóa học giải Rubik đầy
-          đủ.
+          Bắt đầu với bài tập đọc ký hiệu U và U′. Mỗi bước có hướng dẫn và sơ
+          đồ màu trước/sau để bạn đối chiếu với khối thật.
         </p>
+        <ul aria-label="Danh sách bài học" className="mt-5 space-y-4">
+          {getPublishedLessons().map((lesson) => (
+            <li
+              key={lesson.id}
+              className="rounded-xl border border-border bg-surface p-4"
+            >
+              <h3 className="text-lg font-bold">
+                <Link
+                  href={`/learn/lessons/${lesson.slug}`}
+                  className="text-primary underline underline-offset-4"
+                >
+                  {lesson.title}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm text-muted">{lesson.summary}</p>
+              <p className="mt-2 text-xs text-muted">
+                {lesson.steps.length} bước · Sơ đồ 2D · Chưa lưu tiến độ
+              </p>
+            </li>
+          ))}
+        </ul>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/practice" className="ui-button ui-button--primary">
             Khám phá khu vực luyện tập

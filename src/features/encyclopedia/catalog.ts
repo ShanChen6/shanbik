@@ -1,3 +1,4 @@
+import { PUBLISHED_LESSON_LINKS } from "../learn/lessons/publication";
 import {
   CAPABILITIES,
   parseCatalog,
@@ -33,8 +34,8 @@ const available: Record<CapabilityKey, Capability> = {
     note: "Phát, tiến/lùi, về đầu chuỗi; hỗ trợ grammar 3×3 hiện có.",
   },
   lessons: {
-    status: "unavailable",
-    note: "Có kiến thức nhập môn; chưa có bài học giải từng bước.",
+    status: "available",
+    note: "Có bài đọc từng bước U/U′ và sơ đồ màu 2D; chưa phát 3D hoặc lưu tiến độ trong bài.",
   },
 };
 const unavailable = (name: string) =>
@@ -78,7 +79,9 @@ function entry(
             { title: "Bắt đầu nhanh với ShanBik", href: "/help#quick-start" },
           ]
         : [],
-    relatedLessons: [],
+    relatedLessons: PUBLISHED_LESSON_LINKS.filter(
+      (lesson) => lesson.puzzleId === slug,
+    ).map(({ title, href }) => ({ title, href })),
   };
 }
 export const PUZZLES = parseCatalog([
