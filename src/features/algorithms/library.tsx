@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,11 +43,16 @@ function CopyFormula({ formula }: { formula: Formula }) {
   );
 }
 export function AlgorithmLibrary() {
-  const [query, setQuery] = useState(""),
+  // `?f=<id>` (from search or lessons) opens that formula, filtered by its name.
+  const params = useSearchParams();
+  const [linked] = useState(() =>
+    FORMULAS.find((f) => f.id === params.get("f")),
+  );
+  const [query, setQuery] = useState(linked?.name ?? ""),
     [group, setGroup] = useState<Group | "">(""),
     [difficulty, setDifficulty] = useState<Difficulty | "">(""),
     [onlyFavorites, setOnlyFavorites] = useState(false),
-    [selected, setSelected] = useState<string | null>(null);
+    [selected, setSelected] = useState<string | null>(linked?.id ?? null);
   const [store] = useState(() => createFavorites(() => window.localStorage));
   const favorites = useSyncExternalStore(
     store.subscribe,

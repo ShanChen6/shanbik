@@ -29,23 +29,33 @@ export type ScrambleCapability =
       engine: "twips-wasm" | "tnoodle-port";
     }>;
 export type SolveCapability = Readonly<{ kind: "cubing-3x3-worker" }>;
+/** Timer + history + stats; solves are validated as 3×3 scrambles today. */
+export type TimerCapability = Readonly<{ route: "/timer" }>;
 export type PuzzleCapabilities = Readonly<{
   render: RenderCapability | null;
   scramble: ScrambleCapability | null;
   solve: SolveCapability | null;
+  timer: TimerCapability | null;
 }>;
-const none: PuzzleCapabilities = { render: null, scramble: null, solve: null };
+const none: PuzzleCapabilities = {
+  render: null,
+  scramble: null,
+  solve: null,
+  timer: null,
+};
 export const PUZZLE_REGISTRY: Readonly<Record<PuzzleId, PuzzleCapabilities>> =
   Object.freeze({
     "3x3": {
       render: { kind: "cube-3x3", route: "/practice" },
       scramble: { kind: "random-move-3x3", official: false },
       solve: { kind: "cubing-3x3-worker" },
+      timer: { route: "/timer" },
     },
     "2x2": {
       render: { kind: "nxn", size: 2, net: true, webgl: true },
       scramble: { kind: "cubing-worker", puzzle: "2x2", engine: "twips-wasm" },
       solve: null,
+      timer: null,
     },
     "4x4": {
       render: { kind: "nxn", size: 4, net: true, webgl: true },
@@ -55,6 +65,7 @@ export const PUZZLE_REGISTRY: Readonly<Record<PuzzleId, PuzzleCapabilities>> =
         engine: "tnoodle-port",
       },
       solve: null,
+      timer: null,
     },
     "5x5": none,
     pyraminx: {
@@ -65,6 +76,7 @@ export const PUZZLE_REGISTRY: Readonly<Record<PuzzleId, PuzzleCapabilities>> =
         engine: "twips-wasm",
       },
       solve: null,
+      timer: null,
     },
     megaminx: {
       // 19.3: scramble verified; viewer/solver moved to a later milestone.
@@ -75,6 +87,7 @@ export const PUZZLE_REGISTRY: Readonly<Record<PuzzleId, PuzzleCapabilities>> =
         engine: "twips-wasm",
       },
       solve: null,
+      timer: null,
     },
     skewb: none,
     "square-1": none,

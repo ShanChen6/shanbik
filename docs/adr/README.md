@@ -4,14 +4,15 @@ Task 2.3 chuyển định hướng kiến trúc thành quyết định có bối
 
 ## Danh mục
 
-| ADR                                  | Nội dung                                | Trạng thái                                                         |
-| ------------------------------------ | --------------------------------------- | ------------------------------------------------------------------ |
-| [0001](./0001-web-platform.md)       | Nền tảng web và ranh giới client/server | Ghi nhận nền tảng đã triển khai; chính sách boundary chờ review PR |
-| [0002](./0002-cube-core-boundary.md) | Cube core và nguồn trạng thái duy nhất  | Đề xuất — chờ review PR                                            |
-| [0003](./0003-renderer-strategy.md)  | Chiến lược renderer 3D                  | Cần thử nghiệm — chưa chốt thư viện                                |
-| [0004](./0004-solver-worker.md)      | Solver adapter và Web Worker            | Boundary đề xuất; lựa chọn solver cần spike 9.2                    |
-| [0005](./0005-testing-ci.md)         | Kiến trúc kiểm thử và CI                | Ghi nhận CI đã triển khai; mở rộng test theo domain chờ review     |
-| [0006](./0006-storage-backend.md)    | Guest-first, persistence và backend     | Guest-first theo đặc tả; storage/backend chưa chốt                 |
+| ADR                                  | Nội dung                                      | Trạng thái                                                         |
+| ------------------------------------ | --------------------------------------------- | ------------------------------------------------------------------ |
+| [0001](./0001-web-platform.md)       | Nền tảng web và ranh giới client/server       | Ghi nhận nền tảng đã triển khai; chính sách boundary chờ review PR |
+| [0002](./0002-cube-core-boundary.md) | Cube core và nguồn trạng thái duy nhất        | Đề xuất — chờ review PR                                            |
+| [0003](./0003-renderer-strategy.md)  | Chiến lược renderer 3D                        | Cần thử nghiệm — chưa chốt thư viện                                |
+| [0004](./0004-solver-worker.md)      | Solver adapter và Web Worker                  | Boundary đề xuất; lựa chọn solver cần spike 9.2                    |
+| [0005](./0005-testing-ci.md)         | Kiến trúc kiểm thử và CI                      | Ghi nhận CI đã triển khai; mở rộng test theo domain chờ review     |
+| [0006](./0006-storage-backend.md)    | Guest-first, persistence và backend           | Guest-first theo đặc tả; storage/backend chưa chốt                 |
+| [0008](./0008-competition-admin.md)  | Quản trị dữ liệu giải đấu khi chưa có backend | Chấp nhận cho giai đoạn chưa có Auth                               |
 
 ## Quy tắc cập nhật
 

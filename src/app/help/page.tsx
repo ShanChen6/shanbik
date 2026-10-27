@@ -20,6 +20,11 @@ const questions = [
       "Mở Bách khoa, chọn puzzle rồi chọn Thực hành. Tạo scramble để luyện với khối thật; lần đầu có thể mất vài giây vì bộ sinh chạy trong Worker. Với 2×2 và 4×4, áp dụng scramble lên mô hình 3D và sơ đồ sáu mặt, hoặc xoay từng nước bằng nút; 4×4 có tùy chọn nước rộng (w). Pyraminx dùng sơ đồ phẳng bốn mặt với nút U/L/R/B và đỉnh nhỏ u/l/r/b; cầm mặt xanh lá hướng về bạn, mặt vàng ở đáy. Megaminx hiện chỉ có scramble bảy dòng theo WCA. Các puzzle này chưa có tìm lời giải, nhập trạng thái hay timer; scramble dùng để luyện tập, chưa kiểm định là scramble thi đấu chính thức.",
   },
   {
+    question: "Xem lịch giải đấu ở đâu?",
+    answer:
+      "Mở Giải đấu trong menu. Lọc theo vùng, tháng, nội dung thi hoặc trạng thái; bộ lọc nằm trên URL để chia sẻ. Ngày giờ ghi theo giờ địa phương nơi tổ chức kèm múi giờ; trang chi tiết có thêm cột UTC và giờ theo múi giờ máy bạn. Hiện danh sách chỉ là dữ liệu mẫu để thử giao diện, chưa phải giải thật; khi có giải thật, mỗi giải ghi nguồn và ngày cập nhật. Luôn kiểm tra trang của ban tổ chức trước khi đăng ký. Bấm Lưu giải để giữ trên trình duyệt này và lọc Chỉ giải đã lưu; ở trang chi tiết, chọn mức báo trước rồi Tải tệp lịch (.ics) để ứng dụng lịch trên máy nhắc bạn. Thấy thông tin sai hoặc muốn đề xuất giải, dùng form Góp ý: nội dung được kiểm tra trước khi cập nhật và gửi dưới dạng GitHub issue công khai.",
+  },
+  {
     question: "Tìm và lưu công thức ở đâu?",
     answer:
       "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Trong minh họa, dùng Nước tiếp/lùi, thanh Chọn vị trí hoặc nút từng nước để xem khối sau nước đó. Tab và phím mũi tên/Home/End dùng được trên thanh vị trí. Chọn tốc độ, chiều đảo và số lượt lặp; đổi chiều/lượt sẽ về đầu và dừng. Lặp nối tiếp trên khối hiện tại. Ghi chú, tùy chọn và dấu hoàn thành do bạn chọn được lưu riêng từng công thức, không tự đánh dấu khi phát xong. Xóa dữ liệu luyện tập công thức này không xóa yêu thích. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
@@ -32,7 +37,7 @@ const questions = [
   {
     question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
     answer:
-      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. Hiện chỉ 3×3 có công cụ luyện tập, solver và nhập ảnh trên ShanBik; các loại khác đang là nội dung tham khảo. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
+      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. 3×3 có đủ luyện tập, solver và nhập ảnh. 2×2, 4×4 và Pyraminx có scramble cùng mô hình hoặc sơ đồ để xoay từng nước; Megaminx có scramble. Các loại còn lại là nội dung tham khảo; chưa puzzle nào ngoài 3×3 có solver. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
   },
   {
     question: "Có thể nhập Rubik bằng ảnh không?",
@@ -47,7 +52,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved. Ngoài ra có Timer với lịch sử, +2/DNF và thống kê Ao5/Ao12, thư viện công thức, bài học từng bước và trang Tìm kiếm cho puzzle, bài học, công thức.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -72,7 +77,7 @@ const questions = [
   {
     question: "Tôi có cần tạo tài khoản không?",
     answer:
-      "Hiện bạn không cần tài khoản để xem các trang này. Các công cụ luyện tập cơ bản cũng được định hướng sử dụng mà không cần đăng nhập.",
+      "Không cần tài khoản. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng, không đồng bộ sang thiết bị khác; xóa dữ liệu trang web sẽ xóa chúng.",
   },
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
@@ -87,7 +92,7 @@ const questions = [
   {
     question: "Tôi có thể dùng bàn phím không?",
     answer:
-      "Dùng Tab hoặc Shift+Tab để di chuyển giữa các liên kết và nút, Enter để mở liên kết, Escape để đóng menu. Liên kết Bỏ qua điều hướng ở đầu trang giúp đi thẳng đến nội dung.",
+      "Dùng Tab hoặc Shift+Tab để di chuyển giữa các liên kết và nút, Enter để mở liên kết, Escape để đóng menu. Liên kết Bỏ qua điều hướng ở đầu trang giúp đi thẳng đến nội dung. Ở trang Tìm kiếm, nhấn ↓ từ ô tìm để vào kết quả, ↑/↓/Home/End để chuyển và Esc để quay lại ô tìm.",
   },
 ];
 export default function HelpPage() {

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PageIntro } from "@/components/layout/page-intro";
 import { AlgorithmLibrary } from "@/features/algorithms/library";
+import { LearningPath } from "@/features/puzzles/learning-path";
 export const metadata: Metadata = {
   title: "Thư viện công thức 3×3 — ShanBik",
   description:
@@ -20,7 +22,9 @@ export default function AlgorithmsPage() {
         khối khi thực hiện. Chọn Minh họa rồi Phát công thức để xem; trang không
         tự phát.
       </p>
-      <AlgorithmLibrary />
+      <Suspense fallback={<p role="status">Đang mở thư viện…</p>}>
+        <AlgorithmLibrary />
+      </Suspense>
       <p className="mt-8 text-sm text-muted">
         Tham khảo tầng cuối:{" "}
         <a
@@ -31,6 +35,9 @@ export default function AlgorithmsPage() {
         </a>
         . Mô tả và trạng thái minh họa được biên soạn cho ShanBik.
       </p>
+      <div className="mt-8">
+        <LearningPath puzzle="3x3" current="formulas" />
+      </div>
     </div>
   );
 }

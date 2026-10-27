@@ -269,7 +269,7 @@ function PyraminxPractice({ name }: { name: string }) {
     </div>
   );
 }
-/** Practice tools on /puzzles/[slug], shown strictly from the capability registry. */
+/** Practice tools on /puzzles/[slug], chosen strictly from the capability registry. */
 export function PuzzleWorkbench({
   slug,
   name,
@@ -279,25 +279,13 @@ export function PuzzleWorkbench({
 }) {
   const caps = PUZZLE_REGISTRY[slug];
   const render = caps.render;
-  return (
-    <section
-      aria-labelledby="workbench-title"
-      className="min-w-0 space-y-4 rounded-panel border border-border bg-surface p-5 sm:p-8"
-    >
-      <h2 id="workbench-title" className="text-heading">
-        Thực hành
-      </h2>
-      <p className="text-sm text-muted">
-        Chỉ gồm các công cụ ShanBik đã có cho {name}
-        {caps.solve ? "" : "; chưa có tìm lời giải"}.
-      </p>
-      {render?.kind === "nxn" ? (
-        <NxnPractice size={render.size} name={name} />
-      ) : render?.kind === "pyraminx-net" ? (
-        <PyraminxPractice name={name} />
-      ) : caps.scramble?.kind === "cubing-worker" ? (
-        <ScrambleCard puzzle={caps.scramble.puzzle} name={name} />
-      ) : null}
-    </section>
-  );
+  // The section and heading are server-rendered by the loader so
+  // #workbench-title links work before this client chunk loads.
+  return render?.kind === "nxn" ? (
+    <NxnPractice size={render.size} name={name} />
+  ) : render?.kind === "pyraminx-net" ? (
+    <PyraminxPractice name={name} />
+  ) : caps.scramble?.kind === "cubing-worker" ? (
+    <ScrambleCard puzzle={caps.scramble.puzzle} name={name} />
+  ) : null;
 }

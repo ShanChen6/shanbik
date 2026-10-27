@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/layout/page-intro";
 import { TimerPanel } from "@/features/timer/timer-panel";
+import { LearningPath } from "@/features/puzzles/learning-path";
 export const metadata: Metadata = {
   title: "Timer 3×3 — ShanBik",
   description:
@@ -15,6 +16,9 @@ export default function TimerPage() {
         description="Chuẩn bị khối thật theo scramble, chọn quan sát nếu muốn, rồi giữ và thả vùng timer để bắt đầu. Không cần WebGL."
       />
       <TimerPanel />
+      <div className="mt-8">
+        <LearningPath puzzle="3x3" current="timer" />
+      </div>
     </div>
   );
 }

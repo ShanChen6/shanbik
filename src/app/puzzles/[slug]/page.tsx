@@ -18,6 +18,7 @@ import {
   isPuzzleId,
 } from "@/features/puzzles/registry";
 import { PuzzleWorkbenchLoader } from "@/features/puzzles/workbench-loader";
+import { LearningPath } from "@/features/puzzles/learning-path";
 // Block serving an unknown fallback shell until static generation can return a real 404.
 export const ensureStatic = "navigation";
 type Props = { params: Promise<{ slug: string }> };
@@ -211,6 +212,11 @@ export default async function PuzzlePage({ params }: Props) {
       {workbench && isPuzzleId(puzzle.slug) && (
         <div className="mt-6">
           <PuzzleWorkbenchLoader slug={puzzle.slug} name={puzzle.name} />
+        </div>
+      )}
+      {isPuzzleId(puzzle.slug) && (
+        <div className="mt-6">
+          <LearningPath puzzle={puzzle.slug} current="encyclopedia" />
         </div>
       )}
     </div>

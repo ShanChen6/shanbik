@@ -1,6 +1,6 @@
 import { BrandLogo } from "./brand-logo";
 import { ThemeSwitch } from "./theme-switch";
-import { DesktopNavigation, MobileNavigation } from "./navigation";
+import { DesktopNavigation, MobileNavigation, SearchLink } from "./navigation";
 
 export function SiteHeader() {
   return (
@@ -8,7 +8,8 @@ export function SiteHeader() {
       <div className="site-container flex min-h-24 items-center justify-between gap-3 py-3">
         <BrandLogo />
         <DesktopNavigation />
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-2 lg:flex">
+          <SearchLink />
           <ThemeSwitch />
         </div>
         <MobileNavigation />

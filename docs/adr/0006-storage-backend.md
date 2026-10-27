@@ -34,6 +34,10 @@ Task 15–16 quyết định local persistence/schema; Task 23.1–23.2 quyết 
 
 Local persistence cho solve đã chốt: IndexedDB native (database `shanbik-timer`, migration theo version, transaction, compare-and-set), không thêm Dexie vì nhu cầu hiện tại chỉ là một store và vài truy vấn. Dữ liệu localStorage Tuần 15 được nhập một lần và giữ nguyên làm dự phòng. localStorage vẫn dùng cho tùy chọn nhỏ (theme, favorites, tiến độ bài học). Backend/sync vẫn để Task 23.x. Chi tiết: [solve-history.md](../solve-history.md).
 
+## Cập nhật Tuần 21 (27/10/2026)
+
+Dữ liệu giải đấu lưu dạng file versioned trong repo, validate lúc build, sửa qua commit/review; không form công khai, không scrape. Quản trị CRUD giữ điều kiện có Auth/RBAC/RLS trước (Task 22.1). Chi tiết: [competitions.md](../competitions.md).
+
 ## Nguồn trong repository
 
 - [Kiến trúc hiện trạng](../architecture/current-state.md) (snapshot Task 2.1; CI đã bổ sung ở Task 2.2).
