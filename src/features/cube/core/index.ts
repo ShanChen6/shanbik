@@ -5,3 +5,5 @@ export * from "./state";
 export * from "./serialization";
 export * from "./notation";
 export * from "./moves";
+
+export * from "./feasibility";
