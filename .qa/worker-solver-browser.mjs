@@ -198,7 +198,12 @@ try {
     .getByRole("alert")
     .filter({ hasText: /Khởi tạo quá 60 giây/ })
     .waitFor();
-  await silent.clock.fastForward(2000);
+  await silent.clock.fastForward(2500);
+  await silent.waitForFunction(() =>
+    [...document.querySelectorAll("button")].some(
+      (button) => button.textContent === "Thử giải lại" && !button.disabled,
+    ),
+  );
   assert.equal(
     await silent.getByRole("button", { name: "Thử giải lại" }).isEnabled(),
     true,
