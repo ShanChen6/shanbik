@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { PUZZLES, getPuzzle } from "./catalog";
 import { CAPABILITIES, parseCatalog } from "./schema";
+import { capabilitiesOf } from "../puzzles/registry";
 import {
   catalogURL,
   EMPTY_FILTERS,
@@ -39,12 +40,41 @@ describe("puzzle catalog contracts", () => {
       /^https:\/\/www.worldcubeassociation.org\/regulations\/#12/,
     );
   });
-  it("only advertises shipped 3×3 tools and the published lesson", () => {
-    for (const puzzle of PUZZLES)
-      for (const cap of Object.values(puzzle.capabilities))
-        expect(cap.status).toBe(
-          puzzle.slug === "3x3" ? "available" : "unavailable",
-        );
+  it("advertises exactly the registry's implementations and the published lesson", () => {
+    const shown = Object.fromEntries(
+      PUZZLES.map((p) => [
+        p.slug,
+        Object.entries(p.capabilities)
+          .filter(([, c]) => c.status === "available")
+          .map(([k]) => k)
+          .sort(),
+      ]),
+    );
+    expect(shown).toEqual({
+      "3x3": [
+        "imageInput",
+        "lessons",
+        "player",
+        "scramble",
+        "solver",
+        "viewer",
+      ],
+      "2x2": ["scramble", "viewer"],
+      "4x4": ["scramble", "viewer"],
+      "5x5": [],
+      pyraminx: ["scramble", "viewer"],
+      megaminx: ["scramble"],
+      skewb: [],
+      "square-1": [],
+    });
+    for (const p of PUZZLES) {
+      const reg = capabilitiesOf(p.slug);
+      expect(p.capabilities.viewer.status === "available").toBe(!!reg.render);
+      expect(p.capabilities.scramble.status === "available").toBe(
+        !!reg.scramble,
+      );
+      expect(p.capabilities.solver.status === "available").toBe(!!reg.solve);
+    }
     expect(
       PUZZLES.every(
         (p) => p.relatedLessons.length === (p.slug === "3x3" ? 1 : 0),
@@ -94,6 +124,16 @@ describe("puzzle catalog contracts", () => {
         capabilities: {
           ...rows[1].capabilities,
           solver: { status: "available", note: "Unwired engine" },
+        },
+      };
+    },
+    (rows: ReturnType<typeof mutable>) => {
+      // Hiding an implemented capability is as wrong as inventing one.
+      rows[1] = {
+        ...rows[1],
+        capabilities: {
+          ...rows[1].capabilities,
+          scramble: { status: "unavailable", note: "Hidden" },
         },
       };
     },

@@ -39,6 +39,10 @@ for (const theme of ["light", "dark"]) {
       "/practice",
       "/puzzles",
       "/puzzles/3x3",
+      "/puzzles/2x2",
+      "/puzzles/4x4",
+      "/puzzles/pyraminx",
+      "/puzzles/megaminx",
       "/learn/lessons/lam-quen-u-va-u-prime",
     ]) {
       const response = await page.goto(route);

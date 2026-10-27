@@ -115,3 +115,5 @@ Timer 3×3 tại `/timer`: Space/touch, quan sát tùy chọn và lưu lượt g
 Lịch sử solve tại `/timer/history`: IndexedDB có migration, bảng/card, +2/DNF, xóa và hoàn tác — [Tuần 16](docs/solve-history.md).
 
 Thống kê tại `/timer/stats`: best, mean, Ao5/Ao12, trung bình phiên, biểu đồ và bảng dữ liệu — [Tuần 17](docs/timer-stats.md).
+
+Thực hành 2×2, 4×4, Pyraminx và Megaminx trên trang bách khoa của từng puzzle: registry capability, scramble cubing.js trong Worker, mô hình 3D NxN và sơ đồ phẳng — [Tuần 18](docs/puzzle-capabilities.md), [Tuần 19](docs/decisions/odd-puzzles.md).

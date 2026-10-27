@@ -1,4 +1,5 @@
 import { PUBLISHED_LESSON_LINKS } from "../learn/lessons/publication";
+import { capabilitiesOf } from "../puzzles/registry";
 import {
   CAPABILITIES,
   parseCatalog,
@@ -48,6 +49,42 @@ const unavailable = (name: string) =>
       },
     ]),
   ) as Record<CapabilityKey, Capability>;
+const scrambleNote = (engine: string) =>
+  `Scramble do cubing.js 0.66.1 (${engine}) tạo trong Worker; ShanBik kiểm tra ký hiệu trước khi hiển thị. Chưa kiểm định là scramble thi đấu chính thức.`;
+/** Notes for capabilities the registry marks implemented, beyond 3×3. */
+const NOTES: Partial<Record<string, Partial<Record<CapabilityKey, string>>>> = {
+  "2x2": {
+    viewer:
+      "Mô hình 3D 2×2 (cần WebGL) cùng sơ đồ sáu mặt; xoay bằng nút từng nước hoặc áp dụng scramble.",
+    scramble: scrambleNote("engine twips"),
+  },
+  "4x4": {
+    viewer:
+      "Mô hình 3D 4×4 (cần WebGL) cùng sơ đồ sáu mặt; có nước mặt ngoài và nước rộng (w).",
+    scramble: scrambleNote("bản port TNoodle"),
+  },
+  pyraminx: {
+    viewer:
+      "Sơ đồ phẳng bốn mặt, cập nhật theo từng nước U/L/R/B và đỉnh u/l/r/b. Chưa có mô hình 3D.",
+    scramble: scrambleNote("engine twips"),
+  },
+  megaminx: {
+    scramble: `${scrambleNote("engine twips")} Bảy dòng R++/D--/U theo WCA 12d.`,
+  },
+};
+function capabilitiesFor(slug: string, name: string) {
+  if (slug === "3x3") return available;
+  const registry = capabilitiesOf(slug),
+    notes = NOTES[slug] ?? {},
+    result = { ...unavailable(name) };
+  const enable = (key: CapabilityKey, on: boolean) => {
+    if (on) result[key] = { status: "available", note: notes[key] ?? "" };
+  };
+  enable("viewer", !!registry.render);
+  enable("scramble", !!registry.scramble);
+  enable("solver", !!registry.solve);
+  return result;
+}
 function entry(
   slug: string,
   name: string,
@@ -71,7 +108,7 @@ function entry(
     description,
     aliases,
     notation: { summary: notation, examples, source: wca(section) },
-    capabilities: slug === "3x3" ? available : unavailable(name),
+    capabilities: capabilitiesFor(slug, name),
     relatedReading:
       slug === "3x3"
         ? [
@@ -111,7 +148,7 @@ export const PUZZLES = parseCatalog([
     "Khối nhỏ tập trung vào việc nhận biết các mảnh góc.",
     [
       "Mỗi mặt có lưới 2×2. Không có nhóm cạnh và tâm như trên khối 3×3.",
-      "Mục này giới thiệu puzzle. Viewer, nhập trạng thái và solver 2×2 chưa được nối vào giao diện luyện tập.",
+      "Phần Thực hành bên dưới có scramble, mô hình 3D và sơ đồ sáu mặt. Nhập trạng thái và solver 2×2 chưa có.",
     ],
     "Ký hiệu mặt ngoài thuộc nhóm NxN; không đưa chuỗi 2×2 vào player 3×3 để thay thế model.",
     ["R", "U'", "F2"],
@@ -127,9 +164,9 @@ export const PUZZLES = parseCatalog([
     "Lưới 4×4 bổ sung các nhóm tâm và nhiều mảnh cạnh hơn.",
     [
       "Một hướng tiếp cận là gom tâm và ghép cạnh trước khi xử lý phần còn lại. Không nên suy ra hướng các mặt chỉ từ một ô tâm riêng lẻ.",
-      "Nhập ảnh 3×3 không thể dùng trực tiếp cho khối này. Cần profile ảnh, biểu diễn trạng thái và validation riêng trước khi mở tính năng luyện tập.",
+      "Phần Thực hành có scramble, mô hình 3D và sơ đồ sáu mặt với nước rộng. Nhập ảnh 3×3 không dùng được cho khối này; nhập trạng thái và solver 4×4 chưa có.",
     ],
-    "NxN còn có wide move như Rw; grammar 3×3 hiện tại trên ShanBik không nhận ký hiệu này.",
+    "NxN còn có wide move như Rw (hai lớp ngoài). Phần Thực hành 4×4 nhận mặt ngoài, Rw và nRw; player 3×3 không nhận ký hiệu này.",
     ["Rw", "U2"],
     "12a",
     ["4x4", "4x4x4", "444", "rubiks revenge"],
@@ -159,7 +196,7 @@ export const PUZZLES = parseCatalog([
     "Puzzle dạng tứ diện với quy tắc xoay và nhận diện mặt riêng.",
     [
       "Các mặt tam giác và phần chóp khiến cách đọc trạng thái khác khối lập phương NxN.",
-      "Trước khi nhập ảnh cần có profile chia ô tam giác và cách xác định hướng mặt. Hiện đây là mục tham khảo, chưa có mô hình luyện tập tương ứng.",
+      "Phần Thực hành có scramble và sơ đồ phẳng bốn mặt (F xanh lá, L đỏ, R xanh dương, D vàng). Chưa có mô hình 3D, nhập trạng thái hay solver Pyraminx.",
     ],
     "Phân biệt U/L/R/B với ký hiệu chóp viết thường u/l/r/b; không dùng ý nghĩa nước xoay của 3×3.",
     ["R", "U'", "u"],
@@ -175,7 +212,7 @@ export const PUZZLES = parseCatalog([
     "Puzzle mười hai mặt với các mặt ngũ giác.",
     [
       "Số mặt và hình dạng ngũ giác thay đổi cách định hướng và theo dõi các mảnh so với Rubik 3×3.",
-      "Cần bố trí mặt, profile nhận màu và solver riêng. Khả năng của một thư viện không đồng nghĩa ShanBik đã cung cấp các chức năng này.",
+      "ShanBik hiện chỉ có scramble Megaminx để luyện với khối thật. Mô hình, nhập trạng thái và solver cần bố trí mặt riêng và được chuyển sang giai đoạn sau.",
     ],
     "Notation scramble Megaminx sử dụng cả U và các ký hiệu như R++/D--; hãy xem quy ước đầy đủ tại WCA.",
     ["R++", "D--", "U'"],

@@ -1,4 +1,5 @@
 import { PUBLISHED_LESSON_LINKS } from "../learn/lessons/publication";
+import { capabilitiesOf } from "../puzzles/registry";
 export const SHAPES = {
   cube: "Lập phương",
   tetrahedron: "Tứ diện",
@@ -128,8 +129,21 @@ export function parseCatalog(input: unknown): readonly Puzzle[] {
       )
         fail(`${path}.capabilities.${key}`);
       text(cap.note, `${path}.capabilities.${key}.note`);
-      // A library's support is not an implemented ShanBik capability.
-      if (cap.status === "available" && slug !== "3x3")
+      // A library's support is not an implemented ShanBik capability: the
+      // status must match the registry (or the 3×3-only features) both ways.
+      const registry = capabilitiesOf(slug),
+        implemented: Record<CapabilityKey, boolean | null> = {
+          viewer: !!registry.render,
+          scramble: !!registry.scramble,
+          solver: !!registry.solve,
+          imageInput: slug === "3x3",
+          player: slug === "3x3",
+          lessons: null, // bound to published lessons below
+        };
+      if (
+        implemented[key as CapabilityKey] !== null &&
+        (cap.status === "available") !== implemented[key as CapabilityKey]
+      )
         fail(`${path}.capabilities.${key}.binding`);
     }
     resources(value.relatedReading, `${path}.relatedReading`);

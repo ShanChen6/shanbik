@@ -1,5 +1,7 @@
 # Tuần 11 — Bách khoa puzzle (11.1–11.3)
 
+> Cập nhật 18–19: capability viewer/scramble/solver giờ phải khớp [registry](./puzzle-capabilities.md) theo cả hai chiều. 2×2, 4×4, Pyraminx và Megaminx có khu vực Thực hành trên trang chi tiết; xem [quyết định Pyraminx/Megaminx](./decisions/odd-puzzles.md). Các câu "chỉ 3×3 được đánh dấu available" bên dưới là trạng thái lịch sử của tuần 11.
+
 > Cập nhật 12.3: đã có viewer minh họa và lưu bước đọc local. Xem [viewer và tiến độ](./lesson-viewer-progress.md).
 
 > Cập nhật 12.2: 3×3 đã có một bài đọc từng bước với sơ đồ 2D. Capability lessons và relatedLessons được nối với manifest bài đã xuất bản; các puzzle khác vẫn chưa có bài học. Xem [lesson UI](./lesson-ui.md).

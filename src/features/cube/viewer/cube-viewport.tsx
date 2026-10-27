@@ -43,7 +43,7 @@ class SceneBoundary extends Component<
   }
 }
 
-function supportsWebGL2() {
+export function supportsWebGL2() {
   try {
     const context = document.createElement("canvas").getContext("webgl2");
     if (!context) return false;
