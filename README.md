@@ -1,6 +1,6 @@
 # ShanBik
 
-Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; chưa có animation xoay mặt.
+Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; có animation, hàng đợi FIFO, pause/resume và hủy/reset an toàn; có tạo/copy/áp dụng scramble luyện tập 25 nước; player có play/pause, tiến/lùi và khôi phục snapshot đầu chuỗi; có nhập thuật toán, lỗi giữ nội dung và lịch sử phát trong phiên; có lưới nhập màu sáu mặt, tâm cố định, kiểm tra đủ ô/số lượng màu và tính khả thi cubie/hướng/parity.
 
 ## Môi trường
 
@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **7.2 — Animation một move** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **11.1 — Schema và dữ liệu puzzle** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -71,3 +71,27 @@ Move engine: [API và fixture đối chiếu](docs/cube-moves.md).
 Viewer 3D và camera: [Thiết kế, kiểm tra và giới hạn](docs/cube-viewer.md).
 
 Move → layer: [Quy ước trục, góc xoay và kiểm chứng renderer](docs/cube-move-layer.md).
+
+Animation một move: [State, lifecycle và kiểm chứng](docs/cube-single-move.md).
+
+Move queue: [FIFO, pause/resume và giới hạn](docs/cube-move-queue.md).
+
+Scramble 3×3: [Adapter, copy và apply một lần](docs/cube-scramble.md).
+
+Player: [Controls, snapshot và reset](docs/cube-player.md).
+
+Input thuật toán và lịch sử: [Task 8.3](docs/cube-algorithm-input.md).
+
+Nhập màu sáu mặt và hướng giữ khối: [Task 9.1a](docs/cube-face-input.md).
+
+Validation tính khả thi: [Task 9.1b](docs/cube-feasibility.md).
+
+Spike/benchmark lịch sử (Task 9.3 đã chọn cubing.js thay cubejs): [quyết định 9.2](docs/decisions/solver-3x3.md), [harness tái lập](tools/solver-spike/README.md).
+
+Giải bản nhập 3×3 bằng cubing.js trong Worker, có kiểm chứng/cancel/timeout/retry: [Task 9.3](docs/cube-worker-solver.md). Nạp snapshot gốc cùng lời giải để phát tiến/lùi/reset: [Task 9.4](docs/cube-solution-player.md).
+
+Luồng luyện tập, lấy màu mô hình và reset phiên: [Task 10.1](docs/cube-practice-flow.md).
+
+Hướng dẫn người dùng: `/help#quick-start`. Bộ Playwright production và lệnh chạy/CI: [Task 10.2](docs/testing-e2e.md).
+
+Beta 3×3: [báo cáo và giới hạn kiểm chứng](docs/reports/beta-readiness-2026-10-27.md), [checklist phát hành/rollback](docs/beta-release-checklist.md). Chưa tự phát hành hoặc mở rộng phạm vi trình duyệt.

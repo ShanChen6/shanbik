@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "tools/solver-spike/output/**",
+    "public/solver-worker/**",
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

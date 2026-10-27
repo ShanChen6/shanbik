@@ -8,6 +8,7 @@ import {
   useId,
   useRef,
   useState,
+  type ReactNode,
 } from "react";
 import { Button } from "@/components/ui/button";
 import { LoadingState } from "@/components/ui/states";
@@ -17,6 +18,7 @@ import type { CubeState } from "../core/types";
 import { COLOR_LABELS, STICKER_COLORS } from "./palette";
 import { ViewerFallback } from "./viewer-fallback";
 
+import type { MoveAnimation } from "./single-move";
 import type { CameraAction, CameraCommands } from "./camera-controller";
 
 const SOLVED = createSolvedCubeState();
@@ -26,12 +28,15 @@ const Scene = dynamic(
 );
 
 class SceneBoundary extends Component<
-  { children: React.ReactNode },
+  { children: React.ReactNode; onFailure: () => void },
   { failed: boolean }
 > {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
+  }
+  componentDidCatch() {
+    this.props.onFailure();
   }
   render() {
     return this.state.failed ? <ViewerFallback /> : this.props.children;
@@ -49,19 +54,41 @@ function supportsWebGL2() {
   }
 }
 
-export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
+export function CubeViewport({
+  state = SOLVED,
+  animation,
+  onMoveComplete,
+  onMoveCancel,
+  onReadyChange,
+  moveControls,
+}: {
+  state?: CubeState;
+  animation?: MoveAnimation | null;
+  onMoveComplete?: (id: number) => void;
+  onMoveCancel?: (id?: number) => void;
+  onReadyChange?: (ready: boolean) => void;
+  moveControls?: ReactNode;
+}) {
   const captionId = useId();
   const [gestures, setGestures] = useState(false);
   const [cameraReady, setCameraReady] = useState(false);
   const camera = useRef<CameraCommands | null>(null);
-  const handleCameraReady = useCallback((controller: CameraCommands | null) => {
-    camera.current = controller;
-    setCameraReady(controller !== null);
-  }, []);
+  const handleCameraReady = useCallback(
+    (controller: CameraCommands | null) => {
+      camera.current = controller;
+      setCameraReady(controller !== null);
+      onReadyChange?.(controller !== null);
+    },
+    [onReadyChange],
+  );
   const [capability, setCapability] = useState<
     "loading" | "ready" | "unavailable"
   >("loading");
-  const handleContextLost = useCallback(() => setCapability("unavailable"), []);
+  const handleContextLost = useCallback(() => {
+    setCapability("unavailable");
+    onReadyChange?.(false);
+    onMoveCancel?.();
+  }, [onMoveCancel, onReadyChange]);
   useEffect(() => {
     // Probe only in the browser after paint; dispose the temporary probe context.
     const frame = requestAnimationFrame(() =>
@@ -69,6 +96,12 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
     );
     return () => cancelAnimationFrame(frame);
   }, []);
+  useEffect(
+    () => () => {
+      onMoveCancel?.();
+    },
+    [onMoveCancel],
+  );
   return (
     <figure
       className="cube-viewer"
@@ -83,9 +116,11 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
         ) : capability === "unavailable" ? (
           <ViewerFallback />
         ) : (
-          <SceneBoundary>
+          <SceneBoundary onFailure={handleContextLost}>
             <Scene
               state={state}
+              animation={animation}
+              onMoveComplete={onMoveComplete}
               gestures={gestures}
               onCameraReady={handleCameraReady}
               onContextLost={handleContextLost}
@@ -93,6 +128,7 @@ export function CubeViewport({ state = SOLVED }: { state?: CubeState }) {
           </SceneBoundary>
         )}
       </div>
+      {moveControls}
       <div
         role="group"
         aria-label="Điều khiển góc nhìn"

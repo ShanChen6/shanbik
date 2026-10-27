@@ -1,0 +1,546 @@
+{
+  "engine": "cubing@0.66.1",
+  "sourceRevision": "8544249ff1e662557df912065a26b5f90f4df574",
+  "workflowRun": 40447938038,
+  "browser": "Chromium 141.0.7390.37",
+  "environment": "GitHub Actions ubuntu-latest, Node 24; physical hardware not recorded",
+  "measurementScope": "Functional corpus through production controller/worker. Assets may be cached after UI tests; timings are not a calibrated cold-start or cross-engine benchmark. initMs is host elapsed time until solving state, including pre-search work.",
+  "count": 75,
+  "first": {
+    "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+    "notation": "U'",
+    "moves": 1,
+    "initMs": 150.5,
+    "elapsedMs": 155.5
+  },
+  "p50Ms": 4.7000000000116415,
+  "p95Ms": 42.60000000000582,
+  "maxMs": 904.2999999999884,
+  "samples": [
+    {
+      "serialization": "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB",
+      "notation": "U'",
+      "moves": 1,
+      "initMs": 150.5,
+      "elapsedMs": 155.5
+    },
+    {
+      "serialization": "LFFFUDLRRUBRLRFDBDBUBRFBFLBDURRDULDRDRUDLDFBLUUBLBFFLU",
+      "notation": "F2 U L2 B U' F B D L' U' L2 B2 U' F2 U R2 D' F2 D R2 F2",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 10.799999999988358
+    },
+    {
+      "serialization": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+      "notation": "U",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 1.1000000000058208
+    },
+    {
+      "serialization": "RRLDUFFFLDRULRFDBDUUBRFBFLBDURRDULDRUBRDLDFBLBUBLBFFLU",
+      "notation": "F2 L2 D F' U' F R' U F' B L2 D2 F D2 B R2 L2 D2 F D2 R",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 13.799999999988358
+    },
+    {
+      "serialization": "UUUUUUUUULLLRRRRRRBBBFFFFFFDDDDDDDDDRRRLLLLLLFFFBBBBBB",
+      "notation": "U2",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 1.3999999999941792
+    },
+    {
+      "serialization": "LFLRUFRDFUUBLRFDBDUBRRFBFLBDURRDULDRBUBDLDFBLDRULBFFLU",
+      "notation": "R' L2 U' L2 U F2 D' R2 D2 L2 U B D R' U F' L2 R2 U'",
+      "moves": 19,
+      "initMs": 0.20000000001164153,
+      "elapsedMs": 34.20000000001164
+    },
+    {
+      "serialization": "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB",
+      "notation": "R'",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.8999999999941792
+    },
+    {
+      "serialization": "FDUFUBLFBDLBBRUDFBDRRRFUFLRDUFRDLLDUUUBDLDFBLLBRRBFRLU",
+      "notation": "U2 L' D2 R' F U' F U F2 U' B2 R2 U D2 L2 U R2 B2 U F' R",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 9.5
+    },
+    {
+      "serialization": "UUBUUBUUBRRRRRRRRRFFUFFUFFUDDFDDFDDFLLLLLLLLLDBBDBBDBB",
+      "notation": "R",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.8999999999941792
+    },
+    {
+      "serialization": "FDFFULLFUBFDURBBLDDRRRFRFLLDUURDBLDBUUBDLDFBLRBRUBFRLU",
+      "notation": "U' D L B L' F B' R B2 U' L2 U2 R2 B2 L2 B2 D R2 D B2 L'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 7.800000000017462
+    },
+    {
+      "serialization": "UUDUUDUUDRRRRRRRRRFFBFFBFFBDDUDDUDDULLLLLLLLLFBBFBBFBB",
+      "notation": "R2",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 1.1999999999825377
+    },
+    {
+      "serialization": "FDRFUULFRDBDFRLBUBDRFRFLFLUDURRDRLDLUUBDLDFBLBBRBBFULU",
+      "notation": "R D F' L2 U2 L' D F2 L2 D2 R2 L' U2 B2 L2 F2 L' D2 B2 U F'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 15.700000000011642
+    },
+    {
+      "serialization": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+      "notation": "F'",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.7000000000116415
+    },
+    {
+      "serialization": "FDRFURLDBLUBFRFLBDFRDLFRBBUDLBRDULDRUUDDLUFBRUBRLBFFLU",
+      "notation": "B U F D2 F2 D B U2 L U L2 U2 R2 B2 R2 U' L2 D' L2 F2 U",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 2.1999999999825377
+    },
+    {
+      "serialization": "UUUUUURRRDRRDRRDRRFFFFFFFFFLLLDDDDDDLLULLULLUBBBBBBBBB",
+      "notation": "F",
+      "moves": 1,
+      "initMs": 0,
+      "elapsedMs": 0.39999999999417923
+    },
+    {
+      "serialization": "FDRFURBLDRUBURFDBDUBBRFLDRFBDLRDULDRUULDLFFBLUBRLBFFLU",
+      "notation": "D R F' L2 D' B R' U2 B R2 U2 F U2 B' D2 B D2 B2 D2 R U'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 5.2000000000116415
+    },
+    {
+      "serialization": "UUUUUUDDDLRRLRRLRRFFFFFFFFFUUUDDDDDDLLRLLRLLRBBBBBBBBB",
+      "notation": "F2",
+      "moves": 1,
+      "initMs": 0,
+      "elapsedMs": 1
+    },
+    {
+      "serialization": "FDRFURRUDLUBDRFBBDBLFBFRURDLFLRDULDRUUDDLLFBBUBRLBFFLU",
+      "notation": "D L2 U L2 F2 R F' B2 L' F2 B2 U2 L B2 L' F2 L' D2 R D F",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 15.200000000011642
+    },
+    {
+      "serialization": "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR",
+      "notation": "D'",
+      "moves": 1,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 1.5
+    },
+    {
+      "serialization": "FDRFURLFLBUBLRFFLBDRURFBFBLLRDDDURURUUBDLDFLUUBRLBFDBD",
+      "notation": "R' L B L2 F' L' B R2 U' F2 B2 R2 D B2 U L2 D' F2 L' F",
+      "moves": 20,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 3.6999999999825377
+    },
+    {
+      "serialization": "UUUUUUUUURRRRRRBBBFFFFFFRRRDDDDDDDDDLLLLLLFFFBBBBBBLLL",
+      "notation": "D",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.7000000000116415
+    },
+    {
+      "serialization": "FDRFURLFLBUBLRFFLUDRURFBDBDRURUDDDRLUUBDLDFLBUBRLBFFBL",
+      "notation": "L D2 R B R2 U' F B R' D2 B2 D' R2 L2 D' L2 D' R2 B2 L2 B2",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 5
+    },
+    {
+      "serialization": "UUUUUUUUURRRRRRLLLFFFFFFBBBDDDDDDDDDLLLLLLRRRBBBBBBFFF",
+      "notation": "D2",
+      "moves": 1,
+      "initMs": 0,
+      "elapsedMs": 0.5
+    },
+    {
+      "serialization": "FDRFURLFLBUBLRFFBLDRURFBFLURDLUDRRUDUUBDLDDBDUBRLBFFLB",
+      "notation": "L' F2 R' D2 R' U2 L2 B2 F2 U2 B2 L2 D B L U' F' L2 D L' R'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 26.199999999982538
+    },
+    {
+      "serialization": "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD",
+      "notation": "L'",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 1.3000000000174623
+    },
+    {
+      "serialization": "UDRFURRFLBUBLRFDBDFRUFFBLLBDURRDUFDRFDUBLULDBUBLLBRFLD",
+      "notation": "B2 U2 F2 U' R2 D B2 D' L2 U F2 D F U' F R D' R U' F R'",
+      "moves": 21,
+      "initMs": 0.1999999999825377,
+      "elapsedMs": 25.699999999982538
+    },
+    {
+      "serialization": "FUUFUUFUURRRRRRRRRDFFDFFDFFBDDBDDBDDLLLLLLLLLBBUBBUBBU",
+      "notation": "L",
+      "moves": 1,
+      "initMs": 0,
+      "elapsedMs": 0.9000000000232831
+    },
+    {
+      "serialization": "DDRRURFFLBUBLRFDBDDRURFBLLBUURFDURDRBDLULBUDFUBLLBFFLF",
+      "notation": "R' B2 L' B2 D2 L' D2 B2 U2 B2 R' F2 B' U' B D' B F' U2 B R",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 20.699999999982538
+    },
+    {
+      "serialization": "DUUDUUDUURRRRRRRRRBFFBFFBFFUDDUDDUDDLLLLLLLLLBBFBBFBBF",
+      "notation": "L2",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 2
+    },
+    {
+      "serialization": "DDRRURLFLBUBLRFDBDURUFFBRLBFURFDULDRLBFDLDBUUUBFLBRFLD",
+      "notation": "F L F' D' B U' F L2 U2 D2 L F2 B2 L F2 R F2 D2 R B R'",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 8
+    },
+    {
+      "serialization": "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB",
+      "notation": "B'",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.8999999999941792
+    },
+    {
+      "serialization": "BFDFURLFLBURLRDDBLDRURFBFLBDURRDUUDFRUBDLDFBLFLULBBUFR",
+      "notation": "F U F D2 F2 D B U2 L U L2 U2 R2 B2 R2 U' L2 D' L2 F2 U",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 1.900000000023283
+    },
+    {
+      "serialization": "LLLUUUUUURRURRURRUFFFFFFFFFDDDDDDRRRDLLDLLDLLBBBBBBBBB",
+      "notation": "B",
+      "moves": 1,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 0.6999999999825377
+    },
+    {
+      "serialization": "FDUFURLFLBUFLRDDBRDRURFBFLBDURRDUDFBLUBDLDRBLRFUBBLULF",
+      "notation": "B' L' U L2 D' L2 F' D F U2 L2 U2 F U2 D2 L2 U2 B' D2 R",
+      "moves": 20,
+      "initMs": 0,
+      "elapsedMs": 3.6000000000058208
+    },
+    {
+      "serialization": "DDDUUUUUURRLRRLRRLFFFFFFFFFDDDDDDUUURLLRLLRLLBBBBBBBBB",
+      "notation": "B2",
+      "moves": 1,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.7000000000116415
+    },
+    {
+      "serialization": "RDLFURLFLBUFLRDDBUDRURFBFLBDURRDURDFDUBFLDBBLULFFBLRBU",
+      "notation": "L' U L2 D' L2 F' D F U2 L2 U2 F U2 D2 L2 U2 B' D2 R",
+      "moves": 19,
+      "initMs": 0,
+      "elapsedMs": 1
+    },
+    {
+      "serialization": "UULUUFUUFRRUBRRURRFFDFFUFFFDDRDDDDDDBLLLLLLLLBRRBBBBBB",
+      "notation": "U R U' R'",
+      "moves": 4,
+      "initMs": 0,
+      "elapsedMs": 0.5
+    },
+    {
+      "serialization": "RRUFURLBBLFFLRFDBDBDDRFBFLBDURRDULDRUUUDLDFBLRUBLBFFLU",
+      "notation": "B' L2 U B2 D2 B2 F2 U' L2 F2 D' F2 U' R' F' L2 D B2 L' B L'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 12.5
+    },
+    {
+      "serialization": "UDUDUDUDURLRLRLRLRFBFBFBFBFDUDUDUDUDLRLRLRLRLBFBFBFBFB",
+      "notation": "U2 D2 R2 L2 F2 B2",
+      "moves": 6,
+      "initMs": 0,
+      "elapsedMs": 0.7999999999883585
+    },
+    {
+      "serialization": "FDDLUUBDRDBLFRFUBRRRFDFLFUBURLLDRULDDUURLBLDRBFLUBFBBF",
+      "notation": "B' D R2 L' B' U F' U R2 U' L2 B2 U2 B2 U D2 L2 U B2 L' U2",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 2.6000000000058208
+    },
+    {
+      "serialization": "RUFUUUUULBBURRRRRRBFUFFFFFFDDDDDDDDDFRRLLLLLLLLUBBBBBB",
+      "notation": "R U R' U R U2 R'",
+      "moves": 7,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 0.6000000000058208
+    },
+    {
+      "serialization": "FRRUUULBLBFBLRFDRDDDURFBFDBDLRBDBLLRURBDLDFULUFRLBFFUU",
+      "notation": "L2 B2 L2 B L' U F D2 L' U2 D2 F' D2 F' U2 D2 F R2 B' L2 B2",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 10.099999999976717
+    },
+    {
+      "serialization": "BDLUUUFLDFFBFRLRBRDDRRFDRRUBDFBDRFFBULLRLUUUDDBLBBFULL",
+      "notation": "D2 F2 R2 U B2 L2 D2 R2 U L2 D' F2 R' B' D F2 L D2 U2 L' U'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 15.60000000000582
+    },
+    {
+      "serialization": "FUDBUFFFBDURBRBDRRLRRDFUUDFLFLLDUBLBURUDLBDFBFLRLBRUDL",
+      "notation": "D' B' D F2 U' R2 F2 U B2 D' F2 U' L2 F2 R' D U2 F L R U",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 6.800000000017462
+    },
+    {
+      "serialization": "BFRRUFBBFDRFLRUFUUDDLFFDULULULRDRUBRLDRFLDFBBDLDBBUBLR",
+      "notation": "B2 R D F' B' U B U' L D' L2 B2 R2 F2 U' D' L2 D' F2 U2",
+      "moves": 20,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 6.5
+    },
+    {
+      "serialization": "RDRRUFFLFUUDLRBBLUDBRDFFUDDLLLBDUUURDFLFLRLUBBBFRBDBRF",
+      "notation": "L2 F' R L2 F2 R2 B2 U L' U2 F U2 F' U2 B2 U2 R2 F2 R2 D2 F'",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 6.399999999994179
+    },
+    {
+      "serialization": "LUFBUBDRLBRRDRUBRDFDUUFBRRDUFLDDUDLFULRLLLBFBUFFBBFLDR",
+      "notation": "D B U2 F D' B' D' F R' U2 R2 F2 L' U2 F2 R' B2 R B2",
+      "moves": 19,
+      "initMs": 0,
+      "elapsedMs": 2.3999999999941792
+    },
+    {
+      "serialization": "UUFBUFRLDBRRRRUFDUBBLRFUDDULFLLDRFDRLUDDLBDFFULBFBBBLR",
+      "notation": "U2 R2 B2 U2 L2 U F2 U B2 D R2 L F2 L D' L2 F R' B",
+      "moves": 19,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 4.600000000005821
+    },
+    {
+      "serialization": "ULLFURDFBUDFFRLFRDLDLRFLRBRBRUBDUFDLBUFBLFDDDUBRUBUBLR",
+      "notation": "D B2 U L2 U' F2 D B2 U R2 U2 L B D B2 R B' U L F",
+      "moves": 20,
+      "initMs": 0,
+      "elapsedMs": 8.60000000000582
+    },
+    {
+      "serialization": "DLBFUDLRLBBRBRBDRUDDUUFLFBRUUFLDUBDLLDBRLFUURDFFRBFFLR",
+      "notation": "B2 L' D F U D' R' D2 R D2 L2 B' L2 B U2 B2 U2 L2 F2 U2 L2",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 4.7999999999883585
+    },
+    {
+      "serialization": "FRDBULLRUBUBRRFLDFDURDFDLBFBLUBDLDURRRBLLBFUURFDDBFUFL",
+      "notation": "R' L2 F' L' U' B U' L2 D R2 D' F2 U' B2 D2 F2 D2 F'",
+      "moves": 18,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 5.100000000005821
+    },
+    {
+      "serialization": "LBDUULRDFLFFFRURDLBBURFRRDBFFUDDRDUUDBDLLURLULRBFBBBLF",
+      "notation": "R F' U R L2 U2 L2 D' R2 F L2 B R2 B' U2 B D2 B L2 F",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 6.7999999999883585
+    },
+    {
+      "serialization": "BDUDUFDBLFLLLRRLLFRRDFFDRRBUUDBDUUBDURBFLUFUBFBLFBDRLR",
+      "notation": "L2 D B2 D' B U B D L' D2 L2 B2 U2 L2 D F2 B2 L2 D L'",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 68.39999999999418
+    },
+    {
+      "serialization": "LLULUBFDRFDLBRLBDBDLUBFRDRRBFDUDRFUUBFLFLUDRLFBUUBDRFR",
+      "notation": "R U' D2 F' L' D L B2 U' F2 D' L2 F2 R2 L2 U' L2 B2 U B U2",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 4.300000000017462
+    },
+    {
+      "serialization": "BRRLULBBURDBURLDDBDDFFFRFLRLUFFDRDULLFRULRFDUUBDBBBUFL",
+      "notation": "U R L U2 B' R' L2 D' F U2 B R2 F' U2 B2 U2 R2 F' L2 B R'",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 6
+    },
+    {
+      "serialization": "DDLBULRRFDUUFRFFRDUFLRFLLLRUDUBDUBDLFRBBLDRLFBBRUBUBFD",
+      "notation": "D R' L' D' B2 L F' B2 U R2 U' D2 F2 L2 U L2 D' B2 L2",
+      "moves": 19,
+      "initMs": 0,
+      "elapsedMs": 2
+    },
+    {
+      "serialization": "DDDDUDFUURRFURUDBLLLFRFBBFRDRFDDLBFUBLULLBUFRLBLRBFBUR",
+      "notation": "U2 F' B' U2 L' D' R2 L F D2 L2 B2 U F2 B2 L2 D R2 D2 L2",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 2
+    },
+    {
+      "serialization": "RDRLUBRDDBLBURFFRLDRLDFFLURBBURDBLUFBDFULBDFUUFDLBLURF",
+      "notation": "L2 F' D2 F2 R U2 L F D R2 B2 R2 L2 D L2 F2 U2 L2 D B2 F'",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 7.2999999999883585
+    },
+    {
+      "serialization": "LBDBUUBFDBBRFRLRLUDRLRFLFDBDLURDBFFFBRRFLDUULFDUUBDRUL",
+      "notation": "B U2 B D2 U2 B' R2 B R2 F U2 B2 L R D' L' U2 F' U' L",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 6.800000000017462
+    },
+    {
+      "serialization": "UBDBUDBUUBBRRRLRFFLBRFFDDLDLFBLDRBUURLDDLULDFFRFUBFLRU",
+      "notation": "L U' F2 L U' L2 D' R2 U2 D2 R' F2 R F2 R B2 U2 L2 D2 F L",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 6.7999999999883585
+    },
+    {
+      "serialization": "URFLUFBFFLDLRRFLDDLLULFUBBURRBUDBBBRRBDFLDRLUDDFUBRFUD",
+      "notation": "U2 L2 D L2 B2 U2 B2 U' B2 U R2 F' L U' R' D L D' B' D'",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 12.39999999999418
+    },
+    {
+      "serialization": "BUBDUBUURDLLDRRDLBFRFDFLLDBFFRUDFRRDRBLULRUBDULUFBFLBF",
+      "notation": "U2 L F D2 L U' B2 U F' R2 U' R2 B2 U R2 D' R2 D2 R2 U L2",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 6.800000000017462
+    },
+    {
+      "serialization": "DRUBUUUULURRDRULDBRBFRFBFFURUBRDFDLDLLFFLDBBDBFFLBLLDR",
+      "notation": "D F' L2 R2 B' R2 L' U B D2 L2 D' U'",
+      "moves": 13,
+      "initMs": 0,
+      "elapsedMs": 1.3999999999941792
+    },
+    {
+      "serialization": "UDLLUUFLBURBFRRDRRUULDFUFLFRBLFDDUUDBDRRLFLLDDBRBBFBBF",
+      "notation": "R' D R U2 D F2 B' R B U D' F2 B2 L2 U R2 F2 D' B2 R2 F2",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 3.7999999999883585
+    },
+    {
+      "serialization": "RULDURDBDRFBBRBUDRLUBLFRUDBFFLRDBUUUDLFLLFRDLDFFLBUFRB",
+      "notation": "U2 R2 F' R U' D F L2 D2 L U2 B2 R D2 F2 R' F2 R2 F2 B L'",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 4.7000000000116415
+    },
+    {
+      "serialization": "ULRDUUBBDBRBBRBLBFDDLLFLRUUFFBDDUDRLFRRFLDRFUUULRBLDFF",
+      "notation": "F B L D R L U' R2 D2 F2 D2 R2 U2 F2 R D2 L2",
+      "moves": 17,
+      "initMs": 0,
+      "elapsedMs": 1.1999999999825377
+    },
+    {
+      "serialization": "FUUUULBBFLURDRLDRDDRULFBDRLFFBDDDUUFURRDLBBLRBFRFBFLBL",
+      "notation": "U R' F2 L' F R F2 U F2 R2 D2 F D2 L2 D2 F2 D2 B' R2 L F'",
+      "moves": 21,
+      "initMs": 0,
+      "elapsedMs": 42.60000000000582
+    },
+    {
+      "serialization": "FBLBUFLFBDDFDRLDUFBURDFBURLRFBLDBULDDRURLRRUFULLDBURFB",
+      "notation": "D2 L2 F2 D R2 F2 U' F2 D' L2 F2 U' R' U2 B U2 L R' U R F",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 9.10000000000582
+    },
+    {
+      "serialization": "RURFUFBUFRRBRRDFBDURDLFDLBUDLLDDRFLFBDLBLURLBUFDBBULFU",
+      "notation": "R' B2 L' D2 R D2 F2 R' F2 U2 L2 D2 F' U' R' B2 R' B R' U2",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 3.8999999999941792
+    },
+    {
+      "serialization": "BBDRULURLBULDRDFLRBUURFFDDLFLDUDBLFUDFRRLDFFRBURBBBFLU",
+      "notation": "F R' U2 L F' D L U' D L2 F2 R2 B R2 L2 B2 U2 F D2 R2 F",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 4.300000000017462
+    },
+    {
+      "serialization": "UUBUUUBLURBDLRRFDDUDFRFFDLDLBRDDRFFBBFLRLFUBFLLRUBBRDL",
+      "notation": "D' F U' R' B D2 R B U2 F R2 D2 B2 R2 F B2 U2 R' L2 B'",
+      "moves": 20,
+      "initMs": 0,
+      "elapsedMs": 6.2999999999883585
+    },
+    {
+      "serialization": "LFRLURDUURUBBRLBRDBFFRFURLRDFDBDFUDFUULBLDBDFUDFBBRLLL",
+      "notation": "D F2 D L2 B2 U B2 D2 F2 D U2 B' R D' F' L2 U' L' D B'",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 12.89999999999418
+    },
+    {
+      "serialization": "RBDDUFDLUFULRRFUBLRDLBFUFDRDFBLDUUFUDRBLLRFULBDFLBBBRR",
+      "notation": "U D R' U F2 R2 F L B R2 B U2 R2 D2 B U2 R2 B U2 F L",
+      "moves": 21,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 5.399999999994179
+    },
+    {
+      "serialization": "DBLUUFRLULDDURUUBLUDBBFRDBFBLRDDUDFFFLBRLDBRLFRRFBFULR",
+      "notation": "U2 B2 L2 B R2 U2 F L2 F2 R2 F' L2 R' U F2 L F2 L2 R F'",
+      "moves": 20,
+      "initMs": 0.10000000000582077,
+      "elapsedMs": 1.900000000023283
+    },
+    {
+      "serialization": "UBULURUFURURFRBRDRFUFLFRFDFDFDLDRDBDLULBLFLDLBUBRBLBDB",
+      "notation": "R L F U2 R2 U' D' F2 R' F B U L2 B2 D2 R2 D' L2 D B2 D",
+      "moves": 21,
+      "initMs": 0.09999999997671694,
+      "elapsedMs": 904.2999999999884
+    }
+  ]
+}
