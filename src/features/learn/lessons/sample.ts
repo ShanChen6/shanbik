@@ -8,7 +8,7 @@ export const SAMPLE_LESSON_SOURCE: LessonSource = {
   id: "intro-u-turn",
   slug: "lam-quen-u-va-u-prime",
   puzzleId: "3x3",
-  status: "draft",
+  status: "published",
   orientation: "white-up-green-front",
   title: "Làm quen với U và U′",
   summary:

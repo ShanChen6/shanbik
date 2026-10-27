@@ -1,5 +1,7 @@
 # 12.1 — Schema lesson
 
+> Cập nhật 12.2: sample đã chuyển published và có [giao diện đọc từng bước](./lesson-ui.md). Phần phạm vi dưới đây ghi lại mốc schema 12.1.
+
 ## Phạm vi
 
 Thêm schema/validator và một bài mẫu **Làm quen với U và U′**. Chưa thêm route bài học, UI từng bước, viewer bài học, lưu tiến độ hoặc đánh dấu capability lessons là đã có. Hai phần đó thuộc task 12.2 và 12.3.

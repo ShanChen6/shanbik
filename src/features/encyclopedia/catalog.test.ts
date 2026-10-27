@@ -39,15 +39,17 @@ describe("puzzle catalog contracts", () => {
       /^https:\/\/www.worldcubeassociation.org\/regulations\/#12/,
     );
   });
-  it("only advertises shipped 3×3 tools, with lessons still unavailable", () => {
+  it("only advertises shipped 3×3 tools and the published lesson", () => {
     for (const puzzle of PUZZLES)
-      for (const [key, cap] of Object.entries(puzzle.capabilities))
+      for (const cap of Object.values(puzzle.capabilities))
         expect(cap.status).toBe(
-          puzzle.slug === "3x3" && key !== "lessons"
-            ? "available"
-            : "unavailable",
+          puzzle.slug === "3x3" ? "available" : "unavailable",
         );
-    expect(PUZZLES.every((p) => p.relatedLessons.length === 0)).toBe(true);
+    expect(
+      PUZZLES.every(
+        (p) => p.relatedLessons.length === (p.slug === "3x3" ? 1 : 0),
+      ),
+    ).toBe(true);
   });
   it.each([
     (rows: ReturnType<typeof mutable>) => {

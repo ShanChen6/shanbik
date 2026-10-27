@@ -1,5 +1,7 @@
 # Tuần 11 — Bách khoa puzzle (11.1–11.3)
 
+> Cập nhật 12.2: 3×3 đã có một bài đọc từng bước với sơ đồ 2D. Capability lessons và relatedLessons được nối với manifest bài đã xuất bản; các puzzle khác vẫn chưa có bài học. Xem [lesson UI](./lesson-ui.md).
+
 ## Phạm vi
 
 Triển khai cả ba task tuần 11: schema/dữ liệu, danh sách search/filter và trang chi tiết. Tám entry: 3×3, 2×2, 4×4, 5×5, Pyraminx, Megaminx, Skewb, Square-1. Đây là bách khoa nội dung, không mở thêm viewer/solver/image adapter cho các puzzle khác.
