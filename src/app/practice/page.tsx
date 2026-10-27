@@ -6,7 +6,7 @@ import { PracticeCube } from "@/features/cube/viewer/practice-cube";
 export const metadata: Metadata = {
   title: "Luyện tập 3×3 — ShanBik",
   description:
-    "Xem mô hình Rubik 3×3 và tìm hiểu các công cụ luyện tập sắp có trên ShanBik.",
+    "Mô phỏng Rubik 3×3, phát thuật toán, tạo scramble và nhập màu sáu mặt trên ShanBik.",
 };
 
 export default function PracticePage() {
@@ -34,20 +34,18 @@ export default function PracticePage() {
           aria-labelledby="upcoming-title"
           className="min-w-0 rounded-panel border border-border bg-surface p-6 sm:p-8"
         >
-          <p className="mb-4 text-sm font-semibold text-accent">
-            Đang chuẩn bị
-          </p>
+          <p className="mb-4 text-sm font-semibold text-accent">Cách bắt đầu</p>
           <h2 id="upcoming-title" className="text-xl font-bold">
-            Luyện tập theo từng bước
+            Các công cụ luyện tập
           </h2>
           <ul className="mt-4 list-disc space-y-3 pl-5 text-muted">
             <li>Nhập và phát chuỗi thuật toán của bạn.</li>
-            <li>Nhập màu các mặt bằng tay.</li>
-            <li>Phát lời giải từng nước đi.</li>
+            <li>Nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu.</li>
+            <li>Tạo scramble và điều khiển phát từng bước.</li>
           </ul>
           <p className="mt-5 text-sm text-muted">
-            Các công cụ này hiện chưa khả dụng. Bạn có thể khám phá phần giới
-            thiệu trước khi bắt đầu.
+            Nhập màu giữ riêng với mô hình đang phát. Kiểm tra tính khả thi của
+            khối và công cụ giải sẽ được bổ sung ở các bước tiếp theo.
           </p>
           <Link href="/learn" className="ui-button ui-button--secondary mt-6">
             Tìm hiểu kiến thức cơ bản

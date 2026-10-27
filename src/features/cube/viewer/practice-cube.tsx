@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
+import { FaceInputPanel } from "../face-input/face-input-panel";
 import { FACE_ORDER } from "../core/constants";
 import { serializeAlgorithm, type CubeAlgorithm } from "../core/notation";
 import { isCubeSolved } from "../core/state";
@@ -184,13 +185,16 @@ export function PracticeCube() {
     </>
   );
   return (
-    <CubeViewport
-      state={snapshot.state}
-      animation={snapshot.active}
-      onMoveComplete={player.complete}
-      onMoveCancel={player.cancel}
-      onReadyChange={setReady}
-      moveControls={controls}
-    />
+    <>
+      <CubeViewport
+        state={snapshot.state}
+        animation={snapshot.active}
+        onMoveComplete={player.complete}
+        onMoveCancel={player.cancel}
+        onReadyChange={setReady}
+        moveControls={controls}
+      />
+      <FaceInputPanel />
+    </>
   );
 }
