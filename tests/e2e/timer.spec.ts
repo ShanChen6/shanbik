@@ -83,6 +83,7 @@ test("timer: discovery, focused Space hold/release, duplicate stop protection an
 test("timer: real touch holds, pointer cancellation and stop save one result", async ({
   page,
 }) => {
+  await page.addInitScript(() => localStorage.setItem("shanbik-theme", "dark"));
   await ready(page);
   const cdp = await page.context().newCDPSession(page);
   const down = async () => {
@@ -97,6 +98,10 @@ test("timer: real touch holds, pointer cancellation and stop save one result", a
   };
   await down();
   await expect(phase(page)).toContainText("Đã sẵn sàng thả");
+  expect(
+    (await new AxeBuilder({ page }).withRules(["color-contrast"]).analyze())
+      .violations,
+  ).toEqual([]);
   await cdp.send("Input.dispatchTouchEvent", {
     type: "touchCancel",
     touchPoints: [],

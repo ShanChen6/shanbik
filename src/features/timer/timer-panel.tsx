@@ -159,7 +159,7 @@ export function TimerPanel() {
           aria-label="Vùng bấm timer"
           aria-describedby="timer-hint"
           disabled={!enabled}
-          className={`min-h-52 w-full touch-none rounded-panel border-2 p-4 select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${snapshot.armed ? "border-primary bg-primary text-white" : "border-border bg-surface-subtle text-foreground"}`}
+          className={`min-h-52 w-full touch-none rounded-panel border-2 p-4 select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${snapshot.armed ? "border-primary bg-primary text-primary-foreground" : "border-border bg-surface-subtle text-foreground"}`}
           onClick={(e) => e.preventDefault()}
           onKeyDown={(e) => {
             if (e.code !== "Space") return;
@@ -249,7 +249,7 @@ export function TimerPanel() {
           </Button>
           <Button
             variant="secondary"
-            disabled={!busy}
+            disabled={!busy || snapshot.phase === "stopped"}
             onClick={() => {
               lock.current = null;
               timer.cancel();
