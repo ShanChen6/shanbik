@@ -7,3 +7,6 @@ docs/roadmap/
 
 public/solver-worker/
 public/licenses/cubing-LICENSE-*.md
+
+playwright-report/
+test-results/

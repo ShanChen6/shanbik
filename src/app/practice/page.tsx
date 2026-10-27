@@ -17,6 +17,14 @@ export default function PracticePage() {
         title="Chậm một nhịp. Hiểu thêm một bước."
         description="Không gian dành cho bạn làm quen với từng nước xoay và quan sát khối Rubik theo nhịp riêng."
       />
+      <p className="mb-6">
+        <Link
+          href="/help#quick-start"
+          className="font-semibold text-accent underline underline-offset-4"
+        >
+          Hướng dẫn bắt đầu nhanh
+        </Link>
+      </p>
       <section
         aria-labelledby="practice-title"
         className="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]"
