@@ -30,7 +30,7 @@ ID được tạo một lần khi bắt đầu attempt; stop cập nhật state 
 
 Key `shanbik:timer-solves:v1`, record `{version:1,solves:[{id,puzzle:"3x3",durationMs,scramble,timestamp}]}`. Validate schema, integer/range, notation parser, ID và giới hạn record. Constructor/getServerSnapshot không đọc browser/clock/random. Đọc sau hydration, chỉ ghi khi có solve mới hoặc người dùng retry; không ghi mảng rỗng đè dữ liệu lúc mount.
 
-JSON/version/record lỗi bị bỏ qua, thông báo và giữ nguyên raw đến khi người dùng ghi lượt mới. Mỗi save đọc lại disk, hợp nhất theo ID với các record trong bộ nhớ rồi ghi; tránh đè các lượt đã được tab khác lưu trước lần đọc. LocalStorage không có transaction: hai tab ghi đồng thời vẫn có thể race, chưa đồng bộ realtime. Tạm dùng một tab để bấm giờ; schema/database có transaction và migration thuộc tuần 16.
+JSON/version/record lỗi bị bỏ qua, thông báo và giữ nguyên raw đến khi người dùng ghi lượt mới. Mỗi save đọc lại disk, hợp nhất theo ID với các record trong bộ nhớ rồi ghi; tránh đè các lượt đã được tab khác lưu trước lần đọc. LocalStorage không có transaction: hai tab ghi đồng thời vẫn có thể race, chưa đồng bộ realtime. Tuần 16 đã thay phần lưu này bằng IndexedDB có transaction và migration — xem [solve-history.md](./solve-history.md); key này giờ chỉ được đọc một lần để chuyển dữ liệu.
 
 Lỗi factory/read/quota/write giữ kết quả mới trong bộ nhớ trang, hiển thị cảnh báo và nút Thử lưu lại. Retry hợp nhất/dedup, không tạo lượt thứ hai. Read lỗi không ghi đè dữ liệu disk chưa đọc được. Chỉ ghi key timer, không thay theme/favorites/lesson progress. Store đóng/mở an toàn với StrictMode và chặn write sau close.
 

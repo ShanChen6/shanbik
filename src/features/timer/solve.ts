@@ -1,11 +1,16 @@
 import { normalizeAlgorithm, parseAlgorithm } from "../cube/core/notation";
+export const PENALTIES = ["none", "+2", "DNF"] as const;
+export type Penalty = (typeof PENALTIES)[number];
+export const PLUS_TWO_MS = 2000;
 export type Solve = Readonly<{
   id: string;
   puzzle: "3x3";
   durationMs: number;
   scramble: string;
   timestamp: number;
+  penalty: Penalty;
 }>;
+/** Limit of the legacy localStorage format (Task 15.3). */
 export const MAX_SOLVES = 1000;
 export function validateSolve(input: unknown): Solve {
   if (!input || typeof input !== "object" || Array.isArray(input))
@@ -23,7 +28,8 @@ export function validateSolve(input: unknown): Solve {
     v.timestamp < 0 ||
     v.timestamp > 8640000000000000 ||
     typeof v.scramble !== "string" ||
-    v.scramble.length > 2048
+    v.scramble.length > 2048 ||
+    (v.penalty !== undefined && !PENALTIES.includes(v.penalty as Penalty))
   )
     throw Error("Invalid solve");
   const moves = parseAlgorithm(v.scramble);
@@ -34,6 +40,8 @@ export function validateSolve(input: unknown): Solve {
     durationMs: v.durationMs,
     scramble: normalizeAlgorithm(v.scramble),
     timestamp: v.timestamp,
+    // Records written before Task 16 have no penalty and mean a plain result.
+    penalty: (v.penalty as Penalty | undefined) ?? "none",
   });
 }
 export function mergeSolves(
@@ -61,4 +69,19 @@ export function formatDuration(ms: number): string {
   return seconds < 60
     ? `${seconds}.${centis}`
     : `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}.${centis}`;
+}
+/** Official-style result: +2 adds two seconds, DNF has no time. */
+export function resultMs(solve: Solve): number | null {
+  return solve.penalty === "DNF"
+    ? null
+    : solve.durationMs + (solve.penalty === "+2" ? PLUS_TWO_MS : 0);
+}
+export function formatResult(solve: Solve): string {
+  const ms = resultMs(solve);
+  return ms === null
+    ? "DNF"
+    : `${formatDuration(ms)}${solve.penalty === "+2" ? "+" : ""}`;
+}
+export function withPenalty(solve: Solve, penalty: Penalty): Solve {
+  return validateSolve({ ...solve, penalty });
 }

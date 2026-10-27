@@ -111,3 +111,5 @@ Thư viện công thức `/algorithms`: tìm/lọc, copy, minh họa và danh s�
 Thực hành theo nước, seek, tốc độ, đảo/lặp và ghi chú/hoàn thành local trong minh họa công thức: [Tuần 14](docs/algorithm-practice.md).
 
 Timer 3×3 tại `/timer`: Space/touch, quan sát tùy chọn và lưu lượt giải local — [Tuần 15](docs/timer.md).
+
+Lịch sử solve tại `/timer/history`: IndexedDB có migration, bảng/card, +2/DNF, xóa và hoàn tác — [Tuần 16](docs/solve-history.md).

@@ -1,20 +1,16 @@
 import { describe, expect, it, vi } from "vitest";
 import { createTimer, HOLD_MS, INSPECTION_MS } from "./machine";
-import { createSolveStorage, parseSolves, SOLVES_KEY } from "./storage";
+import { parseSolves } from "./legacy";
 import { formatDuration, MAX_SOLVES, validateSolve } from "./solve";
 const scramble = "R U R' U'";
 const solve = (id = "solve-1", timestamp = 1000) =>
   validateSolve({ id, puzzle: "3x3", durationMs: 1234, scramble, timestamp });
-function memory() {
-  const data = new Map<string, string>();
-  return {
-    data,
-    getItem: vi.fn((key: string) => data.get(key) ?? null),
-    setItem: vi.fn((key: string, value: string) => {
-      data.set(key, value);
-    }),
-  };
-}
+/** A Task 15 localStorage record, which never carried a penalty. */
+const v1 = (id = "solve-1", timestamp = 1000) => {
+  const record: Record<string, unknown> = { ...solve(id, timestamp) };
+  delete record.penalty;
+  return record;
+};
 function harness() {
   let time = 0,
     wall = 100000,
@@ -83,6 +79,7 @@ describe("timer state machine", () => {
       durationMs: 1234,
       scramble,
       timestamp: 100000,
+      penalty: "none",
     });
   });
   it("short hold and canceled pointer/blur never start a solve", () => {
@@ -252,34 +249,19 @@ describe("timer solve schema and storage", () => {
   ] as unknown[])("rejects malformed solve %#", (input) =>
     expect(() => validateSolve(input)).toThrow(),
   );
-  it("SSR is inert, duplicates do not write twice and reload preserves exact time/scramble/puzzle/timestamp", () => {
-    const storage = memory(),
-      factory = vi.fn(() => storage),
-      s = createSolveStorage(factory);
-    expect(factory).not.toHaveBeenCalled();
-    expect(s.add(solve())).toBe(false);
-    s.open();
-    expect(storage.setItem).not.toHaveBeenCalled();
-    expect(s.add(solve())).toBe(true);
-    expect(s.add(solve())).toBe(false);
-    expect(storage.setItem).toHaveBeenCalledTimes(1);
-    const again = createSolveStorage(() => storage);
-    again.open();
-    expect(again.getSnapshot().solves).toEqual([solve()]);
-    expect(again.add(solve())).toBe(false);
-  });
-  it("duplicate identical serialized records deduplicate; ID conflicts never overwrite", () => {
+  it("legacy v1 storage deduplicates identical records and rejects ID conflicts", () => {
     expect(
-      parseSolves(JSON.stringify({ version: 1, solves: [solve(), solve()] })),
+      parseSolves(JSON.stringify({ version: 1, solves: [v1(), v1()] })),
     ).toEqual([solve()]);
-    const storage = memory(),
-      s = createSolveStorage(() => storage);
-    s.open();
-    s.add(solve());
-    const raw = storage.data.get(SOLVES_KEY);
-    expect(s.add({ ...solve(), durationMs: 2 })).toBe(false);
-    expect(s.getSnapshot().status).toBe("conflict");
-    expect(storage.data.get(SOLVES_KEY)).toBe(raw);
+    expect(() =>
+      parseSolves(
+        JSON.stringify({
+          version: 1,
+          solves: [v1(), { ...v1(), durationMs: 2 }],
+        }),
+      ),
+    ).toThrow();
+    expect(parseSolves(null)).toEqual([]);
   });
   it.each([
     "{",
@@ -287,76 +269,15 @@ describe("timer solve schema and storage", () => {
     "[]",
     "{}",
     '{"version":2,"solves":[]}',
-    JSON.stringify({ version: 1, solves: [{ ...solve(), durationMs: -1 }] }),
+    JSON.stringify({ version: 1, solves: [{ ...v1(), durationMs: -1 }] }),
+    JSON.stringify({
+      version: 1,
+      solves: Array.from({ length: MAX_SOLVES + 1 }, (_, i) =>
+        solve(`id-${i}`),
+      ),
+    }),
     "x".repeat(3000001),
-  ])("ignores invalid storage without mount-time overwrite %#", (raw) => {
-    const storage = memory();
-    storage.data.set(SOLVES_KEY, raw);
-    const s = createSolveStorage(() => storage);
-    s.open();
-    expect(s.getSnapshot().status).toBe("invalid");
-    expect(storage.setItem).not.toHaveBeenCalled();
-    s.add(solve());
-    expect(s.getSnapshot().status).toBe("ready");
-    expect(parseSolves(storage.data.get(SOLVES_KEY)!)).toEqual([solve()]);
-  });
-  it.each(["factory", "read", "write"])(
-    "%s failure retains a new result in memory and can retry without duplicates",
-    (mode) => {
-      const storage = memory();
-      let fail = true;
-      const s = createSolveStorage(() => {
-        if (fail && mode === "factory") throw Error("blocked");
-        return {
-          getItem: (key: string) => {
-            if (fail && mode === "read") throw Error("blocked");
-            return storage.getItem(key);
-          },
-          setItem: (key: string, value: string) => {
-            if (fail && mode === "write") throw Error("quota");
-            storage.setItem(key, value);
-          },
-        };
-      });
-      s.open();
-      s.add(solve());
-      expect(s.getSnapshot().status).toBe("unavailable");
-      expect(s.getSnapshot().solves).toEqual([solve()]);
-      fail = false;
-      expect(s.retry()).toBe(true);
-      s.retry();
-      expect(parseSolves(storage.data.get(SOLVES_KEY)!)).toEqual([solve()]);
-    },
+  ])("rejects invalid legacy storage %#", (raw) =>
+    expect(() => parseSolves(raw)).toThrow(),
   );
-  it("merges a newer disk record before a save, preserves unrelated keys and rejects late closed updates", () => {
-    const storage = memory();
-    storage.data.set("shanbik-theme", "dark");
-    const a = createSolveStorage(() => storage),
-      b = createSolveStorage(() => storage);
-    a.open();
-    b.open();
-    a.add(solve("a", 1));
-    b.add(solve("b", 2));
-    expect(parseSolves(storage.data.get(SOLVES_KEY)!)).toEqual([
-      solve("b", 2),
-      solve("a", 1),
-    ]);
-    a.close();
-    expect(a.add(solve("c", 3))).toBe(false);
-    a.open();
-    expect(a.getSnapshot().solves).toHaveLength(1);
-    a.add(solve("c", 3));
-    expect(parseSolves(storage.data.get(SOLVES_KEY)!)).toHaveLength(3);
-    expect(storage.data.get("shanbik-theme")).toBe("dark");
-  });
-  it("bounded storage refuses a new record without deleting older results", () => {
-    const storage = memory(),
-      all = Array.from({ length: MAX_SOLVES }, (_, i) => solve(`id-${i}`, i));
-    storage.data.set(SOLVES_KEY, JSON.stringify({ version: 1, solves: all }));
-    const s = createSolveStorage(() => storage);
-    s.open();
-    expect(s.add(solve("extra"))).toBe(false);
-    expect(s.getSnapshot().status).toBe("full");
-    expect(parseSolves(storage.data.get(SOLVES_KEY)!)).toHaveLength(MAX_SOLVES);
-  });
 });

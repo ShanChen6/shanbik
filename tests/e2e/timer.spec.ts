@@ -21,11 +21,37 @@ async function ready(page: Page) {
   await page.goto("/timer");
   await expect(pad(page)).toBeEnabled();
 }
+/** Solve rows in IndexedDB; call only after the page opened the database. */
 async function result(page: Page) {
-  return JSON.parse(
-    (await page.evaluate((key) => localStorage.getItem(key), key))!,
+  const solves = await page.evaluate(
+    () =>
+      new Promise<unknown[]>((resolve, reject) => {
+        const req = indexedDB.open("shanbik-timer");
+        req.onerror = () => reject(req.error);
+        req.onsuccess = () => {
+          const db = req.result,
+            get = db.transaction("solves").objectStore("solves").getAll();
+          get.onsuccess = () => {
+            db.close();
+            resolve(get.result);
+          };
+        };
+      }),
   );
+  return { solves: solves as Record<string, unknown>[] };
 }
+/** Blocks IndexedDB until `window.allowTimerSave` is set. */
+const blockDatabase = () => {
+  const open = IDBFactory.prototype.open;
+  IDBFactory.prototype.open = function (
+    this: IDBFactory,
+    ...args: Parameters<typeof open>
+  ) {
+    if (!(window as unknown as { allowTimerSave?: boolean }).allowTimerSave)
+      throw Error("blocked");
+    return open.apply(this, args);
+  } as typeof open;
+};
 test("timer: discovery, focused Space hold/release, duplicate stop protection and reload", async ({
   page,
 }) => {
@@ -66,6 +92,7 @@ test("timer: discovery, focused Space hold/release, duplicate stop protection an
   expect(data.solves[0]).toMatchObject({
     puzzle: "3x3",
     scramble: scramble!.trim(),
+    penalty: "none",
   });
   expect(data.solves[0].durationMs).toBeGreaterThan(0);
   expect(data.solves[0].timestamp).toBeGreaterThan(0);
@@ -156,31 +183,18 @@ test("timer: inspection over 15 seconds is advisory, excluded from solve, and ca
   await expect(phase(page)).toHaveText("Sẵn sàng");
   await expect(count(page)).toContainText("1 lượt");
 });
-test("timer: malformed storage, quota failure, retry and reload preserve a unique result", async ({
+test("timer: malformed legacy storage, blocked database, retry and reload preserve a unique result", async ({
   page,
 }) => {
   await page.addInitScript((key) => {
     localStorage.setItem(key, "{bad");
     localStorage.setItem("qa-timer-unrelated", "keep");
   }, key);
+  await page.addInitScript(blockDatabase);
   await ready(page);
   await expect(
     page.getByLabel("Trạng thái lưu timer", { exact: true }),
-  ).toContainText("không hợp lệ");
-  expect(await page.evaluate((key) => localStorage.getItem(key), key)).toBe(
-    "{bad",
-  );
-  await page.evaluate(() => {
-    const original = Storage.prototype.setItem;
-    Storage.prototype.setItem = function (key, value) {
-      if (
-        key === "shanbik:timer-solves:v1" &&
-        !(window as unknown as { allowTimerSave?: boolean }).allowTimerSave
-      )
-        throw Error("quota");
-      return original.call(this, key, value);
-    };
-  });
+  ).toContainText("Không mở được bộ nhớ");
   await page
     .getByRole("button", { name: "Bắt đầu tính giờ", exact: true })
     .click();
@@ -192,23 +206,38 @@ test("timer: malformed storage, quota failure, retry and reload preserve a uniqu
   await expect(
     page.getByRole("region", { name: "Kết quả vừa dừng", exact: true }),
   ).toBeVisible();
+  await expect(
+    page
+      .getByRole("group", { name: "Penalty lượt gần nhất", exact: true })
+      .getByRole("button", { name: "DNF" }),
+  ).toBeDisabled();
   await page.evaluate(() => {
     (window as unknown as { allowTimerSave: boolean }).allowTimerSave = true;
   });
   await page.getByRole("button", { name: "Thử lưu lại", exact: true }).click();
+  await expect(
+    page.getByLabel("Trạng thái lưu timer", { exact: true }),
+  ).toContainText("IndexedDB");
+  await expect(
+    page.getByRole("button", { name: "Thử lưu lại", exact: true }),
+  ).toBeDisabled();
   expect((await result(page)).solves).toHaveLength(1);
   expect(
-    await page.evaluate(() => localStorage.getItem("qa-timer-unrelated")),
-  ).toBe("keep");
-  // Remove the fixture initializer before reload by using a fresh page in the same context.
+    await page.evaluate(() => [
+      localStorage.getItem("shanbik:timer-solves:v1"),
+      localStorage.getItem("qa-timer-unrelated"),
+    ]),
+  ).toEqual(["{bad", "keep"]);
+  // Remove the fixture initializers before reload by using a fresh page in the same context.
   const reopened = await page.context().newPage();
   await reopened.goto("/timer");
   await expect(count(reopened)).toContainText("1 lượt");
   await reopened.close();
 });
-test("timer: denied storage reads and missing WebGL keep timing usable and responsive", async ({
+test("timer: denied storage and missing WebGL keep timing usable and responsive", async ({
   page,
 }) => {
+  await page.addInitScript(blockDatabase);
   await page.addInitScript(() => {
     const original = Storage.prototype.getItem;
     Storage.prototype.getItem = function (key) {

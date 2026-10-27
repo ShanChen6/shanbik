@@ -1,14 +1,15 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
 import { generatePracticeScramble } from "../cube/scramble/generate";
 import { createTimer, INSPECTION_MS } from "./machine";
-import { createSolveStorage } from "./storage";
-import { formatDuration } from "./solve";
+import { createBrowserSolveHistory } from "./history-store";
+import { PenaltyControl } from "./penalty-control";
+import { formatDuration, formatResult } from "./solve";
+import { historyStatusText } from "./status-text";
 export function TimerPanel() {
-  const [history] = useState(() =>
-    createSolveStorage(() => window.localStorage),
-  );
+  const [history] = useState(createBrowserSolveHistory);
   const saved = useSyncExternalStore(
     history.subscribe,
     history.getSnapshot,
@@ -300,17 +301,7 @@ export function TimerPanel() {
           aria-label="Trạng thái lưu timer"
           className="text-sm text-muted"
         >
-          {saved.status === "loading"
-            ? "Đang đọc các lượt đã lưu…"
-            : saved.status === "ready"
-              ? "Các lượt được lưu trên trình duyệt này, không đồng bộ tài khoản."
-              : saved.status === "invalid"
-                ? "Dữ liệu lưu không hợp lệ đã được bỏ qua. Chưa ghi đè dữ liệu cũ; lượt mới sẽ tạo bản lưu hợp lệ."
-                : saved.status === "full"
-                  ? "Đã đủ 1000 lượt. Lượt mới chưa được thêm; kết quả vừa dừng vẫn hiển thị bên cạnh."
-                  : saved.status === "conflict"
-                    ? "ID lượt giải bị trùng với dữ liệu khác. Giữ nguyên bản đã có."
-                    : "Không thể lưu vào trình duyệt. Kết quả hiện chỉ giữ trong bộ nhớ trang; hãy thử lưu lại trước khi rời trang."}
+          {historyStatusText(saved)}
         </p>
         {saved.solves[0] && (
           <section
@@ -319,8 +310,19 @@ export function TimerPanel() {
           >
             <h3 className="font-semibold">Lượt gần nhất trong bộ nhớ</h3>
             <p className="font-mono text-3xl font-bold">
-              {formatDuration(saved.solves[0].durationMs)}
+              {formatResult(saved.solves[0])}
             </p>
+            {saved.solves[0].penalty !== "none" && (
+              <p className="text-sm text-muted">
+                Đo được {formatDuration(saved.solves[0].durationMs)}
+              </p>
+            )}
+            <PenaltyControl
+              label="Penalty lượt gần nhất"
+              value={saved.solves[0].penalty}
+              disabled={!saved.writable || busy || saved.pending > 0}
+              onChange={(p) => history.setPenalty(saved.solves[0].id, p)}
+            />
             <p className="text-sm text-muted">
               3×3 ·{" "}
               {new Date(saved.solves[0].timestamp).toLocaleString("vi-VN")}
@@ -332,15 +334,19 @@ export function TimerPanel() {
         )}
         <Button
           variant="secondary"
-          disabled={saved.status !== "unavailable" || !saved.solves.length}
+          disabled={saved.status !== "unavailable" || !saved.pending}
           onClick={() => history.retry()}
         >
           Thử lưu lại
         </Button>
+        <Link href="/timer/history" className="ui-button ui-button--secondary">
+          Xem lịch sử solve
+        </Link>
         <p className="text-sm text-muted">
-          Mỗi lượt lưu thời gian, scramble, puzzle và thời điểm dừng. Bấm dừng
-          nhiều lần không ghi trùng. Chưa có danh sách lịch sử đầy đủ, penalty
-          hoặc thống kê ở mốc này.
+          Mỗi lượt lưu thời gian, scramble, puzzle, thời điểm dừng và penalty.
+          Bấm dừng nhiều lần không ghi trùng. Chọn +2/DNF cho lượt vừa giải ở
+          đây, hoặc sửa, xóa và hoàn tác trong lịch sử. Chưa có thống kê ở mốc
+          này.
         </p>
       </aside>
     </div>
