@@ -1,6 +1,14 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import { createSolverController } from "../solver/controller";
+import { SolverPanel } from "../solver/solver-panel";
 import { Button } from "@/components/ui/button";
 import { CENTER_INDEX, CUBE_COLORS, FACE_ORDER } from "../core/constants";
 import { validateCubeFeasibility } from "../core/feasibility";
@@ -24,6 +32,20 @@ const ABBREVIATIONS = {
 } as const;
 export function FaceInputPanel() {
   const id = useId();
+  const [solver] = useState(() =>
+    createSolverController({
+      createWorker: () =>
+        new Worker("/solver-worker/solver.worker.js", {
+          type: "module",
+        }),
+    }),
+  );
+  const solverSnapshot = useSyncExternalStore(
+    solver.subscribe,
+    solver.getSnapshot,
+    solver.getServerSnapshot,
+  );
+  useEffect(() => () => solver.release(), [solver]);
   const [draft, setDraft] = useState(() => createFaceDraft());
   const [color, setColor] = useState<StickerInput>("white");
   const [checked, setChecked] = useState(false);
@@ -40,6 +62,7 @@ export function FaceInputPanel() {
       : [],
   );
   const edit = () => {
+    solver.invalidate();
     setChecked(false);
     setNotice("");
   };
@@ -211,7 +234,7 @@ export function FaceInputPanel() {
               {isCubeSolved(feasibility.state)
                 ? "Khối đã solved."
                 : "Khối chưa solved."}{" "}
-              Chưa gửi giải; mô hình đang phát không thay đổi.
+              Mô hình đang phát không thay đổi.
             </p>
           ) : (
             <div
@@ -292,10 +315,19 @@ export function FaceInputPanel() {
             </ul>
           </div>
         ))}
+      <SolverPanel
+        controller={solver}
+        snapshot={solverSnapshot}
+        onSolve={() => {
+          setChecked(true);
+          solver.solve({ faces: draft });
+        }}
+      />
       <p className="text-sm text-muted">
         Bản nhập giữ trong trang, không tự đổi mô hình hoặc chuỗi đang phát và
         không lưu qua reload. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải.
-        Nút Kiểm tra khối kiểm tra cả tính khả thi; công cụ giải chưa khả dụng.
+        Nút Giải bản nhập kiểm tra lại tính khả thi trước khi chạy Worker. Sửa
+        màu hoặc rời trang sẽ bỏ kết quả cũ.
       </p>
     </section>
   );

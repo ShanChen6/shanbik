@@ -1,5 +1,7 @@
 # Solver 3×3 — spike, benchmark và quyết định Task 9.2
 
+> **Cập nhật Task 9.3:** Người dùng đã chọn **cubing.js** để phù hợp lộ trình đa puzzle/3D. Lựa chọn cubejs bên dưới là kết luận lịch sử của spike, đã được thay thế trong implementation. Xem [Worker solver](../cube-worker-solver.md). Số đo cubejs không đại diện cho cubing.js.
+
 Ngày khảo sát: 2026-10-27. Trạng thái: **chọn snapshot nguồn MIT cubejs 1.3.2 cho adapter thử nghiệm ở 9.3**, chưa thêm solver vào sản phẩm. Không cam kết lời giải tối ưu hoặc thành công cho mọi đầu vào trước khi có timeout/fixture gates.
 
 ## 1. Ứng viên, nguồn và license

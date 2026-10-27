@@ -44,8 +44,8 @@ export default function PracticePage() {
             <li>Tạo scramble và điều khiển phát từng bước.</li>
           </ul>
           <p className="mt-5 text-sm text-muted">
-            Nhập màu giữ riêng với mô hình đang phát. Kiểm tra tính khả thi của
-            khối và công cụ giải sẽ được bổ sung ở các bước tiếp theo.
+            Nhập màu giữ riêng với mô hình đang phát. Bạn có thể kiểm tra và tìm
+            lời giải từ bản nhập. Phát lời giải từng bước đang được phát triển.
           </p>
           <Link href="/learn" className="ui-button ui-button--secondary mt-6">
             Tìm hiểu kiến thức cơ bản
