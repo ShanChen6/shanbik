@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GridBeamHero } from "@/components/home/grid-beam-hero";
 
 const experiences = [
   {
@@ -21,40 +22,9 @@ const experiences = [
 export default function HomePage() {
   return (
     <div className="site-container">
-      <section
-        id="overview"
-        aria-labelledby="intro-title"
-        className="section-space content-width"
-      >
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
-          <span aria-hidden="true" className="size-2 rounded-full bg-current" />
-          MVP 3×3 — bản thử nghiệm
-        </p>
-        <p className="mb-3 text-sm font-semibold tracking-widest text-primary uppercase">
-          Chào mừng đến với ShanBik
-        </p>
-        <h1 id="intro-title" className="text-display text-foreground">
-          Mỗi nước xoay,
-          <br />
-          <span className="text-primary">một bước tiến.</span>
-        </h1>
-        <p className="text-body-lg mt-6 max-w-xl text-muted">
-          Không gian học, mô phỏng và luyện tập Rubik dành cho bạn.
-        </p>
-        <p className="text-body mt-4 max-w-xl text-muted">
-          Tạo scramble, nhập màu và xem lời giải từng bước cho khối 3×3. Dữ liệu
-          giữ trong phiên; bản thử nghiệm chưa có tài khoản hoặc quét camera.
-        </p>
-        <Link
-          href="/practice"
-          className="touch-control mt-8 rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-primary-hover"
-        >
-          Khám phá khu vực luyện tập{" "}
-          <span aria-hidden="true" className="ml-2">
-            →
-          </span>
-        </Link>
-      </section>
+      <div className="pt-6 pb-16 sm:pt-10 sm:pb-24">
+        <GridBeamHero />
+      </div>
       <section
         id="progress"
         aria-labelledby="progress-title"
