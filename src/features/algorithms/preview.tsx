@@ -1,20 +1,9 @@
 "use client";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  applyAlgorithm,
-  createSolvedCubeState,
-  invertAlgorithm,
-} from "../cube/core";
-import { createMoveQueuePlayer } from "../cube/viewer/move-queue";
-import { CubeViewport } from "../cube/viewer/cube-viewport";
-import { StateDiagram } from "../learn/lessons/state-diagram";
+import { PracticePlayer } from "./practice-player";
+import { SPEEDS, createPracticeStorage, maxRepeats } from "./practice";
 import type { Formula } from "./catalog";
-const subscribeMotion = (notify: () => void) => {
-  const q = matchMedia("(prefers-reduced-motion: reduce)");
-  q.addEventListener("change", notify);
-  return () => q.removeEventListener("change", notify);
-};
 export default function FormulaPreview({
   formula,
   onClose,
@@ -22,41 +11,25 @@ export default function FormulaPreview({
   formula: Formula;
   onClose: () => void;
 }) {
+  const [resetVersion, setResetVersion] = useState(0);
   const title = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     title.current?.focus({ preventScroll: true });
     title.current?.scrollIntoView({ block: "start" });
   }, []);
-  const [before] = useState(() =>
-    applyAlgorithm(createSolvedCubeState(), invertAlgorithm(formula.moves)),
+  const [store] = useState(() =>
+    createPracticeStorage(formula, () => window.localStorage),
   );
-  const [player] = useState(() => {
-    const p = createMoveQueuePlayer(before);
-    p.loadSequence(formula.moves, before);
-    return p;
-  });
-  const snapshot = useSyncExternalStore(
-    player.subscribe,
-    player.getSnapshot,
-    player.getServerSnapshot,
+  const saved = useSyncExternalStore(
+    store.subscribe,
+    store.getSnapshot,
+    store.getServerSnapshot,
   );
-  const reduced = useSyncExternalStore(
-    subscribeMotion,
-    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
-    () => true,
-  );
-  const [ready, setReady] = useState(false);
   useEffect(() => {
-    player.setReducedMotion(reduced);
-  }, [player, reduced]);
-  useEffect(
-    () => () => {
-      player.cancel();
-    },
-    [player],
-  );
-  const playback = snapshot.playback!,
-    busy = playback.playing || !!snapshot.active;
+    store.open();
+    return store.close;
+  }, [store]);
+  const settings = saved.settings;
   return (
     <section
       aria-label="Minh họa công thức"
@@ -69,63 +42,129 @@ export default function FormulaPreview({
         Đóng minh họa
       </Button>
       <p className="mt-3 mb-4 text-muted">
-        Giữ tâm trắng ở U, xanh lá ở F. Trạng thái mẫu được tạo bằng chuỗi đảo
-        từ khối đã giải; phát hết công thức sẽ đưa mẫu này về khối đã giải. Đây
-        không phải nhận diện hay lời giải cho khối bất kỳ.
+        Giữ tâm trắng ở U, xanh lá ở F. Một lượt xuôi đưa trạng thái mẫu về khối
+        đã giải; chiều đảo đi từ khối đã giải về mẫu. Các lượt lặp nối tiếp trên
+        khối hiện tại, không tự đặt lại giữa lượt. Đây không phải lời giải cho
+        khối bất kỳ.
       </p>
-      <CubeViewport
-        state={snapshot.state}
-        animation={snapshot.active}
-        onMoveComplete={player.complete}
-        onMoveCancel={player.cancel}
-        onReadyChange={setReady}
-        fallbackText="Không hiển thị được 3D. Xem sơ đồ trạng thái mẫu bên dưới."
-        fallback={
-          <p role="status" className="p-6 text-muted">
-            Không hiển thị được 3D. Bạn vẫn có thể xem sơ đồ mẫu, copy và lưu
-            yêu thích. Tải lại trang để thử lại.
-          </p>
-        }
-        moveControls={
-          <div className="mt-4 space-y-3">
-            <div className="flex flex-wrap gap-2">
-              <Button
-                disabled={!ready || busy}
-                onClick={() => {
-                  player.setReducedMotion(reduced);
-                  if (playback.cursor === formula.moves.length)
-                    player.resetPlayback();
-                  player.play();
-                }}
-              >
-                {playback.cursor === formula.moves.length
-                  ? "Phát lại công thức"
-                  : "Phát công thức"}
-              </Button>
-              <Button
-                variant="secondary"
-                disabled={!playback.playing}
-                onClick={player.pausePlayback}
-              >
-                Tạm dừng
-              </Button>
-              <Button variant="secondary" onClick={player.resetPlayback}>
-                Về trạng thái mẫu
-              </Button>
-            </div>
-            <p role="status" aria-label="Tiến độ minh họa">
-              Đã xoay {playback.cursor}/{formula.moves.length} nước.
-            </p>
-          </div>
-        }
-      />
-      <details className="mt-5">
-        <summary className="cursor-pointer py-3 font-semibold">
-          Xem sơ đồ trạng thái mẫu 2D
-        </summary>
-        <h3 className="my-3 font-semibold">Trạng thái mẫu trước khi phát</h3>
-        <StateDiagram state={before} label="Trạng thái mẫu trước công thức" />
-      </details>
+      <div className="my-4 grid gap-4 sm:grid-cols-3">
+        <label className="space-y-2 font-semibold">
+          Tốc độ
+          <select
+            aria-label="Tốc độ"
+            className="ui-input w-full"
+            disabled={!saved.loaded}
+            value={settings.speed}
+            onChange={(e) => store.update({ speed: Number(e.target.value) })}
+          >
+            {SPEEDS.map((s) => (
+              <option key={s} value={s}>
+                {s}×
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="space-y-2 font-semibold">
+          Chiều xoay
+          <select
+            aria-label="Chiều xoay"
+            className="ui-input w-full"
+            disabled={!saved.loaded}
+            value={settings.direction}
+            onChange={(e) =>
+              store.update({
+                direction: e.target.value as "forward" | "reverse",
+              })
+            }
+          >
+            <option value="forward">Xuôi</option>
+            <option value="reverse">Đảo chuỗi</option>
+          </select>
+        </label>
+        <label className="space-y-2 font-semibold">
+          Số lượt lặp
+          <select
+            aria-label="Số lượt lặp"
+            className="ui-input w-full"
+            disabled={!saved.loaded}
+            value={settings.repeat}
+            onChange={(e) => store.update({ repeat: Number(e.target.value) })}
+          >
+            {Array.from({ length: maxRepeats(formula) }, (_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1} lượt
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p className="mb-4 text-sm text-muted">
+        Đổi chiều hoặc số lượt đưa khối về đầu chuỗi và dừng phát. Đổi tốc độ áp
+        dụng từ nước tiếp theo. Với giảm chuyển động, nước xoay được thực hiện
+        ngay.
+      </p>
+      {saved.loaded ? (
+        <PracticePlayer
+          key={`${settings.direction}:${settings.repeat}:${resetVersion}`}
+          formula={formula}
+          settings={settings}
+        />
+      ) : (
+        <p role="status">Đang đọc dữ liệu luyện tập…</p>
+      )}
+      <div className="mt-6 space-y-4 rounded-xl border border-border p-4">
+        <label className="block space-y-2 font-semibold">
+          Ghi chú của tôi
+          <textarea
+            aria-label="Ghi chú của tôi"
+            className="ui-input block min-h-32 w-full"
+            maxLength={2000}
+            disabled={!saved.loaded}
+            value={settings.note}
+            onChange={(e) => store.update({ note: e.target.value })}
+          />
+        </label>
+        <p className="text-xs text-muted">
+          {settings.note.length}/2000 ký tự. Ghi chú chỉ lưu trên trình duyệt
+          này.
+        </p>
+        <label className="flex min-h-11 items-center gap-3">
+          <input
+            type="checkbox"
+            disabled={!saved.loaded}
+            checked={settings.completed}
+            onChange={(e) => store.update({ completed: e.target.checked })}
+          />
+          Tôi đã luyện xong công thức này
+        </label>
+        <p className="text-sm text-muted">
+          Bạn tự đánh dấu hoàn thành; phát hết chuỗi không tự thay đổi lựa chọn
+          này.
+        </p>
+        <Button
+          variant="secondary"
+          disabled={!saved.loaded}
+          onClick={() => {
+            store.clear();
+            setResetVersion((v) => v + 1);
+          }}
+        >
+          Xóa dữ liệu luyện tập công thức này
+        </Button>
+        <p
+          role="status"
+          aria-label="Trạng thái lưu luyện tập"
+          className="text-sm text-muted"
+        >
+          {saved.status === "loading"
+            ? "Đang đọc dữ liệu…"
+            : saved.status === "unavailable"
+              ? "Không thể lưu trên trình duyệt này. Thay đổi chỉ giữ trong phiên hiện tại."
+              : saved.status === "invalid"
+                ? "Đã bỏ qua dữ liệu luyện tập không hợp lệ hoặc công thức đã thay đổi."
+                : "Ghi chú, hoàn thành và tùy chọn được lưu trên trình duyệt này."}
+        </p>
+      </div>
     </section>
   );
 }

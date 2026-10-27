@@ -12,7 +12,7 @@ const questions = [
   {
     question: "Tìm và lưu công thức ở đâu?",
     answer:
-      "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
+      "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Trong minh họa, dùng Nước tiếp/lùi, thanh Chọn vị trí hoặc nút từng nước để xem khối sau nước đó. Tab và phím mũi tên/Home/End dùng được trên thanh vị trí. Chọn tốc độ, chiều đảo và số lượt lặp; đổi chiều/lượt sẽ về đầu và dừng. Lặp nối tiếp trên khối hiện tại. Ghi chú, tùy chọn và dấu hoàn thành do bạn chọn được lưu riêng từng công thức, không tự đánh dấu khi phát xong. Xóa dữ liệu luyện tập công thức này không xóa yêu thích. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
   },
   {
     question: "Tôi mở bài học U và U′ ở đâu?",

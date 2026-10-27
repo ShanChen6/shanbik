@@ -1,5 +1,7 @@
 # Task 13 — Thư viện công thức
 
+> Cập nhật tuần 14: minh họa đã có move list, seek, tốc độ, đảo/lặp và ghi chú/hoàn thành local. Xem [thực hành thuật toán](./algorithm-practice.md). Phần dưới ghi lại phạm vi task 13.
+
 ## Phạm vi 13.1–13.3
 
 Route `/algorithms` có metadata, liên kết từ navigation desktop/mobile/footer, Học cơ bản và đọc thêm của Bách khoa 3×3.
