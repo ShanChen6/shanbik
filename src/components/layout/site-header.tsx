@@ -1,5 +1,5 @@
 import { BrandLogo } from "./brand-logo";
-import { ThemeSelect } from "./theme-select";
+import { ThemeSwitch } from "./theme-switch";
 import { DesktopNavigation, MobileNavigation } from "./navigation";
 
 export function SiteHeader() {
@@ -9,7 +9,7 @@ export function SiteHeader() {
         <BrandLogo />
         <DesktopNavigation />
         <div className="hidden lg:block">
-          <ThemeSelect />
+          <ThemeSwitch />
         </div>
         <MobileNavigation />
       </div>

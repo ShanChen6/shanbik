@@ -82,7 +82,7 @@ const questions = [
   {
     question: "Làm sao đổi giao diện?",
     answer:
-      "Trên máy tính, dùng mục Giao diện ở đầu trang. Trên màn hình nhỏ, mở Menu rồi chọn Sáng, Tối hoặc Hệ thống. Lựa chọn được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
+      "Trên máy tính, bấm công tắc ngày/đêm cạnh chữ Giao diện ở đầu trang. Trên màn hình nhỏ, mở Menu rồi bấm công tắc. Lần đầu, giao diện theo cài đặt sáng/tối của máy; sau khi bấm, lựa chọn Sáng hoặc Tối được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
   },
   {
     question: "Tôi có thể dùng bàn phím không?",

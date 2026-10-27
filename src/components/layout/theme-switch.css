@@ -1,0 +1,230 @@
+/* Lucian UX/UI Prompt #021 · MIT License (c) 2026 Seokwoooo · https://lucianlabs.dev/uxui-prompt/#021 */
+/* Scoped to .u021: the original 224×94 switch drawn at half scale so it fits the header row. */
+.u021 {
+  --u021-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --u021-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  /* Project focus ring token instead of --ux-accent (light #0a4b58, dark #77e0ce). */
+  --u021-focus: var(--ring);
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 112px;
+  height: 47px;
+  -webkit-tap-highlight-color: transparent;
+}
+.u021 *,
+.u021 *::before,
+.u021 *::after {
+  box-sizing: border-box;
+}
+.u021-sw {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 224px;
+  height: 94px;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  border: 0;
+  padding: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  background: linear-gradient(180deg, #5db7ff, #9ed8ff);
+  box-shadow:
+    inset 0 4px 10px rgba(0, 30, 80, 0.28),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.4),
+    0 18px 34px -18px rgba(40, 110, 200, 0.7);
+  transition: box-shadow 0.8s var(--u021-ease);
+}
+.u021-sw:disabled {
+  cursor: default;
+}
+.u021-sw::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, #141a3a, #232c5c);
+  opacity: 0;
+  transition: opacity 0.8s var(--u021-ease);
+}
+/* Doubled because the button is drawn at half scale. */
+.u021-sw:focus-visible {
+  outline: 4px solid var(--u021-focus);
+  outline-offset: 10px;
+}
+.u021.is-night .u021-sw::before {
+  opacity: 1;
+}
+.u021.is-night .u021-sw {
+  box-shadow:
+    inset 0 4px 10px rgba(0, 0, 0, 0.5),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.08),
+    0 18px 34px -18px rgba(20, 24, 70, 0.9);
+}
+.u021-halo {
+  position: absolute;
+  z-index: 1;
+  left: 47px;
+  top: 47px;
+  width: 0;
+  height: 0;
+  transition: transform 0.9s var(--u021-spring);
+}
+.u021-halo i {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+.u021-halo i:nth-child(1) {
+  width: 130px;
+  height: 130px;
+  margin: -65px;
+}
+.u021-halo i:nth-child(2) {
+  width: 176px;
+  height: 176px;
+  margin: -88px;
+}
+.u021-halo i:nth-child(3) {
+  width: 222px;
+  height: 222px;
+  margin: -111px;
+}
+.u021.is-night .u021-halo {
+  transform: translateX(130px);
+}
+.u021-knob {
+  position: absolute;
+  z-index: 3;
+  left: 8px;
+  top: 8px;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 35% 30%, #fff1a8, #ffd23f 45%, #f8a91e);
+  box-shadow:
+    0 6px 14px -4px rgba(140, 80, 0, 0.5),
+    inset -4px -6px 10px rgba(200, 110, 0, 0.35),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.5);
+  transition: transform 0.9s var(--u021-spring);
+}
+.u021-moon {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f4f6fb, #c9cfdd 60%, #a9b0c2);
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    transform 0.8s var(--u021-ease),
+    opacity 0.4s var(--u021-ease);
+}
+.u021-moon i {
+  position: absolute;
+  border-radius: 50%;
+  background: #a3aabc;
+  box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.18);
+}
+.u021-moon i:nth-child(1) {
+  left: 20px;
+  top: 16px;
+  width: 20px;
+  height: 20px;
+}
+.u021-moon i:nth-child(2) {
+  left: 46px;
+  top: 40px;
+  width: 14px;
+  height: 14px;
+}
+.u021-moon i:nth-child(3) {
+  left: 24px;
+  top: 48px;
+  width: 9px;
+  height: 9px;
+}
+.u021.is-night .u021-knob {
+  transform: translateX(130px) rotate(200deg);
+}
+.u021.is-night .u021-moon {
+  opacity: 1;
+  transform: none;
+}
+.u021-clouds {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  transition:
+    transform 0.8s var(--u021-ease),
+    opacity 0.6s var(--u021-ease);
+}
+.u021-clouds i {
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+}
+.u021-clouds i:nth-child(1) {
+  right: -10px;
+  bottom: -18px;
+  width: 120px;
+  height: 56px;
+  box-shadow:
+    -46px 8px 0 -6px #fff,
+    -80px 18px 0 -10px #fff;
+}
+.u021-clouds i:nth-child(2) {
+  right: 20px;
+  bottom: -30px;
+  width: 96px;
+  height: 52px;
+  background: #e3f1ff;
+  box-shadow: -44px 6px 0 -8px #e3f1ff;
+  z-index: -1;
+}
+.u021.is-night .u021-clouds {
+  transform: translateY(80px);
+  opacity: 0;
+}
+.u021-stars {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition:
+    transform 0.8s var(--u021-ease),
+    opacity 0.6s var(--u021-ease);
+}
+.u021-stars i {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px #fff;
+  animation: u021-tw 2.4s ease-in-out infinite;
+}
+.u021.is-night .u021-stars {
+  opacity: 1;
+  transform: none;
+}
+@keyframes u021-tw {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .u021,
+  .u021 *,
+  .u021 *::before,
+  .u021 *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

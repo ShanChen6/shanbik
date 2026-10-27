@@ -32,7 +32,7 @@ Tham khảo cấu trúc CSS và theme của [Shanverse](https://github.com/ShanC
 | Controls    | --control-min / touch-control                       | Tối thiểu 44px theo font root mặc định                |
 | Chuyển động | --motion-fast                                       | 150ms; reduced-motion tắt transition/animation        |
 
-`next-themes` quản lý class `dark`, mặc định theo hệ thống; người dùng chọn Sáng/Tối/Hệ thống, lưu `shanbik-theme`. Component chọn theme chỉ dùng giá trị sau hydrate. `suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
+`next-themes` quản lý class `dark`, mặc định theo hệ thống; người dùng bấm công tắc ngày/đêm (`theme-switch.tsx`, prompt UX #021, MIT) để chọn Sáng hoặc Tối, lưu `shanbik-theme`; chưa chọn thì theo hệ thống. Công tắc chỉ dùng giá trị sau hydrate; vì provider tắt transition lúc đổi class, công tắc chạy hiệu ứng 0,9 s rồi mới áp theme (giảm chuyển động: áp ngay). Style nằm trong `theme-switch.css` cạnh component, mọi selector có tiền tố `.u021` (cấu hình Turbopack xử lý mọi `*.css` như CSS thường nên không dùng CSS module); vòng focus dùng token `--ring`. `suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
 
 ## Layout
 
