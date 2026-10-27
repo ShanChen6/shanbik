@@ -4,3 +4,6 @@ pnpm-lock.yaml
 coverage
 
 docs/roadmap/
+
+public/solver-worker/
+public/licenses/cubing-LICENSE-*.md

@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Công cụ giải khối đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Phát lời giải bằng player đang được phát triển.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -31,7 +31,7 @@ const questions = [
   {
     question: "Tôi nhập màu khối thật như thế nào?",
     answer:
-      "Ở Nhập màu sáu mặt, giữ tâm trắng U trên và xanh lá F trước. Mỗi lưới nhìn từ ngoài mặt đó, đặt mặt kề ghi ở cạnh trên lên trên rồi đọc trái sang phải, trên xuống dưới; không phản chiếu mặt B. Chọn màu tô rồi nhấn ô, chọn Xóa ô để bỏ màu. Tâm cố định. Kiểm tra khối báo ô thiếu/số màu, rồi kiểm tra bộ màu cubie, hướng cạnh/góc và parity; giữ nguyên nội dung để sửa. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải. Bản nhập không đổi mô hình và không lưu qua reload; đã có kiểm tra khả thi, chưa có công cụ giải.",
+      "Ở Nhập màu sáu mặt, giữ tâm trắng U trên và xanh lá F trước. Mỗi lưới nhìn từ ngoài mặt đó, đặt mặt kề ghi ở cạnh trên lên trên rồi đọc trái sang phải, trên xuống dưới; không phản chiếu mặt B. Chọn màu tô rồi nhấn ô, chọn Xóa ô để bỏ màu. Tâm cố định. Kiểm tra khối báo ô thiếu/số màu, rồi kiểm tra bộ màu cubie, hướng cạnh/góc và parity; giữ nguyên nội dung để sửa. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải. Bản nhập không đổi mô hình và không lưu qua reload; có thể giải bản nhập trong trình duyệt sau khi kiểm tra khả thi. Sửa màu hoặc rời trang sẽ bỏ kết quả cũ.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",
@@ -41,7 +41,7 @@ const questions = [
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
     answer:
-      "Chưa có công cụ giải hoặc quét camera ở phiên bản hiện tại. Công cụ giải dự kiến sẽ nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
+      "Có thể giải khối từ bản nhập màu bằng tay; chưa có quét camera. Công cụ giải dự kiến sẽ nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
   },
   {
     question: "Làm sao đổi giao diện?",

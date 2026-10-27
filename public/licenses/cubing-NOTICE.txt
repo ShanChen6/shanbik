@@ -1,0 +1,17 @@
+ShanBik uses cubing.js 0.66.1, unmodified library sources from the npm package.
+Package license: MPL-2.0 OR GPL-3.0-or-later.
+Copyright: the cubing.js authors and contributors.
+
+Upstream source revision: 8544249ff1e662557df912065a26b5f90f4df574
+Source: https://github.com/cubing/cubing.js/tree/8544249ff1e662557df912065a26b5f90f4df574
+Package: https://registry.npmjs.org/cubing/-/cubing-0.66.1.tgz
+MPL text: /licenses/cubing-LICENSE-MPL.md
+GPL text: /licenses/cubing-LICENSE-GPL.md
+
+The distributed solver worker is built from public ShanBik source:
+https://github.com/ShanChen6/shanbik
+Build: tools/build-solver-worker.mjs; dependency versions: pnpm-lock.yaml.
+Each generated .js file has a corresponding .js.map with sourcesContent.
+The generated manifest is /solver-worker/manifest.json.
+Linked .LEGAL.txt files retain bundled third-party notices (including Apache-2.0 Comlink).
+Third-party components retain their respective licenses; this notice does not relicense unrelated ShanBik code.
