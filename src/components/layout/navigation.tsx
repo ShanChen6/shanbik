@@ -11,7 +11,7 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
-import { ThemeSelect } from "./theme-select";
+import { ThemeSwitch } from "./theme-switch";
 
 function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
   const pathname = usePathname();
@@ -74,7 +74,7 @@ export function MobileNavigation() {
             <NavigationLinks mobile />
           </nav>
           <div className="mt-6 border-t border-border pt-6">
-            <ThemeSelect />
+            <ThemeSwitch />
           </div>
         </DialogContent>
       </Dialog>

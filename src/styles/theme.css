@@ -2,13 +2,14 @@
 
 :root {
   color-scheme: light;
-  --background: var(--color-brand-paper);
+  /* Neutral page/surfaces: brand teal/orange stay on actions and accents only. */
+  --background: #f5f6f8;
   --surface: #ffffff;
-  --surface-subtle: #eaf2ef;
+  --surface-subtle: #eef0f3;
   --foreground: var(--color-brand-ink);
   --muted: #4d6561;
-  --border: #b7cbc5;
-  --control-border: #6e8981;
+  --border: #cfd4db;
+  --control-border: #7a828e;
   --primary: var(--color-brand-teal);
   --primary-foreground: #ffffff;
   --primary-hover: #083b46;
@@ -28,18 +29,18 @@
   /* Chart series, validated for lightness/chroma/CVD on --surface per mode. */
   --chart-1: #2a78d6;
   --chart-2: #eb6834;
-  --chart-grid: #dce7e3;
+  --chart-grid: #e2e5ea;
 }
 
 .dark {
   color-scheme: dark;
-  --background: #101c1b;
-  --surface: #182b28;
-  --surface-subtle: #213a35;
+  --background: #0f1115;
+  --surface: #171a20;
+  --surface-subtle: #20242c;
   --foreground: #edf7f2;
   --muted: #b0c8c0;
-  --border: #55756b;
-  --control-border: #71988b;
+  --border: #474e5a;
+  --control-border: #7c8594;
   --primary: #77e0ce;
   --primary-foreground: #102d27;
   --primary-hover: #a0ecdf;
@@ -53,7 +54,7 @@
   --shadow-panel: 0 12px 40px rgb(0 0 0 / 0.16);
   --chart-1: #3987e5;
   --chart-2: #d95926;
-  --chart-grid: #2c4842;
+  --chart-grid: #2a2f38;
 }
 
 @theme inline {

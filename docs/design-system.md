@@ -17,22 +17,22 @@ Tham khảo cấu trúc CSS và theme của [Shanverse](https://github.com/ShanC
 
 ## Hợp đồng token
 
-| Nhóm        | Token / utility                                     | Quy tắc                                               |
-| ----------- | --------------------------------------------------- | ----------------------------------------------------- |
-| Nền         | background, surface, surface-subtle                 | Dùng cho nền trang/card, không hardcode trong JSX     |
-| Chữ         | foreground, muted                                   | Foreground cho nội dung chính, muted cho mô tả        |
-| Hành động   | primary, primary-foreground, primary-hover          | Luôn dùng cặp foreground tương ứng                    |
-| Điểm nhấn   | accent, accent-soft                                 | Badge; gradient chỉ cho đường trang trí               |
-| Trạng thái  | success, warning, danger, info                      | Không chỉ dùng màu để truyền ý nghĩa                  |
-| Focus       | ring                                                | Outline 3px, offset 4px; không xóa focus để trang trí |
-| Khoảng cách | --spacing: 0.25rem                                  | Dùng scale Tailwind hiện có                           |
-| Breakpoints | sm 40rem, md 48rem, lg 64rem, xl 80rem              | Mobile-first; grid 3 cột từ md                        |
-| Layout      | site-container, content-width, section-space        | Max 72rem, nội dung 44rem, gutter fluid               |
-| Chữ         | text-display, text-heading, text-body, text-body-lg | Font hệ thống hỗ trợ tiếng Việt, không tải font mạng  |
-| Controls    | --control-min / touch-control                       | Tối thiểu 44px theo font root mặc định                |
-| Chuyển động | --motion-fast                                       | 150ms; reduced-motion tắt transition/animation        |
+| Nhóm        | Token / utility                                     | Quy tắc                                                                                        |
+| ----------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Nền         | background, surface, surface-subtle                 | Xám trung tính cả hai theme; không dùng teal/cam thương hiệu làm nền. Không hardcode trong JSX |
+| Chữ         | foreground, muted                                   | Foreground cho nội dung chính, muted cho mô tả                                                 |
+| Hành động   | primary, primary-foreground, primary-hover          | Luôn dùng cặp foreground tương ứng                                                             |
+| Điểm nhấn   | accent, accent-soft                                 | Badge; gradient chỉ cho đường trang trí                                                        |
+| Trạng thái  | success, warning, danger, info                      | Không chỉ dùng màu để truyền ý nghĩa                                                           |
+| Focus       | ring                                                | Outline 3px, offset 4px; không xóa focus để trang trí                                          |
+| Khoảng cách | --spacing: 0.25rem                                  | Dùng scale Tailwind hiện có                                                                    |
+| Breakpoints | sm 40rem, md 48rem, lg 64rem, xl 80rem              | Mobile-first; grid 3 cột từ md                                                                 |
+| Layout      | site-container, content-width, section-space        | Max 72rem, nội dung 44rem, gutter fluid                                                        |
+| Chữ         | text-display, text-heading, text-body, text-body-lg | Font hệ thống hỗ trợ tiếng Việt, không tải font mạng                                           |
+| Controls    | --control-min / touch-control                       | Tối thiểu 44px theo font root mặc định                                                         |
+| Chuyển động | --motion-fast                                       | 150ms; reduced-motion tắt transition/animation                                                 |
 
-`next-themes` quản lý class `dark`, mặc định theo hệ thống; người dùng chọn Sáng/Tối/Hệ thống, lưu `shanbik-theme`. Component chọn theme chỉ dùng giá trị sau hydrate. `suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
+`next-themes` quản lý class `dark`, mặc định theo hệ thống; người dùng bấm công tắc ngày/đêm (`theme-switch.tsx`, prompt UX #021, MIT) để chọn Sáng hoặc Tối, lưu `shanbik-theme`; chưa chọn thì theo hệ thống. Công tắc chỉ dùng giá trị sau hydrate; vì provider tắt transition lúc đổi class, công tắc chạy hiệu ứng 0,9 s rồi mới áp theme (giảm chuyển động: áp ngay). Style nằm trong `theme-switch.css` cạnh component, mọi selector có tiền tố `.u021` (cấu hình Turbopack xử lý mọi `*.css` như CSS thường nên không dùng CSS module); vòng focus dùng token `--ring`. `suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
 
 ## Layout
 
