@@ -2,9 +2,9 @@
 
 ## Cách dùng và phạm vi
 
-Trên /practice, **Tạo scramble mới** tạo chuỗi 25 move rồi hiển thị trong textarea readonly. **Sao chép scramble** dùng clipboard; **Áp dụng scramble** gửi chuỗi vào FIFO Task 7.3. Tạo/copy không tự thay đổi khối. Áp dụng lên trạng thái đã commit hiện tại, khi scene sẵn sàng và queue trống, không paused; không tự reset solved.
+Trên /practice, **Tạo scramble mới** tạo chuỗi 25 move rồi hiển thị trong textarea readonly. **Sao chép scramble** dùng clipboard; **Nạp vào player** chụp snapshot hiện tại để tiến/lùi; **Áp dụng scramble** nạp và phát ngay trên cùng state owner Task 7.3. Tạo/copy không tự thay đổi khối. Áp dụng lên trạng thái đã commit hiện tại, khi scene sẵn sàng và queue trống, không paused; không tự reset solved.
 
-Đây là **random-move để luyện tập**, không cam kết uniform random-state hoặc scramble thi đấu chính thức. Adapter chỉ hỗ trợ 3×3 và notation U/R/F/D/L/B, prime, double. Nhập thuật toán/playback controls đầy đủ tiếp tục ở 8.2/8.3.
+Đây là **random-move để luyện tập**, không cam kết uniform random-state hoặc scramble thi đấu chính thức. Adapter chỉ hỗ trợ 3×3 và notation U/R/F/D/L/B, prime, double. Task 8.2 đã thêm Nạp vào player, play/pause, tiến/lùi và reset về snapshot lúc nạp. Nhập thuật toán tiếp tục ở 8.3.
 
 ## Thử thư viện và lựa chọn
 
@@ -56,4 +56,4 @@ Copy async giữ generation ID: nếu người dùng tạo scramble mới trư�
 
 Kiểm tra browser là emulation/software WebGL, chưa thay thế Safari/Firefox/mobile vật lý hoặc benchmark FPS/heap. Chạy lại bằng các lệnh chuẩn README, rồi thử clipboard granted/denied, generate trong lúc queue chạy, nhấn Apply nhanh và cancel/reset sau khi gửi.
 
-Tiếp theo: **8.2 — Player controls**. Liên quan: [queue](./cube-move-queue.md), [notation](./cube-notation.md), [MVP spec](./product/mvp-spec.md).
+Player hiện dùng chung state owner: [Controls và snapshot](./cube-player.md). Tiếp theo: **8.3 — Input thuật toán**. Liên quan: [queue](./cube-move-queue.md), [notation](./cube-notation.md), [MVP spec](./product/mvp-spec.md).

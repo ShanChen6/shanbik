@@ -9,9 +9,11 @@ import { createScrambleSession } from "./session";
 export function ScramblePanel({
   canApply,
   enqueue,
+  load,
 }: {
   canApply: boolean;
   enqueue: (moves: CubeAlgorithm) => boolean;
+  load?: (moves: CubeAlgorithm) => boolean;
 }) {
   const [session] = useState(() => createScrambleSession());
   const snapshot = useSyncExternalStore(
@@ -68,6 +70,21 @@ export function ScramblePanel({
         <Button variant="secondary" disabled={!snapshot} onClick={copy}>
           Sao chép scramble
         </Button>
+        {load && (
+          <Button
+            variant="secondary"
+            disabled={!snapshot || snapshot.applied || !canApply}
+            onClick={() => {
+              setError("");
+              if (!session.apply(load) && !session.getSnapshot()?.applied)
+                setError(
+                  "Chưa nạp được. Hãy thoát chuỗi đang mở và chờ hàng đợi trống.",
+                );
+            }}
+          >
+            Nạp vào player
+          </Button>
+        )}
         <Button
           disabled={!snapshot || snapshot.applied || !canApply}
           onClick={() => {
@@ -96,8 +113,8 @@ export function ScramblePanel({
           </label>
           <p role="status" className="text-sm text-muted">
             {snapshot.applied
-              ? "Scramble đã gửi vào hàng đợi. Tạo scramble mới để áp dụng lần tiếp theo."
-              : "Chưa áp dụng. Áp dụng lên trạng thái hiện tại khi mô hình sẵn sàng và hàng đợi trống, không tạm dừng."}
+              ? "Chuỗi đã được nạp một lần. Dùng controls của chuỗi đang mở để phát lại; tạo scramble mới để nạp lần nữa."
+              : "Chưa áp dụng. Nạp hoặc áp dụng lên trạng thái hiện tại khi mô hình sẵn sàng, hàng đợi trống và đã thoát chuỗi đang mở."}
           </p>
         </>
       )}
