@@ -45,7 +45,8 @@ export default function PracticePage() {
           </ul>
           <p className="mt-5 text-sm text-muted">
             Nhập màu giữ riêng với mô hình đang phát. Bạn có thể kiểm tra và tìm
-            lời giải từ bản nhập. Phát lời giải từng bước đang được phát triển.
+            lời giải từ bản nhập, rồi nạp vào player để phát, tiến/lùi từng bước
+            và về đầu chuỗi.
           </p>
           <Link href="/learn" className="ui-button ui-button--secondary mt-6">
             Tìm hiểu kiến thức cơ bản

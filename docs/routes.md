@@ -1,11 +1,11 @@
 # Khung trang MVP — Task 3.3
 
-| Route     | Nội dung hiện có                                              | Phần chưa triển khai                            |
-| --------- | ------------------------------------------------------------- | ----------------------------------------------- |
-| /         | Giới thiệu ShanBik, trạng thái dự án, link khám phá           | Không phải dashboard có dữ liệu                 |
-| /practice | Mô hình 3×3, camera, queue và scramble luyện tập              | Chưa nhập thuật toán, solver hoặc timer trên UI |
-| /learn    | Giới thiệu ngắn về khối/ký hiệu và cách học                   | Chưa giáo trình hoặc player bài học             |
-| /help     | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím | Chưa form liên hệ/backend                       |
+| Route     | Nội dung hiện có                                                                | Phần chưa triển khai                |
+| --------- | ------------------------------------------------------------------------------- | ----------------------------------- |
+| /         | Giới thiệu ShanBik, trạng thái dự án, link khám phá                             | Không phải dashboard có dữ liệu     |
+| /practice | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải | Chưa timer hoặc quét màu qua camera |
+| /learn    | Giới thiệu ngắn về khối/ký hiệu và cách học                                     | Chưa giáo trình hoặc player bài học |
+| /help     | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                   | Chưa form liên hệ/backend           |
 
 Page là Server Component và có metadata riêng. Chỉ navigation cần pathname, mobile sheet và theme là client. Dùng Next Link cho chuyển route, không reload bằng window.location. Trang hiện tại được đánh dấu aria-current=page và underline trong header/menu. Bảng route dùng chung ở src/config/navigation.ts.
 

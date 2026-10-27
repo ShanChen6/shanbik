@@ -8,6 +8,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { createSolverController } from "../solver/controller";
+import type { VerifiedSolution } from "../solver/verify-solution";
 import { SolverPanel } from "../solver/solver-panel";
 import { Button } from "@/components/ui/button";
 import { CENTER_INDEX, CUBE_COLORS, FACE_ORDER } from "../core/constants";
@@ -30,16 +31,16 @@ const ABBREVIATIONS = {
   orange: "C",
   blue: "XD",
 } as const;
-export function FaceInputPanel() {
+export function FaceInputPanel({
+  solver,
+  canLoad,
+  onLoad,
+}: {
+  solver: ReturnType<typeof createSolverController>;
+  canLoad: boolean;
+  onLoad: (solution: VerifiedSolution) => boolean;
+}) {
   const id = useId();
-  const [solver] = useState(() =>
-    createSolverController({
-      createWorker: () =>
-        new Worker("/solver-worker/solver.worker.js", {
-          type: "module",
-        }),
-    }),
-  );
   const solverSnapshot = useSyncExternalStore(
     solver.subscribe,
     solver.getSnapshot,
@@ -318,6 +319,15 @@ export function FaceInputPanel() {
       <SolverPanel
         controller={solver}
         snapshot={solverSnapshot}
+        canLoad={canLoad}
+        onLoad={() => {
+          const result = solver.getSnapshot().result;
+          if (result && onLoad(result)) {
+            setNotice(
+              "Đã nạp bản nhập và lời giải vào player. Dùng Phát chuỗi hoặc Bước tiếp ở mô hình phía trên.",
+            );
+          }
+        }}
         onSolve={() => {
           setChecked(true);
           solver.solve({ faces: draft });

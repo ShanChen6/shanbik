@@ -221,9 +221,11 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
       });
       return true;
     },
-    loadSequence(moves: CubeAlgorithm) {
+    loadSequence(moves: CubeAlgorithm, initial: CubeState = snapshot.state) {
       serializeAlgorithm(moves);
       if (moves.length > MAX_QUEUE_MOVES) return false;
+      const baseline =
+        initial === snapshot.state ? initial : createCubeState(initial);
       const copy = Object.freeze(
         moves.map((move) => Object.freeze({ ...move })),
       );
@@ -232,9 +234,10 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
         active: null,
         pending: EMPTY,
         paused: false,
+        state: baseline,
         playback: Object.freeze({
           moves: copy,
-          initial: snapshot.state,
+          initial: baseline,
           cursor: 0,
           playing: false,
           step: 0,

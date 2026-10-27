@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Phát lời giải bằng player đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -41,7 +41,7 @@ const questions = [
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
     answer:
-      "Có thể giải khối từ bản nhập màu bằng tay; chưa có quét camera. Công cụ giải dự kiến sẽ nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
+      "Có thể giải khối từ bản nhập màu bằng tay; chưa có quét camera. Công cụ giải nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
   },
   {
     question: "Làm sao đổi giao diện?",
