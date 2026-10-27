@@ -88,13 +88,17 @@ export default async function LessonPage({ params }: Props) {
             : "đối chiếu đủ sáu mặt với sơ đồ trước ở bước đầu."}
         </p>
         <p className="text-sm text-muted">
-          Bạn đang đọc hướng dẫn và sơ đồ màu 2D. Tính năng phát 3D trong bài và
-          lưu tiến độ sẽ được bổ sung ở bước tiếp theo; vị trí đang xem có thể
-          chia sẻ bằng URL.
+          Bạn có thể phát minh họa 3D của từng bước và đối chiếu sơ đồ màu 2D.
+          Vị trí đang đọc tự lưu trên trình duyệt này; bước hợp lệ trong URL
+          được ưu tiên khi mở liên kết. Việc xem một bước không tự đánh dấu hoàn
+          thành kỹ năng.
         </p>
       </section>
       <Suspense fallback={<p role="status">Đang mở bước học…</p>}>
-        <LessonReader lesson={lesson} />
+        <LessonReader
+          key={`${lesson.id}:${lesson.contentVersion}`}
+          lesson={lesson}
+        />
       </Suspense>
     </div>
   );

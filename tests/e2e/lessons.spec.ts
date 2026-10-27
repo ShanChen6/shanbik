@@ -16,9 +16,7 @@ test("lesson: discover, read observe/U/prime, go back and revisit the start", as
   page,
 }) => {
   await page.goto("/learn");
-  await page
-    .getByRole("link", { name: "Bắt đầu bài U và U′", exact: true })
-    .click();
+  await page.getByRole("link", { name: "Mở bài U và U′", exact: true }).click();
   await expect(page).toHaveTitle("Làm quen với U và U′ — Học Rubik ShanBik");
   await expect(
     page.getByRole("button", { name: "Bước trước", exact: true }),

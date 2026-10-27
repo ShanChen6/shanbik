@@ -1,5 +1,7 @@
 # 12.1 — Schema lesson
 
+> Cập nhật 12.3: đã có viewer minh họa và lưu bước đọc local. Xem [viewer và tiến độ](./lesson-viewer-progress.md).
+
 > Cập nhật 12.2: sample đã chuyển published và có [giao diện đọc từng bước](./lesson-ui.md). Phần phạm vi dưới đây ghi lại mốc schema 12.1.
 
 ## Phạm vi

@@ -28,7 +28,7 @@ const Scene = dynamic(
 );
 
 class SceneBoundary extends Component<
-  { children: React.ReactNode; onFailure: () => void },
+  { children: React.ReactNode; onFailure: () => void; fallback: ReactNode },
   { failed: boolean }
 > {
   state = { failed: false };
@@ -39,7 +39,7 @@ class SceneBoundary extends Component<
     this.props.onFailure();
   }
   render() {
-    return this.state.failed ? <ViewerFallback /> : this.props.children;
+    return this.state.failed ? this.props.fallback : this.props.children;
   }
 }
 
@@ -61,6 +61,8 @@ export function CubeViewport({
   onMoveCancel,
   onReadyChange,
   moveControls,
+  fallback,
+  fallbackText,
 }: {
   state?: CubeState;
   animation?: MoveAnimation | null;
@@ -68,6 +70,8 @@ export function CubeViewport({
   onMoveCancel?: (id?: number) => void;
   onReadyChange?: (ready: boolean) => void;
   moveControls?: ReactNode;
+  fallback?: ReactNode;
+  fallbackText?: string;
 }) {
   const captionId = useId();
   const [gestures, setGestures] = useState(false);
@@ -114,11 +118,15 @@ export function CubeViewport({
         {capability === "loading" ? (
           <LoadingState label="Đang chuẩn bị mô hình 3D…" />
         ) : capability === "unavailable" ? (
-          <ViewerFallback />
+          (fallback ?? <ViewerFallback />)
         ) : (
-          <SceneBoundary onFailure={handleContextLost}>
+          <SceneBoundary
+            onFailure={handleContextLost}
+            fallback={fallback ?? <ViewerFallback />}
+          >
             <Scene
               state={state}
+              fallbackText={fallbackText}
               animation={animation}
               onMoveComplete={onMoveComplete}
               gestures={gestures}

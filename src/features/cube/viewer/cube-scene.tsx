@@ -217,8 +217,10 @@ export function CubeScene({
   onCameraReady,
   animation,
   onMoveComplete,
+  fallbackText = "Mô hình 3D không khả dụng. Nhập màu và tìm lời giải ở phần bên dưới.",
 }: {
   state: CubeState;
+  fallbackText?: string;
   onContextLost: () => void;
   gestures: boolean;
   onCameraReady: (controller: CameraCommands | null) => void;
@@ -231,11 +233,7 @@ export function CubeScene({
       dpr={VIEWER_DPR}
       frameloop="demand"
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
-      fallback={
-        <span>
-          Mô hình 3D không khả dụng. Nhập màu và tìm lời giải ở phần bên dưới.
-        </span>
-      }
+      fallback={<span>{fallbackText}</span>}
       onCreated={({ camera, gl }) => {
         camera.lookAt(0, 0, 0);
         gl.domElement.setAttribute("role", "img");

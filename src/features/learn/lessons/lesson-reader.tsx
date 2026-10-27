@@ -1,15 +1,33 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import type { Lesson } from "./schema";
 import { lessonStep, stepHref } from "./navigation";
+import { createLessonProgress } from "./progress";
+import { LessonStepViewer } from "./step-viewer";
 import { StateDiagram } from "./state-diagram";
 export function LessonReader({ lesson }: { lesson: Lesson }) {
   const params = useSearchParams(),
     router = useRouter();
-  const { index, invalid } = lessonStep(lesson, params.get("step"));
+  const [progress] = useState(() =>
+    createLessonProgress(lesson, () => window.localStorage),
+  );
+  const saved = useSyncExternalStore(
+    progress.subscribe,
+    progress.getSnapshot,
+    progress.getServerSnapshot,
+  );
+  useEffect(() => {
+    progress.open();
+    return progress.close;
+  }, [progress]);
+  const requested = params.get("step");
+  const { index, invalid } = lessonStep(
+    lesson,
+    requested === null ? saved.stepId : requested,
+  );
   const step = lesson.steps[index];
   const previous = useRef<string | null>(null),
     heading = useRef<HTMLHeadingElement>(null);
@@ -23,6 +41,9 @@ export function LessonReader({ lesson }: { lesson: Lesson }) {
       }
     }
   }, [step.id]);
+  useEffect(() => {
+    if (saved.loaded && !invalid) progress.select(step.id);
+  }, [progress, saved.loaded, invalid, step.id]);
   return (
     <section aria-label="Bài học từng bước" className="space-y-6">
       <div className="grid items-start gap-6 lg:grid-cols-[16rem_minmax(0,1fr)]">
@@ -55,6 +76,32 @@ export function LessonReader({ lesson }: { lesson: Lesson }) {
               ))}
             </select>
           </label>
+          <p
+            role="status"
+            aria-label="Vị trí học đã lưu"
+            className="text-xs text-muted"
+          >
+            {!saved.loaded
+              ? "Đang đọc vị trí đã lưu…"
+              : saved.status === "unavailable"
+                ? "Không truy cập được bộ nhớ local. Vị trí hiện tại chỉ giữ trong phiên này."
+                : saved.status === "saved"
+                  ? "Đã lưu vị trí đang đọc trên trình duyệt này."
+                  : saved.status === "cleared"
+                    ? "Đã xóa vị trí lưu của bài này."
+                    : "Vị trí sẽ tự lưu khi bạn đổi bước."}
+            {saved.invalid ? " Đã bỏ qua dữ liệu lưu không hợp lệ." : ""}
+          </p>
+          <Button
+            variant="secondary"
+            disabled={!saved.loaded}
+            onClick={() => {
+              progress.clear();
+              router.replace(stepHref(lesson, 0), { scroll: false });
+            }}
+          >
+            Xóa vị trí đã lưu
+          </Button>
           <ol className="hidden space-y-2 lg:block">
             {lesson.steps.map((item, i) => (
               <li key={item.id}>
@@ -128,6 +175,14 @@ export function LessonReader({ lesson }: { lesson: Lesson }) {
               </p>
             )}
           </div>
+          {saved.loaded ? (
+            <LessonStepViewer
+              key={`${lesson.id}:${lesson.contentVersion}:${step.id}`}
+              step={step}
+            />
+          ) : (
+            <p role="status">Đang chuẩn bị minh họa theo vị trí học…</p>
+          )}
           <div>
             <h3 className="mb-3 font-semibold">Trạng thái đã kiểm chứng</h3>
             <p className="mb-3 text-sm text-muted">

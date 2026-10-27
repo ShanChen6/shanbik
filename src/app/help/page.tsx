@@ -12,7 +12,7 @@ const questions = [
   {
     question: "Tôi mở bài học U và U′ ở đâu?",
     answer:
-      "Vào Học cơ bản rồi chọn Bắt đầu bài U và U′. Bài gồm ba bước quan sát, U và U′, có hướng dẫn và sơ đồ màu trước/sau. Dùng Bước trước, Bước tiếp hoặc Chọn bước học; URL giữ bước đang xem để mở lại hoặc chia sẻ. Bản này chưa phát 3D trong bài hoặc lưu tiến độ hoàn thành. Bài đọc dùng được khi không có WebGL.",
+      "Vào Học cơ bản rồi chọn Mở bài U và U′. Bài gồm ba bước quan sát, U và U′, có hướng dẫn và sơ đồ màu trước/sau. Dùng Bước trước, Bước tiếp hoặc Chọn bước học; URL giữ bước đang xem để mở lại hoặc chia sẻ. Dùng Phát minh họa để xem 3D, Nước tiếp/lùi để xem từng nước và Về trước bước để khôi phục đầu bước. Trang tự lưu bước đang đọc trên thiết bị này; mở lại bài để tiếp tục, hoặc Xóa vị trí đã lưu để bắt đầu lại. URL có bước hợp lệ được ưu tiên. Không tự đánh dấu hoàn thành; hướng dẫn và sơ đồ 2D vẫn dùng được khi không có WebGL hoặc bộ nhớ bị chặn.",
   },
   {
     question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
