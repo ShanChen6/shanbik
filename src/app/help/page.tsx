@@ -1,3 +1,4 @@
+import { QuickStart } from "@/features/cube/practice/quick-start";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
@@ -67,6 +68,7 @@ export default function HelpPage() {
         title="Một chút hướng dẫn, trước khi bắt đầu."
         description="Tìm hiểu những gì đang có và cách khám phá ShanBik thoải mái hơn."
       />
+      <QuickStart />
       <section aria-labelledby="faq-title" className="content-width">
         <h2 id="faq-title" className="text-heading mb-6">
           Câu hỏi thường gặp
