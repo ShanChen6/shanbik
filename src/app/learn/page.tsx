@@ -67,6 +67,9 @@ export default function LearnPage() {
           <Link href="/practice" className="ui-button ui-button--primary">
             Khám phá khu vực luyện tập
           </Link>
+          <Link href="/puzzles" className="ui-button ui-button--secondary">
+            Khám phá các loại puzzle
+          </Link>
           <Link href="/help" className="ui-button ui-button--secondary">
             Cần trợ giúp?
           </Link>

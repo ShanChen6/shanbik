@@ -10,6 +10,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
+    answer:
+      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. Hiện chỉ 3×3 có công cụ luyện tập, solver và nhập ảnh trên ShanBik; các loại khác đang là nội dung tham khảo. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
+  },
+  {
     question: "Có thể nhập Rubik bằng ảnh không?",
     answer:
       "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Chưa hỗ trợ live camera, tự tìm khối trong ảnh hoặc nhận puzzle khác.",
