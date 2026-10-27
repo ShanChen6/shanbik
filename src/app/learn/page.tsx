@@ -102,6 +102,9 @@ export default function LearnPage() {
           <Link href="/puzzles" className="ui-button ui-button--secondary">
             Khám phá các loại puzzle
           </Link>
+          <Link href="/algorithms" className="ui-button ui-button--secondary">
+            Thư viện công thức
+          </Link>
           <Link href="/help" className="ui-button ui-button--secondary">
             Cần trợ giúp?
           </Link>

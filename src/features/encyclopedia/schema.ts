@@ -74,6 +74,7 @@ function resources(value: unknown, path: string, externalOnly = false) {
     } else if (
       ![
         "/learn",
+        "/algorithms",
         "/help#quick-start",
         ...PUBLISHED_LESSON_LINKS.map((lesson) => lesson.href),
       ].includes(href)
