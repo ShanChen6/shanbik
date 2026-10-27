@@ -11,7 +11,7 @@ Page là Server Component và có metadata riêng. Chỉ navigation cần pathna
 
 Header desktop từ 64rem có navigation và chọn theme. Mobile có Menu mở sheet Radix từ Task 3.2; link đóng sheet, Escape/focus trap theo primitive, resize sang desktop đóng menu. Footer dùng cùng danh sách route; Về đầu trang trỏ #main-content trên trang đang mở, không đưa người dùng về Home ngoài ý muốn.
 
-Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton giả hoặc request dữ liệu. Task 3.3 không thêm dependency/API/logic puzzle; Task 5.1–8.2 nối viewer, camera và từng nước xoay, được ghi riêng trong [cube-viewer.md](./cube-viewer.md). Trang demo /ui-preview vẫn chỉ mở ở development.
+Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton giả hoặc request dữ liệu. Task 3.3 không thêm dependency/API/logic puzzle; Task 5.1–8.3 nối viewer, camera và từng nước xoay, được ghi riêng trong [cube-viewer.md](./cube-viewer.md). Trang demo /ui-preview vẫn chỉ mở ở development.
 
 ## Kiểm tra nghiệm thu
 
@@ -24,3 +24,5 @@ Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton g
 - Format/lint/typecheck/build và CI; Vitest Node kiểm tra core từ Task 4.1; không thay thế kiểm tra chuyển route trên browser.
 
 Bước tiếp theo: Task 4.1 — mô hình trạng thái 3×3 độc lập với renderer.
+
+/practice hỗ trợ [input thuật toán và lịch sử trong phiên](./cube-algorithm-input.md).

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { FACE_ORDER } from "../core/constants";
 import { serializeAlgorithm, type CubeAlgorithm } from "../core/notation";
 import { isCubeSolved } from "../core/state";
+import { AlgorithmPanel } from "../algorithm-input/algorithm-panel";
 import { ScramblePanel } from "../scramble/scramble-panel";
 import { PlaybackControls } from "./playback-controls";
 import { CubeViewport } from "./cube-viewport";
@@ -75,6 +76,16 @@ export function PracticeCube() {
         snapshot={snapshot}
         ready={ready}
         reducedMotion={reducedMotion}
+      />
+      <AlgorithmPanel
+        ready={ready}
+        play={(batch) => {
+          if (!ready) return false;
+          player.setReducedMotion(reducedMotion);
+          if (!player.loadSequence(batch)) return false;
+          setQueueError("");
+          return player.play();
+        }}
       />
       <ScramblePanel
         canApply={
