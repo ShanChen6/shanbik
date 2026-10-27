@@ -13,6 +13,8 @@
 | /timer/history        | Lịch sử solve IndexedDB: bảng/card, +2/DNF, xóa, hoàn tác                                       | Chưa export hoặc đồng bộ                          |
 | /timer/stats          | Best/mean/Ao5/Ao12/trung bình phiên, biểu đồ xu hướng, lọc phiên, bảng dữ liệu                  | Phiên theo ngày, chưa phiên đặt tên               |
 | /search               | Tìm puzzle, bài học, công thức; `?q=` giữ từ khóa; điều hướng phím mũi tên                      | Chưa tìm trong nội dung trợ giúp                  |
+| /competitions         | Lịch giải (dữ liệu mẫu): lọc vùng/tháng/nội dung/trạng thái qua URL                             | Chưa có giải thật, chưa quản trị                  |
+| /competitions/[id]    | Chi tiết giải, giờ địa phương/UTC/giờ của bạn, nguồn và ngày cập nhật                           | Chưa nhắc lịch/bookmark (Task 22)                 |
 | /help                 | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                                   | Chưa form liên hệ/backend                         |
 
 Page là Server Component và có metadata riêng. Navigation, theme và các phần tương tác như bộ lọc, viewer, player và lưu local là client. Dùng Next Link cho chuyển route, không reload bằng window.location. Trang hiện tại được đánh dấu aria-current=page và underline trong header/menu. Bảng route dùng chung ở src/config/navigation.ts.

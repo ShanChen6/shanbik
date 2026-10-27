@@ -20,6 +20,11 @@ const questions = [
       "Mở Bách khoa, chọn puzzle rồi chọn Thực hành. Tạo scramble để luyện với khối thật; lần đầu có thể mất vài giây vì bộ sinh chạy trong Worker. Với 2×2 và 4×4, áp dụng scramble lên mô hình 3D và sơ đồ sáu mặt, hoặc xoay từng nước bằng nút; 4×4 có tùy chọn nước rộng (w). Pyraminx dùng sơ đồ phẳng bốn mặt với nút U/L/R/B và đỉnh nhỏ u/l/r/b; cầm mặt xanh lá hướng về bạn, mặt vàng ở đáy. Megaminx hiện chỉ có scramble bảy dòng theo WCA. Các puzzle này chưa có tìm lời giải, nhập trạng thái hay timer; scramble dùng để luyện tập, chưa kiểm định là scramble thi đấu chính thức.",
   },
   {
+    question: "Xem lịch giải đấu ở đâu?",
+    answer:
+      "Mở Giải đấu trong menu. Lọc theo vùng, tháng, nội dung thi hoặc trạng thái; bộ lọc nằm trên URL để chia sẻ. Ngày giờ ghi theo giờ địa phương nơi tổ chức kèm múi giờ; trang chi tiết có thêm cột UTC và giờ theo múi giờ máy bạn. Hiện danh sách chỉ là dữ liệu mẫu để thử giao diện, chưa phải giải thật; khi có giải thật, mỗi giải ghi nguồn và ngày cập nhật. Luôn kiểm tra trang của ban tổ chức trước khi đăng ký.",
+  },
+  {
     question: "Tìm và lưu công thức ở đâu?",
     answer:
       "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Trong minh họa, dùng Nước tiếp/lùi, thanh Chọn vị trí hoặc nút từng nước để xem khối sau nước đó. Tab và phím mũi tên/Home/End dùng được trên thanh vị trí. Chọn tốc độ, chiều đảo và số lượt lặp; đổi chiều/lượt sẽ về đầu và dừng. Lặp nối tiếp trên khối hiện tại. Ghi chú, tùy chọn và dấu hoàn thành do bạn chọn được lưu riêng từng công thức, không tự đánh dấu khi phát xong. Xóa dữ liệu luyện tập công thức này không xóa yêu thích. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
