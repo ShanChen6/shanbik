@@ -10,6 +10,31 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Dùng timer với khối thật thế nào?",
+    answer:
+      "Mở Timer trong menu hoặc Bấm giờ với khối thật ở trang Luyện tập. Chuẩn bị khối theo scramble 25 nước, chọn quan sát 15 giây nếu muốn. Chạm giữ vùng timer hoặc focus vùng đó, giữ Space 0,3 giây đến khi sẵn sàng rồi thả. Khi đang chạy, nhấn Space/chạm vùng timer để dừng và lưu; có thể dùng các nút Bắt đầu/Dừng nếu không muốn giữ. Space chỉ tác động khi vùng timer có focus. Quan sát quá 15 giây chỉ nhắc, chưa tự áp dụng +2/DNF. Hủy hoặc rời trang trước khi dừng không lưu lượt; đổi tab vẫn tính thời gian đã trôi qua. Kết quả và lượt gần nhất giữ qua reload nếu trình duyệt cho phép lưu. Nếu báo lỗi lưu, giữ trang và chọn Thử lưu lại. Chọn OK/+2/DNF cho lượt vừa giải, hoặc mở Xem lịch sử solve để đổi penalty, xóa và hoàn tác các lượt cũ; +2 cộng 2 giây, DNF là không hoàn thành, thời gian đo gốc vẫn được giữ. Trang Thống kê tính tốt nhất, trung bình, Ao5, Ao12 và trung bình phiên (theo ngày), có biểu đồ xu hướng và bảng dữ liệu; Ao5/Ao12 bỏ một lượt tốt nhất và một kém nhất, hai DNF trở lên là DNF; scramble hiện là random-move luyện tập, không phải scramble thi đấu chính thức.",
+  },
+  {
+    question: "Tìm và lưu công thức ở đâu?",
+    answer:
+      "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Trong minh họa, dùng Nước tiếp/lùi, thanh Chọn vị trí hoặc nút từng nước để xem khối sau nước đó. Tab và phím mũi tên/Home/End dùng được trên thanh vị trí. Chọn tốc độ, chiều đảo và số lượt lặp; đổi chiều/lượt sẽ về đầu và dừng. Lặp nối tiếp trên khối hiện tại. Ghi chú, tùy chọn và dấu hoàn thành do bạn chọn được lưu riêng từng công thức, không tự đánh dấu khi phát xong. Xóa dữ liệu luyện tập công thức này không xóa yêu thích. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
+  },
+  {
+    question: "Tôi mở bài học U và U′ ở đâu?",
+    answer:
+      "Vào Học cơ bản rồi chọn Mở bài U và U′. Bài gồm ba bước quan sát, U và U′, có hướng dẫn và sơ đồ màu trước/sau. Dùng Bước trước, Bước tiếp hoặc Chọn bước học; URL giữ bước đang xem để mở lại hoặc chia sẻ. Dùng Phát minh họa để xem 3D, Nước tiếp/lùi để xem từng nước và Về trước bước để khôi phục đầu bước. Trang tự lưu bước đang đọc trên thiết bị này; mở lại bài để tiếp tục, hoặc Xóa vị trí đã lưu để bắt đầu lại. URL có bước hợp lệ được ưu tiên. Không tự đánh dấu hoàn thành; hướng dẫn và sơ đồ 2D vẫn dùng được khi không có WebGL hoặc bộ nhớ bị chặn.",
+  },
+  {
+    question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
+    answer:
+      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. Hiện chỉ 3×3 có công cụ luyện tập, solver và nhập ảnh trên ShanBik; các loại khác đang là nội dung tham khảo. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
+  },
+  {
+    question: "Có thể nhập Rubik bằng ảnh không?",
+    answer:
+      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Chưa hỗ trợ live camera, tự tìm khối trong ảnh hoặc nhận puzzle khác.",
+  },
+  {
     question: "Làm sao luyện từ scramble đến lời giải?",
     answer:
       "Tạo và áp dụng scramble, chờ phát xong hoặc tạm dừng. Ở phần nhập màu, nhấn Lấy màu từ mô hình để thay bản nhập bằng trạng thái đang dừng, rồi Giải bản nhập. Nạp lời giải vào player và chọn Phát chuỗi hoặc Bước tiếp. Bạn cũng có thể nhập màu khối thật bằng tay. Về đầu chuỗi giữ snapshot lúc nạp; Đặt lại khối chỉ đưa mô hình về solved. Bắt đầu lại buổi tập xóa bản nhập, scramble, thuật toán, lịch sử và lời giải trong phiên, đồng thời reset khối. Khi 3D chưa sẵn sàng, nhập màu và tìm lời giải vẫn sử dụng được.",

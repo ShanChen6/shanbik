@@ -1,4 +1,4 @@
-import { applyMove, invertMove } from "../core/moves";
+import { applyAlgorithm, applyMove, invertMove } from "../core/moves";
 import {
   serializeAlgorithm,
   type CubeAlgorithm,
@@ -293,6 +293,32 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
       )
         return false;
       publish(playbackStep(snapshot, -1));
+      return true;
+    },
+    /** Seek to a committed prefix; cancels partial animation and stays paused. */
+    seekPlayback(cursor: number) {
+      const playback = snapshot.playback;
+      if (
+        !playback ||
+        !Number.isInteger(cursor) ||
+        cursor < 0 ||
+        cursor > playback.moves.length
+      )
+        return false;
+      publish({
+        ...snapshot,
+        state: applyAlgorithm(
+          playback.initial,
+          playback.moves.slice(0, cursor),
+        ),
+        active: null,
+        playback: Object.freeze({
+          ...playback,
+          cursor,
+          playing: false,
+          step: 0,
+        }),
+      });
       return true;
     },
     resetPlayback() {

@@ -30,6 +30,10 @@ Guest-first giảm phụ thuộc dịch vụ nhưng dữ liệu phiên có thể
 
 Task 15–16 quyết định local persistence/schema; Task 23.1–23.2 quyết định backend/auth/quyền trước sync. Nâng phần auth tối thiểu lên trước 22.1 hoặc hoãn admin. Cập nhật ADR khi có quyết định và bằng chứng, không cài SDK trong task tài liệu.
 
+## Cập nhật Tuần 16 (27/10/2026)
+
+Local persistence cho solve đã chốt: IndexedDB native (database `shanbik-timer`, migration theo version, transaction, compare-and-set), không thêm Dexie vì nhu cầu hiện tại chỉ là một store và vài truy vấn. Dữ liệu localStorage Tuần 15 được nhập một lần và giữ nguyên làm dự phòng. localStorage vẫn dùng cho tùy chọn nhỏ (theme, favorites, tiến độ bài học). Backend/sync vẫn để Task 23.x. Chi tiết: [solve-history.md](../solve-history.md).
+
 ## Nguồn trong repository
 
 - [Kiến trúc hiện trạng](../architecture/current-state.md) (snapshot Task 2.1; CI đã bổ sung ở Task 2.2).

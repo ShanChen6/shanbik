@@ -25,6 +25,10 @@
     var(--color-brand-teal)
   );
   --shadow-panel: 0 12px 40px rgb(19 45 43 / 0.06);
+  /* Chart series, validated for lightness/chroma/CVD on --surface per mode. */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-grid: #dce7e3;
 }
 
 .dark {
@@ -47,6 +51,9 @@
   --danger: #fca5a5;
   --info: #93c5fd;
   --shadow-panel: 0 12px 40px rgb(0 0 0 / 0.16);
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-grid: #2c4842;
 }
 
 @theme inline {
@@ -67,4 +74,7 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-info: var(--info);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-grid: var(--chart-grid);
 }

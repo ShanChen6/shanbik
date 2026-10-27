@@ -162,6 +162,16 @@ Mỗi task là một lượt Codex riêng. Chỉ tiếp tục khi task trước 
 
 ---
 
+## Ưu tiên bổ sung trước task 11 — Nhập ảnh 3×3
+
+Theo xác nhận của người dùng: xây nền tảng ảnh dùng chung, kiểm chứng adapter 3×3 trước khi sang task 11.
+
+- IMG.1: Decoder local, giới hạn tệp, geometry/sample points và color classifier không phụ thuộc CubeState.
+- IMG.2: Upload sáu ảnh, crop bốn góc theo phối cảnh, xoay thứ tự, hiệu chuẩn sáu tâm và review/sửa màu.
+- IMG.3: Chuyển rõ ràng sang manual draft, giữ validation khả thi/solver/player hiện có; kiểm stale decode, cleanup và E2E.
+- **Nghiệm thu:** ảnh → review → validation → solver → player; ô chưa rõ được sửa tay, trạng thái bất khả thi bị chặn; không quảng bá hỗ trợ puzzle khác khi chưa có adapter/capability.
+- Xem [thiết kế, hướng dẫn và giới hạn ảnh](../cube-image-input.md). Camera live ở tuần 24 sẽ tái sử dụng nền tảng khi phù hợp; chưa triển khai live camera trong scope này.
+
 # Giai đoạn 2 — Học, bách khoa, công thức và timer (Tuần 11–20)
 
 ## Tuần 11 — Bách khoa puzzle

@@ -28,7 +28,19 @@ for (const theme of ["light", "dark"]) {
       theme,
     );
     const results = [];
-    for (const route of ["/", "/learn", "/help", "/practice"]) {
+    for (const route of [
+      "/",
+      "/learn",
+      "/algorithms",
+      "/timer",
+      "/timer/history",
+      "/timer/stats",
+      "/help",
+      "/practice",
+      "/puzzles",
+      "/puzzles/3x3",
+      "/learn/lessons/lam-quen-u-va-u-prime",
+    ]) {
       const response = await page.goto(route);
       expect(response?.status()).toBe(200);
       await expect(page.locator("html")).toHaveClass(
@@ -38,6 +50,21 @@ for (const theme of ["light", "dark"]) {
         await expect(
           page.getByRole("button", { name: "Lấy màu từ mô hình", exact: true }),
         ).toBeEnabled();
+      if (route === "/puzzles")
+        await expect(
+          page.getByRole("list", { name: "Danh sách puzzle", exact: true }),
+        ).toBeVisible();
+      if (route === "/puzzles/3x3")
+        await expect(
+          page.getByRole("region", {
+            name: "Tính năng trên ShanBik",
+            exact: true,
+          }),
+        ).toBeVisible();
+      if (route.startsWith("/learn/lessons/"))
+        await expect(
+          page.getByRole("region", { name: "Bài học từng bước", exact: true }),
+        ).toBeVisible();
       await expect(page.getByRole("main")).toHaveCount(1);
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       for (const width of [320, 360, 768, 1024, 1440]) {
