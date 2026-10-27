@@ -217,6 +217,19 @@ export function PracticeCube() {
         className="mb-6 space-y-3 rounded-panel border border-border p-4"
       >
         <h3 className="text-lg font-semibold">Buổi luyện tập 3×3</h3>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            const panel = document.getElementById("cube-image-input");
+            if (panel instanceof HTMLDetailsElement) {
+              panel.open = true;
+              panel.querySelector("summary")?.focus();
+              panel.scrollIntoView({ block: "start" });
+            }
+          }}
+        >
+          Nhập Rubik từ ảnh
+        </Button>
         <ol className="list-decimal space-y-1 pl-5 text-sm text-muted">
           <li>Tạo và áp dụng scramble; chờ phát xong hoặc tạm dừng.</li>
           <li>

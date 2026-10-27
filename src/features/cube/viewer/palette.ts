@@ -18,3 +18,12 @@ export const COLOR_LABELS: Readonly<Record<CubeColor, string>> = Object.freeze({
   orange: "Cam",
   blue: "Xanh dương",
 });
+
+export const COLOR_ABBREVIATIONS = Object.freeze({
+  white: "Tr",
+  red: "Đ",
+  green: "XL",
+  yellow: "V",
+  orange: "C",
+  blue: "XD",
+} as const);

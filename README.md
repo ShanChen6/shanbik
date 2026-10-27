@@ -95,3 +95,5 @@ Luồng luyện tập, lấy màu mô hình và reset phiên: [Task 10.1](docs/c
 Hướng dẫn người dùng: `/help#quick-start`. Bộ Playwright production và lệnh chạy/CI: [Task 10.2](docs/testing-e2e.md).
 
 Beta 3×3: [báo cáo và giới hạn kiểm chứng](docs/reports/beta-readiness-2026-10-27.md), [checklist phát hành/rollback](docs/beta-release-checklist.md). Chưa tự phát hành hoặc mở rộng phạm vi trình duyệt.
+
+Nhập ảnh tĩnh 3×3 (ưu tiên trước task 11): [cách dùng, kiến trúc mở rộng và giới hạn](docs/cube-image-input.md). Mở “Nhập từ ảnh — 3×3” ở trang luyện tập.
