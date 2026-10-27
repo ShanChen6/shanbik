@@ -7,6 +7,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import { ImageInputPanel } from "../image-input/image-input-panel";
 import { createSolverController } from "../solver/controller";
 import type { VerifiedSolution } from "../solver/verify-solution";
 import { SolverPanel } from "../solver/solver-panel";
@@ -14,7 +15,11 @@ import { Button } from "@/components/ui/button";
 import { CENTER_INDEX, CUBE_COLORS, FACE_ORDER } from "../core/constants";
 import { validateCubeFeasibility } from "../core/feasibility";
 import { isCubeSolved, createSolvedCubeState } from "../core/state";
-import { COLOR_LABELS, STICKER_COLORS } from "../viewer/palette";
+import {
+  COLOR_LABELS,
+  STICKER_COLORS,
+  COLOR_ABBREVIATIONS as ABBREVIATIONS,
+} from "../viewer/palette";
 import {
   createFaceDraft,
   FACE_GUIDES,
@@ -24,14 +29,6 @@ import {
   type FaceDraft,
 } from "./draft";
 
-const ABBREVIATIONS = {
-  white: "Tr",
-  red: "Đ",
-  green: "XL",
-  yellow: "V",
-  orange: "C",
-  blue: "XD",
-} as const;
 export function FaceInputPanel({
   solver,
   canLoad,
@@ -91,6 +88,15 @@ export function FaceInputPanel({
         màu tô rồi nhấn ô để điền hoặc sửa; chọn “Xóa ô” để bỏ màu. Màu tô dùng
         chung cho sáu mặt. Ô tâm cố định.
       </p>
+      <ImageInputPanel
+        onImport={(imported) => {
+          edit();
+          setDraft(imported);
+          setNotice(
+            "Đã nhận màu từ ảnh. Kiểm tra và sửa các ô trước khi giải; mô hình chưa thay đổi.",
+          );
+        }}
+      />
       <div className="flex flex-wrap gap-2">
         <Button
           disabled={!canCapture}

@@ -10,6 +10,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Có thể nhập Rubik bằng ảnh không?",
+    answer:
+      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Chưa hỗ trợ live camera, tự tìm khối trong ảnh hoặc nhận puzzle khác.",
+  },
+  {
     question: "Làm sao luyện từ scramble đến lời giải?",
     answer:
       "Tạo và áp dụng scramble, chờ phát xong hoặc tạm dừng. Ở phần nhập màu, nhấn Lấy màu từ mô hình để thay bản nhập bằng trạng thái đang dừng, rồi Giải bản nhập. Nạp lời giải vào player và chọn Phát chuỗi hoặc Bước tiếp. Bạn cũng có thể nhập màu khối thật bằng tay. Về đầu chuỗi giữ snapshot lúc nạp; Đặt lại khối chỉ đưa mô hình về solved. Bắt đầu lại buổi tập xóa bản nhập, scramble, thuật toán, lịch sử và lời giải trong phiên, đồng thời reset khối. Khi 3D chưa sẵn sàng, nhập màu và tìm lời giải vẫn sử dụng được.",

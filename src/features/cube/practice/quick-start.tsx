@@ -21,11 +21,12 @@ export function QuickStart() {
           nhấn Tạm dừng phát và chờ nước đang chạy hoàn tất.
         </li>
         <li>
-          <strong>Lấy màu hoặc nhập tay.</strong> Kéo xuống Nhập màu sáu mặt,
-          nhấn Lấy màu từ mô hình. Nút này thay bản nhập hiện tại bằng màu của
-          mô hình đang dừng. Với khối thật, giữ trắng U trên và xanh lá F trước,
-          rồi tô theo hướng ghi ở từng mặt. Tâm cố định; đủ 9 ô mỗi màu vẫn cần
-          kiểm tra tính khả thi.
+          <strong>Lấy màu, nhập ảnh hoặc nhập tay.</strong> Kéo xuống Nhập màu
+          sáu mặt, nhấn Lấy màu từ mô hình. Nút này thay bản nhập hiện tại bằng
+          màu của mô hình đang dừng. Có sáu ảnh? Chọn Nhập Rubik từ ảnh, chỉnh
+          bốn góc mỗi mặt rồi duyệt/sửa màu trước khi chuyển sang bản nhập. Với
+          khối thật, giữ trắng U trên và xanh lá F trước, rồi tô theo hướng ghi
+          ở từng mặt. Tâm cố định; đủ 9 ô mỗi màu vẫn cần kiểm tra tính khả thi.
         </li>
         <li>
           <strong>Giải bản nhập.</strong> Nhấn Giải bản nhập. Lần đầu có bước
