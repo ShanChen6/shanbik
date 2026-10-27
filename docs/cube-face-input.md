@@ -31,6 +31,8 @@ Hướng này được kiểm tra trực tiếp với normal/right/down trong `F
 
 22 test mới: blank centers/48 missing, khóa sáu tâm với mọi màu và eraser, sửa/xóa không mất ô khác, index sai, màu thừa/thiếu và sửa sau lỗi, round-trip scrambled state qua core serialization, tâm sai và edge flip chưa kiểm tra khả thi, hướng mặt khớp core cho cả sáu mặt. Tổng 432 tests.
 
-Chạy `pnpm test`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm format:check`. Browser cần kiểm tra keyboard/touch, dữ liệu giữ khi lỗi, thiếu/thừa màu, mẫu solved/reset, không đổi ảnh khối và fallback không WebGL; viewport 360px không tràn ngang.
+Chạy `pnpm test`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm format:check`. Chromium 141 software WebGL trên GitHub Actions run 40440931115 đã đạt: sáu mặt/54 ô, sáu tâm disabled, fixture thiếu 48 ô, focus ô đầu bằng bàn phím, chọn màu native và Space tô ô, touch tô/sửa/xóa, giữ ô khác khi sửa và khi báo lỗi, thừa đỏ 10/9 + thiếu trắng 8/9, sửa về đủ số lượng, mẫu solved/xóa/reload. Ảnh canvas trước/sau nhập giống từng pixel. Viewport 360×800 không tràn ngang, mọi ô tối thiểu 44×44px; ảnh lưới U đã được xem. Khi WebGL bị chặn, vẫn nhập và kiểm tra màu được, nút phát thuật toán bị disabled. Không có pageerror.
+
+Chưa kiểm tra Safari/Firefox hoặc thiết bị mobile vật lý; software WebGL/emulation không thay thế benchmark FPS/heap.
 
 Tiếp theo: **9.1b — Validation tính khả thi**.
