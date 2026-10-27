@@ -1,5 +1,7 @@
 # 12.2 — Giao diện bài học
 
+> Cập nhật 12.3: đã có viewer minh họa và lưu bước đọc local. Xem [viewer và tiến độ](./lesson-viewer-progress.md).
+
 ## Mở bài mẫu
 
 Trang `/learn` có CTA **Bắt đầu bài U và U′** và danh sách bài đã xuất bản. Bách khoa `/puzzles/3x3` cũng liên kết bài tại mục Bài học liên quan.

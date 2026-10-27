@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **12.3 — Viewer và tiến độ local** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **13.1 — Taxonomy/schema** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -103,3 +103,5 @@ Bách khoa tám puzzle, bộ lọc URL và capability thực tế: [Tuần 11](d
 Schema bài học và sample đã kiểm chứng: [Task 12.1](docs/lesson-schema.md).
 
 Bài mẫu đã có giao diện đọc từng bước: `/learn/lessons/lam-quen-u-va-u-prime` — [Task 12.2](docs/lesson-ui.md).
+
+Viewer minh họa theo bước và lưu vị trí đọc cục bộ: [Task 12.3](docs/lesson-viewer-progress.md).

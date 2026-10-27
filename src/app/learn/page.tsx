@@ -36,7 +36,7 @@ export default function LearnPage() {
             href={`/learn/lessons/${getPublishedLessons()[0].slug}`}
             className="ui-button ui-button--primary"
           >
-            Bắt đầu bài U và U′
+            Mở bài U và U′
           </Link>
         </div>
       )}
@@ -89,7 +89,8 @@ export default function LearnPage() {
               </h3>
               <p className="mt-2 text-sm text-muted">{lesson.summary}</p>
               <p className="mt-2 text-xs text-muted">
-                {lesson.steps.length} bước · Sơ đồ 2D · Chưa lưu tiến độ
+                {lesson.steps.length} bước · Minh họa 3D và sơ đồ 2D · Tự lưu vị
+                trí đọc
               </p>
             </li>
           ))}

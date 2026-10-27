@@ -6,7 +6,7 @@
 | /practice             | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải | Chưa timer hoặc quét màu qua camera               |
 | /puzzles              | Bách khoa tám puzzle, tìm kiếm và bộ lọc URL                                    | Chưa mở thêm công cụ luyện tập ngoài 3×3          |
 | /puzzles/[slug]       | Đặc điểm, ký hiệu, capability, đọc thêm và metadata                             | Chưa có giáo trình giải cho các puzzle            |
-| /learn/lessons/[slug] | Bài đã xuất bản, điều hướng từng bước và sơ đồ màu trước/sau                    | Chưa phát 3D hoặc lưu tiến độ                     |
+| /learn/lessons/[slug] | Bài đã xuất bản, điều hướng từng bước và sơ đồ màu trước/sau                    | Minh họa 3D, lưu bước đọc local theo phiên bản    |
 | /learn                | Giới thiệu ngắn về khối/ký hiệu và cách học                                     | Có bài mẫu U/U′; chưa player hoặc tiến độ bài học |
 | /help                 | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                   | Chưa form liên hệ/backend                         |
 

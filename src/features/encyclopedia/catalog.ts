@@ -35,7 +35,7 @@ const available: Record<CapabilityKey, Capability> = {
   },
   lessons: {
     status: "available",
-    note: "Có bài đọc từng bước U/U′ và sơ đồ màu 2D; chưa phát 3D hoặc lưu tiến độ trong bài.",
+    note: "Có bài U/U′ với minh họa 3D, sơ đồ màu 2D và tự lưu vị trí đọc cục bộ.",
   },
 };
 const unavailable = (name: string) =>

@@ -1,5 +1,7 @@
 # Tuần 11 — Bách khoa puzzle (11.1–11.3)
 
+> Cập nhật 12.3: đã có viewer minh họa và lưu bước đọc local. Xem [viewer và tiến độ](./lesson-viewer-progress.md).
+
 > Cập nhật 12.2: 3×3 đã có một bài đọc từng bước với sơ đồ 2D. Capability lessons và relatedLessons được nối với manifest bài đã xuất bản; các puzzle khác vẫn chưa có bài học. Xem [lesson UI](./lesson-ui.md).
 
 ## Phạm vi
