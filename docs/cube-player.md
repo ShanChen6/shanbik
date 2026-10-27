@@ -50,6 +50,7 @@ playback.test.ts đối chiếu mọi prefix khi tiến/lùi ở cả animation 
 Runtime local ngừng khả dụng giữa tác vụ. Phần UI và test mới được hoàn thiện qua GitHub Actions. Runner đã chạy lint/typecheck, **399 tests** (16 test player mới) và production build thành công.
 
 Browser QA dùng Playwright 1.56.1 / Chromium 141.0.7390.37, software WebGL trên GitHub runner:
+
 - Khởi tạo baseline bằng R từ solved rồi nạp scramble, hình ảnh không đổi và baseline chưa solved.
 - Tiến một bước, lùi về baseline và pause sau một bước đều khớp từng pixel với renderer reference.
 - Phát đủ 25 move khớp reference phát cùng notation tức thời; reduced motion cho cùng endpoint.
