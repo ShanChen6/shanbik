@@ -36,7 +36,9 @@ Budget 60s/10s kế thừa làm giới hạn bảo vệ, không phải cam kết
 
 Unit dùng fake Worker/clock kiểm tra cold/warm, spam, stale IDs/fingerprint, invalid replacement, init/search timeout, cancel, cooldown/retry, constructor/postMessage/messageerror, wrong result, cleanup/StrictMode và snapshot. Runtime/adapter tests kiểm input trực tiếp, kiểu kết quả, lỗi async và mapping các fixture độc lập.
 
-Browser production cần chạy solver thật trên corpus 9.2 + oracle core, rồi kiểm UI invalid/solved không tạo Worker, hủy/retry, edit và route cleanup gồm Worker con, timeout host, mobile không overflow và ảnh cube không đổi. Không dùng mock cho lời giải trong corpus.
+Đã đạt **716 unit tests** và production Chromium 141 (Actions run 40447938038): **75/75** trạng thái độc lập từ oracle core + corpus 9.2 được solver cubing.js thực sự giải và core kiểm chứng. UI invalid/solved không tạo Worker; hủy/retry, edit và route cleanup gồm Worker con, timeout init bằng clock mô phỏng rồi retry enabled đều đạt. Ảnh canvas trước/sau giải giống từng pixel, 360px không tràn ngang; đã xem ảnh panel kết quả. Không có pageerror. Các route/workflow/script QA tạm đã gỡ.
+
+Raw corpus: [cubing-worker-3x3.json](./benchmarks/cubing-worker-3x3.json). Trong lần functional run này, elapsed p50 4,7ms/p95 42,6ms/max 904,3ms; mẫu đầu gồm init 155,5ms. Assets có thể đã cache từ UI test trước đó, CPU phần cứng không ghi lại; đây không phải benchmark cold-start hoặc phép so sánh engine. Không tái dùng số đo memory/cold/warm cubejs cho cubing.js. Browser search timeout/Worker error/stale reply được unit kiểm bằng fake clock/port; browser chạy timeout init và solver corpus thật.
 
 Hỗ trợ nhiều puzzle/3D của cubing.js là hướng mở rộng được chọn. Registry capability render/scramble/solve cho từng puzzle và thay renderer sẽ là phạm vi riêng; solver 9.3 chỉ nhận 3×3 theo representation hiện tại.
 
