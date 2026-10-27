@@ -31,6 +31,7 @@ for (const theme of ["light", "dark"]) {
     for (const route of [
       "/",
       "/learn",
+      "/algorithms",
       "/help",
       "/practice",
       "/puzzles",

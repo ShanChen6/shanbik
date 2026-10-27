@@ -76,6 +76,7 @@ function entry(
       slug === "3x3"
         ? [
             { title: "Kiến thức nhập môn 3×3", href: "/learn" },
+            { title: "Thư viện công thức 3×3", href: "/algorithms" },
             { title: "Bắt đầu nhanh với ShanBik", href: "/help#quick-start" },
           ]
         : [],

@@ -1,16 +1,17 @@
 # Khung trang MVP — Task 3.3
 
-| Route                 | Nội dung hiện có                                                                | Phần chưa triển khai                              |
-| --------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------- |
-| /                     | Giới thiệu ShanBik, trạng thái dự án, link khám phá                             | Không phải dashboard có dữ liệu                   |
-| /practice             | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải | Chưa timer hoặc quét màu qua camera               |
-| /puzzles              | Bách khoa tám puzzle, tìm kiếm và bộ lọc URL                                    | Chưa mở thêm công cụ luyện tập ngoài 3×3          |
-| /puzzles/[slug]       | Đặc điểm, ký hiệu, capability, đọc thêm và metadata                             | Chưa có giáo trình giải cho các puzzle            |
-| /learn/lessons/[slug] | Bài đã xuất bản, điều hướng từng bước và sơ đồ màu trước/sau                    | Minh họa 3D, lưu bước đọc local theo phiên bản    |
-| /learn                | Giới thiệu ngắn về khối/ký hiệu và cách học                                     | Có bài mẫu U/U′; chưa player hoặc tiến độ bài học |
-| /help                 | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                   | Chưa form liên hệ/backend                         |
+| Route                 | Nội dung hiện có                                                                | Phần chưa triển khai                     |
+| --------------------- | ------------------------------------------------------------------------------- | ---------------------------------------- |
+| /                     | Giới thiệu ShanBik, trạng thái dự án, link khám phá                             | Không phải dashboard có dữ liệu          |
+| /practice             | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải | Chưa timer hoặc quét màu qua camera      |
+| /puzzles              | Bách khoa tám puzzle, tìm kiếm và bộ lọc URL                                    | Chưa mở thêm công cụ luyện tập ngoài 3×3 |
+| /puzzles/[slug]       | Đặc điểm, ký hiệu, capability, đọc thêm và metadata                             | Chưa có giáo trình giải cho các puzzle   |
+| /learn/lessons/[slug] | Bài từng bước, sơ đồ 2D, minh họa 3D, lưu bước đọc local                        | Chưa giáo trình đầy đủ                   |
+| /learn                | Giới thiệu ngắn về khối/ký hiệu và cách học                                     | Có bài mẫu U/U′; chưa giáo trình đầy đủ  |
+| /algorithms           | Bộ mẫu công thức 3×3, tìm/lọc/copy, minh họa và yêu thích local                 | Chưa toàn bộ F2L/OLL/PLL, chưa tài khoản |
+| /help                 | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                   | Chưa form liên hệ/backend                |
 
-Page là Server Component và có metadata riêng. Chỉ navigation cần pathname, mobile sheet và theme là client. Dùng Next Link cho chuyển route, không reload bằng window.location. Trang hiện tại được đánh dấu aria-current=page và underline trong header/menu. Bảng route dùng chung ở src/config/navigation.ts.
+Page là Server Component và có metadata riêng. Navigation, theme và các phần tương tác như bộ lọc, viewer, player và lưu local là client. Dùng Next Link cho chuyển route, không reload bằng window.location. Trang hiện tại được đánh dấu aria-current=page và underline trong header/menu. Bảng route dùng chung ở src/config/navigation.ts.
 
 Header desktop từ 64rem có navigation và chọn theme. Mobile có Menu mở sheet Radix từ Task 3.2; link đóng sheet, Escape/focus trap theo primitive, resize sang desktop đóng menu. Footer dùng cùng danh sách route; Về đầu trang trỏ #main-content trên trang đang mở, không đưa người dùng về Home ngoài ý muốn.
 

@@ -10,6 +10,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Tìm và lưu công thức ở đâu?",
+    answer:
+      "Mở Công thức trong menu hoặc Thư viện công thức ở Học cơ bản. Tìm theo tên, biệt danh, nhóm hoặc chuỗi ký hiệu; có thể gõ không dấu. Kết hợp nhóm và độ khó, rồi chọn Copy, Minh họa hoặc Yêu thích. Minh họa không tự chạy: chọn Phát công thức để đưa trạng thái mẫu về khối đã giải. Yêu thích của tôi là danh sách riêng trên trình duyệt hiện tại, được giữ qua tải lại nếu bộ nhớ cho phép. Xóa bộ lọc không xóa yêu thích; Xóa tất cả yêu thích chỉ xóa danh sách này. Khi copy bị chặn, chọn chuỗi ký hiệu để sao chép thủ công. Bộ mẫu chưa bao gồm toàn bộ trường hợp F2L/OLL/PLL.",
+  },
+  {
     question: "Tôi mở bài học U và U′ ở đâu?",
     answer:
       "Vào Học cơ bản rồi chọn Mở bài U và U′. Bài gồm ba bước quan sát, U và U′, có hướng dẫn và sơ đồ màu trước/sau. Dùng Bước trước, Bước tiếp hoặc Chọn bước học; URL giữ bước đang xem để mở lại hoặc chia sẻ. Dùng Phát minh họa để xem 3D, Nước tiếp/lùi để xem từng nước và Về trước bước để khôi phục đầu bước. Trang tự lưu bước đang đọc trên thiết bị này; mở lại bài để tiếp tục, hoặc Xóa vị trí đã lưu để bắt đầu lại. URL có bước hợp lệ được ưu tiên. Không tự đánh dấu hoàn thành; hướng dẫn và sơ đồ 2D vẫn dùng được khi không có WebGL hoặc bộ nhớ bị chặn.",
