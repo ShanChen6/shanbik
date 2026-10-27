@@ -339,14 +339,22 @@ export function TimerPanel() {
         >
           Thử lưu lại
         </Button>
-        <Link href="/timer/history" className="ui-button ui-button--secondary">
-          Xem lịch sử solve
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/timer/history"
+            className="ui-button ui-button--secondary"
+          >
+            Xem lịch sử solve
+          </Link>
+          <Link href="/timer/stats" className="ui-button ui-button--secondary">
+            Thống kê
+          </Link>
+        </div>
         <p className="text-sm text-muted">
           Mỗi lượt lưu thời gian, scramble, puzzle, thời điểm dừng và penalty.
           Bấm dừng nhiều lần không ghi trùng. Chọn +2/DNF cho lượt vừa giải ở
-          đây, hoặc sửa, xóa và hoàn tác trong lịch sử. Chưa có thống kê ở mốc
-          này.
+          đây, hoặc sửa, xóa và hoàn tác trong lịch sử. Thống kê có best, mean,
+          Ao5, Ao12 và biểu đồ xu hướng.
         </p>
       </aside>
     </div>

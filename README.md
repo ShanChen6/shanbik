@@ -113,3 +113,5 @@ Thực hành theo nước, seek, tốc độ, đảo/lặp và ghi chú/hoàn th
 Timer 3×3 tại `/timer`: Space/touch, quan sát tùy chọn và lưu lượt giải local — [Tuần 15](docs/timer.md).
 
 Lịch sử solve tại `/timer/history`: IndexedDB có migration, bảng/card, +2/DNF, xóa và hoàn tác — [Tuần 16](docs/solve-history.md).
+
+Thống kê tại `/timer/stats`: best, mean, Ao5/Ao12, trung bình phiên, biểu đồ và bảng dữ liệu — [Tuần 17](docs/timer-stats.md).

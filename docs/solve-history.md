@@ -60,4 +60,4 @@ Nhóm nút OK/+2/DNF (`aria-pressed`) cho từng lượt, và cho lượt gần 
 
 Trong repo: `timer.test.ts` kiểm tra parser localStorage cũ và record có penalty; `tests/e2e/timer.spec.ts` đọc IndexedDB và chặn IndexedDB để kiểm tra lỗi/retry.
 
-Tiếp theo **Tuần 17 — Thống kê**: best, mean, Ao5/Ao12 theo luật DNF/+2 trên dữ liệu này.
+Tuần 17 dùng dữ liệu này cho thống kê — xem [timer-stats.md](./timer-stats.md).

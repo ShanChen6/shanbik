@@ -9,8 +9,9 @@
 | /learn/lessons/[slug] | Bài từng bước, sơ đồ 2D, minh họa 3D, lưu bước đọc local                            | Chưa giáo trình đầy đủ                   |
 | /learn                | Giới thiệu ngắn về khối/ký hiệu và cách học                                         | Có bài mẫu U/U′; chưa giáo trình đầy đủ  |
 | /algorithms           | Bộ mẫu công thức 3×3, tìm/lọc/copy, thực hành theo nước, ghi chú và yêu thích local | Chưa toàn bộ F2L/OLL/PLL, chưa tài khoản |
-| /timer                | Timer 3×3 Space/touch, quan sát tùy chọn, lưu solve, penalty lượt gần nhất          | Chưa thống kê                            |
-| /timer/history        | Lịch sử solve IndexedDB: bảng/card, +2/DNF, xóa, hoàn tác                           | Chưa thống kê, export hoặc đồng bộ       |
+| /timer                | Timer 3×3 Space/touch, quan sát tùy chọn, lưu solve, penalty lượt gần nhất          | Chỉ 3×3                                  |
+| /timer/history        | Lịch sử solve IndexedDB: bảng/card, +2/DNF, xóa, hoàn tác                           | Chưa export hoặc đồng bộ                 |
+| /timer/stats          | Best/mean/Ao5/Ao12/trung bình phiên, biểu đồ xu hướng, lọc phiên, bảng dữ liệu      | Phiên theo ngày, chưa phiên đặt tên      |
 | /help                 | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím                       | Chưa form liên hệ/backend                |
 
 Page là Server Component và có metadata riêng. Navigation, theme và các phần tương tác như bộ lọc, viewer, player và lưu local là client. Dùng Next Link cho chuyển route, không reload bằng window.location. Trang hiện tại được đánh dấu aria-current=page và underline trong header/menu. Bảng route dùng chung ở src/config/navigation.ts.

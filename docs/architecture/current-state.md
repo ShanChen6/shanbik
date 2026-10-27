@@ -43,7 +43,7 @@ Phiên bản resolved đọc từ phần importer gốc trong [pnpm-lock.yaml](.
 | `src/app/globals.css`                    | Import Tailwind, palette nền light, font hệ thống, box sizing         |
 | `src/components/`                        | Chỉ .gitkeep; chưa có UI primitives                                   |
 | `src/features/cube/`                     | Chỉ .gitkeep; chưa có cube core hoặc renderer                         |
-| `src/features/timer/`                    | Timer (Tuần 15), lịch sử IndexedDB/penalty/undo (Tuần 16)             |
+| `src/features/timer/`                    | Timer (15), lịch sử IndexedDB/penalty/undo (16), thống kê (17)        |
 | `src/features/learn/`                    | Chỉ .gitkeep; chưa có lesson engine                                   |
 | `src/features/encyclopedia/`             | Chỉ .gitkeep; chưa có schema nội dung                                 |
 | `src/features/competitions/`             | Chỉ .gitkeep; chưa có giải đấu                                        |

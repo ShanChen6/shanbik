@@ -49,6 +49,12 @@ export function HistoryList() {
             >
               {saved.undo ? undoText(saved.undo) : "Hoàn tác"}
             </Button>
+            <Link
+              href="/timer/stats"
+              className="ui-button ui-button--secondary"
+            >
+              Thống kê
+            </Link>
             <Link href="/timer" className="ui-button ui-button--primary">
               Về timer
             </Link>
