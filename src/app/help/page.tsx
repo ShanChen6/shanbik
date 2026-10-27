@@ -9,6 +9,11 @@ export const metadata: Metadata = {
 };
 const questions = [
   {
+    question: "Làm sao luyện từ scramble đến lời giải?",
+    answer:
+      "Tạo và áp dụng scramble, chờ phát xong hoặc tạm dừng. Ở phần nhập màu, nhấn Lấy màu từ mô hình để thay bản nhập bằng trạng thái đang dừng, rồi Giải bản nhập. Nạp lời giải vào player và chọn Phát chuỗi hoặc Bước tiếp. Bạn cũng có thể nhập màu khối thật bằng tay. Về đầu chuỗi giữ snapshot lúc nạp; Đặt lại khối chỉ đưa mô hình về solved. Bắt đầu lại buổi tập xóa bản nhập, scramble, thuật toán, lịch sử và lời giải trong phiên, đồng thời reset khối. Khi 3D chưa sẵn sàng, nhập màu và tìm lời giải vẫn sử dụng được.",
+  },
+  {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
       "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved.",

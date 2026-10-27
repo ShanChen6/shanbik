@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { canCaptureModel, captureModel, modelStatus } from "../practice/flow";
 import { createSolverController } from "../solver/controller";
 import { loadSolution } from "../solver/load-solution";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,8 @@ export function PracticeCube() {
     getMotion,
     () => true,
   );
+  const [sessionRevision, setSessionRevision] = useState(0);
+  const [sessionNotice, setSessionNotice] = useState("");
   const [moveIndex, setMoveIndex] = useState(3);
   const [ready, setReady] = useState(false);
   const [queueError, setQueueError] = useState("");
@@ -100,6 +103,7 @@ export function PracticeCube() {
         reducedMotion={reducedMotion}
       />
       <AlgorithmPanel
+        key={`algorithm-${sessionRevision}`}
         ready={ready}
         play={(batch) => {
           if (!ready) return false;
@@ -110,6 +114,7 @@ export function PracticeCube() {
         }}
       />
       <ScramblePanel
+        key={`scramble-${sessionRevision}`}
         canApply={
           ready && !outstanding && !snapshot.paused && !snapshot.playback
         }
@@ -207,6 +212,55 @@ export function PracticeCube() {
   );
   return (
     <>
+      <section
+        aria-label="Luồng luyện tập"
+        className="mb-6 space-y-3 rounded-panel border border-border p-4"
+      >
+        <h3 className="text-lg font-semibold">Buổi luyện tập 3×3</h3>
+        <ol className="list-decimal space-y-1 pl-5 text-sm text-muted">
+          <li>Tạo và áp dụng scramble; chờ phát xong hoặc tạm dừng.</li>
+          <li>
+            Lấy màu từ mô hình ở phần nhập bên dưới, hoặc nhập khối thật bằng
+            tay.
+          </li>
+          <li>Giải bản nhập, nạp lời giải rồi phát hoặc tiến/lùi từng bước.</li>
+          <li>
+            Về đầu chuỗi để xem lại; bắt đầu lại buổi tập để xóa dữ liệu phiên.
+          </li>
+        </ol>
+        <p role="status" aria-label="Trạng thái mô hình" className="text-sm">
+          {modelStatus(snapshot)}
+        </p>
+        {!ready && (
+          <p className="text-sm text-muted">
+            3D chưa sẵn sàng. Nhập màu và tìm lời giải vẫn sử dụng được; lấy màu
+            và nạp vào player cần mô hình sẵn sàng.
+          </p>
+        )}
+        <Button
+          variant="secondary"
+          onClick={() => {
+            solver.release();
+            player.reset();
+            setQueueError("");
+            setSessionRevision((value) => value + 1);
+            setSessionNotice(
+              "Đã bắt đầu buổi tập mới: khối solved, bản nhập trống, đã xóa scramble, thuật toán, lịch sử và lời giải trong phiên.",
+            );
+          }}
+        >
+          Bắt đầu lại buổi tập
+        </Button>
+        <p className="text-sm text-muted">
+          Thao tác này xóa bản nhập màu, scramble, thuật toán, lịch sử và lời
+          giải hiện tại.
+        </p>
+        {sessionNotice && (
+          <p role="status" className="text-sm text-muted">
+            {sessionNotice}
+          </p>
+        )}
+      </section>
       <CubeViewport
         state={snapshot.state}
         animation={snapshot.active}
@@ -216,6 +270,9 @@ export function PracticeCube() {
         moveControls={controls}
       />
       <FaceInputPanel
+        key={`input-${sessionRevision}`}
+        canCapture={canCaptureModel(snapshot, ready)}
+        capture={() => captureModel(player, ready)}
         solver={solver}
         canLoad={ready}
         onLoad={(solution) => {

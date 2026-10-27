@@ -39,6 +39,8 @@ export default function PracticePage() {
             Các công cụ luyện tập
           </h2>
           <ul className="mt-4 list-disc space-y-3 pl-5 text-muted">
+            <li>Lấy màu từ mô hình đang dừng hoặc nhập khối thật bằng tay.</li>
+            <li>Giải bản nhập và phát lời giải từng bước.</li>
             <li>Nhập và phát chuỗi thuật toán của bạn.</li>
             <li>Nhập màu sáu mặt, kiểm tra số lượng màu và tính khả thi.</li>
             <li>Tạo scramble và điều khiển phát từng bước.</li>
