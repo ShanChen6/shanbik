@@ -295,8 +295,7 @@ export function FaceInputPanel() {
       <p className="text-sm text-muted">
         Bản nhập giữ trong trang, không tự đổi mô hình hoặc chuỗi đang phát và
         không lưu qua reload. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải.
-        Nút Kiểm tra khối kiểm tra cả tính khả thi; công cụ giải sẽ được bổ sung
-        ở bước tiếp theo.
+        Nút Kiểm tra khối kiểm tra cả tính khả thi; công cụ giải chưa khả dụng.
       </p>
     </section>
   );

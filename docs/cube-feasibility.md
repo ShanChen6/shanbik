@@ -32,6 +32,10 @@ Nút **Kiểm tra khối** trong Nhập màu sáu mặt chạy kiểm tra vật 
 - [cubejs source](https://github.com/ldez/cubejs/blob/master/src/cube.coffee): đối chiếu quy ước facelet URFDLB. Không import solver hoặc sao chép implementation vào app.
 - Bộ fixture độc lập cubejs 1.3.2 đã có trong core được tái dùng để xác minh trạng thái hợp lệ; bảng tọa độ F được kiểm tra với nguồn Kociemba.
 
-Unit: solved, fixture cubejs, 2.000 prefix move sinh bằng seed cố định, phủ hình học 48 facelet, lật riêng từng cạnh, xoắn từng góc cả hai chiều, phản chiếu từng góc, cubie lặp/thiếu, bộ màu không tồn tại, một hoán vị cạnh/góc lẻ, odd parity khớp hợp lệ, cặp flip/twist cân bằng, cycle chẵn, shape/count/center sai, immutable result và draft integration/correction/serialization. Chạy lệnh chuẩn README; UI browser kiểm tra fixture lỗi/correction, không giữ success cũ, focus, mobile và không WebGL.
+Unit: solved, fixture cubejs, 2.000 prefix move sinh bằng seed cố định, phủ hình học 48 facelet, lật riêng từng cạnh, xoắn từng góc cả hai chiều, phản chiếu từng góc, cubie lặp/thiếu, bộ màu không tồn tại, một hoán vị cạnh/góc lẻ, odd parity khớp hợp lệ, cặp flip/twist cân bằng, cycle chẵn, shape/count/center sai, immutable result và draft integration/correction/serialization. Chạy lệnh chuẩn README; Tổng **542 tests** (110 mới) đã đạt cùng format/lint/typecheck và production build.
 
-Tiếp theo: **9.2 — Solver spike và benchmark**. PR này phụ thuộc Task 9.1a (PR #25); không tự merge PR phụ thuộc.
+Chromium 141 software WebGL trên Actions run 40442105126: fixture thiếu ô trước kiểm tra vật lý, solved, lật cạnh, xoắn góc, phản chiếu góc, lặp cạnh, parity sai; focus vị trí lỗi bằng bàn phím, touch sửa ô, giữ dữ liệu khi lỗi, sửa về hợp lệ, gỡ success cũ sau edit. Đã tô qua UI một scramble từ fixture cubejs và được chấp nhận chưa solved. Ảnh canvas trước/sau nhập giống từng pixel; 360px/1280px không tràn ngang; validation hoạt động khi WebGL bị chặn. Không có pageerror. Ảnh thông báo EDGE_FLIP ở mobile đã được xem.
+
+Chưa kiểm tra Safari/Firefox hoặc mobile vật lý; software WebGL/emulation không phải benchmark FPS/heap.
+
+Tiếp theo: **9.2 — Solver spike và benchmark**. Triển khai dựa trên Task 9.1a (PR #25).
