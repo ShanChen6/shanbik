@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 import { PracticeCube } from "@/features/cube/viewer/practice-cube";
+import { LearningPath } from "@/features/puzzles/learning-path";
 
 export const metadata: Metadata = {
   title: "Luyện tập 3×3 — ShanBik",
@@ -66,6 +67,9 @@ export default function PracticePage() {
           </Link>
         </aside>
       </section>
+      <div className="mt-8">
+        <LearningPath puzzle="3x3" current="practice" />
+      </div>
     </div>
   );
 }

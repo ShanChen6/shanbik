@@ -183,8 +183,9 @@ export function GridBeamHero() {
           Không gian học, mô phỏng và luyện tập Rubik dành cho bạn.
         </p>
         <p className="text-body">
-          Tạo scramble, nhập màu và xem lời giải từng bước cho khối 3×3. Dữ liệu
-          giữ trong phiên; bản thử nghiệm chưa có tài khoản hoặc quét camera.
+          Tạo scramble, nhập màu và xem lời giải từng bước cho khối 3×3. Lịch sử
+          bấm giờ, yêu thích và tiến độ học lưu trên trình duyệt này; chưa có
+          tài khoản hoặc quét camera.
         </p>
         <div className="u226-bt">
           <Link href="/practice">

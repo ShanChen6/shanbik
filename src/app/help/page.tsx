@@ -32,7 +32,7 @@ const questions = [
   {
     question: "Bách khoa có nghĩa tôi đã chơi được mọi loại Rubik chưa?",
     answer:
-      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. Hiện chỉ 3×3 có công cụ luyện tập, solver và nhập ảnh trên ShanBik; các loại khác đang là nội dung tham khảo. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
+      "Bách khoa giới thiệu tám puzzle và cho tìm theo tên, hình dạng, mức độ hoặc số lớp NxN. Mỗi trang chi tiết ghi rõ từng tính năng đã có/chưa có. 3×3 có đủ luyện tập, solver và nhập ảnh. 2×2, 4×4 và Pyraminx có scramble cùng mô hình hoặc sơ đồ để xoay từng nước; Megaminx có scramble. Các loại còn lại là nội dung tham khảo; chưa puzzle nào ngoài 3×3 có solver. Ký hiệu của puzzle khác không mặc nhiên chạy được trong player 3×3. Mức độ là gợi ý học của ShanBik, không phải xếp hạng WCA.",
   },
   {
     question: "Có thể nhập Rubik bằng ảnh không?",
@@ -47,7 +47,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Bạn có thể nhập màu sáu mặt, kiểm tra ô thiếu và số lượng màu. Bạn có thể tìm lời giải từ bản nhập màu; lời giải được kiểm chứng trước khi hiển thị. Nhấn Nạp lời giải vào player để thay mô hình bằng bản nhập lúc gửi và phát lời giải từng bước. Về đầu chuỗi khôi phục bản nhập; Đặt lại khối trở về solved. Ngoài ra có Timer với lịch sử, +2/DNF và thống kê Ao5/Ao12, thư viện công thức, bài học từng bước và trang Tìm kiếm cho puzzle, bài học, công thức.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -72,7 +72,7 @@ const questions = [
   {
     question: "Tôi có cần tạo tài khoản không?",
     answer:
-      "Hiện bạn không cần tài khoản để xem các trang này. Các công cụ luyện tập cơ bản cũng được định hướng sử dụng mà không cần đăng nhập.",
+      "Không cần tài khoản. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng, không đồng bộ sang thiết bị khác; xóa dữ liệu trang web sẽ xóa chúng.",
   },
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
@@ -87,7 +87,7 @@ const questions = [
   {
     question: "Tôi có thể dùng bàn phím không?",
     answer:
-      "Dùng Tab hoặc Shift+Tab để di chuyển giữa các liên kết và nút, Enter để mở liên kết, Escape để đóng menu. Liên kết Bỏ qua điều hướng ở đầu trang giúp đi thẳng đến nội dung.",
+      "Dùng Tab hoặc Shift+Tab để di chuyển giữa các liên kết và nút, Enter để mở liên kết, Escape để đóng menu. Liên kết Bỏ qua điều hướng ở đầu trang giúp đi thẳng đến nội dung. Ở trang Tìm kiếm, nhấn ↓ từ ô tìm để vào kết quả, ↑/↓/Home/End để chuyển và Esc để quay lại ô tìm.",
   },
 ];
 export default function HelpPage() {

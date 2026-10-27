@@ -117,3 +117,5 @@ Lịch sử solve tại `/timer/history`: IndexedDB có migration, bảng/card, 
 Thống kê tại `/timer/stats`: best, mean, Ao5/Ao12, trung bình phiên, biểu đồ và bảng dữ liệu — [Tuần 17](docs/timer-stats.md).
 
 Thực hành 2×2, 4×4, Pyraminx và Megaminx trên trang bách khoa của từng puzzle: registry capability, scramble cubing.js trong Worker, mô hình 3D NxN và sơ đồ phẳng — [Tuần 18](docs/puzzle-capabilities.md), [Tuần 19](docs/decisions/odd-puzzles.md).
+
+Tìm kiếm tại `/search` và lộ trình học → luyện tập trên các trang — [Tuần 20](docs/search-learning-path.md); kiểm tra link: `node tools/audit-site.mjs <url>` sau `pnpm build && pnpm start`.

@@ -9,6 +9,7 @@ import {
   getPublishedLessons,
 } from "@/features/learn/lessons/catalog";
 import { LessonReader } from "@/features/learn/lessons/lesson-reader";
+import { LearningPath } from "@/features/puzzles/learning-path";
 export const ensureStatic = "navigation";
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
@@ -100,6 +101,9 @@ export default async function LessonPage({ params }: Props) {
           lesson={lesson}
         />
       </Suspense>
+      <div className="mt-8">
+        <LearningPath puzzle={lesson.puzzleId} current="lesson" />
+      </div>
     </div>
   );
 }
