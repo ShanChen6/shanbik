@@ -12,6 +12,12 @@ import {
 } from "@/features/encyclopedia/schema";
 import { PuzzleMark } from "@/features/encyclopedia/puzzle-list";
 import { CatalogBackLink } from "@/features/encyclopedia/explorer";
+import {
+  capabilitiesOf,
+  hasWorkbench,
+  isPuzzleId,
+} from "@/features/puzzles/registry";
+import { PuzzleWorkbench } from "@/features/puzzles/workbench";
 // Block serving an unknown fallback shell until static generation can return a real 404.
 export const ensureStatic = "navigation";
 type Props = { params: Promise<{ slug: string }> };
@@ -34,6 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PuzzlePage({ params }: Props) {
   const puzzle = getPuzzle((await params).slug);
   if (!puzzle) notFound();
+  const render = capabilitiesOf(puzzle.slug).render,
+    workbench = isPuzzleId(puzzle.slug) && hasWorkbench(puzzle.slug);
   return (
     <div className="site-container pb-16 sm:pb-24">
       <PageIntro
@@ -51,10 +59,15 @@ export default async function PuzzlePage({ params }: Props) {
         >
           <CatalogBackLink />
         </Suspense>
-        {puzzle.slug === "3x3" && (
-          <Link href="/practice" className="ui-button ui-button--primary">
+        {render?.kind === "cube-3x3" && (
+          <Link href={render.route} className="ui-button ui-button--primary">
             Luyện tập 3×3
           </Link>
+        )}
+        {workbench && (
+          <a href="#workbench-title" className="ui-button ui-button--primary">
+            Thực hành {puzzle.name}
+          </a>
         )}
       </div>
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
@@ -195,6 +208,11 @@ export default async function PuzzlePage({ params }: Props) {
           </p>
         </aside>
       </div>
+      {workbench && isPuzzleId(puzzle.slug) && (
+        <div className="mt-6">
+          <PuzzleWorkbench slug={puzzle.slug} name={puzzle.name} />
+        </div>
+      )}
     </div>
   );
 }

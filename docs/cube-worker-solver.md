@@ -40,6 +40,6 @@ Unit dùng fake Worker/clock kiểm tra cold/warm, spam, stale IDs/fingerprint, 
 
 Raw corpus: [cubing-worker-3x3.json](./benchmarks/cubing-worker-3x3.json). Trong lần functional run này, elapsed p50 4,7ms/p95 42,6ms/max 904,3ms; mẫu đầu gồm init 155,5ms. Assets có thể đã cache từ UI test trước đó, CPU phần cứng không ghi lại; đây không phải benchmark cold-start hoặc phép so sánh engine. Không tái dùng số đo memory/cold/warm cubejs cho cubing.js. Browser search timeout/Worker error/stale reply được unit kiểm bằng fake clock/port; browser chạy timeout init và solver corpus thật.
 
-Hỗ trợ nhiều puzzle/3D của cubing.js là hướng mở rộng được chọn. Registry capability render/scramble/solve cho từng puzzle và thay renderer sẽ là phạm vi riêng; solver 9.3 chỉ nhận 3×3 theo representation hiện tại.
+Hỗ trợ nhiều puzzle/3D của cubing.js là hướng mở rộng được chọn. Registry capability render/scramble/solve cho từng puzzle có ở [Tuần 18](./puzzle-capabilities.md); scramble Worker dùng chung đồ thị chunk này. Solver 9.3 vẫn chỉ nhận 3×3 theo representation hiện tại.
 
 Phần nối tiếp: [9.4 — Solution → player](./cube-solution-player.md).

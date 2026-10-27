@@ -27,7 +27,7 @@ import {
   type CameraCommands,
 } from "./camera-controller";
 
-function stickerShape() {
+export function stickerShape() {
   const shape = new Shape();
   const h = 0.4,
     r = 0.07;
@@ -174,7 +174,7 @@ function CubeModel({
   );
 }
 
-function CameraControls({
+export function CameraControls({
   gestures,
   onReady,
 }: {
@@ -210,7 +210,7 @@ function CameraControls({
   return null;
 }
 
-function ContextLifecycle({ onLost }: { onLost: () => void }) {
+export function ContextLifecycle({ onLost }: { onLost: () => void }) {
   const gl = useThree((store) => store.gl);
   useEffect(() => {
     const canvas = gl.domElement;

@@ -36,23 +36,24 @@ Phiên bản resolved đọc từ phần importer gốc trong [pnpm-lock.yaml](.
 
 ## 3. Cấu trúc và trạng thái implementation
 
-| Đường dẫn                                | Hiện trạng                                                            |
-| ---------------------------------------- | --------------------------------------------------------------------- |
-| `src/app/layout.tsx`                     | Root layout, lang=vi, metadata title/description, import CSS toàn cục |
-| `src/app/page.tsx`                       | Trang chủ tĩnh; semantic main/section/h1 và Tailwind utilities        |
-| `src/app/globals.css`                    | Import Tailwind, palette nền light, font hệ thống, box sizing         |
-| `src/components/`                        | Chỉ .gitkeep; chưa có UI primitives                                   |
-| `src/features/cube/`                     | Chỉ .gitkeep; chưa có cube core hoặc renderer                         |
-| `src/features/timer/`                    | Timer (15), lịch sử IndexedDB/penalty/undo (16), thống kê (17)        |
-| `src/features/learn/`                    | Chỉ .gitkeep; chưa có lesson engine                                   |
-| `src/features/encyclopedia/`             | Chỉ .gitkeep; chưa có schema nội dung                                 |
-| `src/features/competitions/`             | Chỉ .gitkeep; chưa có giải đấu                                        |
-| `src/features/account/`                  | Chỉ .gitkeep; chưa có auth/sync                                       |
-| `src/lib/`, `src/styles/`                | Chỉ .gitkeep; chưa có helper/style chung tại đây                      |
-| `docs/architecture.md`                   | Nguyên tắc kiến trúc ban đầu và các quyết định còn mở                 |
-| `docs/product/mvp-spec.md`               | Phạm vi MVP, personas, stories, flows và mục tiêu đo                  |
-| `docs/product/implementation-backlog.md` | Task/dependency/acceptance, validation trước solver                   |
-| `docs/roadmap/`                          | Roadmap và prompt, không phải bằng chứng feature đã được code         |
+| Đường dẫn                                | Hiện trạng                                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------------ |
+| `src/app/layout.tsx`                     | Root layout, lang=vi, metadata title/description, import CSS toàn cục          |
+| `src/app/page.tsx`                       | Trang chủ tĩnh; semantic main/section/h1 và Tailwind utilities                 |
+| `src/app/globals.css`                    | Import Tailwind, palette nền light, font hệ thống, box sizing                  |
+| `src/components/`                        | Chỉ .gitkeep; chưa có UI primitives                                            |
+| `src/features/cube/`                     | Chỉ .gitkeep; chưa có cube core hoặc renderer                                  |
+| `src/features/timer/`                    | Timer (15), lịch sử IndexedDB/penalty/undo (16), thống kê (17)                 |
+| `src/features/puzzles/`                  | Registry capability, model NxN/Pyraminx, scramble Worker, renderer NxN (18–19) |
+| `src/features/learn/`                    | Chỉ .gitkeep; chưa có lesson engine                                            |
+| `src/features/encyclopedia/`             | Chỉ .gitkeep; chưa có schema nội dung                                          |
+| `src/features/competitions/`             | Chỉ .gitkeep; chưa có giải đấu                                                 |
+| `src/features/account/`                  | Chỉ .gitkeep; chưa có auth/sync                                                |
+| `src/lib/`, `src/styles/`                | Chỉ .gitkeep; chưa có helper/style chung tại đây                               |
+| `docs/architecture.md`                   | Nguyên tắc kiến trúc ban đầu và các quyết định còn mở                          |
+| `docs/product/mvp-spec.md`               | Phạm vi MVP, personas, stories, flows và mục tiêu đo                           |
+| `docs/product/implementation-backlog.md` | Task/dependency/acceptance, validation trước solver                            |
+| `docs/roadmap/`                          | Roadmap và prompt, không phải bằng chứng feature đã được code                  |
 
 Không có route ứng dụng cho luyện tập, học hoặc API trong danh sách file tracked ở snapshot này. Thư mục domain không đồng nghĩa module đã được triển khai.
 

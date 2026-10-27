@@ -1,0 +1,99 @@
+{
+  "task": "18.3 NxN renderer",
+  "date": "2026-10-27",
+  "build": "next build production, pnpm start on loopback",
+  "browser": "Chromium 153.0.8010.12 headless (Playwright 1.56.1 driver)",
+  "gl": "ANGLE SwiftShader (software)",
+  "method": "Each sample: Playwright click on a move button (R) or camera button (Xoay trái), then wait until the canvas data-frames counter advances; the counter is written at the start of the frame after the update rendered. Latency therefore includes Playwright click/actionability overhead and React state update, not only GPU time. cpuThrottle uses CDP Emulation.setCPUThrottlingRate as a slow-device proxy, not a physical phone. drawCalls/triangles come from WebGLRenderer.info of the last frame.",
+  "reference3x3": "Existing 3x3 scene renders one body mesh per cubie (26) plus one mesh per sticker (54): 80 draw calls per frame by construction; not re-measured here.",
+  "runs": [
+    {
+      "puzzle": "2x2",
+      "viewport": "1280x900",
+      "cpuThrottle": 1,
+      "drawCalls": 2,
+      "triangles": 1212,
+      "moveToFrameMs": {
+        "p50": 60.6,
+        "p95": 73.5,
+        "max": 101.7
+      },
+      "orbitToFrameMs": {
+        "p50": 57.4,
+        "p95": 65.9,
+        "max": 68.5
+      },
+      "samples": {
+        "moves": 40,
+        "orbit": 20
+      },
+      "mainHeapMiB": 13.6
+    },
+    {
+      "puzzle": "4x4",
+      "viewport": "1280x900",
+      "cpuThrottle": 1,
+      "drawCalls": 2,
+      "triangles": 4812,
+      "moveToFrameMs": {
+        "p50": 60.9,
+        "p95": 73.2,
+        "max": 84.2
+      },
+      "orbitToFrameMs": {
+        "p50": 59.3,
+        "p95": 64.2,
+        "max": 65.5
+      },
+      "samples": {
+        "moves": 40,
+        "orbit": 20
+      },
+      "mainHeapMiB": 16.3
+    },
+    {
+      "puzzle": "2x2",
+      "viewport": "360x800",
+      "cpuThrottle": 4,
+      "drawCalls": 2,
+      "triangles": 1212,
+      "moveToFrameMs": {
+        "p50": 118.1,
+        "p95": 152.9,
+        "max": 355.9
+      },
+      "orbitToFrameMs": {
+        "p50": 96.6,
+        "p95": 146,
+        "max": 156.3
+      },
+      "samples": {
+        "moves": 40,
+        "orbit": 20
+      },
+      "mainHeapMiB": 15.4
+    },
+    {
+      "puzzle": "4x4",
+      "viewport": "360x800",
+      "cpuThrottle": 4,
+      "drawCalls": 2,
+      "triangles": 4812,
+      "moveToFrameMs": {
+        "p50": 127.5,
+        "p95": 166.8,
+        "max": 422.2
+      },
+      "orbitToFrameMs": {
+        "p50": 94.7,
+        "p95": 141.6,
+        "max": 173.6
+      },
+      "samples": {
+        "moves": 40,
+        "orbit": 20
+      },
+      "mainHeapMiB": 14.5
+    }
+  ]
+}

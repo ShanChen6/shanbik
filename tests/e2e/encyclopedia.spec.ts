@@ -187,8 +187,16 @@ test("catalog: all detail routes have metadata and capabilities; unknown puzzle 
       name: "Tính năng trên ShanBik",
       exact: true,
     });
+    // Matches the capability registry (Tasks 18–19).
+    const shipped: Record<string, number> = {
+      "3x3": 6,
+      "2x2": 2,
+      "4x4": 2,
+      pyraminx: 2,
+      megaminx: 1,
+    };
     await expect(caps.getByText("Đã có", { exact: true })).toHaveCount(
-      slug === "3x3" ? 6 : 0,
+      shipped[slug] ?? 0,
     );
     await expect(
       page

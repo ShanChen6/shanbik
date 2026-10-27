@@ -11,13 +11,17 @@ const searchEntry = path.resolve(
 const outdir = path.join(root, "public/solver-worker");
 await rm(outdir, { recursive: true, force: true });
 await mkdir(outdir, { recursive: true });
-// Keep both worker entry URLs stable. Native import.meta.resolve/new URL fallback
+// Keep the worker entry URLs stable. Native import.meta.resolve/new URL fallback
 // in cubing.js can find search-worker-entry.js beside the owned worker.
 const result = await build({
   entryPoints: {
     "solver.worker": path.join(
       root,
       "src/features/cube/solver/solver.worker.ts",
+    ),
+    "scramble.worker": path.join(
+      root,
+      "src/features/puzzles/scramble/scramble.worker.ts",
     ),
     "search-worker-entry": searchEntry,
   },
