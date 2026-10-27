@@ -21,6 +21,7 @@ import {
   inspectFaceDraft,
   paintSticker,
   type StickerInput,
+  type FaceDraft,
 } from "./draft";
 
 const ABBREVIATIONS = {
@@ -35,9 +36,13 @@ export function FaceInputPanel({
   solver,
   canLoad,
   onLoad,
+  canCapture,
+  capture,
 }: {
   solver: ReturnType<typeof createSolverController>;
   canLoad: boolean;
+  canCapture: boolean;
+  capture: () => FaceDraft | null;
   onLoad: (solution: VerifiedSolution) => boolean;
 }) {
   const id = useId();
@@ -88,6 +93,20 @@ export function FaceInputPanel({
       </p>
       <div className="flex flex-wrap gap-2">
         <Button
+          disabled={!canCapture}
+          onClick={() => {
+            const captured = capture();
+            if (!captured) return;
+            edit();
+            setDraft(captured);
+            setNotice(
+              "Đã lấy màu từ mô hình đang dừng. Bản nhập là bản sao riêng; nhấn Giải bản nhập để tiếp tục.",
+            );
+          }}
+        >
+          Lấy màu từ mô hình
+        </Button>
+        <Button
           variant="secondary"
           onClick={() => {
             setDraft(createFaceDraft(createSolvedCubeState()));
@@ -108,6 +127,10 @@ export function FaceInputPanel({
           Xóa màu đã nhập
         </Button>
       </div>
+      <p className="text-sm text-muted">
+        Lấy màu sẽ thay bản nhập hiện tại. Chỉ lấy khi 3D sẵn sàng và không còn
+        nước đang chạy hoặc chờ; có thể lấy ở một bước đang dừng của player.
+      </p>
       <div
         aria-label="Số lượng từng màu"
         className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3"
