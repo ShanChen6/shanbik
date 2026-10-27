@@ -20,10 +20,14 @@ export function SolverPanel({
   controller,
   snapshot,
   onSolve,
+  canLoad,
+  onLoad,
 }: {
   controller: ReturnType<typeof createSolverController>;
   snapshot: SolverSnapshot;
   onSolve: () => void;
+  canLoad: boolean;
+  onLoad: () => void;
 }) {
   const busy =
     snapshot.status === "initializing" || snapshot.status === "solving";
@@ -76,8 +80,14 @@ export function SolverPanel({
           >
             {snapshot.result.notation}
           </p>
+          <Button disabled={!canLoad} onClick={onLoad}>
+            Nạp lời giải vào player
+          </Button>
           <p className="text-sm text-muted">
-            Chưa đưa lời giải vào player. Không thay đổi mô hình hiện tại.
+            Nạp sẽ thay mô hình và chuỗi hiện tại bằng bản nhập lúc gửi cùng lời
+            giải này, rồi dừng ở bước 0. Về đầu chuỗi khôi phục bản nhập đó. Đây
+            là chuỗi nước giải, không phải bài giảng CFOP.
+            {!canLoad ? " Cần mô hình 3D sẵn sàng để nạp." : ""}
           </p>
         </>
       )}

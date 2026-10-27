@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { createSolverController } from "../solver/controller";
+import { loadSolution } from "../solver/load-solution";
 import { Button } from "@/components/ui/button";
 import { FaceInputPanel } from "../face-input/face-input-panel";
 import { FACE_ORDER } from "../core/constants";
@@ -24,6 +26,25 @@ const getMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function PracticeCube() {
   const [player] = useState(() => createMoveQueuePlayer());
+  const [solver] = useState(() =>
+    createSolverController({
+      createWorker: () =>
+        new Worker("/solver-worker/solver.worker.js", { type: "module" }),
+    }),
+  );
+  useEffect(() => {
+    let previous = player.getSnapshot();
+    return player.subscribe(() => {
+      const next = player.getSnapshot();
+      if (
+        next.state !== previous.state ||
+        next.playback !== previous.playback ||
+        next.active !== previous.active
+      )
+        solver.invalidate();
+      previous = next;
+    });
+  }, [player, solver]);
   const snapshot = useSyncExternalStore(
     player.subscribe,
     player.getSnapshot,
@@ -194,7 +215,16 @@ export function PracticeCube() {
         onReadyChange={setReady}
         moveControls={controls}
       />
-      <FaceInputPanel />
+      <FaceInputPanel
+        solver={solver}
+        canLoad={ready}
+        onLoad={(solution) => {
+          if (!ready || solver.getSnapshot().result !== solution) return false;
+          const loaded = loadSolution(player, solution);
+          if (loaded) setQueueError("");
+          return loaded;
+        }}
+      />
     </>
   );
 }

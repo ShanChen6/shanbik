@@ -14,7 +14,7 @@ Cubing.js dùng Reid orbit order khác core. `cubing-engine.ts` ánh xạ ep/eo 
 - `solver/solver.worker.ts`: outer dedicated Worker sở hữu runtime. Cubing.js tạo search Worker con; terminate outer để hủy cây Worker, bỏ generation cũ ngay ở host. Không chạy search trên main thread.
 - `solver/controller.ts`: external store, lazy create/reuse Worker ready, request ID không tái sử dụng, snapshot immutable, timeout, cleanup, cooldown, stale-reply gate.
 - `solver/verify-solution.ts`: parse toàn bộ output theo grammar core, cap, áp dụng lên snapshot gốc và yêu cầu solved. Cả runtime và host đều kiểm chứng.
-- `solver/solver-panel.tsx` + face input: giải bản nhập, init/search/cancel/error/retry, hiển thị notation đã kiểm chứng và phân biệt already-solved. Chưa nối player (9.4).
+- `solver/solver-panel.tsx` + face input: giải bản nhập, init/search/cancel/error/retry, hiển thị notation đã kiểm chứng và phân biệt already-solved. Đã nối player ở [Task 9.4](./cube-solution-player.md).
 
 ## Worker assets và build
 
@@ -42,4 +42,4 @@ Raw corpus: [cubing-worker-3x3.json](./benchmarks/cubing-worker-3x3.json). Trong
 
 Hỗ trợ nhiều puzzle/3D của cubing.js là hướng mở rộng được chọn. Registry capability render/scramble/solve cho từng puzzle và thay renderer sẽ là phạm vi riêng; solver 9.3 chỉ nhận 3×3 theo representation hiện tại.
 
-Tiếp theo: **9.4 — Solution → player**.
+Phần nối tiếp: [9.4 — Solution → player](./cube-solution-player.md).
