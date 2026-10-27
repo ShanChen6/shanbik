@@ -27,4 +27,4 @@ Bước tiếp theo: Task 4.1 — mô hình trạng thái 3×3 độc lập vớ
 
 /practice hỗ trợ [input thuật toán và lịch sử trong phiên](./cube-algorithm-input.md).
 
-/practice có [lưới nhập màu sáu mặt](./cube-face-input.md), hoạt động khi WebGL không khả dụng. Chưa kiểm tra khả thi hoặc gửi giải.
+/practice có [lưới nhập màu sáu mặt](./cube-face-input.md), hoạt động khi WebGL không khả dụng. Có [kiểm tra tính khả thi](./cube-feasibility.md), chưa gửi giải.

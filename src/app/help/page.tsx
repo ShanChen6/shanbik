@@ -31,7 +31,7 @@ const questions = [
   {
     question: "Tôi nhập màu khối thật như thế nào?",
     answer:
-      "Ở Nhập màu sáu mặt, giữ tâm trắng U trên và xanh lá F trước. Mỗi lưới nhìn từ ngoài mặt đó, đặt mặt kề ghi ở cạnh trên lên trên rồi đọc trái sang phải, trên xuống dưới; không phản chiếu mặt B. Chọn màu tô rồi nhấn ô, chọn Xóa ô để bỏ màu. Tâm cố định. Kiểm tra màu đã nhập báo ô thiếu và số màu, giữ nguyên nội dung để sửa. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải. Bản nhập không đổi mô hình và không lưu qua reload; chưa có kiểm tra khả thi hoặc gửi giải.",
+      "Ở Nhập màu sáu mặt, giữ tâm trắng U trên và xanh lá F trước. Mỗi lưới nhìn từ ngoài mặt đó, đặt mặt kề ghi ở cạnh trên lên trên rồi đọc trái sang phải, trên xuống dưới; không phản chiếu mặt B. Chọn màu tô rồi nhấn ô, chọn Xóa ô để bỏ màu. Tâm cố định. Kiểm tra khối báo ô thiếu/số màu, rồi kiểm tra bộ màu cubie, hướng cạnh/góc và parity; giữ nguyên nội dung để sửa. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải. Bản nhập không đổi mô hình và không lưu qua reload; đã có kiểm tra khả thi, chưa có công cụ giải.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",

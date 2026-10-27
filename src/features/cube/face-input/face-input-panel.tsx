@@ -3,7 +3,8 @@
 import { useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CENTER_INDEX, CUBE_COLORS, FACE_ORDER } from "../core/constants";
-import { createSolvedCubeState } from "../core/state";
+import { validateCubeFeasibility } from "../core/feasibility";
+import { isCubeSolved, createSolvedCubeState } from "../core/state";
 import { COLOR_LABELS, STICKER_COLORS } from "../viewer/palette";
 import {
   createFaceDraft,
@@ -29,6 +30,15 @@ export function FaceInputPanel() {
   const [notice, setNotice] = useState("");
   const cells = useRef<Record<string, HTMLButtonElement | null>>({});
   const report = inspectFaceDraft(draft);
+  const feasibility =
+    checked && report.state ? validateCubeFeasibility(report.state) : null;
+  const affected = new Set(
+    feasibility && !feasibility.valid
+      ? feasibility.issues.flatMap((issue) =>
+          issue.stickers.map((cell) => `${cell.face}-${cell.index}`),
+        )
+      : [],
+  );
   const edit = () => {
     setChecked(false);
     setNotice("");
@@ -152,8 +162,12 @@ export function FaceInputPanel() {
                       }}
                       disabled={center}
                       aria-label={label}
-                      aria-invalid={checked && !value ? true : undefined}
-                      className={`aspect-square min-h-11 min-w-11 rounded-sm border-2 text-sm font-bold ${checked && !value ? "border-danger" : "border-black/40"}`}
+                      aria-describedby={
+                        checked && (!value || affected.has(`${face}-${index}`))
+                          ? `${id}-errors`
+                          : undefined
+                      }
+                      className={`aspect-square min-h-11 min-w-11 rounded-sm border-2 text-sm font-bold ${checked && (!value || affected.has(`${face}-${index}`)) ? "border-danger" : "border-black/40"}`}
                       style={{
                         backgroundColor: value
                           ? STICKER_COLORS[value]
@@ -186,16 +200,65 @@ export function FaceInputPanel() {
           setNotice("");
         }}
       >
-        Kiểm tra màu đã nhập
+        Kiểm tra khối
       </Button>
       {checked &&
-        (report.state ? (
-          <p role="status" className="text-sm">
-            Đã nhập đủ 54 ô, mỗi màu có 9 ô và tâm đúng quy ước. Chưa kiểm tra
-            tính khả thi của khối; chưa gửi giải.
-          </p>
+        (feasibility ? (
+          feasibility.valid ? (
+            <p role="status" className="text-sm">
+              Trạng thái khả thi với khối 3×3 theo quy ước tâm hiện tại: đủ
+              cubie, hướng cạnh/góc và parity đúng.{" "}
+              {isCubeSolved(feasibility.state)
+                ? "Khối đã solved."
+                : "Khối chưa solved."}{" "}
+              Chưa gửi giải; mô hình đang phát không thay đổi.
+            </p>
+          ) : (
+            <div
+              id={`${id}-errors`}
+              role="alert"
+              className="space-y-3 text-sm text-danger"
+            >
+              <p>
+                Đủ số màu, nhưng trạng thái không khả thi. Nội dung được giữ
+                nguyên để sửa.
+              </p>
+              <p>
+                Ô đánh dấu là các vị trí liên quan để kiểm tra, không phải khẳng
+                định duy nhất ô nhập sai.
+              </p>
+              <ul className="space-y-3">
+                {feasibility.issues.map((issue, index) => (
+                  <li
+                    key={index}
+                    data-code={issue.code}
+                    className="break-words"
+                  >
+                    {issue.message}
+                    {issue.stickers.length > 0 && (
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          const first = issue.stickers[0];
+                          cells.current[
+                            `${first.face}-${first.index}`
+                          ]?.focus();
+                        }}
+                      >
+                        Đến ô liên quan lỗi {index + 1}
+                      </Button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
         ) : (
-          <div role="alert" className="space-y-2 text-sm text-danger">
+          <div
+            id={`${id}-errors`}
+            role="alert"
+            className="space-y-2 text-sm text-danger"
+          >
             <p>
               Chưa đủ điều kiện về ô và số lượng màu. Nội dung đã nhập được giữ
               nguyên.
@@ -232,8 +295,7 @@ export function FaceInputPanel() {
       <p className="text-sm text-muted">
         Bản nhập giữ trong trang, không tự đổi mô hình hoặc chuỗi đang phát và
         không lưu qua reload. Đủ 9 ô mỗi màu chưa chứng minh khối có thể giải.
-        Kiểm tra tính khả thi và công cụ giải sẽ được bổ sung ở các bước tiếp
-        theo.
+        Nút Kiểm tra khối kiểm tra cả tính khả thi; công cụ giải chưa khả dụng.
       </p>
     </section>
   );

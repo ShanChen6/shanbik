@@ -83,7 +83,7 @@ export function inspectFaceDraft(draft: FaceDraft) {
     });
   }
   const balanced = CUBE_COLORS.every((color) => counts[color] === 9);
-  // Structural snapshot only. Physical feasibility MUST be checked separately (9.1b).
+  // Structural snapshot only. Physical feasibility is checked separately by validateCubeFeasibility.
   const state =
     !missing.length && balanced && !invalidCenters.length
       ? createCubeState({ faces: draft })
