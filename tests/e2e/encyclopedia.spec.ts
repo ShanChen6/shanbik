@@ -65,9 +65,13 @@ test("catalog: search normalizes dimensions and accents; filter URLs survive rel
     .getByRole("link", { name: "Rubik 3×3", exact: true })
     .click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Rubik 3×3");
-  await page
-    .getByRole("link", { name: "Về danh sách puzzle", exact: true })
-    .click();
+  const back = page.getByRole("link", {
+    name: "Về danh sách puzzle",
+    exact: true,
+  });
+  // The static fallback points to the unfiltered list until the client link hydrates.
+  await expect(back).toHaveAttribute("href", /q=3\+x\+3/);
+  await back.click();
   await expect(list(page).getByRole("listitem")).toHaveCount(1);
   await page.reload();
   await expect(list(page).getByRole("listitem")).toHaveCount(1);
