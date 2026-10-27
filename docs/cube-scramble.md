@@ -2,7 +2,7 @@
 
 ## Cách dùng và phạm vi
 
-Trên /practice, **Tạo scramble mới** tạo chuỗi 25 move rồi hiển thị trong textarea readonly. **Sao chép scramble** dùng clipboard; **Áp dụng scramble** gửi chuỗi vào FIFO Task 7.3. Tạo/copy không tự thay đổi khối. Áp dụng lên trạng thái đã commit hiện tại, khi scene sẵn sàng và queue trống, không paused; không tự reset solved.
+Trên /practice, **Tạo scramble mới** tạo chuỗi 25 move rồi hiển thị trong textarea readonly. **Sao chép scramble** dùng clipboard; **Nạp vào player** chụp snapshot hiện tại để tiến/lùi; **Áp dụng scramble** nạp và phát ngay trên cùng state owner Task 7.3. Tạo/copy không tự thay đổi khối. Áp dụng lên trạng thái đã commit hiện tại, khi scene sẵn sàng và queue trống, không paused; không tự reset solved.
 
 Đây là **random-move để luyện tập**, không cam kết uniform random-state hoặc scramble thi đấu chính thức. Adapter chỉ hỗ trợ 3×3 và notation U/R/F/D/L/B, prime, double. Task 8.2 đã thêm Nạp vào player, play/pause, tiến/lùi và reset về snapshot lúc nạp. Nhập thuật toán tiếp tục ở 8.3.
 
