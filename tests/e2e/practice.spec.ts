@@ -174,7 +174,7 @@ test("blocked Worker reports a recoverable error without losing the draft", asyn
   await expect(model(page)).toContainText("Mô hình chưa solved.");
 });
 
-test("without WebGL manual input and solved validation remain usable", async ({
+test("without WebGL manual input, real solving and reset remain usable", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -196,6 +196,27 @@ test("without WebGL manual input and solved validation remain usable", async ({
   await expect(
     page.getByText("Khối đã solved. Không cần chạy solver", { exact: false }),
   ).toBeVisible();
+  for (const [face, color] of [
+    ["R", "blue"],
+    ["F", "red"],
+    ["L", "green"],
+    ["B", "orange"],
+  ]) {
+    await page
+      .getByLabel(`Màu tô mặt ${face}`, { exact: true })
+      .selectOption(color);
+    for (let column = 1; column <= 3; column++)
+      await page
+        .getByRole("button", {
+          name: new RegExp(`^Mặt ${face}, hàng 1, cột ${column}:`),
+        })
+        .click();
+  }
+  await button(page, "Giải bản nhập").click();
+  await expect(
+    page.getByLabel("Lời giải đã kiểm chứng", { exact: true }),
+  ).toBeVisible({ timeout: 70_000 });
+  await expect(button(page, "Nạp lời giải vào player")).toBeDisabled();
   await button(page, "Bắt đầu lại buổi tập").click();
   await expect(
     page.getByText("Đã nhập 6/54 ô", { exact: false }),

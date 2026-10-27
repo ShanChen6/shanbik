@@ -9,7 +9,8 @@ export function ViewerFallback() {
       <p className="font-semibold">Không thể hiển thị mô hình 3D</p>
       <p className="max-w-sm text-sm text-muted">
         WebGL có thể chưa khả dụng hoặc kết nối đồ họa đã bị gián đoạn. Bạn vẫn
-        có thể đọc phần học cơ bản và trợ giúp.
+        có thể nhập màu sáu mặt và tìm lời giải để đọc ở phần bên dưới. Lấy màu
+        mô hình và phát player cần 3D; tải lại trang để thử khởi tạo lại.
       </p>
       <Link href="/help" className="ui-button ui-button--secondary mt-2">
         Xem trợ giúp
