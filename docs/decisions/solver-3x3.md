@@ -70,7 +70,7 @@ Sau cancel, target cũ biến mất trong phép đo; sau timeout, retry khởi t
 
 - `INIT_TIMEOUT_MS = 60_000`: cao hơn cold max 39,6s của proxy chậm; cần trạng thái khởi tạo rõ ràng, có hủy. Đây là budget lựa chọn từ spike, không bảo đảm mọi máy init kịp.
 - `SOLVE_TIMEOUT_MS = 10_000` sau ready: headroom so với search max 1,22s; quá budget terminate và trả lỗi retry, không block main thread hoặc fallback sync.
-- Budget đường cold tối đa 70s gồm hai giai đoạn (chưa tính thao tác người dùng). Không quảng bá “giải trong X giây” từ mẫu này.
+- Budget danh nghĩa đường cold 70s gồm hai giai đoạn (chưa tính thao tác người dùng); timer host có thể trễ khi tab bị throttle/suspend, không phải hard real-time. Không quảng bá “giải trong X giây” từ mẫu này.
 - Một Worker/scheduler sở hữu một request hiện hành. Không tạo worker cho từng click hoặc tự retry vô hạn; disable/coalesce lệnh lặp, latest request thay request cũ bằng cancel, rate-limit churn/cancel/retry trong UI. Không tự sinh nhiều Worker init đồng thời.
 - Reuse Worker đã ready khi tiếp tục luyện tập; cancel/timeout/unmount/context đổi vô hiệu ID, terminate, dọn timer/listener. Không giả định `terminate()` giữ được tables.
 
@@ -86,6 +86,8 @@ Cổng 9.3: fixture corpus phải 100% được xác minh về solved trong test
 
 ## 6. Giới hạn và điểm dừng
 
-Chưa đo Safari/Firefox/mobile vật lý, peak/RSS/battery hoặc CWV/FPS của trang 3D. Trước beta, cần đo cold/warm/memory trên ít nhất một điện thoại Android tầm trung và Safari iOS, điều chỉnh budget nếu không phù hợp; không gán kết quả jitless là đo thiết bị này. Chưa triển khai solver UI/Worker production trong 9.2.
+Chưa đo Safari/Firefox/mobile vật lý, peak/RSS/battery hoặc CWV/FPS của trang 3D. Trước beta, cần đo cold/warm/memory trên ít nhất một điện thoại Android tầm trung và Safari iOS, điều chỉnh budget nếu không phù hợp; không gán kết quả jitless là đo thiết bị này. Đã chạy smoke trên production build Next 16.4.3/Turbopack + Chromium 141 (Actions run 40444908805): module Worker import CommonJS cubejs từ package cô lập, init, solve R, core xác minh về solved, cancel rồi retry thành công; không pageerror. Route/probe/workflow tạm đã gỡ khỏi cây cuối. Đây là chứng minh compatibility, không phải production lifecycle đầy đủ hoặc số đo chunk Next cuối cùng.
+
+542 tests hiện có và format/lint/typecheck đạt; CI cuối được ghi tại PR. Chưa triển khai solver UI/Worker production trong 9.2.
 
 Tiếp theo: **9.3 — Worker solver**, dùng quyết định trên và giữ khả năng thay adapter.
