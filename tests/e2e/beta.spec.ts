@@ -32,6 +32,7 @@ for (const theme of ["light", "dark"]) {
       "/",
       "/learn",
       "/algorithms",
+      "/timer",
       "/help",
       "/practice",
       "/puzzles",

@@ -58,6 +58,9 @@ export default function PracticePage() {
             lời giải từ bản nhập, rồi nạp vào player để phát, tiến/lùi từng bước
             và về đầu chuỗi.
           </p>
+          <Link href="/timer" className="ui-button ui-button--primary mt-6">
+            Bấm giờ với khối thật
+          </Link>
           <Link href="/learn" className="ui-button ui-button--secondary mt-6">
             Tìm hiểu kiến thức cơ bản
           </Link>

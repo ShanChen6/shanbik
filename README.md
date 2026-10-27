@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **15.1 — Timer state machine** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **16.1 — Schema và migration local** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -109,3 +109,5 @@ Viewer minh họa theo bước và lưu vị trí đọc cục bộ: [Task 12.3]
 Thư viện công thức `/algorithms`: tìm/lọc, copy, minh họa và danh sách yêu thích local — [Task 13](docs/algorithm-library.md).
 
 Thực hành theo nước, seek, tốc độ, đảo/lặp và ghi chú/hoàn thành local trong minh họa công thức: [Tuần 14](docs/algorithm-practice.md).
+
+Timer 3×3 tại `/timer`: Space/touch, quan sát tùy chọn và lưu lượt giải local — [Tuần 15](docs/timer.md).
