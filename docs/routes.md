@@ -3,7 +3,7 @@
 | Route     | Nội dung hiện có                                              | Phần chưa triển khai                          |
 | --------- | ------------------------------------------------------------- | --------------------------------------------- |
 | /         | Giới thiệu ShanBik, trạng thái dự án, link khám phá           | Không phải dashboard có dữ liệu               |
-| /practice | Mô hình 3×3, camera, queue và scramble luyện tập              | Chưa player đầy đủ, solver hoặc timer trên UI |
+| /practice | Mô hình 3×3, camera, queue và scramble luyện tập              | Chưa nhập thuật toán, solver hoặc timer trên UI |
 | /learn    | Giới thiệu ngắn về khối/ký hiệu và cách học                   | Chưa giáo trình hoặc player bài học           |
 | /help     | FAQ về phạm vi hiện tại, tài khoản, camera, theme và bàn phím | Chưa form liên hệ/backend                     |
 
@@ -11,7 +11,7 @@ Page là Server Component và có metadata riêng. Chỉ navigation cần pathna
 
 Header desktop từ 64rem có navigation và chọn theme. Mobile có Menu mở sheet Radix từ Task 3.2; link đóng sheet, Escape/focus trap theo primitive, resize sang desktop đóng menu. Footer dùng cùng danh sách route; Về đầu trang trỏ #main-content trên trang đang mở, không đưa người dùng về Home ngoài ý muốn.
 
-Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton giả hoặc request dữ liệu. Task 3.3 không thêm dependency/API/logic puzzle; Task 5.1–8.1 nối viewer, camera và từng nước xoay, được ghi riêng trong [cube-viewer.md](./cube-viewer.md). Trang demo /ui-preview vẫn chỉ mở ở development.
+Các trang dùng nội dung tĩnh và token dùng chung; không thêm skeleton giả hoặc request dữ liệu. Task 3.3 không thêm dependency/API/logic puzzle; Task 5.1–8.2 nối viewer, camera và từng nước xoay, được ghi riêng trong [cube-viewer.md](./cube-viewer.md). Trang demo /ui-preview vẫn chỉ mở ở development.
 
 ## Kiểm tra nghiệm thu
 

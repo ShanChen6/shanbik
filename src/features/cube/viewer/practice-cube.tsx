@@ -6,6 +6,7 @@ import { FACE_ORDER } from "../core/constants";
 import { serializeAlgorithm, type CubeAlgorithm } from "../core/notation";
 import { isCubeSolved } from "../core/state";
 import { ScramblePanel } from "../scramble/scramble-panel";
+import { PlaybackControls } from "./playback-controls";
 import { CubeViewport } from "./cube-viewport";
 import { createMoveQueuePlayer, MAX_QUEUE_MOVES } from "./move-queue";
 
@@ -52,20 +53,23 @@ export function PracticeCube() {
         : `Hàng đợi đã đạt ${MAX_QUEUE_MOVES} nước. Hãy chờ hoặc hủy hàng đợi.`,
     );
   };
-  const enqueueScramble = (batch: CubeAlgorithm) => {
+  const loadScramble = (batch: CubeAlgorithm, autoplay = false) => {
     const current = player.getSnapshot();
-    if (!ready || current.active || current.pending.length || current.paused)
-      return false;
+    if (!ready || current.active || current.pending.length || current.paused || current.playback) return false;
     player.setReducedMotion(reducedMotion);
-    return player.enqueue(batch);
+    if (!player.loadSequence(batch)) return false;
+    if (autoplay) player.play();
+    return true;
   };
   const controls = (
     <>
+      <PlaybackControls player={player} snapshot={snapshot} ready={ready} reducedMotion={reducedMotion} />
       <ScramblePanel
-        canApply={ready && !outstanding && !snapshot.paused}
-        enqueue={enqueueScramble}
+        canApply={ready && !outstanding && !snapshot.paused && !snapshot.playback}
+        enqueue={(batch) => loadScramble(batch, true)}
+        load={(batch) => loadScramble(batch)}
       />
-      <section aria-label="Xoay từng mặt" className="mt-4 space-y-3">
+      {!snapshot.playback && <section aria-label="Xoay từng mặt" className="mt-4 space-y-3">
         <div className="flex flex-wrap items-end gap-2">
           <label className="flex min-w-24 flex-col gap-1 text-sm font-semibold">
             Nước xoay
@@ -147,7 +151,7 @@ export function PracticeCube() {
           chờ để tiếp tục. Hủy bỏ nước chưa commit và toàn bộ phần chờ; đặt lại
           khối trở về solved.
         </p>
-      </section>
+      </section>}
     </>
   );
   return (

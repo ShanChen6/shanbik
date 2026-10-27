@@ -1,6 +1,6 @@
 # ShanBik
 
-Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; có animation, hàng đợi FIFO, pause/resume và hủy/reset an toàn; có tạo/copy/áp dụng scramble luyện tập 25 nước; player thuật toán đầy đủ tiếp tục ở 8.x.
+Website học, mô phỏng và luyện tập Rubik. Đã có nền tảng giao diện, UI primitives, khung trang MVP và cube core 3×3 (state, notation, move engine). Trang luyện tập có mô hình 3×3 với điều khiển camera bằng nút, chuột/touch/trackpad; có animation, hàng đợi FIFO, pause/resume và hủy/reset an toàn; có tạo/copy/áp dụng scramble luyện tập 25 nước; player có play/pause, tiến/lùi và khôi phục snapshot đầu chuỗi; nhập notation tiếp tục ở 8.3.
 
 ## Môi trường
 
@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **8.2 — Player controls** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **8.3 — Input thuật toán** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -77,3 +77,5 @@ Animation một move: [State, lifecycle và kiểm chứng](docs/cube-single-mov
 Move queue: [FIFO, pause/resume và giới hạn](docs/cube-move-queue.md).
 
 Scramble 3×3: [Adapter, copy và apply một lần](docs/cube-scramble.md).
+
+Player: [Controls, snapshot và reset](docs/cube-player.md).
