@@ -8,6 +8,7 @@ jobs:
   browser:
     if: github.head_ref == 'feature/task-9-1a-face-colors'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,7 +21,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: npm install --prefix /tmp/shanbik-qa playwright@1.56.1 --no-audit --no-fund
-      - run: node /tmp/shanbik-qa/node_modules/playwright/cli.js install --with-deps chromium
+      - run: node /tmp/shanbik-qa/node_modules/playwright/cli.js install chromium --only-shell
       - run: |
           pnpm start --hostname 127.0.0.1 --port 3175 >/tmp/face-input-server.log 2>&1 &
           for i in $(seq 1 100); do curl -fsS http://127.0.0.1:3175/practice >/dev/null && break; sleep 0.2; done

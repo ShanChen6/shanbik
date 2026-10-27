@@ -113,9 +113,10 @@ export function FaceInputPanel() {
                 {guide.right} · dưới: {guide.bottom}. Còn thiếu {missingCount}{" "}
                 ô.
               </p>
-              <label className="block text-sm">
-                Màu tô mặt {face}
+              <div className="text-sm">
+                <label htmlFor={`${id}-${face}-paint`}>Màu tô mặt {face}</label>
                 <select
+                  id={`${id}-${face}-paint`}
                   className="ui-input mt-1"
                   value={color ?? "empty"}
                   onChange={(event) =>
@@ -133,7 +134,7 @@ export function FaceInputPanel() {
                     </option>
                   ))}
                 </select>
-              </label>
+              </div>
               <div
                 role="group"
                 aria-label={`Lưới mặt ${face}`}
