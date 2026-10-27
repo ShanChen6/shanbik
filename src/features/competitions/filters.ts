@@ -14,12 +14,15 @@ export type CompetitionFilters = Readonly<{
   status: Status | "";
   /** YYYY-MM in the venue's calendar. */
   month: string;
+  /** "1": only competitions bookmarked on this device. */
+  saved: "" | "1";
 }>;
 export const NO_FILTERS: CompetitionFilters = Object.freeze({
   region: "",
   event: "",
   status: "",
   month: "",
+  saved: "",
 });
 /** Unknown or repeated params are ignored; the first value wins. */
 export function readCompetitionFilters(
@@ -35,11 +38,12 @@ export function readCompetitionFilters(
     event: pick<EventId>("event", EVENTS),
     status: pick<Status>("status", STATUSES),
     month: /^\d{4}-(0[1-9]|1[0-2])$/.test(month) ? month : "",
+    saved: params.get("saved") === "1" ? "1" : "",
   });
 }
 export function competitionsURL(filters: CompetitionFilters) {
   const params = new URLSearchParams();
-  for (const key of ["region", "event", "status", "month"] as const)
+  for (const key of ["region", "event", "status", "month", "saved"] as const)
     if (filters[key]) params.set(key, filters[key]);
   const query = params.toString();
   return `/competitions${query ? `?${query}` : ""}`;
@@ -48,12 +52,14 @@ export function filterCompetitions(
   list: readonly Competition[],
   f: CompetitionFilters,
   now: number,
+  savedIds?: ReadonlySet<string>,
 ) {
   return list.filter(
     (c) =>
       (!f.region || c.region === f.region) &&
       (!f.event || c.events.includes(f.event)) &&
       (!f.status || statusAt(c, now) === f.status) &&
+      (!f.saved || !!savedIds?.has(c.id)) &&
       (!f.month ||
         (c.startDate.slice(0, 7) <= f.month &&
           c.endDate.slice(0, 7) >= f.month)),

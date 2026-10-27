@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { PageIntro } from "@/components/layout/page-intro";
+import { CompetitionActions } from "@/features/competitions/bookmark-ui";
 import { COMPETITIONS, getCompetition } from "@/features/competitions/data";
 import {
   LiveStatus,
@@ -110,6 +111,7 @@ export default async function CompetitionPage({ params }: Props) {
           </p>
         )}
       </section>
+      <CompetitionActions competition={c} />
       {c.registration && (
         <section
           aria-labelledby="registration-title"

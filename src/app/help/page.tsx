@@ -22,7 +22,7 @@ const questions = [
   {
     question: "Xem lịch giải đấu ở đâu?",
     answer:
-      "Mở Giải đấu trong menu. Lọc theo vùng, tháng, nội dung thi hoặc trạng thái; bộ lọc nằm trên URL để chia sẻ. Ngày giờ ghi theo giờ địa phương nơi tổ chức kèm múi giờ; trang chi tiết có thêm cột UTC và giờ theo múi giờ máy bạn. Hiện danh sách chỉ là dữ liệu mẫu để thử giao diện, chưa phải giải thật; khi có giải thật, mỗi giải ghi nguồn và ngày cập nhật. Luôn kiểm tra trang của ban tổ chức trước khi đăng ký.",
+      "Mở Giải đấu trong menu. Lọc theo vùng, tháng, nội dung thi hoặc trạng thái; bộ lọc nằm trên URL để chia sẻ. Ngày giờ ghi theo giờ địa phương nơi tổ chức kèm múi giờ; trang chi tiết có thêm cột UTC và giờ theo múi giờ máy bạn. Hiện danh sách chỉ là dữ liệu mẫu để thử giao diện, chưa phải giải thật; khi có giải thật, mỗi giải ghi nguồn và ngày cập nhật. Luôn kiểm tra trang của ban tổ chức trước khi đăng ký. Bấm Lưu giải để giữ trên trình duyệt này và lọc Chỉ giải đã lưu; ở trang chi tiết, chọn mức báo trước rồi Tải tệp lịch (.ics) để ứng dụng lịch trên máy nhắc bạn. Thấy thông tin sai hoặc muốn đề xuất giải, dùng form Góp ý: nội dung được kiểm tra trước khi cập nhật và gửi dưới dạng GitHub issue công khai.",
   },
   {
     question: "Tìm và lưu công thức ở đâu?",

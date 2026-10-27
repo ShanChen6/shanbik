@@ -38,3 +38,31 @@ Trạng thái (`statusAt`): hủy → "Đã hủy"; trước 00:00 ngày đầu 
 ## Kiểm tra
 
 Đã kiểm tra khi review (test riêng chạy cục bộ, chưa đưa vào repo): quy đổi giờ cho Tokyo, Hồ Chí Minh, Berlin mùa hè/đông và giờ lặp, New York trước/sau đổi giờ và giờ không tồn tại, Sydney, Kathmandu (+05:45); nhãn offset âm/lẻ; dữ liệu mẫu hợp lệ, sắp xếp, đóng băng, độ dài ngày đổi giờ; 15 ca dữ liệu sai bị từ chối (id trùng, múi giờ, ngày, nội dung, lịch, giờ không tồn tại, đăng ký, nguồn mẫu/thật, ngày cập nhật); ranh giới trạng thái/đăng ký theo ngày địa phương; bộ lọc AND và giá trị lạ. E2E desktop/mobile: lọc qua URL và reload, quay lại giữ bộ lọc, trạng thái rỗng, chi tiết với giờ địa phương/UTC/giờ người xem dưới múi giờ trình duyệt khác, 404, nhãn mẫu, axe và không tràn ngang.
+
+# Tuần 22 — Quản trị, góp ý, lưu và nhắc lịch
+
+Quyết định: không thêm backend ở tuần này — [ADR 0008](./adr/0008-competition-admin.md).
+
+## 22.1 — Quản trị và quyền
+
+Chưa có Admin CRUD: dữ liệu chỉ đổi qua Pull Request vào repo (quyền push/merge của GitHub), lịch sử git/PR là audit log, `parseCompetitions` chặn dữ liệu sai ở CI. Id `gop-y` được dành cho route góp ý. CRUD có RLS và audit append-only làm sau Auth (Task 23).
+
+## 22.2 — Form đề xuất/báo lỗi
+
+`/competitions/gop-y` (link "Đề xuất giải mới" ở danh sách, "Báo lỗi thông tin giải này" ở chi tiết với `?id=`):
+
+- Hai loại: **đề xuất giải mới** (tên, thành phố, ngày bắt đầu/kết thúc giờ địa phương, trang chính thức https bắt buộc) và **báo lỗi** (chọn giải, mô tả ≥ 10 ký tự, nguồn https tùy chọn). Chi tiết ≤ 2000 ký tự, liên hệ ≤ 120 ký tự.
+- Lỗi hiện dưới từng ô (`aria-invalid`, `aria-describedby`) và trong bảng tóm tắt nhận focus, có link tới ô lỗi. Dữ liệu không mất khi lỗi: bản nháp tự lưu trên máy (`shanbik:competition-suggestion-draft:v1`), khôi phục khi mở lại; "Xóa bản nháp" để làm lại.
+- Hợp lệ → hiện nội dung và link **Mở GitHub để gửi** (issue điền sẵn, repo công khai, nội dung ≤ 6000 ký tự) cùng **Sao chép nội dung**. Form không ghi vào dữ liệu giải; cảnh báo issue là công khai.
+
+## 22.3 — Lưu giải và nhắc lịch
+
+- **Lưu giải** trên thẻ và trang chi tiết; localStorage `shanbik:competition-bookmarks:v1` `{version:1, items:[{id, savedAt, remind}]}`, tối đa 200, validate khi đọc; dữ liệu lỗi được báo và chỉ thay khi người dùng lưu lại; bị chặn lưu trữ thì giữ trong trang và báo. Đồng bộ giữa tab qua sự kiện `storage`. Bộ lọc **Chỉ giải đã lưu** (`saved=1` trên URL).
+- **Nhắc lịch** bằng tệp `.ics` (RFC 5545) tải về và mở bằng ứng dụng lịch của máy — lời nhắc do lịch trên thiết bị gửi, kể cả khi đóng ShanBik. Mức báo trước: không / 1 giờ / 1 ngày / 1 tuần (lưu theo giải đã lưu). Nội dung tệp:
+  - Ngày thi: sự kiện **cả ngày** theo lịch nơi tổ chức (`DTSTART;VALUE=DATE`, `DTEND` loại trừ), có lời nhắc.
+  - Mở/đóng đăng ký và từng buổi thi: **mốc UTC** (`…Z`), nên ứng dụng lịch hiển thị đúng giờ người dùng, kể cả ngày đổi giờ mùa hè; mở đăng ký có lời nhắc.
+  - `STATUS:CANCELLED` cho giải hủy; mô tả ghi múi giờ, nội dung thi, nhãn dữ liệu mẫu hoặc nguồn; CRLF, gấp dòng 75 octet UTF-8, escape `\\ ; , \n`.
+
+## Kiểm tra tuần 22
+
+Đã kiểm tra khi review (test riêng chạy cục bộ, chưa đưa vào repo): bookmark (khởi tạo không ghi, lưu/bỏ/nhắc qua reload, sáu dạng dữ liệu lỗi không bị ghi đè lúc mở, lưu trữ bị chặn, giới hạn 200, đồng bộ tab); tệp lịch (CRLF, gấp dòng, escape, ngày cả ngày với kết thúc loại trừ, UTC đăng ký/buổi thi Tokyo, Berlin qua ngày đổi giờ, giải hủy, không nhắc); form (validate hai loại, ngày không tồn tại, https, độ dài, issue điền sẵn, cắt nội dung dài, nháp hỏng bị bỏ qua). E2E desktop/mobile: lưu giải và lọc qua reload, tải `.ics`, form lỗi giữ dữ liệu qua reload, báo lỗi từ chi tiết, link GitHub điền sẵn, axe.

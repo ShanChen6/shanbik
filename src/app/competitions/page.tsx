@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 import { COMPETITIONS } from "@/features/competitions/data";
 import { CompetitionExplorer } from "@/features/competitions/explorer";
@@ -30,6 +31,16 @@ export default function CompetitionsPage() {
       <Suspense fallback={<p role="status">Đang đọc bộ lọc…</p>}>
         <CompetitionExplorer competitions={COMPETITIONS} />
       </Suspense>
+      <p className="mt-8 text-sm text-muted">
+        Biết một giải chưa có trong danh sách?{" "}
+        <Link
+          href="/competitions/gop-y"
+          className="font-semibold text-primary underline underline-offset-4"
+        >
+          Đề xuất giải mới
+        </Link>
+        . Đề xuất được kiểm tra nguồn trước khi đưa vào dữ liệu.
+      </p>
     </div>
   );
 }

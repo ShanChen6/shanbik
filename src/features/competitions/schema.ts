@@ -86,6 +86,7 @@ export type Competition = Readonly<{
   endsAt: number;
 }>;
 export const MAX_DAYS = 14;
+export const RESERVED_IDS: readonly string[] = ["gop-y"];
 function fail(path: string): never {
   throw Error(`Invalid competition data: ${path}`);
 }
@@ -128,7 +129,13 @@ export function parseCompetitions(input: unknown): readonly Competition[] {
     const p = `entries[${i}]`;
     if (!rec(v)) fail(p);
     const id = text(v.id, `${p}.id`, 80);
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || ids.has(id)) fail(`${p}.id`);
+    // "gop-y" is the static suggestion route beside /competitions/[id].
+    if (
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) ||
+      ids.has(id) ||
+      RESERVED_IDS.includes(id)
+    )
+      fail(`${p}.id`);
     ids.add(id);
     if (typeof v.sample !== "boolean" || typeof v.cancelled !== "boolean")
       fail(`${p}.flags`);

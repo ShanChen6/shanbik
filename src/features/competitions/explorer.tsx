@@ -1,6 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import {
+  BookmarkButton,
+  bookmarkStatusText,
+  useBookmarks,
+} from "./bookmark-ui";
 import { useNow } from "./clock";
 import {
   competitionMonths,
@@ -73,10 +78,18 @@ export function CompetitionExplorer({
     );
   };
   // Status filtering needs the clock; until hydration it is not applied.
+  const { store, snapshot: saved } = useBookmarks(),
+    savedIds = new Set(saved.items.map((b) => b.id));
+  // Status and saved filters need the browser; until then they are not applied.
   const results = filterCompetitions(
     competitions,
-    now === null ? { ...filters, status: "" } : filters,
+    now === null
+      ? { ...filters, status: "", saved: "" }
+      : saved.loaded
+        ? filters
+        : { ...filters, saved: "" },
     now ?? 0,
+    savedIds,
   );
   const active = Object.values(filters).some(Boolean);
   const query = competitionsURL(filters).split("?")[1] ?? "";
@@ -128,7 +141,24 @@ export function CompetitionExplorer({
           Object.entries(STATUSES),
           "Mọi trạng thái",
         )}
+        <label className="flex min-h-11 items-center gap-2 text-sm font-semibold sm:col-span-2 lg:col-span-4">
+          <input
+            type="checkbox"
+            checked={filters.saved === "1"}
+            onChange={(e) => set({ saved: e.target.checked ? "1" : "" })}
+          />
+          Chỉ giải đã lưu trên máy này (
+          {saved.loaded
+            ? competitions.filter((c) => savedIds.has(c.id)).length
+            : "…"}
+          )
+        </label>
       </section>
+      {saved.loaded && saved.status !== "ready" && (
+        <p role="status" className="text-sm text-warning">
+          {bookmarkStatusText(saved.status)}
+        </p>
+      )}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p role="status" aria-label="Số giải đấu" className="font-semibold">
           {results.length} giải
@@ -192,6 +222,12 @@ export function CompetitionExplorer({
                   </li>
                 ))}
               </ul>
+              <BookmarkButton
+                store={store}
+                saved={savedIds.has(c.id)}
+                disabled={!saved.loaded}
+                competition={c}
+              />
             </li>
           ))}
         </ul>

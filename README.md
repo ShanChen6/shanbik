@@ -120,4 +120,4 @@ Thực hành 2×2, 4×4, Pyraminx và Megaminx trên trang bách khoa của từ
 
 Tìm kiếm tại `/search` và lộ trình học → luyện tập trên các trang — [Tuần 20](docs/search-learning-path.md); kiểm tra link: `node tools/audit-site.mjs <url>` sau `pnpm build && pnpm start`.
 
-Giải đấu tại `/competitions` (hiện là dữ liệu mẫu): schema có nguồn/ngày cập nhật, giờ địa phương và UTC — [Tuần 21](docs/competitions.md).
+Giải đấu tại `/competitions` (hiện là dữ liệu mẫu): schema có nguồn/ngày cập nhật, giờ địa phương và UTC — [Tuần 21–22](docs/competitions.md); lưu giải, tệp lịch `.ics` và form góp ý (không sửa dữ liệu trực tiếp, xem [ADR 0008](docs/adr/0008-competition-admin.md)).
