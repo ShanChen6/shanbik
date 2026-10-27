@@ -44,15 +44,29 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
     snapshot = Object.freeze(value);
     listeners.forEach((listener) => listener());
   };
-  const playbackStep = (value: MoveSnapshot, direction: -1 | 1): MoveSnapshot => {
+  const playbackStep = (
+    value: MoveSnapshot,
+    direction: -1 | 1,
+  ): MoveSnapshot => {
     const playback = value.playback!;
-    const move = direction === 1 ? playback.moves[playback.cursor] : invertMove(playback.moves[playback.cursor - 1]);
-    if (reducedMotion) return {
-      ...value, state: applyMove(value.state, move), completed: value.completed + 1,
-      playback: Object.freeze({ ...playback, cursor: playback.cursor + direction, step: 0 }),
-    };
+    const move =
+      direction === 1
+        ? playback.moves[playback.cursor]
+        : invertMove(playback.moves[playback.cursor - 1]);
+    if (reducedMotion)
+      return {
+        ...value,
+        state: applyMove(value.state, move),
+        completed: value.completed + 1,
+        playback: Object.freeze({
+          ...playback,
+          cursor: playback.cursor + direction,
+          step: 0,
+        }),
+      };
     return {
-      ...value, active: Object.freeze({ id: ++nextId, move }),
+      ...value,
+      active: Object.freeze({ id: ++nextId, move }),
       playback: Object.freeze({ ...playback, step: direction }),
     };
   };
@@ -60,8 +74,17 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
     const active = value.active!;
     const playback = value.playback;
     return {
-      ...value, state: applyMove(value.state, active.move), active: null, completed: value.completed + 1,
-      playback: playback ? Object.freeze({ ...playback, cursor: playback.cursor + playback.step, step: 0 }) : null,
+      ...value,
+      state: applyMove(value.state, active.move),
+      active: null,
+      completed: value.completed + 1,
+      playback: playback
+        ? Object.freeze({
+            ...playback,
+            cursor: playback.cursor + playback.step,
+            step: 0,
+          })
+        : null,
     };
   };
   const advance = (value: MoveSnapshot): MoveSnapshot => {
@@ -71,11 +94,25 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
       if (!playback.playing) return value;
       if (reducedMotion) {
         let state = value.state;
-        for (const move of playback.moves.slice(playback.cursor)) state = applyMove(state, move);
-        return { ...value, state, completed: value.completed + playback.moves.length - playback.cursor,
-          playback: Object.freeze({ ...playback, cursor: playback.moves.length, playing: false, step: 0 }) };
+        for (const move of playback.moves.slice(playback.cursor))
+          state = applyMove(state, move);
+        return {
+          ...value,
+          state,
+          completed: value.completed + playback.moves.length - playback.cursor,
+          playback: Object.freeze({
+            ...playback,
+            cursor: playback.moves.length,
+            playing: false,
+            step: 0,
+          }),
+        };
       }
-      if (playback.cursor === playback.moves.length) return { ...value, playback: Object.freeze({ ...playback, playing: false }) };
+      if (playback.cursor === playback.moves.length)
+        return {
+          ...value,
+          playback: Object.freeze({ ...playback, playing: false }),
+        };
       return playbackStep(value, 1);
     }
     if (value.paused || !value.pending.length) return value;
@@ -125,7 +162,12 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
     },
     /** Compatibility entry point: a single move still rejects overlapping starts. */
     start(move: CubeMove, instant = reducedMotion) {
-      if (snapshot.playback || snapshot.active || snapshot.pending.length || snapshot.paused)
+      if (
+        snapshot.playback ||
+        snapshot.active ||
+        snapshot.pending.length ||
+        snapshot.paused
+      )
         return false;
       serializeAlgorithm([move]);
       const copy = Object.freeze({ ...move });
@@ -168,47 +210,102 @@ export function createMoveQueuePlayer(initial = createSolvedCubeState()) {
       if (id !== undefined && snapshot.active?.id !== id) return false;
       if (!snapshot.active && !snapshot.pending.length && !snapshot.paused)
         return false;
-      publish({ ...snapshot, active: null, pending: EMPTY, paused: false,
-        playback: snapshot.playback ? Object.freeze({ ...snapshot.playback, playing: false, step: 0 }) : null });
+      publish({
+        ...snapshot,
+        active: null,
+        pending: EMPTY,
+        paused: false,
+        playback: snapshot.playback
+          ? Object.freeze({ ...snapshot.playback, playing: false, step: 0 })
+          : null,
+      });
       return true;
     },
     loadSequence(moves: CubeAlgorithm) {
       serializeAlgorithm(moves);
       if (moves.length > MAX_QUEUE_MOVES) return false;
-      const copy = Object.freeze(moves.map((move) => Object.freeze({ ...move })));
-      publish({ ...snapshot, active: null, pending: EMPTY, paused: false,
-        playback: Object.freeze({ moves: copy, initial: snapshot.state, cursor: 0, playing: false, step: 0 }) });
+      const copy = Object.freeze(
+        moves.map((move) => Object.freeze({ ...move })),
+      );
+      publish({
+        ...snapshot,
+        active: null,
+        pending: EMPTY,
+        paused: false,
+        playback: Object.freeze({
+          moves: copy,
+          initial: snapshot.state,
+          cursor: 0,
+          playing: false,
+          step: 0,
+        }),
+      });
       return true;
     },
     play() {
       const playback = snapshot.playback;
-      if (!playback || snapshot.active || playback.playing || playback.cursor >= playback.moves.length) return false;
-      publish(advance({ ...snapshot, playback: Object.freeze({ ...playback, playing: true }) }));
+      if (
+        !playback ||
+        snapshot.active ||
+        playback.playing ||
+        playback.cursor >= playback.moves.length
+      )
+        return false;
+      publish(
+        advance({
+          ...snapshot,
+          playback: Object.freeze({ ...playback, playing: true }),
+        }),
+      );
       return true;
     },
     pausePlayback() {
       const playback = snapshot.playback;
       if (!playback?.playing) return false;
-      publish({ ...snapshot, playback: Object.freeze({ ...playback, playing: false }) });
+      publish({
+        ...snapshot,
+        playback: Object.freeze({ ...playback, playing: false }),
+      });
       return true;
     },
     stepForward() {
       const playback = snapshot.playback;
-      if (!playback || snapshot.active || playback.playing || playback.cursor >= playback.moves.length) return false;
+      if (
+        !playback ||
+        snapshot.active ||
+        playback.playing ||
+        playback.cursor >= playback.moves.length
+      )
+        return false;
       publish(playbackStep(snapshot, 1));
       return true;
     },
     stepBackward() {
       const playback = snapshot.playback;
-      if (!playback || snapshot.active || playback.playing || playback.cursor === 0) return false;
+      if (
+        !playback ||
+        snapshot.active ||
+        playback.playing ||
+        playback.cursor === 0
+      )
+        return false;
       publish(playbackStep(snapshot, -1));
       return true;
     },
     resetPlayback() {
       const playback = snapshot.playback;
       if (!playback) return false;
-      publish({ ...snapshot, state: playback.initial, active: null,
-        playback: Object.freeze({ ...playback, cursor: 0, playing: false, step: 0 }) });
+      publish({
+        ...snapshot,
+        state: playback.initial,
+        active: null,
+        playback: Object.freeze({
+          ...playback,
+          cursor: 0,
+          playing: false,
+          step: 0,
+        }),
+      });
       return true;
     },
     exitPlayback() {

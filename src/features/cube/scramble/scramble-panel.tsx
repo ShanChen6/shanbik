@@ -70,10 +70,21 @@ export function ScramblePanel({
         <Button variant="secondary" disabled={!snapshot} onClick={copy}>
           Sao chép scramble
         </Button>
-        {load && <Button variant="secondary" disabled={!snapshot || snapshot.applied || !canApply}
-          onClick={() => { setError(""); if (!session.apply(load) && !session.getSnapshot()?.applied) setError("Chưa nạp được. Hãy thoát chuỗi đang mở và chờ hàng đợi trống."); }}>
-          Nạp vào player
-        </Button>}
+        {load && (
+          <Button
+            variant="secondary"
+            disabled={!snapshot || snapshot.applied || !canApply}
+            onClick={() => {
+              setError("");
+              if (!session.apply(load) && !session.getSnapshot()?.applied)
+                setError(
+                  "Chưa nạp được. Hãy thoát chuỗi đang mở và chờ hàng đợi trống.",
+                );
+            }}
+          >
+            Nạp vào player
+          </Button>
+        )}
         <Button
           disabled={!snapshot || snapshot.applied || !canApply}
           onClick={() => {

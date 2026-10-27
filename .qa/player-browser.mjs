@@ -3,6 +3,11 @@ import fs from "node:fs";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE);
 const browser = await chromium.launch({ headless: true, args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });
 const errors = [];
+for (let attempt = 0; attempt < 100; attempt++) {
+  try { const response = await fetch("http://127.0.0.1:3172/practice"); if (response.ok) break; } catch {}
+  if (attempt === 99) throw Error("QA server did not become ready");
+  await new Promise(resolve => setTimeout(resolve, 100));
+}
 const base = "http://127.0.0.1:3172";
 const make = async (motion) => {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1200 }, reducedMotion: motion });

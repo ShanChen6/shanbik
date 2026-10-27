@@ -11,6 +11,7 @@ Player có Phát chuỗi, Tạm dừng phát, Bước tiếp, Bước lùi, Về
 ## State owner và invariant
 
 createMoveQueuePlayer tiếp tục là nguồn state duy nhất. Snapshot bổ sung playback hoặc null:
+
 - moves: bản sao AST immutable, tối đa 256 move.
 - initial: snapshot core immutable lúc nạp.
 - cursor: số move của prefix đã commit.
@@ -23,16 +24,16 @@ loadSequence validate toàn batch trước khi thay chuỗi; hủy active/pendin
 
 ## API
 
-| Method | Kết quả |
-| --- | --- |
+| Method              | Kết quả                                                                           |
+| ------------------- | --------------------------------------------------------------------------------- |
 | loadSequence(moves) | Nạp immutable sequence, baseline hiện tại, cursor=0; chuỗi sai không đổi snapshot |
-| play() | Phát từ cursor tới cuối, không tự lặp ở cuối |
-| pausePlayback() | Dừng tại ranh giới sau active move |
-| stepForward() | Tiến một move khi idle và còn bước |
-| stepBackward() | Animate inverse một move khi idle và cursor>0 |
-| resetPlayback() | Hủy active, khôi phục initial và cursor=0; giữ moves để phát lại |
-| exitPlayback() | Hủy active, giữ state đã commit và đóng chuỗi |
-| reset() | Solved, xóa cả queue và playback |
+| play()              | Phát từ cursor tới cuối, không tự lặp ở cuối                                      |
+| pausePlayback()     | Dừng tại ranh giới sau active move                                                |
+| stepForward()       | Tiến một move khi idle và còn bước                                                |
+| stepBackward()      | Animate inverse một move khi idle và cursor>0                                     |
+| resetPlayback()     | Hủy active, khôi phục initial và cursor=0; giữ moves để phát lại                  |
+| exitPlayback()      | Hủy active, giữ state đã commit và đóng chuỗi                                     |
+| reset()             | Solved, xóa cả queue và playback                                                  |
 
 Chuỗi rỗng nạp được; play/step là no-op an toàn. Khi reduced motion bật, play tiêu thụ phần còn lại theo thứ tự; step vẫn chỉ di chuyển một bước. Đổi preference giữa backward step commit inverse một lần rồi dừng. Rời route/mất context hủy transaction chưa commit và giữ prefix/sequence ở trạng thái dừng để có thể tiếp tục.
 
