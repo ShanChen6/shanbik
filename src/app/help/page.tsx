@@ -11,7 +11,7 @@ const questions = [
   {
     question: "Tôi có thể làm gì ở thời điểm hiện tại?",
     answer:
-      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Nhập thuật toán và giải khối đang được phát triển.",
+      "Bạn có thể xoay góc nhìn và zoom mô hình 3×3, đọc kiến thức nhập môn và chọn giao diện sáng hoặc tối. Bạn có thể thêm từng move vào hàng đợi, dừng sau nước đang chạy rồi tiếp tục, hủy hàng đợi hoặc đặt lại khối. Bạn có thể tạo, sao chép và áp dụng scramble luyện tập 25 nước. Player hỗ trợ phát/dừng, tiến/lùi từng bước và về đầu chuỗi. Bạn cũng có thể nhập thuật toán để phát và chọn lại từ lịch sử trong phiên. Công cụ giải khối đang được phát triển.",
   },
   {
     question: "Làm sao xoay và zoom mô hình 3D?",
@@ -22,6 +22,11 @@ const questions = [
     question: "Scramble được áp dụng như thế nào?",
     answer:
       "Tạo scramble mới chỉ hiển thị chuỗi 25 nước. Sao chép để luyện trên khối thật hoặc áp dụng một lần lên trạng thái mô hình hiện tại khi hàng đợi trống và không tạm dừng. Nạp vào player để tiến/lùi hoặc phát lại. Về đầu chuỗi khôi phục trạng thái lúc nạp; Đặt lại khối đưa về solved và đóng chuỗi. Nếu clipboard bị chặn, chọn chuỗi rồi dùng Ctrl/Cmd+C hoặc chạm giữ để copy tay. Đây là scramble luyện tập, không dùng cho thi đấu chính thức.",
+  },
+  {
+    question: "Nhập thuật toán và lịch sử hoạt động thế nào?",
+    answer:
+      "Nhập 1–256 move U/R/F/D/L/B, thêm dấu prime hoặc 2, ngăn cách bằng khoảng trắng hay xuống dòng. Nhấn Phát thuật toán để chạy. Input sai được giữ lại và không đổi khối; nút Chọn vị trí lỗi giúp sửa đúng chỗ. Chuỗi mới thay phần chưa hoàn tất của chuỗi cũ từ trạng thái đã hoàn tất gần nhất. Lịch sử giữ tối đa 20 lần phát được chấp nhận trong phiên; chọn một mục chỉ điền lại nội dung, tải lại trang sẽ xóa lịch sử.",
   },
   {
     question: "Tôi có cần tạo tài khoản không?",
