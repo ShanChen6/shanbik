@@ -1,0 +1,28 @@
+name: Solver Next Worker smoke
+on:
+  pull_request:
+    branches: [develop]
+permissions:
+  contents: read
+jobs:
+  browser:
+    if: github.head_ref == 'feature/task-9-2-solver-spike'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: npm ci --prefix tools/solver-spike --ignore-scripts --no-audit --no-fund
+      - run: pnpm build
+      - run: node tools/solver-spike/node_modules/playwright/cli.js install chromium --only-shell
+      - run: |
+          pnpm start --hostname 127.0.0.1 --port 3178 >/tmp/solver-next-server.log 2>&1 &
+          for i in $(seq 1 100); do curl -fsS http://127.0.0.1:3178/solver-spike-check >/dev/null && break; sleep 0.2; done
+          node .qa/solver-next-smoke.mjs
