@@ -45,15 +45,23 @@ function stickerShape() {
 
 type AnimationProps = {
   animation?: MoveAnimation | null;
+  moveDurationMs?: number;
   onMoveComplete?: (id: number) => void;
 };
 
 function AnimatedLayer({
   animation,
+  moveDurationMs = 360,
   onMoveComplete,
   children,
 }: AnimationProps & { animation: MoveAnimation; children: ReactNode }) {
   const pivot = useRef<Group>(null);
+  // Capture duration at this move ID: changing speed only affects the next move.
+  const duration = useRef(
+    Number.isFinite(moveDurationMs) && moveDurationMs > 0
+      ? moveDurationMs
+      : 360,
+  );
   const elapsed = useRef<number | null>(null);
   const finished = useRef(false);
   const invalidate = useThree((store) => store.invalidate);
@@ -63,7 +71,11 @@ function AnimatedLayer({
     // Ignore the first delta after demand-mode idle; start at progress zero.
     elapsed.current =
       elapsed.current === null ? 0 : elapsed.current + delta * 1000;
-    const frame = sampleMoveAngle(turn.angle, elapsed.current);
+    const frame = sampleMoveAngle(
+      turn.angle,
+      elapsed.current,
+      duration.current,
+    );
     pivot.current.rotation[turn.axis] = frame.angle;
     if (frame.done) {
       finished.current = true;
@@ -79,6 +91,7 @@ function AnimatedLayer({
 
 function CubeModel({
   state,
+  moveDurationMs,
   animation,
   onMoveComplete,
 }: { state: CubeState } & AnimationProps) {
@@ -151,6 +164,7 @@ function CubeModel({
         <AnimatedLayer
           key={animation.id}
           animation={animation}
+          moveDurationMs={moveDurationMs}
           onMoveComplete={onMoveComplete}
         >
           {cubies.filter((cubie) => selected.has(cubie.id)).map(renderCubie)}
@@ -212,6 +226,7 @@ function ContextLifecycle({ onLost }: { onLost: () => void }) {
 
 export function CubeScene({
   state,
+  moveDurationMs,
   onContextLost,
   gestures,
   onCameraReady,
@@ -248,6 +263,7 @@ export function CubeScene({
       <CubeModel
         state={state}
         animation={animation}
+        moveDurationMs={moveDurationMs}
         onMoveComplete={onMoveComplete}
       />
       <CameraControls gestures={gestures} onReady={onCameraReady} />

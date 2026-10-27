@@ -57,6 +57,7 @@ function supportsWebGL2() {
 export function CubeViewport({
   state = SOLVED,
   animation,
+  moveDurationMs,
   onMoveComplete,
   onMoveCancel,
   onReadyChange,
@@ -66,6 +67,7 @@ export function CubeViewport({
 }: {
   state?: CubeState;
   animation?: MoveAnimation | null;
+  moveDurationMs?: number;
   onMoveComplete?: (id: number) => void;
   onMoveCancel?: (id?: number) => void;
   onReadyChange?: (ready: boolean) => void;
@@ -128,6 +130,7 @@ export function CubeViewport({
               state={state}
               fallbackText={fallbackText}
               animation={animation}
+              moveDurationMs={moveDurationMs}
               onMoveComplete={onMoveComplete}
               gestures={gestures}
               onCameraReady={handleCameraReady}
