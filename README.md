@@ -54,7 +54,7 @@ Từ Task 4.1, Vitest có test state model và không còn `passWithNoTests`. CI
 
 Nếu CI lỗi: mở Actions hoặc Checks của PR, xem bước lỗi và chạy lại đúng lệnh tương ứng ở local. Không sửa lockfile để né lỗi frozen install; cập nhật lockfile bằng pnpm nếu manifest thực sự thay đổi.
 
-Task tiếp theo: **12.1 — Schema lesson** trong docs/roadmap/ROADMAP.md.
+Task tiếp theo: **12.2 — Giao diện bài học** trong docs/roadmap/ROADMAP.md.
 
 Tài liệu giao diện: [Tokens và layout](docs/design-system.md).
 
@@ -99,3 +99,5 @@ Beta 3×3: [báo cáo và giới hạn kiểm chứng](docs/reports/beta-readine
 Nhập ảnh tĩnh 3×3 (ưu tiên trước task 11): [cách dùng, kiến trúc mở rộng và giới hạn](docs/cube-image-input.md). Mở “Nhập từ ảnh — 3×3” ở trang luyện tập.
 
 Bách khoa tám puzzle, bộ lọc URL và capability thực tế: [Tuần 11](docs/puzzle-encyclopedia.md). Mở `/puzzles`.
+
+Schema bài học và sample đã kiểm chứng (chưa có route bài học): [Task 12.1](docs/lesson-schema.md).
