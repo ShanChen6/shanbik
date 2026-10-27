@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { createSolverController } from "@/features/cube/solver/controller";
 import { deserializeCubeState } from "@/features/cube/core/serialization";
-import report from "../../../../docs/benchmarks/solver-3x3.json";
+import report from "../../../docs/benchmarks/solver-3x3.json";
 import oracle from "@/features/cube/core/__fixtures__/moves.json";
 export default function Probe() {
   useEffect(() => {

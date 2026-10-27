@@ -104,7 +104,7 @@ try {
     console.log(
       `SOLVER_IMAGE_${String(i / 8000).padStart(3, "0")}=${screenshot.slice(i, i + 8000)}`,
     );
-  await paint("U", 0, colors[state[0]]);
+  await paint("U", 0, state[0] === "U" ? "red" : "white");
   assert.equal(await solver.getByLabel("Lời giải đã kiểm chứng").count(), 0);
   // Route hide releases the ready Worker; next solve is cold and can be invalidated by editing.
   await page.setViewportSize({ width: 1280, height: 900 });
@@ -137,7 +137,7 @@ try {
         await paint(faces[block], index, colors[state[block * 9 + index]]);
   await run().click();
   await solver.getByText(/Đang khởi tạo solver/).waitFor();
-  await paint("U", 0, colors[state[0]]);
+  await paint("U", 0, state[0] === "U" ? "red" : "white");
   assert.equal(await solver.getByLabel("Lời giải đã kiểm chứng").count(), 0);
   assert.equal(await noTargets(), true);
   await page.goto("http://127.0.0.1:3179/worker-solver-check");
