@@ -24,10 +24,17 @@ import {
   type ImageResult,
   type Sources,
 } from "./adapter";
-import { FRAME_ISSUES } from "../../puzzle-image/camera";
-import { CameraCapture } from "./camera-capture";
+import dynamic from "next/dynamic";
 import { CUBE_3_IMAGE_PROFILE } from "./profile";
 
+// Camera code loads only when the image panel renders (it is collapsed by default).
+const CameraCapture = dynamic(
+  () => import("./camera-capture").then((module) => module.CameraCapture),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-muted">Đang tải phần camera…</p>,
+  },
+);
 const CORNERS = ["Trên trái", "Trên phải", "Dưới phải", "Dưới trái"];
 export function ImageInputPanel({
   onImport,
@@ -43,6 +50,7 @@ export function ImageInputPanel({
   const [message, setMessage] = useState("");
   const [result, setResult] = useState<ImageResult | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [open, setOpen] = useState(false);
   const job = useRef({ id: 0 });
   const loading = useRef(false);
   const alive = useRef(false);
@@ -125,6 +133,7 @@ export function ImageInputPanel({
       id="cube-image-input"
       className="min-w-0 space-y-4 rounded-panel border border-border p-3"
       aria-label="Nhập Rubik từ ảnh"
+      onToggle={(event) => setOpen(event.currentTarget.open)}
     >
       <summary className="cursor-pointer font-semibold">
         Nhập từ ảnh — 3×3
@@ -141,22 +150,24 @@ export function ImageInputPanel({
         của từng ảnh làm mẫu màu cho nhận dạng; chọn nhầm mặt hoặc ánh sáng khác
         nhau vẫn có thể nhận sai. Luôn kiểm tra lại bằng mắt.
       </p>
-      <CameraCapture
-        captured={new Set(FACE_ORDER.filter((key) => sources[key]))}
-        disabled={!!busy}
-        onCapture={(key, captured, issues) => {
-          setSources((current) => ({ ...current, [key]: captured }));
-          resetResult();
-          setFace(key);
-          setCorner(0);
-          setMessage(
-            [
-              `Đã chụp mặt ${key}. Kiểm tra bốn góc bao đúng một mặt.`,
-              ...issues.map((issue) => FRAME_ISSUES[issue]),
-            ].join(" "),
-          );
-        }}
-      />
+      {open && (
+        <CameraCapture
+          captured={new Set(FACE_ORDER.filter((key) => sources[key]))}
+          disabled={!!busy}
+          onCapture={(key, captured, warnings) => {
+            setSources((current) => ({ ...current, [key]: captured }));
+            resetResult();
+            setFace(key);
+            setCorner(0);
+            setMessage(
+              [
+                `Đã chụp mặt ${key}. Kiểm tra bốn góc bao đúng một mặt.`,
+                ...warnings,
+              ].join(" "),
+            );
+          }}
+        />
+      )}
       <div className="grid min-w-0 gap-3 sm:grid-cols-2">
         {FACE_ORDER.map((key) => (
           <label

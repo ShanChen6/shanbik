@@ -9,13 +9,13 @@ import { COLOR_LABELS } from "../viewer/palette";
 import {
   CAMERA_MESSAGES,
   CameraError,
+  FRAME_ISSUES,
   assessFrame,
   captureFrame,
   createCameraSession,
   guideQuad,
   type CameraDevice,
   type CameraProblem,
-  type FrameIssue,
 } from "../../puzzle-image/camera";
 import type { ImageSource } from "../../puzzle-image/types";
 
@@ -40,7 +40,8 @@ export function CameraCapture({
   onCapture: (
     face: CubeFace,
     source: ImageSource,
-    issues: FrameIssue[],
+    /** Lighting problems found in the frame, as user-facing text. */
+    warnings: string[],
   ) => void;
 }) {
   const id = useId();
@@ -132,7 +133,11 @@ export function CameraCapture({
       });
       const issues = assessFrame(source.image, source.crop);
       setError("");
-      onCapture(face, source, issues);
+      onCapture(
+        face,
+        source,
+        issues.map((issue) => FRAME_ISSUES[issue]),
+      );
       setChosen(null);
       const left = FACE_ORDER.filter(
         (key) => key !== face && !captured.has(key),

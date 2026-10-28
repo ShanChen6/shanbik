@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -19,6 +20,8 @@ import {
 } from "@/features/puzzles/registry";
 import { PuzzleWorkbenchLoader } from "@/features/puzzles/workbench-loader";
 import { LearningPath } from "@/features/puzzles/learning-path";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbs } from "@/config/seo";
 // Block serving an unknown fallback shell until static generation can return a real 404.
 export const ensureStatic = "navigation";
 type Props = { params: Promise<{ slug: string }> };
@@ -28,15 +31,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const puzzle = getPuzzle((await params).slug);
   if (!puzzle) notFound();
-  return {
+  return pageMetadata({
     title: `${puzzle.name} — Bách khoa ShanBik`,
     description: puzzle.summary,
-    openGraph: {
-      title: `${puzzle.name} — ShanBik`,
-      description: puzzle.summary,
-      type: "article",
-    },
-  };
+    path: `/puzzles/${puzzle.slug}`,
+    type: "article",
+  });
 }
 export default async function PuzzlePage({ params }: Props) {
   const puzzle = getPuzzle((await params).slug);
@@ -45,6 +45,12 @@ export default async function PuzzlePage({ params }: Props) {
     workbench = isPuzzleId(puzzle.slug) && hasWorkbench(puzzle.slug);
   return (
     <div className="site-container pb-16 sm:pb-24">
+      <JsonLd
+        data={breadcrumbs([
+          ["Bách khoa", "/puzzles"],
+          [puzzle.name, `/puzzles/${puzzle.slug}`],
+        ])}
+      />
       <PageIntro
         eyebrow="Bách khoa puzzle"
         title={puzzle.name}

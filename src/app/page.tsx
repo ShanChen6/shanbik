@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { GridBeamHero } from "@/components/home/grid-beam-hero";
+import { JsonLd } from "@/components/seo/json-ld";
+import { SITE_DESCRIPTION, SITE_NAME, absoluteUrl } from "@/config/site";
 
 const experiences = [
   {
@@ -22,6 +24,20 @@ const experiences = [
 export default function HomePage() {
   return (
     <div className="site-container">
+      <JsonLd
+        data={{
+          "@type": "WebSite",
+          name: SITE_NAME,
+          description: SITE_DESCRIPTION,
+          url: absoluteUrl("/"),
+          inLanguage: "vi",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${absoluteUrl("/search")}?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
+        }}
+      />
       <div className="pt-6 pb-16 sm:pt-10 sm:pb-24">
         <GridBeamHero />
       </div>

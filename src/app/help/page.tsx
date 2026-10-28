@@ -1,13 +1,15 @@
 import { QuickStart } from "@/features/cube/practice/quick-start";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Trợ giúp — ShanBik",
   description:
     "Thông tin về các tính năng đang xây dựng, tài khoản, giao diện và cách dùng ShanBik.",
-};
+  path: "/help",
+});
 const questions = [
   {
     question: "Dùng timer với khối thật thế nào?",

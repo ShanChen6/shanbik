@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { Suspense } from "react";
 import { PageIntro } from "@/components/layout/page-intro";
 import { AlgorithmLibrary } from "@/features/algorithms/library";
 import { LearningPath } from "@/features/puzzles/learning-path";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Thư viện công thức 3×3 — ShanBik",
   description:
     "Tìm công thức Rubik 3×3 theo tên, nhóm, ký hiệu và độ khó. Copy, xem minh họa và lưu yêu thích trên trình duyệt.",
-};
+  path: "/algorithms",
+});
 export default function AlgorithmsPage() {
   return (
     <div className="site-container pb-16 sm:pb-24">

@@ -1,5 +1,6 @@
 import { isCubeSolved } from "@/features/cube/core/state";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -10,6 +11,9 @@ import {
 } from "@/features/learn/lessons/catalog";
 import { LessonReader } from "@/features/learn/lessons/lesson-reader";
 import { LearningPath } from "@/features/puzzles/learning-path";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbs } from "@/config/seo";
+import { absoluteUrl } from "@/config/site";
 export const ensureStatic = "navigation";
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
@@ -18,21 +22,37 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const lesson = getPublishedLesson((await params).slug);
   if (!lesson) notFound();
-  return {
+  return pageMetadata({
     title: `${lesson.title} — Học Rubik ShanBik`,
     description: lesson.summary,
-    openGraph: {
-      title: lesson.title,
-      description: lesson.summary,
-      type: "article",
-    },
-  };
+    path: `/learn/lessons/${lesson.slug}`,
+    type: "article",
+  });
 }
 export default async function LessonPage({ params }: Props) {
   const lesson = getPublishedLesson((await params).slug);
   if (!lesson) notFound();
   return (
     <div className="site-container pb-16 sm:pb-24">
+      <JsonLd
+        data={{
+          "@graph": [
+            {
+              "@type": "LearningResource",
+              name: lesson.title,
+              description: lesson.summary,
+              inLanguage: "vi",
+              learningResourceType: "Bài học",
+              url: absoluteUrl(`/learn/lessons/${lesson.slug}`),
+              isAccessibleForFree: true,
+            },
+            breadcrumbs([
+              ["Học cơ bản", "/learn"],
+              [lesson.title, `/learn/lessons/${lesson.slug}`],
+            ]),
+          ],
+        }}
+      />
       <PageIntro
         eyebrow="Bài học 3×3"
         title={lesson.title}

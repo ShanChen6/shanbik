@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 import { PracticeCube } from "@/features/cube/viewer/practice-cube";
 import { LearningPath } from "@/features/puzzles/learning-path";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Luyện tập 3×3 — ShanBik",
   description:
     "Mô phỏng Rubik 3×3, phát thuật toán, tạo scramble và nhập màu sáu mặt trên ShanBik.",
-};
+  path: "/practice",
+});
 
 export default function PracticePage() {
   return (

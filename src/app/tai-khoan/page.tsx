@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { PageIntro } from "@/components/layout/page-intro";
 import { AccountPanel } from "@/features/account/account-panel";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Tài khoản — ShanBik",
   description:
     "Đăng nhập để đồng bộ lịch sử giải, công thức yêu thích và giải đấu đã lưu giữa các thiết bị. Không bắt buộc: chế độ khách vẫn dùng được mọi công cụ.",
-};
+  path: "/tai-khoan",
+  noindex: true,
+});
 export default function AccountPage() {
   return (
     <div className="site-container pb-16 sm:pb-24">

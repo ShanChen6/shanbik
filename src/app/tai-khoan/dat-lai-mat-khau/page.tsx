@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { PageIntro } from "@/components/layout/page-intro";
 import { ResetPassword } from "@/features/account/reset-password";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Đặt lại mật khẩu — ShanBik",
   description: "Đặt mật khẩu mới cho tài khoản ShanBik.",
-  robots: { index: false },
-};
+  path: "/tai-khoan/dat-lai-mat-khau",
+  noindex: true,
+});
 export default function ResetPasswordPage() {
   return (
     <div className="site-container pb-16 sm:pb-24">

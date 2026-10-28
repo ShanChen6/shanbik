@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { LoadingState } from "@/components/ui/states";
 import { GuestNotice, useSession } from "./account-panel";
 import { authMessage, validateCredentials } from "./auth";
-import { getSupabase, supabaseConfig } from "./supabase";
+import { loadSupabase, supabaseConfig } from "./supabase";
 /**
  * Landing page of the recovery email: supabase-js exchanges the one-time code
  * in the URL for a session (PKCE), then the user sets a new password.
@@ -56,10 +56,16 @@ export function ResetPassword() {
     setError(found.password ?? "");
     if (found.password) return;
     setBusy(true);
-    const { error } = await getSupabase()!.auth.updateUser({ password });
-    setBusy(false);
-    if (error) setError(authMessage(error));
-    else setDone(true);
+    try {
+      const client = await loadSupabase();
+      const { error } = await client!.auth.updateUser({ password });
+      if (error) setError(authMessage(error));
+      else setDone(true);
+    } catch (e) {
+      setError(authMessage(e));
+    } finally {
+      setBusy(false);
+    }
   };
   return (
     <form

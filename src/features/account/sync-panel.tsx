@@ -19,7 +19,7 @@ import {
   type SyncReport,
 } from "@/features/sync/engine";
 import { KIND_LABELS } from "@/features/sync/kinds";
-import { getSupabase } from "./supabase";
+import { loadSupabase } from "./supabase";
 type State =
   | { phase: "idle" }
   | { phase: "running" }
@@ -48,8 +48,6 @@ export function SyncPanel({ userId }: { userId: string }) {
   const conflicts: readonly KindConflict[] =
     state.phase === "done" ? state.report.conflicts : [];
   const run = async (withChoices: boolean) => {
-    const client = getSupabase();
-    if (!client) return;
     const choices = new Map<string, Choice>();
     if (withChoices)
       for (const c of conflicts) {
@@ -63,6 +61,8 @@ export function SyncPanel({ userId }: { userId: string }) {
       }
     setState({ phase: "running" });
     try {
+      const client = await loadSupabase();
+      if (!client) throw Error("Account backend is not configured");
       const report = await syncOnce({
         userId,
         consent,

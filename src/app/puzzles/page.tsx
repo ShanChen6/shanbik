@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { Suspense } from "react";
 import { PageIntro } from "@/components/layout/page-intro";
 import { PuzzleExplorer } from "@/features/encyclopedia/explorer";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Bách khoa puzzle — ShanBik",
   description:
     "Khám phá tám loại Rubik và puzzle xoay: hình dạng, ký hiệu và tính năng thực sự có trên ShanBik.",
-};
+  path: "/puzzles",
+});
 export default function PuzzlesPage() {
   return (
     <div className="site-container pb-16 sm:pb-24">

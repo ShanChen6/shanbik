@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -30,10 +31,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCompetition((await params).id);
   if (!c) notFound();
-  return {
+  return pageMetadata({
     title: `${c.name} — Giải đấu ShanBik`,
     description: `${formatDateRange(c.startDate, c.endDate)} tại ${c.city}, ${c.country}.${c.sample ? " Dữ liệu mẫu, không phải giải thật." : ""}`,
-  };
+    path: `/competitions/${c.id}`,
+    type: "article",
+    // Sample entries are not real events; keep them out of search results.
+    noindex: c.sample,
+  });
 }
 export default async function CompetitionPage({ params }: Props) {
   const c = getCompetition((await params).id);

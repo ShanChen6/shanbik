@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { LoadingState } from "@/components/ui/states";
 import { SyncPanel } from "./sync-panel";
 import { authMessage, validateCredentials, type AuthErrors } from "./auth";
-import { getSupabase, supabaseConfig } from "./supabase";
+import { loadSupabase, supabaseConfig } from "./supabase";
 type Mode = "sign-in" | "sign-up" | "recover";
 const MODES: Record<Mode, string> = {
   "sign-in": "Đăng nhập",
@@ -19,19 +19,22 @@ const panel = "rounded-panel border border-border bg-surface p-5 sm:p-8";
 export function useSession(): Session | null | undefined {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
   useEffect(() => {
-    const client = getSupabase();
-    if (!client) return;
-    let live = true;
-    client.auth
-      .getSession()
-      .then(({ data }) => live && setSession(data.session))
+    let live = true,
+      unsubscribe = () => {};
+    loadSupabase()
+      .then(async (client) => {
+        if (!client || !live) return;
+        const { data } = client.auth.onAuthStateChange(
+          (_event, next) => live && setSession(next),
+        );
+        unsubscribe = () => data.subscription.unsubscribe();
+        const { data: current } = await client.auth.getSession();
+        if (live) setSession(current.session);
+      })
       .catch(() => live && setSession(null));
-    const { data } = client.auth.onAuthStateChange((_event, next) =>
-      setSession(next),
-    );
     return () => {
       live = false;
-      data.subscription.unsubscribe();
+      unsubscribe();
     };
   }, []);
   return session;
@@ -66,9 +69,15 @@ function SignedIn({ session }: { session: Session }) {
     setBusy(true);
     setError("");
     // "local": only this device; local data stays for guest use.
-    const { error } = await getSupabase()!.auth.signOut({ scope: "local" });
-    setBusy(false);
-    if (error) setError(authMessage(error));
+    try {
+      const client = await loadSupabase();
+      const { error } = await client!.auth.signOut({ scope: "local" });
+      if (error) setError(authMessage(error));
+    } catch (e) {
+      setError(authMessage(e));
+    } finally {
+      setBusy(false);
+    }
   };
   return (
     <div className="space-y-6">
@@ -123,10 +132,10 @@ function AuthForms() {
     setErrors(found);
     setStatus(null);
     if (Object.keys(found).length) return;
-    const auth = getSupabase()!.auth,
-      address = email.trim();
+    const address = email.trim();
     setBusy(true);
     try {
+      const auth = (await loadSupabase())!.auth;
       if (mode === "sign-in") {
         const { error } = await auth.signInWithPassword({
           email: address,
