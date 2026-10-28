@@ -1,13 +1,15 @@
 import { getPublishedLessons } from "@/features/learn/lessons/catalog";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Học Rubik cơ bản — ShanBik",
   description:
     "Làm quen với khối 3×3 và học ký hiệu U/U′ từng bước qua hướng dẫn cùng sơ đồ màu trước/sau.",
-};
+  path: "/learn",
+});
 const topics = [
   {
     title: "Làm quen với khối",

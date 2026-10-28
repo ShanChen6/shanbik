@@ -5,7 +5,7 @@ export function QuickStart() {
     <section
       id="quick-start"
       aria-labelledby="quick-start-title"
-      className="content-width mb-10 scroll-mt-24 space-y-4 rounded-panel border border-border bg-surface p-6"
+      className="max-w-content mb-10 scroll-mt-24 space-y-4 rounded-panel border border-border bg-surface p-6"
     >
       <h2 id="quick-start-title" className="text-heading">
         Bắt đầu nhanh

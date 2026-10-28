@@ -1,13 +1,15 @@
 import { QuickStart } from "@/features/cube/practice/quick-start";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Trợ giúp — ShanBik",
   description:
     "Thông tin về các tính năng đang xây dựng, tài khoản, giao diện và cách dùng ShanBik.",
-};
+  path: "/help",
+});
 const questions = [
   {
     question: "Dùng timer với khối thật thế nào?",
@@ -42,7 +44,7 @@ const questions = [
   {
     question: "Có thể nhập Rubik bằng ảnh không?",
     answer:
-      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Chưa hỗ trợ live camera, tự tìm khối trong ảnh hoặc nhận puzzle khác.",
+      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Có thể chụp trực tiếp bằng camera (Bật camera → đặt mặt vào khung → Chụp); camera tự tắt khi chụp xong, đóng phần nhập hoặc rời trang. Chưa tự tìm khối trong ảnh hoặc nhận puzzle khác.",
   },
   {
     question: "Làm sao luyện từ scramble đến lời giải?",
@@ -77,17 +79,17 @@ const questions = [
   {
     question: "Tôi có cần tạo tài khoản không?",
     answer:
-      "Không cần tài khoản. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng, không đồng bộ sang thiết bị khác; xóa dữ liệu trang web sẽ xóa chúng.",
+      "Không bắt buộc. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng; xóa dữ liệu trang web sẽ xóa chúng. Nếu bản triển khai bật tài khoản, bạn có thể đăng nhập ở trang Tài khoản để đồng bộ lịch sử giải 3×3, công thức yêu thích và giải đã lưu giữa các thiết bị. Đồng bộ chỉ chạy khi bạn bấm, và mục khác nhau ở hai nơi luôn được hỏi lại.",
   },
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
     answer:
-      "Có thể giải khối từ bản nhập màu bằng tay; chưa có quét camera. Công cụ giải nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
+      "Không bắt buộc. Có thể nhập màu bằng tay, chọn ảnh có sẵn, hoặc chụp bằng camera trong Nhập từ ảnh — 3×3. Nếu từ chối quyền camera, hai cách còn lại vẫn dùng được. Hình camera chỉ xử lý trong trình duyệt, không ghi hình hay tải lên, và màu nhận được luôn cần bạn kiểm tra trước khi giải.",
   },
   {
     question: "Làm sao đổi giao diện?",
     answer:
-      "Trên máy tính, bấm công tắc ngày/đêm cạnh chữ Giao diện ở đầu trang. Trên màn hình nhỏ, mở Menu rồi bấm công tắc. Lần đầu, giao diện theo cài đặt sáng/tối của máy; sau khi bấm, lựa chọn Sáng hoặc Tối được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
+      "Trên máy tính, bấm nút mặt trời/mặt trăng cạnh chữ Giao diện ở góc trên bên phải. Trên màn hình nhỏ, mở Menu rồi bấm nút đó. Lần đầu, giao diện theo cài đặt sáng/tối của máy; sau khi bấm, lựa chọn Sáng hoặc Tối được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
   },
   {
     question: "Tôi có thể dùng bàn phím không?",
@@ -104,7 +106,7 @@ export default function HelpPage() {
         description="Tìm hiểu những gì đang có và cách khám phá ShanBik thoải mái hơn."
       />
       <QuickStart />
-      <section aria-labelledby="faq-title" className="content-width">
+      <section aria-labelledby="faq-title" className="max-w-content">
         <h2 id="faq-title" className="text-heading mb-6">
           Câu hỏi thường gặp
         </h2>

@@ -10,6 +10,13 @@ export const STICKER_COLORS: Readonly<Record<CubeColor, string>> =
     orange: "#f97316",
     blue: "#2563eb",
   });
+/** Plastic body of 3D models (WebGL material, so a value rather than a CSS token). */
+export const PLASTIC_COLOR = "#34464d";
+/** Readable label color on a sticker, from the diagram tokens in src/styles/tokens.css. */
+export const stickerTextColor = (color: CubeColor) =>
+  color === "red" || color === "blue"
+    ? "var(--color-diagram-paper)"
+    : "var(--color-diagram-ink)";
 export const COLOR_LABELS: Readonly<Record<CubeColor, string>> = Object.freeze({
   white: "Trắng",
   red: "Đỏ",

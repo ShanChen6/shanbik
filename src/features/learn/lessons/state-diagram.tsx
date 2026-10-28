@@ -4,6 +4,7 @@ import {
   COLOR_ABBREVIATIONS,
   COLOR_LABELS,
   STICKER_COLORS,
+  stickerTextColor,
 } from "../../cube/viewer/palette";
 export function StateDiagram({
   state,
@@ -33,10 +34,7 @@ export function StateDiagram({
                   className="flex aspect-square items-center justify-center rounded-sm border border-black/40 text-xs font-semibold"
                   style={{
                     backgroundColor: STICKER_COLORS[color],
-                    color:
-                      color === "red" || color === "blue"
-                        ? "#ffffff"
-                        : "#111827",
+                    color: stickerTextColor(color),
                   }}
                 >
                   {COLOR_ABBREVIATIONS[color]}

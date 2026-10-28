@@ -46,7 +46,7 @@ export function NxnNetView({ state }: { state: NxnState }) {
                 height={size - 1}
                 rx={1.5}
                 fill={STICKER_COLORS[color]}
-                stroke="#1f2a2e"
+                className="stroke-diagram-line"
                 strokeWidth={0.4}
               />
             ))}
@@ -57,7 +57,7 @@ export function NxnNetView({ state }: { state: NxnState }) {
               dominantBaseline="central"
               fontSize={Math.min(6, 2.4 * n)}
               fontWeight={700}
-              fill="#1f2a2e"
+              className="fill-diagram-line"
               opacity={0.55}
               aria-hidden="true"
             >

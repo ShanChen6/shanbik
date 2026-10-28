@@ -9,11 +9,34 @@ Tham khảo cấu trúc CSS và theme của [Shanverse](https://github.com/ShanC
 ## Cấu trúc
 
 - `src/app/globals.css`: điểm import Tailwind và CSS tùy chỉnh.
-- `src/styles/color.css`: màu nền tảng cam–teal.
-- `src/styles/theme.css`: token light/dark và ánh xạ `@theme inline`.
-- `src/styles/typography.css`: sans/heading/mono, body và fluid display/heading.
-- `src/styles/responsive.css`: spacing, radius, breakpoints, container và control dimensions.
+- `src/styles/tokens.css`: **nguồn token duy nhất**, viết theo biến theme Tailwind v4 (xem mục dưới).
+- `src/styles/typography.css`: ghi chú; utility chữ do Tailwind sinh từ `--text-*`.
+- `src/styles/responsive.css`: `site-container`, `section-space` (giá trị fluid, không có namespace Tailwind).
 - `src/styles/base.css`: reset tối thiểu, focus-visible, skip link, reduced motion.
+
+## Token theo Tailwind v4
+
+`tokens.css` dùng `@theme static` với namespace chuẩn của Tailwind v4, nên mỗi biến vừa là CSS variable vừa sinh utility:
+
+| Namespace                                                           | Biến (ví dụ)                                                                                                               | Utility                                                                              |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `--color-*`                                                         | `--color-background`, `--color-surface`, `--color-primary`, `--color-chart-1`, `--color-diagram-ink`, `--color-brand-teal` | `bg-surface`, `text-muted`, `border-border`, `fill-diagram-paper`, `stroke-chart-1`… |
+| `--font-*`                                                          | `--font-sans`, `--font-heading`, `--font-mono`                                                                             | `font-sans`, `font-heading`                                                          |
+| `--text-*` (+ `--line-height`, `--letter-spacing`, `--font-weight`) | `--text-display`, `--text-heading`, `--text-body`, `--text-body-lg`                                                        | `text-display`, `text-heading`, `text-body`, `text-body-lg`                          |
+| `--leading-*`                                                       | `--leading-body`                                                                                                           | `leading-body`                                                                       |
+| `--radius-*`                                                        | `--radius-small`, `--radius-control`, `--radius-panel`, `--radius-pill`                                                    | `rounded-control`, `rounded-panel`…                                                  |
+| `--shadow-*`                                                        | `--shadow-panel`                                                                                                           | `shadow-panel`                                                                       |
+| `--container-*`                                                     | `--container-layout` (72rem), `--container-content` (44rem)                                                                | `max-w-content`, `max-w-layout`                                                      |
+| `--spacing`, `--spacing-*`                                          | `--spacing: 0.25rem`, `--spacing-control: 2.75rem`                                                                         | `p-4`, `min-h-control`…                                                              |
+| `--breakpoint-*`                                                    | sm 40rem, md 48rem, lg 64rem, xl 80rem                                                                                     | `sm:` `md:` `lg:` `xl:`                                                              |
+| `--default-transition-duration`                                     | 150ms                                                                                                                      | `transition`                                                                         |
+
+- **Dark mode:** `.dark` ghi đè chính các biến `--color-*` (và `--shadow-panel`), nên utility tự đổi theo theme; không còn cặp `:root` + `@theme inline`.
+- **`static`:** giữ mọi biến trong CSS đầu ra, nên JS và inline style dùng được `var(--color-…)` (ví dụ màu chữ trên sticker).
+- **`:root` thường:** chỉ những giá trị không có namespace Tailwind: gutter/khoảng section fluid, z-index (`--layer-*`), `--brand-gradient`, bảng màu minh hoạ `--illus-*` (hero).
+- **Màu sticker:** WebGL dùng chung, nên nằm ở `src/features/cube/viewer/palette.ts` (cùng `PLASTIC_COLOR` và `stickerTextColor`).
+- **Bảo vệ:** `pnpm lint` chạy `tools/check-tokens.mjs`; màu hex/rgb/hsl viết ở bất kỳ đâu khác ngoài `tokens.css` và `palette.ts` đều làm lint thất bại. Dòng tạo màu từ token (canvas) đánh dấu `tokens-ok`.
+- **Đổi thương hiệu:** sửa khối brand trong `tokens.css`, rồi chạy bộ axe ở cả theme sáng và tối để kiểm tương phản.
 
 ## Hợp đồng token
 
@@ -27,12 +50,23 @@ Tham khảo cấu trúc CSS và theme của [Shanverse](https://github.com/ShanC
 | Focus       | ring                                                | Outline 3px, offset 4px; không xóa focus để trang trí                                          |
 | Khoảng cách | --spacing: 0.25rem                                  | Dùng scale Tailwind hiện có                                                                    |
 | Breakpoints | sm 40rem, md 48rem, lg 64rem, xl 80rem              | Mobile-first; grid 3 cột từ md                                                                 |
-| Layout      | site-container, content-width, section-space        | Max 72rem, nội dung 44rem, gutter fluid                                                        |
+| Layout      | site-container, max-w-content, section-space        | Max 72rem, nội dung 44rem, gutter fluid                                                        |
 | Chữ         | text-display, text-heading, text-body, text-body-lg | Font hệ thống hỗ trợ tiếng Việt, không tải font mạng                                           |
-| Controls    | --control-min / touch-control                       | Tối thiểu 44px theo font root mặc định                                                         |
-| Chuyển động | --motion-fast                                       | 150ms; reduced-motion tắt transition/animation                                                 |
+| Controls    | --spacing-control / touch-control                   | Tối thiểu 44px theo font root mặc định                                                         |
+| Chuyển động | --default-transition-duration                       | 150ms; reduced-motion tắt transition/animation                                                 |
 
-`next-themes` quản lý class `dark`, mặc định theo hệ thống; người dùng bấm công tắc ngày/đêm (`theme-switch.tsx`, prompt UX #021, MIT) để chọn Sáng hoặc Tối, lưu `shanbik-theme`; chưa chọn thì theo hệ thống. Công tắc chỉ dùng giá trị sau hydrate; vì provider tắt transition lúc đổi class, công tắc chạy hiệu ứng 0,9 s rồi mới áp theme (giảm chuyển động: áp ngay). Style nằm trong `theme-switch.css` cạnh component, mọi selector có tiền tố `.u021` (cấu hình Turbopack xử lý mọi `*.css` như CSS thường nên không dùng CSS module); vòng focus dùng token `--ring`. `suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
+`next-themes` quản lý class `dark`, mặc định theo hệ thống, lưu lựa chọn ở `shanbik-theme`.
+
+Nút mặt trời/mặt trăng ở header (`theme-switch.tsx`, prompt UX #219, MIT) chuyển theme:
+
+- **Sang tối:** trang tối lan theo vòng tròn từ chính nút ra phủ toàn trang (clip-path `.7s cubic-bezier(.65,0,.35,1)`), đồng thời icon xoay từ mặt trời sang mặt trăng (`.6s cubic-bezier(.3,1.4,.5,1)`).
+- **Sang sáng:** vòng tối co lại về nút.
+- **Cách làm:** dùng View Transitions API trên trang thật. Pseudo-element `::view-transition-*` chỉ áp dụng khi `<html>` có class `u219-vt` trong một lần chuyển.
+- **Dự phòng:** trình duyệt không hỗ trợ View Transitions, hoặc người dùng bật giảm chuyển động, thì đổi theme ngay.
+- **Accessibility:** giữ `role="switch"`, `aria-checked`, `aria-label="Giao diện tối"` và vùng bấm 44px.
+- **Style:** nằm trong `theme-switch.css`, tiền tố `.u219`, dùng token `--color-*`.
+
+`suppressHydrationWarning` chỉ đặt trên html do thư viện cập nhật class theme trước hydrate; không dùng để che lỗi cây nội dung.
 
 ## Layout
 

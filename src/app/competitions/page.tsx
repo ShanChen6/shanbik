@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { Suspense } from "react";
 import Link from "next/link";
 import { PageIntro } from "@/components/layout/page-intro";
 import { COMPETITIONS } from "@/features/competitions/data";
 import { CompetitionExplorer } from "@/features/competitions/explorer";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Giải đấu — ShanBik",
   description:
     "Lịch giải đấu Rubik theo vùng, tháng, nội dung thi và trạng thái, với giờ địa phương và UTC rõ ràng.",
-};
+  path: "/competitions",
+});
 export default function CompetitionsPage() {
   const sample = COMPETITIONS.every((c) => c.sample);
   return (

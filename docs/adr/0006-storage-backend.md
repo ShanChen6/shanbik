@@ -38,6 +38,10 @@ Local persistence cho solve đã chốt: IndexedDB native (database `shanbik-tim
 
 Dữ liệu giải đấu lưu dạng file versioned trong repo, validate lúc build, sửa qua commit/review; không form công khai, không scrape. Quản trị CRUD giữ điều kiện có Auth/RBAC/RLS trước (Task 22.1). Chi tiết: [competitions.md](../competitions.md).
 
+## Cập nhật Tuần 23 (28/10/2026)
+
+Chọn Supabase (Postgres + Auth + RLS) cho tài khoản và đồng bộ tùy chọn: lịch sử solve 3×3, công thức yêu thích, giải đã lưu. Guest-first giữ nguyên: thiếu env thì không có client Supabase và không request ra ngoài. Chỉ dùng anon key ở browser; mọi bảng bật RLS `user_id = auth.uid()`, giới hạn số hàng mỗi người, xóa bằng tombstone. Đồng bộ thủ công, gộp ba chiều, xung đột hỏi người dùng. Không dùng Firebase vì cần quyền theo hàng kiểm được bằng SQL. Chi tiết: [sync-design.md](../sync-design.md). Quản trị giải đấu (22.1) vẫn hoãn tới khi có RBAC.
+
 ## Nguồn trong repository
 
 - [Kiến trúc hiện trạng](../architecture/current-state.md) (snapshot Task 2.1; CI đã bổ sung ở Task 2.2).

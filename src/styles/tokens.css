@@ -1,0 +1,164 @@
+/*
+ * ShanBik design tokens — the single source of truth for the visual theme,
+ * written as Tailwind CSS v4 theme variables.
+ *
+ * - Values that should produce utilities live in `@theme` under Tailwind's
+ *   namespaces: --color-* (bg-*, text-*, border-*, fill-*, stroke-*…),
+ *   --font-*, --text-* (with --line-height / --letter-spacing / --font-weight
+ *   modifiers), --leading-*, --radius-*, --shadow-*, --container-*,
+ *   --breakpoint-*, --spacing, --default-transition-*.
+ * - Dark mode overrides the same theme variables under `.dark`; utilities
+ *   read var(--color-*) so they switch automatically.
+ * - `@theme static` keeps every variable in the output so JS and inline
+ *   styles can use var(--color-*) too.
+ * - Values with no utility namespace (illustrations, z-index layers, fluid
+ *   layout sizes) are plain custom properties on :root.
+ *
+ * Components use utilities (bg-surface, text-muted, rounded-control,
+ * shadow-panel, max-w-content…) or var(--color-…); color literals anywhere
+ * else fail `pnpm lint` (tools/check-tokens.mjs). Sticker colors are
+ * physical puzzle colors shared with WebGL and live in
+ * src/features/cube/viewer/palette.ts.
+ * To change the brand: edit the brand palette, then run the axe suite for
+ * contrast in both themes.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme static {
+  /* Brand palette (raw; prefer semantic colors in UI). Sampled from the logo. */
+  --color-brand-teal: #0a4b58;
+  --color-brand-orange: #f35a31;
+  --color-brand-ink: #132d2b;
+  --color-brand-paper: #f7faf8;
+
+  /* Semantic colors — light. Neutral surfaces; brand only on actions/accents. */
+  --color-background: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #eef0f3;
+  --color-foreground: var(--color-brand-ink);
+  --color-muted: #4d6561;
+  --color-border: #cfd4db;
+  --color-control-border: #7a828e;
+  --color-primary: var(--color-brand-teal);
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #083b46;
+  --color-accent: #a53617;
+  --color-accent-soft: #fff0e5;
+  --color-ring: #0a4b58;
+  --color-success: #166534;
+  --color-warning: #854d0e;
+  --color-danger: #b91c1c;
+  --color-info: #1d4ed8;
+  --color-overlay: rgb(0 0 0 / 0.6);
+  /* Chart series, validated for lightness/chroma/CVD on surface per mode. */
+  --color-chart-1: #2a78d6;
+  --color-chart-2: #eb6834;
+  --color-chart-grid: #e2e5ea;
+  /* Puzzle diagrams (2D nets, crop grids, sticker labels): same in both modes. */
+  --color-diagram-ink: #111827;
+  --color-diagram-paper: #ffffff;
+  --color-diagram-line: #1f2a2e;
+  --color-diagram-highlight: #f97316;
+
+  /* Typography. */
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-heading: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, monospace;
+  --leading-body: 1.75;
+  --text-body: 1rem;
+  --text-body--line-height: var(--leading-body);
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: var(--leading-body);
+  --text-heading: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --text-heading--line-height: 1.25;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 700;
+  --text-display: clamp(2.5rem, 1.5rem + 4vw, 4.75rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 700;
+
+  /* Layout. */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --spacing: 0.25rem;
+  --spacing-control: 2.75rem;
+  --container-layout: 72rem;
+  --container-content: 44rem;
+
+  /* Shape, depth, motion. */
+  --radius-small: 0.5rem;
+  --radius-control: 0.75rem;
+  --radius-panel: 1.5rem;
+  --radius-pill: 999px;
+  --shadow-panel: 0 12px 40px rgb(19 45 43 / 0.06);
+  --default-transition-duration: 150ms;
+}
+
+/* Semantic colors — dark. Same variables, so utilities switch with .dark. */
+.dark {
+  color-scheme: dark;
+  --color-background: #0f1115;
+  --color-surface: #171a20;
+  --color-surface-subtle: #20242c;
+  --color-foreground: #edf7f2;
+  --color-muted: #b0c8c0;
+  --color-border: #474e5a;
+  --color-control-border: #7c8594;
+  --color-primary: #77e0ce;
+  --color-primary-foreground: #102d27;
+  --color-primary-hover: #a0ecdf;
+  --color-accent: #ffb78d;
+  --color-accent-soft: #3e2b23;
+  --color-ring: #77e0ce;
+  --color-success: #86efac;
+  --color-warning: #fde047;
+  --color-danger: #fca5a5;
+  --color-info: #93c5fd;
+  --color-chart-1: #3987e5;
+  --color-chart-2: #d95926;
+  --color-chart-grid: #2a2f38;
+  --shadow-panel: 0 12px 40px rgb(0 0 0 / 0.16);
+}
+
+/* Not utilities: fluid layout values, layers and the brand gradient. */
+:root {
+  color-scheme: light;
+  --layout-gutter: clamp(1rem, 3vw, 2rem);
+  --section-space: clamp(3rem, 7vw, 6rem);
+  --layer-header: 20;
+  --layer-overlay: 60;
+  --layer-dialog: 61;
+  --layer-toast: 80;
+  --brand-gradient: linear-gradient(
+    120deg,
+    var(--color-brand-orange),
+    var(--color-brand-teal)
+  );
+}
+
+/* Illustrations. Self-contained art that does not follow the site theme. */
+:root {
+  /* Grid-beam hero (components/home/grid-beam-hero): always dark. */
+  --illus-hero-bg: #07080f;
+  --illus-hero-text: #f2f4ff;
+  --illus-hero-muted: #9aa0c3;
+  --illus-hero-eyebrow: #a5b4fc;
+  --illus-hero-title: linear-gradient(180deg, #ffffff, #aeb4d6);
+  --illus-hero-grid: rgb(255 255 255 / 0.07);
+  --illus-hero-beam: rgb(129 140 248 / 0.55);
+  /* Canvas beams read these as "r g b" channels. */
+  --illus-hero-beam-1: 129 140 248;
+  --illus-hero-beam-2: 45 212 191;
+  --illus-hero-beam-3: 244 114 182;
+  --illus-hero-glow: rgb(99 102 241 / 0.35);
+  --illus-hero-chip: rgb(255 255 255 / 0.06);
+  --illus-hero-chip-line: rgb(255 255 255 / 0.12);
+  --illus-hero-ghost-line: rgb(255 255 255 / 0.14);
+  --illus-hero-cta: #ffffff;
+  --illus-hero-focus: #77e0ce;
+  --illus-hero-shadow: rgb(40 30 80 / 0.3);
+  --illus-hero-shadow-dark: rgb(0 0 0 / 0.72);
+}

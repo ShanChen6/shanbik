@@ -24,8 +24,17 @@ import {
   type ImageResult,
   type Sources,
 } from "./adapter";
+import dynamic from "next/dynamic";
 import { CUBE_3_IMAGE_PROFILE } from "./profile";
 
+// Camera code loads only when the image panel renders (it is collapsed by default).
+const CameraCapture = dynamic(
+  () => import("./camera-capture").then((module) => module.CameraCapture),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-muted">Đang tải phần camera…</p>,
+  },
+);
 const CORNERS = ["Trên trái", "Trên phải", "Dưới phải", "Dưới trái"];
 export function ImageInputPanel({
   onImport,
@@ -41,6 +50,7 @@ export function ImageInputPanel({
   const [message, setMessage] = useState("");
   const [result, setResult] = useState<ImageResult | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [open, setOpen] = useState(false);
   const job = useRef({ id: 0 });
   const loading = useRef(false);
   const alive = useRef(false);
@@ -123,6 +133,7 @@ export function ImageInputPanel({
       id="cube-image-input"
       className="min-w-0 space-y-4 rounded-panel border border-border p-3"
       aria-label="Nhập Rubik từ ảnh"
+      onToggle={(event) => setOpen(event.currentTarget.open)}
     >
       <summary className="cursor-pointer font-semibold">
         Nhập từ ảnh — 3×3
@@ -131,13 +142,32 @@ export function ImageInputPanel({
         Chọn sáu ảnh, mỗi ảnh nhìn thẳng vào một mặt, tránh bóng và phản chiếu.
         JPEG/PNG/WebP tối đa 8 MiB, 24 MP mỗi ảnh; cạnh lưu để xử lý tối đa
         1024px. Ảnh chỉ xử lý trong trình duyệt, không tải lên máy chủ và không
-        lưu qua reload. Chưa hỗ trợ camera trực tiếp hoặc tự tìm khối trong ảnh.
+        lưu qua reload. Có thể chụp trực tiếp bằng camera; chưa tự tìm khối
+        trong ảnh.
       </p>
       <p className="text-sm text-muted">
         Giữ đúng tâm: U trắng, R đỏ, F xanh lá, D vàng, L cam, B xanh dương. Tâm
         của từng ảnh làm mẫu màu cho nhận dạng; chọn nhầm mặt hoặc ánh sáng khác
         nhau vẫn có thể nhận sai. Luôn kiểm tra lại bằng mắt.
       </p>
+      {open && (
+        <CameraCapture
+          captured={new Set(FACE_ORDER.filter((key) => sources[key]))}
+          disabled={!!busy}
+          onCapture={(key, captured, warnings) => {
+            setSources((current) => ({ ...current, [key]: captured }));
+            resetResult();
+            setFace(key);
+            setCorner(0);
+            setMessage(
+              [
+                `Đã chụp mặt ${key}. Kiểm tra bốn góc bao đúng một mặt.`,
+                ...warnings,
+              ].join(" "),
+            );
+          }}
+        />
+      )}
       <div className="grid min-w-0 gap-3 sm:grid-cols-2">
         {FACE_ORDER.map((key) => (
           <label
@@ -255,13 +285,13 @@ export function ImageInputPanel({
                     <polygon
                       points={points.map((p) => `${p.x},${p.y}`).join(" ")}
                       fill="none"
-                      stroke="#111827"
+                      className="stroke-diagram-ink"
                       strokeWidth={0.008}
                     />
                     <polygon
                       points={points.map((p) => `${p.x},${p.y}`).join(" ")}
                       fill="none"
-                      stroke="#ffffff"
+                      className="stroke-diagram-paper"
                       strokeWidth={0.003}
                     />
                     <text
@@ -270,8 +300,7 @@ export function ImageInputPanel({
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fontSize={0.055}
-                      fill="#ffffff"
-                      stroke="#111827"
+                      className="fill-diagram-paper stroke-diagram-ink"
                       strokeWidth={0.002}
                       paintOrder="stroke"
                     >
@@ -286,8 +315,7 @@ export function ImageInputPanel({
                 cx={point.x}
                 cy={point.y}
                 r={0.016}
-                fill={index === corner ? "#f97316" : "#ffffff"}
-                stroke="#111827"
+                className={`stroke-diagram-ink ${index === corner ? "fill-diagram-highlight" : "fill-diagram-paper"}`}
                 strokeWidth={0.004}
               />
             ))}

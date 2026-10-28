@@ -121,3 +121,9 @@ Thực hành 2×2, 4×4, Pyraminx và Megaminx trên trang bách khoa của từ
 Tìm kiếm tại `/search` và lộ trình học → luyện tập trên các trang — [Tuần 20](docs/search-learning-path.md); kiểm tra link: `node tools/audit-site.mjs <url>` sau `pnpm build && pnpm start`.
 
 Giải đấu tại `/competitions` (hiện là dữ liệu mẫu): schema có nguồn/ngày cập nhật, giờ địa phương và UTC — [Tuần 21–22](docs/competitions.md); lưu giải, tệp lịch `.ics` và form góp ý (không sửa dữ liệu trực tiếp, xem [ADR 0008](docs/adr/0008-competition-admin.md)).
+
+Tài khoản và đồng bộ tại `/tai-khoan` (tùy chọn, Supabase Auth + RLS): đăng ký/đăng nhập/khôi phục mật khẩu, đồng bộ thủ công lịch sử solve, công thức yêu thích, giải đã lưu với gộp ba chiều và hỏi khi xung đột — [Tuần 23](docs/sync-design.md). Bật bằng cách chạy `supabase/migrations/` trên project Supabase và đặt `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` khi build (xem `.env.example`); thiếu hai biến này site chạy ở chế độ khách. Không bao giờ đưa service-role key vào client hoặc Git.
+
+Quét 3×3 bằng camera trong `/practice` → Nhập từ ảnh: camera sau, đổi camera, stream tự dừng khi rời trang/ẩn tab/đóng panel; màu luôn được duyệt và sửa trước khi giải — [Tuần 24](docs/cube-camera.md).
+
+SEO, hiệu năng, bảo mật và accessibility (Tuần 25): đặt `NEXT_PUBLIC_SITE_URL` để bật canonical/sitemap/index (thiếu thì mọi trang noindex), security headers trong `next.config.ts`, đo bundle bằng `node tools/measure-bundles.mjs <url>` — [báo cáo](docs/reports/week25-audit-2026-10-28.md).

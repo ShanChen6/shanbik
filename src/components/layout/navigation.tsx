@@ -112,3 +112,33 @@ export function MobileNavigation() {
     </div>
   );
 }
+
+/** Desktop header account entry (icon only, labelled). */
+export function AccountLink() {
+  const pathname = usePathname();
+  const current =
+    pathname === "/tai-khoan" || pathname.startsWith("/tai-khoan/");
+  return (
+    <Link
+      href="/tai-khoan"
+      aria-label="Tài khoản"
+      title="Tài khoản"
+      aria-current={current ? "page" : undefined}
+      className={`touch-control rounded-lg ${current ? "bg-surface-subtle text-primary" : "text-muted hover:bg-surface-subtle hover:text-foreground"}`}
+    >
+      <svg
+        aria-hidden="true"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21a8 8 0 0 1 16 0" />
+      </svg>
+    </Link>
+  );
+}

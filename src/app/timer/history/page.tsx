@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/config/site";
 import { PageIntro } from "@/components/layout/page-intro";
 import { HistoryList } from "@/features/timer/history-list";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Lịch sử solve — ShanBik",
   description:
     "Xem lại các lượt bấm giờ 3×3 đã lưu trên trình duyệt, đánh +2/DNF, xóa và hoàn tác.",
-};
+  path: "/timer/history",
+  noindex: true,
+});
 export default function SolveHistoryPage() {
   return (
     <div className="site-container pb-16 sm:pb-24">

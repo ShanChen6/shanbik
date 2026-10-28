@@ -14,4 +14,5 @@ export const navigationItems: readonly Readonly<{
   { href: "/competitions", label: "Giải đấu" },
   { href: "/search", label: "Tìm kiếm", desktop: false },
   { href: "/help", label: "Trợ giúp" },
+  { href: "/tai-khoan", label: "Tài khoản", desktop: false },
 ];

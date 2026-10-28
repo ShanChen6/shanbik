@@ -7,7 +7,6 @@ import "./grid-beam-hero.css";
 
 /** Grid cell in px; beams run on the grid lines. */
 const C = 34;
-const COL = ["129,140,248", "45,212,191", "244,114,182"];
 type Beam = {
   v: boolean;
   l: number;
@@ -31,6 +30,13 @@ export function GridBeamHero() {
       cv = canvas.current,
       cx = cv?.getContext("2d");
     if (!el || !cv || !cx) return;
+    // Beam colors come from --illus-hero-beam-{1,2,3} ("r g b") in tokens.css.
+    const style = getComputedStyle(el);
+    const COL = [1, 2, 3].map((i) =>
+      style.getPropertyValue(`--illus-hero-beam-${i}`).trim(),
+    );
+    // Builds a CSS color from token channels; no literal color here.
+    const tint = (c: string, a: number) => `rgb(${c} / ${a})`; // tokens-ok
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     let W = 0,
       H = 0,
@@ -63,16 +69,16 @@ export function GridBeamHero() {
           x1 = b.v ? b.l : b.p,
           y1 = b.v ? b.p : b.l;
         const g = cx.createLinearGradient(x0, y0, x1, y1);
-        g.addColorStop(0, `rgba(${b.c},0)`);
-        g.addColorStop(1, `rgba(${b.c},.95)`);
+        g.addColorStop(0, tint(b.c, 0));
+        g.addColorStop(1, tint(b.c, 0.95));
         cx.strokeStyle = g;
         cx.lineWidth = 1.6;
         cx.beginPath();
         cx.moveTo(x0 + 0.5, y0 + 0.5);
         cx.lineTo(x1 + 0.5, y1 + 0.5);
         cx.stroke();
-        cx.fillStyle = `rgba(${b.c},1)`;
-        cx.shadowColor = `rgba(${b.c},1)`;
+        cx.fillStyle = tint(b.c, 1);
+        cx.shadowColor = tint(b.c, 1);
         cx.shadowBlur = 8;
         cx.beginPath();
         cx.arc(x1 + 0.5, y1 + 0.5, 1.8, 0, 6.2832);

@@ -14,7 +14,7 @@ import {
 import type { CubeState } from "../core/types";
 import { CUBE_COLORS } from "../core/constants";
 import { buildCubeViewModel } from "./view-model";
-import { STICKER_COLORS } from "./palette";
+import { PLASTIC_COLOR, STICKER_COLORS } from "./palette";
 import { STICKER_ROTATIONS } from "./sticker-orientation";
 import { getMoveLayer, selectLayerCubies } from "./move-layer";
 import { sampleMoveAngle, type MoveAnimation } from "./single-move";
@@ -101,7 +101,7 @@ function CubeModel({
       body: new BoxGeometry(0.94, 0.94, 0.94),
       sticker: new ShapeGeometry(stickerShape()),
       plastic: new MeshStandardMaterial({
-        color: "#34464d",
+        color: PLASTIC_COLOR,
         roughness: 0.75,
         metalness: 0.02,
       }),

@@ -160,6 +160,16 @@ export function createSolveRepository(db: IDBDatabase) {
         };
         return () => imported;
       }),
+    /**
+     * Account sync (Task 23.4): write merged solves and remove deleted ones
+     * in one transaction. Callers have already resolved conflicts.
+     */
+    applySync: (upserts: readonly Solve[], deletes: readonly string[]) =>
+      transact(db, "readwrite", (solves) => {
+        for (const solve of upserts) solves.put(validateSolve(solve));
+        for (const id of deletes) solves.delete(id);
+        return () => upserts.length + deletes.length;
+      }),
     close: () => db.close(),
   };
 }

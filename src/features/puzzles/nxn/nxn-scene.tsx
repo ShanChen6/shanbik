@@ -18,7 +18,7 @@ import {
   ContextLifecycle,
   stickerShape,
 } from "../../cube/viewer/cube-scene";
-import { STICKER_COLORS } from "../../cube/viewer/palette";
+import { PLASTIC_COLOR, STICKER_COLORS } from "../../cube/viewer/palette";
 import { STICKER_ROTATIONS } from "../../cube/viewer/sticker-orientation";
 import type { NxnState } from "./model";
 /** Same 3-unit outer size as the 3×3 so camera fitting is shared. */
@@ -37,7 +37,7 @@ function NxnModel({ state }: { state: NxnState }) {
       body: new BoxGeometry(SIDE * 0.995, SIDE * 0.995, SIDE * 0.995),
       sticker: new ShapeGeometry(stickerShape()),
       plastic: new MeshStandardMaterial({
-        color: "#34464d",
+        color: PLASTIC_COLOR,
         roughness: 0.75,
         metalness: 0.02,
       }),

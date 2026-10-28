@@ -1,30 +1,7 @@
-@theme {
-  --breakpoint-sm: 40rem;
-  --breakpoint-md: 48rem;
-  --breakpoint-lg: 64rem;
-  --breakpoint-xl: 80rem;
-  --spacing: 0.25rem;
-  --radius-panel: 1.5rem;
-}
-:root {
-  --layout-max: 72rem;
-  --content-max: 44rem;
-  --layout-gutter: clamp(1rem, 3vw, 2rem);
-  --section-space: clamp(3rem, 7vw, 6rem);
-  --control-min: 2.75rem;
-  --motion-fast: 150ms;
-  --layer-header: 20;
-}
 @utility site-container {
-  width: min(calc(100% - 2 * var(--layout-gutter)), var(--layout-max));
+  width: min(calc(100% - 2 * var(--layout-gutter)), var(--container-layout));
   margin-inline: auto;
-}
-@utility content-width {
-  max-width: var(--content-max);
 }
 @utility section-space {
   padding-block: var(--section-space);
-}
-@utility panel-shadow {
-  box-shadow: var(--shadow-panel);
 }
