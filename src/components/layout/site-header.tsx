@@ -1,6 +1,11 @@
 import { BrandLogo } from "./brand-logo";
 import { ThemeSwitch } from "./theme-switch";
-import { DesktopNavigation, MobileNavigation, SearchLink } from "./navigation";
+import {
+  AccountLink,
+  DesktopNavigation,
+  MobileNavigation,
+  SearchLink,
+} from "./navigation";
 
 export function SiteHeader() {
   return (
@@ -10,6 +15,7 @@ export function SiteHeader() {
         <DesktopNavigation />
         <div className="hidden items-center gap-2 lg:flex">
           <SearchLink />
+          <AccountLink />
           <ThemeSwitch />
         </div>
         <MobileNavigation />

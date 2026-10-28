@@ -77,7 +77,7 @@ const questions = [
   {
     question: "Tôi có cần tạo tài khoản không?",
     answer:
-      "Không cần tài khoản. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng, không đồng bộ sang thiết bị khác; xóa dữ liệu trang web sẽ xóa chúng.",
+      "Không bắt buộc. Lịch sử bấm giờ, công thức yêu thích, ghi chú và vị trí đọc bài học được lưu trên trình duyệt bạn đang dùng; xóa dữ liệu trang web sẽ xóa chúng. Nếu bản triển khai bật tài khoản, bạn có thể đăng nhập ở trang Tài khoản để đồng bộ lịch sử giải 3×3, công thức yêu thích và giải đã lưu giữa các thiết bị. Đồng bộ chỉ chạy khi bạn bấm, và mục khác nhau ở hai nơi luôn được hỏi lại.",
   },
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
