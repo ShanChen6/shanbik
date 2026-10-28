@@ -6,11 +6,12 @@ import {
   type PyraminxFace,
   type PyraminxState,
 } from "./model";
+import { STICKER_COLORS } from "../../cube/viewer/palette";
 export const PYRAMINX_HEX: Readonly<Record<PyraminxColor, string>> = {
-  green: "#16a34a",
-  red: "#dc2626",
-  blue: "#2563eb",
-  yellow: "#facc15",
+  green: STICKER_COLORS.green,
+  red: STICKER_COLORS.red,
+  blue: STICKER_COLORS.blue,
+  yellow: STICKER_COLORS.yellow,
 };
 export const PYRAMINX_LABELS: Readonly<Record<PyraminxFace, string>> = {
   F: "trước (xanh lá)",
@@ -78,7 +79,7 @@ export function PyraminxNetView({ state }: { state: PyraminxState }) {
               .map((p) => p.map((v) => v.toFixed(2)).join(","))
               .join(" ")}
             fill={PYRAMINX_HEX[state[f][i]]}
-            stroke="#1f2a2e"
+            className="stroke-diagram-line"
             strokeWidth={0.8}
             strokeLinejoin="round"
           />

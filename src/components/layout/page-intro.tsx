@@ -8,7 +8,7 @@ export function PageIntro({
   description: string;
 }) {
   return (
-    <header className="section-space content-width">
+    <header className="section-space max-w-content">
       <p className="mb-3 text-sm font-semibold tracking-widest text-primary uppercase">
         {eyebrow}
       </p>

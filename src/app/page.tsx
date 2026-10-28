@@ -56,7 +56,7 @@ export default function HomePage() {
           {experiences.map((item) => (
             <li
               key={item.number}
-              className="panel-shadow overflow-hidden rounded-panel border border-border bg-surface"
+              className="shadow-panel overflow-hidden rounded-panel border border-border bg-surface"
             >
               <div aria-hidden="true" className="brand-rule" />
               <div className="p-6 sm:p-8">

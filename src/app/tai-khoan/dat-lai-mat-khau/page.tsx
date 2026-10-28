@@ -16,7 +16,7 @@ export default function ResetPasswordPage() {
         title="Đặt lại mật khẩu."
         description="Nhập mật khẩu mới. Liên kết trong thư chỉ dùng được một lần."
       />
-      <div className="content-width">
+      <div className="max-w-content">
         <ResetPassword />
       </div>
     </div>

@@ -245,7 +245,11 @@ export function CameraCapture({
               const [a, b] = [guide[0], guide[2]],
                 t = i / 3;
               return (
-                <g key={i} stroke="#ffffff" strokeWidth={i % 3 ? 0.003 : 0.006}>
+                <g
+                  key={i}
+                  className="stroke-diagram-paper"
+                  strokeWidth={i % 3 ? 0.003 : 0.006}
+                >
                   <line
                     x1={a.x + (b.x - a.x) * t}
                     y1={a.y}

@@ -285,13 +285,13 @@ export function ImageInputPanel({
                     <polygon
                       points={points.map((p) => `${p.x},${p.y}`).join(" ")}
                       fill="none"
-                      stroke="#111827"
+                      className="stroke-diagram-ink"
                       strokeWidth={0.008}
                     />
                     <polygon
                       points={points.map((p) => `${p.x},${p.y}`).join(" ")}
                       fill="none"
-                      stroke="#ffffff"
+                      className="stroke-diagram-paper"
                       strokeWidth={0.003}
                     />
                     <text
@@ -300,8 +300,7 @@ export function ImageInputPanel({
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fontSize={0.055}
-                      fill="#ffffff"
-                      stroke="#111827"
+                      className="fill-diagram-paper stroke-diagram-ink"
                       strokeWidth={0.002}
                       paintOrder="stroke"
                     >
@@ -316,8 +315,7 @@ export function ImageInputPanel({
                 cx={point.x}
                 cy={point.y}
                 r={0.016}
-                fill={index === corner ? "#f97316" : "#ffffff"}
-                stroke="#111827"
+                className={`stroke-diagram-ink ${index === corner ? "fill-diagram-highlight" : "fill-diagram-paper"}`}
                 strokeWidth={0.004}
               />
             ))}

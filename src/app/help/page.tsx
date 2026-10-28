@@ -89,7 +89,7 @@ const questions = [
   {
     question: "Làm sao đổi giao diện?",
     answer:
-      "Trên máy tính, bấm công tắc ngày/đêm cạnh chữ Giao diện ở đầu trang. Trên màn hình nhỏ, mở Menu rồi bấm công tắc. Lần đầu, giao diện theo cài đặt sáng/tối của máy; sau khi bấm, lựa chọn Sáng hoặc Tối được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
+      "Trên máy tính, bấm nút mặt trời/mặt trăng cạnh chữ Giao diện ở góc trên bên phải. Trên màn hình nhỏ, mở Menu rồi bấm nút đó. Lần đầu, giao diện theo cài đặt sáng/tối của máy; sau khi bấm, lựa chọn Sáng hoặc Tối được lưu trên trình duyệt của bạn nếu trình duyệt cho phép lưu trữ.",
   },
   {
     question: "Tôi có thể dùng bàn phím không?",
@@ -106,7 +106,7 @@ export default function HelpPage() {
         description="Tìm hiểu những gì đang có và cách khám phá ShanBik thoải mái hơn."
       />
       <QuickStart />
-      <section aria-labelledby="faq-title" className="content-width">
+      <section aria-labelledby="faq-title" className="max-w-content">
         <h2 id="faq-title" className="text-heading mb-6">
           Câu hỏi thường gặp
         </h2>

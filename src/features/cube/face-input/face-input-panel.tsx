@@ -19,6 +19,7 @@ import {
   COLOR_LABELS,
   STICKER_COLORS,
   COLOR_ABBREVIATIONS as ABBREVIATIONS,
+  stickerTextColor,
 } from "../viewer/palette";
 import {
   createFaceDraft,
@@ -226,11 +227,7 @@ export function FaceInputPanel({
                         backgroundColor: value
                           ? STICKER_COLORS[value]
                           : undefined,
-                        color: value
-                          ? value === "red" || value === "blue"
-                            ? "#ffffff"
-                            : "#111827"
-                          : undefined,
+                        color: value ? stickerTextColor(value) : undefined,
                       }}
                       onClick={() => {
                         setDraft((current) =>

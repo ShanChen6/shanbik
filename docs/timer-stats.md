@@ -31,7 +31,7 @@ Trung bình được làm tròn đến centisecond gần nhất (WCA 9f1), còn 
 - 8 ô số liệu (2 cột mobile, 4 cột từ 768px); Số lượt kèm số DNF và +2.
 - Biểu đồ SVG đo theo bề rộng container (ResizeObserver), không dùng thư viện chart. Một trục Y (giây), trục X là số thứ tự lượt. Chấm = từng lượt (`--chart-1`), đường 2px = Ao5 (`--chart-2`), đứt đoạn khi Ao5 chưa đủ hoặc là DNF; DNF là dấu × trong dải riêng phía trên vùng vẽ. Tick 1-2-5 luôn bao trọn dữ liệu. Có chú giải cho cả ba ký hiệu. Hover/chạm hiện crosshair và tooltip (lượt, kết quả, Ao5); focus biểu đồ rồi dùng ←/→/Home/End để xem từng lượt bằng bàn phím. Hiển thị tối đa 200 lượt gần nhất; bảng luôn có đủ.
 - Bảng dữ liệu (`details`) có #, Kết quả, Ao5, Ao12 và thời điểm (ẩn cột thời điểm dưới 640px), cuộn trong khung, header dính.
-- Màu chart là token riêng trong `src/styles/theme.css`, chọn bước riêng cho light (`#2a78d6`, `#eb6834`) và dark (`#3987e5`, `#d95926`) và đã qua kiểm tra lightness/chroma/CVD/tương phản trên `--surface` mỗi mode. Chữ dùng token chữ, không dùng màu series.
+- Màu chart là token riêng trong `src/styles/tokens.css` (`--color-chart-*`), chọn bước riêng cho light (`#2a78d6`, `#eb6834`) và dark (`#3987e5`, `#d95926`) và đã qua kiểm tra lightness/chroma/CVD/tương phản trên `--color-surface` mỗi mode. Chữ dùng token chữ, không dùng màu series.
 
 Liên kết: Timer → Thống kê, Lịch sử → Thống kê, Thống kê → Lịch sử solve.
 

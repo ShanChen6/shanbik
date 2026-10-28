@@ -2,10 +2,10 @@
 /* Scoped to .u226. The hero stays dark in both site themes, as in the original. */
 .u226 {
   /* --ux-line → project --border; --ux-shadow-strong per theme. */
-  --u226-ring-line: var(--border);
-  --u226-shadow-strong: rgba(40, 30, 80, 0.3);
+  --u226-ring-line: var(--color-border);
+  --u226-shadow-strong: var(--illus-hero-shadow);
   /* --ux-accent focus ring: the project's dark-surface ring, since the hero surface is always dark. */
-  --u226-focus: #77e0ce;
+  --u226-focus: var(--illus-hero-focus);
   --mx: -200px;
   --my: -200px;
   position: relative;
@@ -16,16 +16,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #07080f;
+  background: var(--illus-hero-bg);
   box-shadow:
     0 0 0 1px var(--u226-ring-line),
     0 30px 60px -36px var(--u226-shadow-strong);
-  color: #f2f4ff;
+  color: var(--illus-hero-text);
   -webkit-tap-highlight-color: transparent;
 }
 :where(.dark) .u226 {
-  --u226-shadow-strong: rgba(0, 0, 0, 0.72);
-  --u226-focus: var(--ring);
+  --u226-shadow-strong: var(--illus-hero-shadow-dark);
+  --u226-focus: var(--color-ring);
 }
 .u226 *,
 .u226 *::before,
@@ -37,27 +37,27 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(var(--illus-hero-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--illus-hero-grid) 1px, transparent 1px);
   background-size: 34px 34px;
   background-position: -1px -1px;
 }
 .u226-gd {
-  -webkit-mask-image: radial-gradient(75% 70% at 50% 45%, #000, transparent);
-  mask-image: radial-gradient(75% 70% at 50% 45%, #000, transparent);
+  -webkit-mask-image: radial-gradient(75% 70% at 50% 45%, black, transparent);
+  mask-image: radial-gradient(75% 70% at 50% 45%, black, transparent);
 }
 .u226-gl {
   background-image:
-    linear-gradient(rgba(129, 140, 248, 0.55) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(129, 140, 248, 0.55) 1px, transparent 1px);
+    linear-gradient(var(--illus-hero-beam) 1px, transparent 1px),
+    linear-gradient(90deg, var(--illus-hero-beam) 1px, transparent 1px);
   -webkit-mask-image: radial-gradient(
     90px 90px at var(--mx) var(--my),
-    #000,
+    black,
     transparent
   );
   mask-image: radial-gradient(
     90px 90px at var(--mx) var(--my),
-    #000,
+    black,
     transparent
   );
   transition: opacity 0.4s;
@@ -79,7 +79,7 @@
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
-    rgba(99, 102, 241, 0.35),
+    var(--illus-hero-glow),
     transparent
   );
   filter: blur(10px);
@@ -97,16 +97,16 @@
   display: inline-block;
   padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: var(--illus-hero-chip);
+  box-shadow: inset 0 0 0 1px var(--illus-hero-chip-line);
   font-size: 0.75rem;
   font-weight: 800;
-  color: #a5b4fc;
+  color: var(--illus-hero-eyebrow);
   letter-spacing: 0.06em;
 }
 .u226-c h1 {
   margin: 12px 0 0;
-  background: linear-gradient(180deg, #fff, #aeb4d6);
+  background: var(--illus-hero-title);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -115,7 +115,7 @@
   margin: 10px auto 0;
   max-width: 36rem;
   font-weight: 600;
-  color: #9aa0c3;
+  color: var(--illus-hero-muted);
 }
 .u226-bt {
   display: flex;
@@ -134,13 +134,13 @@
   text-decoration: none;
 }
 .u226-bt a:first-child {
-  background: #fff;
-  color: #07080f;
+  background: var(--illus-hero-cta);
+  color: var(--illus-hero-bg);
 }
 .u226-bt a:last-child {
-  color: #f2f4ff;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  color: var(--illus-hero-text);
+  background: var(--illus-hero-chip);
+  box-shadow: inset 0 0 0 1px var(--illus-hero-ghost-line);
 }
 .u226 :focus-visible {
   outline: 2px solid var(--u226-focus);

@@ -17,7 +17,7 @@ export default function AccountPage() {
         title="Dữ liệu của bạn, trên mọi thiết bị."
         description="Tài khoản là tuỳ chọn. Khi đăng nhập, bạn chủ động đồng bộ; thay đổi khác nhau ở hai nơi luôn được hỏi lại trước khi ghi."
       />
-      <div className="content-width">
+      <div className="max-w-content">
         <AccountPanel />
       </div>
     </div>
