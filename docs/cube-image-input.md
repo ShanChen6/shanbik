@@ -1,6 +1,6 @@
 # Nhập ảnh 3×3 trước task 11
 
-Theo lựa chọn của người dùng, ưu tiên tính năng này sau beta 10.3, trước 11.1. Camera trực tiếp vẫn thuộc task 24. Bản này nhận sáu ảnh tĩnh để tạo bản nhập màu 3×3; không tự tìm khối trong cảnh, không suy ra sáu mặt từ một ảnh chụp ba mặt.
+Theo lựa chọn của người dùng, ưu tiên tính năng này sau beta 10.3, trước 11.1. Camera trực tiếp (Tuần 24) dùng chung pipeline này: [cube-camera.md](./cube-camera.md). Bản này nhận sáu ảnh tĩnh để tạo bản nhập màu 3×3; không tự tìm khối trong cảnh, không suy ra sáu mặt từ một ảnh chụp ba mặt.
 
 ## Cách dùng
 
@@ -20,7 +20,7 @@ Chỉ nhận JPEG, PNG, WebP có MIME và chữ ký tệp phù hợp, từ 1 byt
 
 Decode một tệp tại một thời điểm; file inputs bị khóa khi bận. Mỗi lần đọc có generation và AbortController. Xóa/reset/rời trang hủy đọc và bỏ kết quả cũ; callback muộn không khôi phục ảnh. Object URL được revoke cả khi thành công/lỗi/hủy. Tối đa sáu buffer raster và preview trong phiên; không lưu file gốc/EXIF hoặc tên file vào app state. Không có upload endpoint, cloud vision, token hoặc dependency nhận dạng mới. Ảnh chỉ được đọc trong browser; screenshot/trace do người debug tự lưu có thể chứa ảnh, không chia sẻ ảnh cá nhân trong report lỗi công khai.
 
-Không cần WebGL cho upload/crop/nhận màu/nhập tay/giải. Player 3D vẫn cần WebGL. Không yêu cầu quyền camera trong tính năng ảnh tĩnh này.
+Không cần WebGL cho upload/crop/nhận màu/nhập tay/giải. Player 3D vẫn cần WebGL. Tải ảnh tĩnh không yêu cầu quyền camera; chụp trực tiếp xin quyền riêng khi bấm Bật camera.
 
 ## Kiến trúc mở rộng
 

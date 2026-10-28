@@ -24,6 +24,8 @@ import {
   type ImageResult,
   type Sources,
 } from "./adapter";
+import { FRAME_ISSUES } from "../../puzzle-image/camera";
+import { CameraCapture } from "./camera-capture";
 import { CUBE_3_IMAGE_PROFILE } from "./profile";
 
 const CORNERS = ["Trên trái", "Trên phải", "Dưới phải", "Dưới trái"];
@@ -131,13 +133,30 @@ export function ImageInputPanel({
         Chọn sáu ảnh, mỗi ảnh nhìn thẳng vào một mặt, tránh bóng và phản chiếu.
         JPEG/PNG/WebP tối đa 8 MiB, 24 MP mỗi ảnh; cạnh lưu để xử lý tối đa
         1024px. Ảnh chỉ xử lý trong trình duyệt, không tải lên máy chủ và không
-        lưu qua reload. Chưa hỗ trợ camera trực tiếp hoặc tự tìm khối trong ảnh.
+        lưu qua reload. Có thể chụp trực tiếp bằng camera; chưa tự tìm khối
+        trong ảnh.
       </p>
       <p className="text-sm text-muted">
         Giữ đúng tâm: U trắng, R đỏ, F xanh lá, D vàng, L cam, B xanh dương. Tâm
         của từng ảnh làm mẫu màu cho nhận dạng; chọn nhầm mặt hoặc ánh sáng khác
         nhau vẫn có thể nhận sai. Luôn kiểm tra lại bằng mắt.
       </p>
+      <CameraCapture
+        captured={new Set(FACE_ORDER.filter((key) => sources[key]))}
+        disabled={!!busy}
+        onCapture={(key, captured, issues) => {
+          setSources((current) => ({ ...current, [key]: captured }));
+          resetResult();
+          setFace(key);
+          setCorner(0);
+          setMessage(
+            [
+              `Đã chụp mặt ${key}. Kiểm tra bốn góc bao đúng một mặt.`,
+              ...issues.map((issue) => FRAME_ISSUES[issue]),
+            ].join(" "),
+          );
+        }}
+      />
       <div className="grid min-w-0 gap-3 sm:grid-cols-2">
         {FACE_ORDER.map((key) => (
           <label

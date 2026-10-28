@@ -3,7 +3,7 @@
 | Route                       | Nội dung hiện có                                                                                | Phần chưa triển khai                              |
 | --------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | /                           | Giới thiệu ShanBik, trạng thái dự án, link khám phá                                             | Không phải dashboard có dữ liệu                   |
-| /practice                   | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải; nút sang Timer | Chưa quét màu qua camera trực tiếp                |
+| /practice                   | Mô hình 3×3, camera, queue, scramble, thuật toán và nhập màu/giải/phát lời giải; nút sang Timer | Camera chỉ hỗ trợ 3×3, luôn duyệt màu bằng tay    |
 | /puzzles                    | Bách khoa tám puzzle, tìm kiếm và bộ lọc URL                                                    | Chưa mở thêm công cụ luyện tập ngoài 3×3          |
 | /puzzles/[slug]             | Đặc điểm, ký hiệu, capability theo registry; Thực hành 2×2/4×4/Pyraminx/Megaminx                | Solver ngoài 3×3; 5×5/Skewb/Square-1 chỉ nội dung |
 | /learn/lessons/[slug]       | Bài từng bước, sơ đồ 2D, minh họa 3D, lưu bước đọc local                                        | Chưa giáo trình đầy đủ                            |

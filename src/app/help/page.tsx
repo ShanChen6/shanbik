@@ -42,7 +42,7 @@ const questions = [
   {
     question: "Có thể nhập Rubik bằng ảnh không?",
     answer:
-      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Chưa hỗ trợ live camera, tự tìm khối trong ảnh hoặc nhận puzzle khác.",
+      "Trong trang luyện tập, mở Nhập từ ảnh — 3×3. Chọn sáu ảnh JPEG/PNG/WebP đúng tâm U/R/F/D/L/B, chỉnh bốn góc bao quanh mỗi mặt và xoay thứ tự ô nếu cần. Nhận màu từ sáu ảnh, kiểm tra/sửa preview rồi xác nhận chuyển sang bản nhập; sau đó kiểm tra hoặc giải như nhập tay. Ảnh chỉ xử lý trong trình duyệt, không gửi lên máy chủ. Ô chưa rõ giữ trống; nhận dạng chưa chứng minh có thể giải. Có thể chụp trực tiếp bằng camera (Bật camera → đặt mặt vào khung → Chụp); camera tự tắt khi chụp xong, đóng phần nhập hoặc rời trang. Chưa tự tìm khối trong ảnh hoặc nhận puzzle khác.",
   },
   {
     question: "Làm sao luyện từ scramble đến lời giải?",
@@ -82,7 +82,7 @@ const questions = [
   {
     question: "Tôi có cần bật camera để giải Rubik không?",
     answer:
-      "Có thể giải khối từ bản nhập màu bằng tay; chưa có quét camera. Công cụ giải nhận trạng thái nhập bằng tay; camera là một khả năng riêng được xem xét sau.",
+      "Không bắt buộc. Có thể nhập màu bằng tay, chọn ảnh có sẵn, hoặc chụp bằng camera trong Nhập từ ảnh — 3×3. Nếu từ chối quyền camera, hai cách còn lại vẫn dùng được. Hình camera chỉ xử lý trong trình duyệt, không ghi hình hay tải lên, và màu nhận được luôn cần bạn kiểm tra trước khi giải.",
   },
   {
     question: "Làm sao đổi giao diện?",
